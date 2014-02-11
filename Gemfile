@@ -20,9 +20,9 @@ group :assets do
   # gem 'zurb-foundation'
 end
 
-# group :staging, :development do
-#   gem 'letter_opener_web'
-# end
+group :staging, :development do
+  gem 'letter_opener_web'
+end
 
 group :development, :test do
   gem 'debugger'

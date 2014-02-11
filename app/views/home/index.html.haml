@@ -1,0 +1,9 @@
+%h1 Balances
+
+- if user_signed_in?
+  %p you are signed in
+  = link_to 'Sign out', destroy_user_session_path, method: :delete
+
+- else
+  = link_to 'Sign up', new_user_registration_path
+  = link_to 'Sign in', new_user_session_path
