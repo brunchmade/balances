@@ -10,4 +10,12 @@ Balances::Application.routes.draw do
   resources :addresses do
     get :detect_currency, on: :collection
   end
+
+  namespace :api do
+    namespace :rest do
+      namespace :v1 do
+        resources :addresses, only: [:create]
+      end
+    end
+  end
 end
