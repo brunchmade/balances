@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require js-routes
+//= require jquery.ba-dotimeout
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

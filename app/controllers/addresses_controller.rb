@@ -27,6 +27,20 @@ class AddressesController < ApplicationController
     respond_with @address
   end
 
+  def detect_currency
+    respond_to do |format|
+      format.html { redirect_to addresses_path }
+      format.json {
+        if params[:public_address].present?
+          @address = Address.new(public_address: params[:public_address])
+          render json: {currency: @address.detect_currency}
+        else
+          render nothing: true, status: :bad_request
+        end
+      }
+    end
+  end
+
   private
 
   def address_params

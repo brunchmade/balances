@@ -80,6 +80,8 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    js-routes (0.9.6)
+      rails (>= 3.2)
     json (1.8.1)
     kgio (2.9.1)
     launchy (2.4.2)
@@ -182,6 +184,7 @@ DEPENDENCIES
   foreman
   haml
   jquery-rails
+  js-routes
   letter_opener_web
   normalize-rails
   pg

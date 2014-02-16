@@ -10,8 +10,14 @@ class Address < ActiveRecord::Base
     bitcoin: {
       name: 'Bitcoin',
       shortname: 'BTC',
-      symbol: [1]
+      symbol: ['1']
     }
   }
+
+  def detect_currency
+    first_bit = public_address[0]
+    matching_currencies = CURRENCIES.values.select { |c| c[:symbol].any? { |s| s == first_bit } }
+    matching_currencies.map { |mc| mc[:name] }
+  end
 
 end

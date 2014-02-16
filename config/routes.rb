@@ -7,5 +7,7 @@ Balances::Application.routes.draw do
     mount LetterOpenerWeb::Engine, at: 'admin/letter_opener'
   end
 
-  resources :addresses
+  resources :addresses do
+    get :detect_currency, on: :collection
+  end
 end
