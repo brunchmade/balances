@@ -9,9 +9,11 @@ class User < ActiveRecord::Base
 
   validates :email, length: { maximum: 254 }
   validates :username, length: { maximum: 50 }
-  validate  :email_andor_username,
+  validate  :email_or_username,
             :email_requirements,
             :username_requirements
+
+  has_many :wallet_addresses
 
   # Used for allowing username or email address for registration with Devise
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -30,7 +32,7 @@ class User < ActiveRecord::Base
 
   private
 
-  def email_andor_username
+  def email_or_username
     if self.email.blank? && self.username.blank?
       errors.add(:base, 'Email or username is required')
     end

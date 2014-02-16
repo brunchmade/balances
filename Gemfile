@@ -4,21 +4,21 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 gem 'awesome_print'
+gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'haml'
 gem 'jquery-rails'
+gem 'normalize-rails'
 gem 'pg'
+gem 'simple_form'
 # gem 'sitemap_generator'
+gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'sass-rails', '~> 4.0.0'
+# Turbolinks makes following links in your web application faster.
+# Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-
-group :assets do
-  gem 'coffee-rails', '~> 4.0.0'
-  gem 'sass-rails', '~> 4.0.0'
-  gem 'uglifier', '>= 1.3.0'
-  # gem 'zurb-foundation'
-end
+gem 'zurb-foundation'
 
 group :staging, :development do
   gem 'letter_opener_web'

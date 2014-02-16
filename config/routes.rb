@@ -6,4 +6,6 @@ Balances::Application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: 'admin/letter_opener'
   end
+
+  resources :wallet_addresses
 end

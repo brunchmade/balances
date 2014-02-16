@@ -2,6 +2,8 @@
 
 - if user_signed_in?
   %p you are signed in
+  = link_to '+ Add Wallet', new_wallet_address_path
+  %br
   = link_to 'Sign out', destroy_user_session_path, method: :delete
 
 - else
