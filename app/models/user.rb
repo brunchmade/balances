@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
             :email_requirements,
             :username_requirements
 
-  has_many :wallet_addresses
+  has_many :addresses
 
   # Used for allowing username or email address for registration with Devise
   def self.find_first_by_auth_conditions(warden_conditions)

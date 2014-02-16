@@ -1,7 +1,7 @@
-%h2 Add Wallet
+%h2 Add Address
 
-= simple_form_for @wallet_address do |f|
+= simple_form_for @address do |f|
   = f.input :public_address, as: :string, placeholder: 'e.g. 1x8s908098BashAS9xx903523'
-  = f.input :currency, collection: WalletAddress::CURRENCIES.values.map { |c| c[:name] }
+  = f.input :currency, collection: Address::CURRENCIES.values.map { |c| c[:name] }
   = f.input :name, as: :string, placeholder: 'e.g. Donations'
   = f.button :submit

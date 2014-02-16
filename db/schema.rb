@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216190432) do
+ActiveRecord::Schema.define(version: 20140216203436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: true do |t|
+    t.text     "public_address"
+    t.text     "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "currency"
+  end
+
+  add_index "addresses", ["currency"], name: "index_addresses_on_currency", using: :btree
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
@@ -35,17 +47,5 @@ ActiveRecord::Schema.define(version: 20140216190432) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
-
-  create_table "wallet_addresses", force: true do |t|
-    t.text     "public_address"
-    t.text     "name"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "currency"
-  end
-
-  add_index "wallet_addresses", ["currency"], name: "index_wallet_addresses_on_currency", using: :btree
-  add_index "wallet_addresses", ["user_id"], name: "index_wallet_addresses_on_user_id", using: :btree
 
 end

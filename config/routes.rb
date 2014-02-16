@@ -7,5 +7,5 @@ Balances::Application.routes.draw do
     mount LetterOpenerWeb::Engine, at: 'admin/letter_opener'
   end
 
-  resources :wallet_addresses
+  resources :addresses
 end

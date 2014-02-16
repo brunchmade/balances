@@ -1,4 +1,4 @@
-class WalletAddress < ActiveRecord::Base
+class Address < ActiveRecord::Base
 
   validates_presence_of :currency,
                         :public_address,

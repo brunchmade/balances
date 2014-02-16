@@ -1,4 +1,4 @@
-%h2 Your Wallets
+%h2 Your Addresses
 
 %table
   %thead
@@ -7,10 +7,10 @@
       %th Name
       %th Public Address
   %tbody
-    - current_user.wallet_addresses.each do |w|
+    - current_user.addresses.each do |w|
       %tr
         %td= w.currency
         %td= w.name
         %td= w.public_address
 
-= link_to '+ Add Wallet', new_wallet_address_path
+= link_to '+ Add Addres', new_address_path
