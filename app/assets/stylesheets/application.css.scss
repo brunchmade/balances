@@ -16,5 +16,139 @@
 @import 'normalize-rails';
 @import 'compass';
 @import 'foundation_and_overrides';
+
+
+$brand: #20d1cf;
+$white: #ffffff;
+$light-gray: #ebebeb;
+$lighter-gray: #fafafa;
+$light-gray-2: #d4d4d4;
+$medium-gray: #898989;
+$medium-gray-2: #9b9b9b;
+$dark-gray: #4a4a4a;
+
+* {
+  font-size: 1em;
+  line-height: 1.2em;
+  font-family: "proxima-nova",sans-serif;
+  color: $dark-gray;
+  font-weight: 300;
+}
+
+h1,h2,h3,h4,h5,h6 { font-family: "proxima-nova",sans-serif; color: $dark-gray; }
+
+section {
+  @include grid-row();
+
+  article {
+    @include grid-column(
+      $columns:8,
+      $center:true
+    );
+  }
+
+  .announcement {
+    @include border-radius(6px);
+    background: #f6f6f6;
+    padding: 14px 14px 0;
+    margin-bottom: 30px;
+    clear: both;
+    min-height: 102px;
+
+    a {
+      float: left;
+      margin-right: 14px;
+      display: block;
+    }
+
+    .content {
+      overflow: hidden;
+      _overflow: visible;
+      margin-top: 5px;
+
+      h4 {
+        font-size: 1em;
+        margin: 0 0 .2em;
+      }
+
+      p {
+        font-size: 1em;
+        line-height: 1.2em;
+        margin-bottom: 14px;
+      }
+    }
+
+    .close {
+      font-size: .8em;
+      position: absolute;
+      top: 4px;
+      right: -6px;
+      color: rgba(0,0,0,.2);
+      &:hover,
+      &:focus { color: rgba(0,0,0,0.6); }
+    }
+  } // .announcement
+
+  .add-address {
+    margin-bottom: 30px;
+
+    .currency-type {
+      width: 40px;
+      height: 40px;
+      @include border-radius(20px);
+      border: 1px dashed $light-gray-2;
+      float: left;
+      margin-right: 16px;
+    }
+
+    h2 {
+      font-size: 22px;
+      line-height: 40px;
+      font-weight: 400;
+      color: $light-gray-2;
+      display: inline;
+      margin: 0;
+    }
+
+    .scan-qr {
+      float: right;
+      margin-top: 6px;
+    }
+
+  } // .add-address
+
+  .filters {
+    background: $lighter-gray;
+    border-top: 1px solid $light-gray;
+    border-bottom: 1px solid $light-gray;
+
+    p {
+      color: $medium-gray-2;
+      font-weight: 600;
+      font-size: .8em;
+      display: inline-block;
+      margin: 18px 0;
+
+      &.currency-type {
+        float: right;
+      }
+    }
+
+  } // .filters
+
+  .list-address {
+    h2 {
+      font-size: 1.2em;
+      font-weight: 400;
+    }
+  } // .list-addresses
+
+} // .section
+
+
+
+
+
+
 @import 'header';
 @import 'footer';

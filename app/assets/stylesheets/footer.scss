@@ -1,0 +1,40 @@
+/*
+ * Footer
+ */
+
+footer {
+  border-top: 1px solid $light-gray;
+  padding-top: 5px;
+  margin-top: 30px;
+
+  a {
+    font-size: .8em;
+    color: $medium-gray;
+    text-decoration: none;
+    &:hover,
+    &:active { text-decoration: underline; }
+  }
+  p {
+    color: $medium-gray;
+    font-size: .8em;
+    @include grid-column(
+      $columns:6
+    );
+  }
+
+  nav {
+    @include grid-column(
+      $columns:6
+    );
+
+    ul {
+      list-style: none;
+      text-align: right;
+
+      li {
+        display: inline;
+        margin-left: 1.2em;
+      }
+    }
+  }
+}

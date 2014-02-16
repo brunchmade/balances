@@ -14,12 +14,16 @@
   	<%= stylesheet_link_tag "application", "data-turbolinks-track" => true %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
+    <script type="text/javascript" src="//use.typekit.net/uux1oqi.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
 
   <body>
-    <%= render "shared/flash" %>
+    <%= render "shared/header" %>
 
     <%= yield %>
+
+    <%= render "shared/footer" %>
 
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   </body>

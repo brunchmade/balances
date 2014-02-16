@@ -1,11 +1,26 @@
-%h1 Balances
+%section
 
-- if user_signed_in?
-  %p you are signed in
-  = link_to '+ Add Address', new_address_path
-  %br
-  = link_to 'Sign out', destroy_user_session_path, method: :delete
+  %article.announcement
+    =link_to '✕', '#', class: 'close'
+    =link_to '#', class: 'icon' do
+      =image_tag 'ios@2x.png', width:74
+    .content
+      %h4 Take your balances with you
+      %p Balances is now available for Mac, iOS, and Android with unlimited address sync, push notifications, QR scanning, PIN security, and more.
 
-- else
-  = link_to 'Sign up', new_user_registration_path
-  = link_to 'Sign in', new_user_session_path
+  %article.add-address
+    .currency-type
+    %h2.address-field Type, paste, or scan a new wallet address...
+    =link_to '#', class: 'scan-qr' do
+      =image_tag 'scan-qr@2x.png', width:31
+
+  %article.filters
+    %p.sort-by Sort by Name ▾
+    %p.currency-type Balances ▾
+
+  %article.list-address
+    %ul
+      - 12.times do
+        %li
+          .currency-type
+          %h2.address 1BrQpq4qdxnwJoD2WKKNMo4PLa8oi2mxAU
