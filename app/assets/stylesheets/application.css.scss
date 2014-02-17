@@ -122,14 +122,26 @@ section {
     border-top: 1px solid $light-gray;
     border-bottom: 1px solid $light-gray;
 
-    p {
+    a {
       color: $medium-gray-2;
       font-weight: 600;
       font-size: .8em;
+      line-height: 20px;
       display: inline-block;
       margin: 18px 0;
+      text-decoration: none;
+      padding-left: 23px;
+      height:20px;
 
+      &:hover,
+      &:focus { text-decoration: underline; }
+
+      &.sort-by {
+        background: image-url('filter.svg') no-repeat top left;
+      }
       &.currency-type {
+        background: image-url('currencies/bitcoin-small@2x.png') no-repeat top left;
+        background-size: 20px;
         float: right;
       }
     }
@@ -137,9 +149,35 @@ section {
   } // .filters
 
   .list-address {
-    h2 {
+    border: 0;
+
+    @include grid-column(
+      $columns:8,
+      $center:true,
+      $collapse:true
+    );
+    tr { background: none; }
+    td {
+      padding: 15px 10px;
       font-size: 1.2em;
       font-weight: 400;
+      text-align: left;
+      border-bottom: 1px solid $light-gray;
+
+      &.currency-type {
+        width: 60px;
+      }
+      &.value {
+        text-align: right;
+      }
+    }
+    .total {
+      padding-top: 40px;
+      td {
+        font-weight: 600;
+        border-bottom: 0;
+        text-align: right;
+      }
     }
   } // .list-addresses
 

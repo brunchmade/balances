@@ -15,12 +15,17 @@
       =image_tag 'scan-qr@2x.png', width:31
 
   %article.filters
-    %p.sort-by Sort by Name ▾
-    %p.currency-type Balances ▾
+    =link_to 'Sort by Name ▾', '#', class: 'sort-by'
+    =link_to 'Balances ▾', '#', class: 'currency-type'
 
-  %article.list-address
-    %ul
-      - 12.times do
-        %li
-          .currency-type
-          %h2.address 1BrQpq4qdxnwJoD2WKKNMo4PLa8oi2mxAU
+  %table.list-address
+    - 12.times do
+      %tr
+        %td.currency-type
+          =image_tag 'currencies/litecoin@2x.png', width:40
+        %td Coinbase
+        %td.value 51.2452 LTC
+    %tr.total
+      %td
+      %td
+      %td Total value: 51.2452 LTC
