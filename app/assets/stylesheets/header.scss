@@ -9,6 +9,7 @@
 }
 header {
   color: $white;
+  @include grid-row();
 
   a {
     color: $white;
@@ -27,33 +28,36 @@ header {
   }
 
   #logo {
-    height: 40px;
-    width: 36px;
-    margin: 14px 40px 0 0;
-    background: image-url('logo.svg') no-repeat;
+    height: 36px;
+    width: 32px;
+    margin: 16px .95em;
+    background: image-url('logo@2x.png') no-repeat;
     background-size: contain;
     float: left;
+    display: block;
+    @media only screen and (max-width: $small-screen) {
+     float: none;
+     margin: 16px auto 0;
+    }
   }
 
   nav {
-    @include grid-column(8);
+    @media only screen and (max-width: $small-screen) {
+     display: none;
+    }
 
     ul {
-
       li {
-        display: inline;
-        margin-right: 60px;
+        float: left;
+        margin: 0 1em;
+        &.user {
+          text-align: right;
+          float: right;
+        }
       }
     }
   }
 
-  .user {
-    text-align: right;
-    @include grid-column(
-      $columns:2,
-      $float:right
-    );
-  }
   .account-menu {
     display: none;
   }

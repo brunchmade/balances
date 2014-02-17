@@ -19,13 +19,23 @@
     =link_to 'Balances ▾', '#', class: 'currency-type'
 
   %table.list-address
-    - 12.times do
+    - 4.times do
       %tr
         %td.currency-type
           =image_tag 'currencies/litecoin@2x.png', width:40
-        %td Coinbase
+        %td We Mine Litecoins
         %td.value 51.2452 LTC
+      %tr
+        %td.currency-type
+          =image_tag 'currencies/bitcoin@2x.png', width:40
+        %td Coinbase
+        %td.value 51.2452 BTC
+      %tr
+        %td.currency-type
+          =image_tag 'currencies/dogecoin@2x.png', width:40
+        %td Wow such address many long such breaking
+        %td.value 500,000,000 DOGE
     %tr.total
       %td
       %td
-      %td Total value: 51.2452 LTC
+      %td Total value:
