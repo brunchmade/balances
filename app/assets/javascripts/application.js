@@ -12,10 +12,23 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require foundation
 //= require turbolinks
-//= require js-routes
+
+//= require foundation
+
+//= require underscore
+//= require backbone
+//= require backbone.marionette
+
 //= require jquery.ba-dotimeout
+//= require js-routes
+//= require utils/mark
+
+//= require balances
+//= require_tree ./models
+//= require_tree ./collections
+//= require balances_app
+
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

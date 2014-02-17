@@ -20,11 +20,9 @@
 
   <body>
     <%= render "shared/header" %>
-
     <%= yield %>
-
     <%= render "shared/footer" %>
-
+    <%= render "shared/templates" %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   </body>
 </html>

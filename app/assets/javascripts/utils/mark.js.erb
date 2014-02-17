@@ -1,0 +1,13 @@
+window.start = new Date();
+
+window.mark = function() {
+  <%= 'return;' unless (Rails.env.development? || Rails.env.staging?) %>
+  if (window.console && console.log && console.log.apply && typeof console.log === 'function') {
+    console.log.apply(
+      console,
+      Array.prototype.slice.call(arguments).concat(
+        (new Date()).getTime() - start.getTime()
+      )
+    );
+  }
+};
