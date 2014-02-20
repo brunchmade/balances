@@ -2,7 +2,7 @@
   %header
     = link_to '', '#', id: 'logo'
     %nav
-      %ul
+      %ul.menu
         - if user_signed_in?
           %li= link_to 'All Balances', addresses_path, class:'current'
           %li= link_to 'Recent Transactions', '#'
@@ -12,9 +12,9 @@
         - else
           %li.user= link_to 'Sign in', new_user_session_path
 
-      %ul.account-menu
+      %ul.dropdown
         %li= link_to 'Account Settings', '#'
-        %li= link_to 'Feedback', '#'
+        %li= link_to 'Feedback', 'mailto:balancesapp@gmail.com?subject=Some feedback on the Balances app :)'
         - if user_signed_in?
           %li= link_to 'Log out', destroy_user_session_path, method: :delete
 

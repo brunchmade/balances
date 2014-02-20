@@ -32,3 +32,81 @@ input[type=submit] {
     background: darken($brand, 5%);
   }
 }
+
+
+.dropdown {
+  position: absolute;
+  z-index: 100;
+  min-width: 180px;
+  list-style: none;
+  background: $white;
+  @include border-radius(6px);
+  @include box-shadow(0 1px 4px 0 rgba(0,0,0,0.15));
+  border: 1px solid #E0E0E0;
+  font-size: .9em;
+  padding: 8px 0;
+
+  li {
+    padding: 6px 12px 4px;
+    color: $medium-gray-2;
+    cursor: pointer;
+    @include transition(all .1s);
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      width: 100%;
+      display: inline-block;
+    }
+
+    &:hover {
+      background-color: $brand;
+      color: $white;
+    }
+    &.current {
+      font-weight: 600;
+      &:after {
+        background: image-url('checkmark.svg') no-repeat;
+        background-size: contain;
+        margin: 2px 0 0;
+        width: 12px;
+        height: 12px;
+        content: '';
+        float: right;
+        display: inline-block;
+      }
+      &:hover:after {
+        -webkit-filter: brightness(10);
+      }
+    }
+  }
+
+  h6 {
+    font-weight: 600;
+    margin: 8px 12px 4px;
+    &.lighter {
+      color: $medium-gray-2;
+    }
+  }
+  // For the Currency Type dropdown
+  .icon {
+    text-indent: 26px;
+    background-position: 12px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    line-height: 20px;
+
+    &.all-currencies { background-image: image-url('currencies/all-currencies@2x.png'); }
+    &.bitcoin { background-image: image-url('currencies/bitcoin-small@2x.png'); }
+    &.litecoin { background-image: image-url('currencies/litecoin-small@2x.png'); }
+    &.dogecoin { background-image: image-url('currencies/dogecoin-small@2x.png'); }
+    //fiat
+    &.usd { background-image: image-url('currencies/usd-small@2x.png'); }
+    &.euro { background-image: image-url('currencies/euro-small@2x.png'); }
+    &.gbp { background-image: image-url('currencies/gbp-small@2x.png'); }
+    &.yen { background-image: image-url('currencies/yen-small@2x.png'); }
+  }
+
+
+
+} // .dropdown

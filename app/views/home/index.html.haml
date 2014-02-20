@@ -16,7 +16,24 @@
 
   %article.filters
     =link_to 'Sort by Name ▾', '#', class: 'sort-by'
+    %ul.dropdown
+      %li.current Name
+      %li Number of Coins
+      %li Value
+      %li Currency Type
+
     =link_to 'Balances ▾', '#', class: 'currency-type'
+    %ul.dropdown
+      %li.icon.all-currencies.current All Balances
+      %h6 Show as current value in...
+      %li.icon.bitcoin Bitcoin
+      %li.icon.litecoin Litecoin
+      %li.icon.dogecoin Dogecoin
+      %h6.lighter Fiat Currencies
+      %li.icon.usd US Dollar
+      %li.icon.euro Euros
+      %li.icon.gbp Pounds Sterling
+      %li.icon.yen Japanese Yen
 
   %table.list-address
     - 4.times do
