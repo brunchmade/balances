@@ -23,14 +23,43 @@
     text-indent: 30px;
     height: 21px;
     line-height: 21px;
-    display: inline-block;
+    display: none;
+  }
+  .helptext {
+    display: none;
   }
 
   .scan-viewer {
-    background: #333;
-    width: 600px;
-    height: 400px;
+    background: image-url('static.gif');
+    //background-size: 76px;
+    width: 640px;
+    height: 480px;
     margin: 0 auto 1em;
+    position: relative;
+    cursor: pointer;
+    h6 {
+      color: $white;
+      padding: 200px 0 100px;
+      font-size: 1.2em;
+    }
+    p {
+      color: rgba(255,255,255,.5);
+      font-weight: 300;
+      font-size: .85em;
+      width: 420px;
+      margin:0 auto;
+    }
+    .overlay {
+      width: 250px;
+      height: 250px;
+      position: absolute;
+      top: 115px;
+      left: 195px;
+      z-index: 100;
+      margin: 0 auto;
+      border: 3px dashed rgba(255,255,255,.5);
+      @include border-radius(20px);
+    }
   }
 
   .close-reveal-modal {
