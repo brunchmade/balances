@@ -11,8 +11,14 @@
   %article.add-address
     .currency-type
     %h2.address-field Type, paste, or scan a new wallet address...
-    =link_to '#', class: 'scan-qr' do
+    =link_to '#', class: 'scan-qr', :data => { :'reveal-id' => 'm-scan-qr' } do
       =image_tag 'scan-qr@2x.png', width:31
+
+    .reveal-modal.medium#m-scan-qr
+      %a.close-reveal-modal &#215;
+      .scan-viewer
+      %p Hold your public address up to your computer's camera
+      %h5 Scanning for QR codes...
 
   %article.filters
     =link_to 'Sort by Name ▾', '#', class: 'sort-by', :data => { :dropdown => 'd-filters' }

@@ -1,0 +1,45 @@
+/*
+ * Reveal Modal Overrides
+ */
+
+
+.reveal-modal-bg {
+  background: rgba(0,0,0,.9);
+}
+
+#m-scan-qr {
+  background: transparent;
+  border: none;
+  text-align: center;
+  @include box-shadow(none);
+
+  p, h5 {
+    color: #ffffff;
+  }
+
+  h5 {
+    background: image-url('spinner.gif') no-repeat left center;
+    background-size: 21px;
+    text-indent: 30px;
+    height: 21px;
+    line-height: 21px;
+    display: inline-block;
+  }
+
+  .scan-viewer {
+    background: #333;
+    width: 600px;
+    height: 400px;
+    margin: 0 auto 1em;
+  }
+
+  .close-reveal-modal {
+    position: fixed;
+    top: 0;
+    right: 14px;
+    font-size: 5em;
+    font-weight: 100;
+    opacity: .5;
+    &:hover { opacity: 1; }
+  }
+}
