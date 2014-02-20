@@ -15,15 +15,15 @@
       =image_tag 'scan-qr@2x.png', width:31
 
   %article.filters
-    =link_to 'Sort by Name ▾', '#', class: 'sort-by'
-    %ul.dropdown
+    =link_to 'Sort by Name ▾', '#', class: 'sort-by', :data => { :dropdown => 'd-filters' }
+    %ul.f-dropdown#d-filters
       %li.current Name
       %li Number of Coins
       %li Value
       %li Currency Type
 
-    =link_to 'Balances ▾', '#', class: 'currency-type'
-    %ul.dropdown
+    =link_to 'Balances ▾', '#', class: 'currency-type', :data => { :dropdown => 'd-balances' }
+    %ul.f-dropdown#d-balances
       %li.icon.all-currencies.current All Balances
       %h6 Show as current value in...
       %li.icon.bitcoin Bitcoin

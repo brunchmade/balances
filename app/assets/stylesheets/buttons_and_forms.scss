@@ -34,9 +34,7 @@ input[type=submit] {
 }
 
 
-.dropdown {
-  position: absolute;
-  z-index: 100;
+.f-dropdown {
   min-width: 180px;
   list-style: none;
   background: $white;
@@ -46,10 +44,12 @@ input[type=submit] {
   font-size: .9em;
   padding: 8px 0;
 
+
   li {
     padding: 6px 12px 4px;
     color: $medium-gray-2;
     cursor: pointer;
+    line-height: 20px;
     @include transition(all .1s);
 
     a {
@@ -57,9 +57,11 @@ input[type=submit] {
       text-decoration: none;
       width: 100%;
       display: inline-block;
+      padding: 0;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $brand;
       color: $white;
     }
@@ -89,12 +91,11 @@ input[type=submit] {
     }
   }
   // For the Currency Type dropdown
-  .icon {
+  .icon, .icon:hover, .icon:focus {
     text-indent: 26px;
     background-position: 12px center;
     background-repeat: no-repeat;
     background-size: 20px;
-    line-height: 20px;
 
     &.all-currencies { background-image: image-url('currencies/all-currencies@2x.png'); }
     &.bitcoin { background-image: image-url('currencies/bitcoin-small@2x.png'); }

@@ -14,7 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 
-//= require foundation
+//  require foundation
+//= require foundation/foundation
+//= require foundation/foundation.dropdown
+//= require foundation/foundation.reveal
 
 //= require underscore
 //= require backbone
