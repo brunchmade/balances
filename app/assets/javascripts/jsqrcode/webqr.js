@@ -11,11 +11,11 @@ var webkit=false;
 var moz=false;
 var v=null;
 
-var camhtml='<object id="iembedflash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="320" height="240"> '+
+var camhtml='<object id="iembedflash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="640" height="480"> '+
   		'<param name="movie" value="assets/camcanvas.swf" />'+
   		'<param name="quality" value="high" />'+
 		'<param name="allowScriptAccess" value="always" />'+
-  		'<embed  allowScriptAccess="always"  id="embedflash" src="assets/camcanvas.swf" quality="high" width="320" height="240" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" mayscript="true"  />'+
+  		'<embed  allowScriptAccess="always"  id="embedflash" src="assets/camcanvas.swf" quality="high" width="640" height="480" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" mayscript="true"  />'+
     '</object>';
 
 var vidhtml = '<div class="overlay"></div><video id="v" autoplay></video>';
@@ -75,7 +75,7 @@ function initCanvas(ww,hh)
     gCanvas.height = h;
     gCtx = gCanvas.getContext("2d");
     gCtx.clearRect(0, 0, w, h);
-    imageData = gCtx.getImageData( 0,0,320,240);
+    imageData = gCtx.getImageData( 0,0,640,480);
 }
 
 function passLine(stringPixels) {
@@ -151,7 +151,6 @@ function read(a)
     $(".overlay").css("border-color","#7ED321");
     document.getElementById("result").innerHTML=html;
     $("#result").css("background-image","none");
-    n.getUserMedia({video: false, audio: false}, success, error);
 }
 
 function isCanvasSupported(){
