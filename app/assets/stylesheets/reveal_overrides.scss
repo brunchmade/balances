@@ -4,7 +4,7 @@
 
 
 .reveal-modal-bg {
-  background: rgba(0,0,0,.9);
+  background: rgba(255,255,255,.95);
 }
 
 #m-scan-qr {
@@ -14,7 +14,7 @@
   @include box-shadow(none);
 
   p, h5 {
-    color: #ffffff;
+    color: $medium-gray-2
   }
 
   h5 {
@@ -39,7 +39,7 @@
     cursor: pointer;
     h6 {
       color: $white;
-      padding: 200px 0 100px;
+      padding: 140px 0 100px;
       font-size: 1.2em;
     }
     p {

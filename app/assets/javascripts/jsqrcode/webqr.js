@@ -151,6 +151,7 @@ function read(a)
     $(".overlay").css("border-color","#7ED321");
     document.getElementById("result").innerHTML=html;
     $("#result").css("background-image","none");
+    n.getUserMedia({video: false, audio: false}, success, error);
 }
 
 function isCanvasSupported(){
@@ -189,7 +190,7 @@ function load()
 function setwebcam()
 {
 	$("#result").css( "display", "inline-block");
-    $(".helptext").css( "display", "inline-block");
+    $(".helptext").css( "display", "block");
     if(stype==1)
     {
         setTimeout(captureToCanvas, 500);

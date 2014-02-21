@@ -17,7 +17,10 @@
     .reveal-modal.medium#m-scan-qr
       %a.close-reveal-modal &#215;
       .scan-viewer#outdiv{ onClick: 'setwebcam()' }
-        %h6 Click here to scan your QR code.
+        %h6
+          =image_tag 'scan-qr-large.svg', width:89
+          %br
+          %br Click here to scan your QR code.
         %p Privacy note: images from your webcam don't get uploaded to our server. The whole scanning process is done entirely in your browser.
       %p.helptext Hold your public address up to your computer's camera
       %h5#result Scanning for QR codes...
