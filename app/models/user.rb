@@ -3,9 +3,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Virtual attribute for authenticating by either username or email
+  # :login is a virtual attribute for authenticating by either username or email
   # This is in addition to a real persisted field like 'username'
-  attr_accessor :login
+  attr_accessor :login,
+                :auth_token
 
   validates :email, length: { maximum: 254 }
   validates :username, length: { maximum: 50 }
@@ -14,6 +15,7 @@ class User < ActiveRecord::Base
             :username_requirements
 
   has_many :addresses
+  has_many :tokens
 
   # Used for allowing username or email address for registration with Devise
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -30,6 +32,12 @@ class User < ActiveRecord::Base
     false
   end
 
+  def generate_auth_token
+    t = SecureRandom.urlsafe_base64(32)
+    token = tokens.create(token: t)
+    self.auth_token = token.token
+  end
+
   private
 
   def email_or_username
@@ -39,12 +47,8 @@ class User < ActiveRecord::Base
   end
 
   def email_requirements
-    if self.email.present? && self.email.length > 0
-      if self.email.length < 5
-        errors.add(:email, 'is too short (minimum is 5 characters)')
-      end
-    else
-      self.email = nil
+    if self.email.present? && self.email.length > 0 && self.email.length < 5
+      errors.add(:email, 'is too short (minimum is 5 characters)')
     end
   end
 
@@ -53,11 +57,12 @@ class User < ActiveRecord::Base
       if self.username.length < 3
         errors.add(:username, 'is too short (minimum is 3 characters)')
       end
-      if User.where("lower(username) = ?", self.username.downcase).any?
+
+      if (new_record? && User.where("lower(username) = ?", self.username.downcase).any?) ||
+         (!new_record? && User.where("lower(username) = ? AND id != ?", self.username.downcase, self.id).any?)
+
         errors.add(:username, 'is already taken')
       end
-    else
-      self.username = nil
     end
   end
 

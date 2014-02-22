@@ -21,6 +21,11 @@ Balances::Application.routes.draw do
     namespace :rest do
       namespace :v1 do
         resources :addresses, only: [:create]
+        resources :registrations, only: [:create] do
+          post :sign_in, on: :collection
+          delete :sign_out, on: :collection
+        end
+        resources :tokens, only: [:create]
       end
     end
   end
