@@ -11,6 +11,12 @@ Balances::Application.routes.draw do
     get :detect_currency, on: :collection
   end
 
+  devise_scope :user do |variable|
+    get :settings, to: 'devise/registrations#edit'
+  end
+
+  get :terms_privacy, controller: 'home'
+
   namespace :api do
     namespace :rest do
       namespace :v1 do

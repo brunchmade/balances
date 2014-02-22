@@ -17,7 +17,7 @@
     <meta name="msapplication-square70x70logo" content="/assets/win8-tiny.png"/>
     <meta name="msapplication-square150x150logo" content="/assets/win8-square.png"/>
 
-  	<title><%= content_for?(:title) ? yield(:title) : "Balances" %></title>
+  	<title><%= content_for?(:title) ? yield(:title) + ' - Balances' : "Balances" %></title>
 
   	<%= stylesheet_link_tag "application", "data-turbolinks-track" => true %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>

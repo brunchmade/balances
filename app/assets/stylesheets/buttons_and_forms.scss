@@ -33,6 +33,30 @@ input[type=submit] {
   }
 }
 
+input[type=submit].delete-button {
+  color: lighten(red, 20%);
+  border: 1px solid rgba(0,0,0,.1);
+  background: transparent;
+  padding: 6px 20px;
+  font-size: .85em;
+  font-weight: 100;
+  float: right;
+  &:hover {
+    color: red;
+    border-color: red;
+  }
+}
+
+// Devise error overrides
+#error_explanation {
+  h2 {
+    display: none;
+  }
+  ul li {
+    color: lighten(red, 20%);
+  }
+}
+
 
 .f-dropdown {
   min-width: 180px;
@@ -107,7 +131,4 @@ input[type=submit] {
     &.gbp { background-image: image-url('currencies/gbp-small@2x.png'); }
     &.yen { background-image: image-url('currencies/yen-small@2x.png'); }
   }
-
-
-
 } // .dropdown

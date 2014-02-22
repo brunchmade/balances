@@ -31,6 +31,24 @@
 
 h1,h2,h3,h4,h5,h6 { font-family: "proxima-nova",sans-serif; color: $dark-gray; }
 
+a {
+  color: darken($brand, 5%);
+  text-decoration: underline;
+  @include transition(all .2s);
+  &:hover {
+    color: darken($brand, 15%);
+  }
+}
+
+::selection {
+  background: $brand;
+  color: $white !important;
+  }
+::-moz-selection {
+  background: $brand;
+  color: $white !important;
+}
+
 section {
   @include grid-row();
 
