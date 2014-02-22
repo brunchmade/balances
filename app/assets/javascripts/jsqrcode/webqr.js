@@ -151,6 +151,10 @@ function read(a)
     $(".overlay").css("border-color","#7ED321");
     document.getElementById("result").innerHTML=html;
     $("#result").css("background-image","none");
+    v = document.getElementById("v");
+    v.pause();
+    window.currentStream.stop();
+    window.currentStream = null;
 }
 
 function isCanvasSupported(){
@@ -170,6 +174,7 @@ function success(stream) {
         v.src = stream;
     gUM=true;
     setTimeout(captureToCanvas, 500);
+    window.currentStream = stream;
 }
 
 function error(error) {
