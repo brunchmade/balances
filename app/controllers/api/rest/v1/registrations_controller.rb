@@ -1,5 +1,7 @@
 class Api::Rest::V1::RegistrationsController < Api::Rest::V1::BaseController
 
+  skip_before_filter :validate_auth_token
+
   respond_to :json
 
   def create

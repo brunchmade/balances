@@ -14,7 +14,7 @@ class Api::Rest::V1::AddressesController < Api::Rest::V1::BaseController
       :public_address,
       :currency,
       :name
-    )
+    ).merge(user_id: current_user.id)
   end
 
 end

@@ -3,6 +3,7 @@ class Address < ActiveRecord::Base
   validates_presence_of :currency,
                         :public_address,
                         :user_id
+  validates :public_address, uniqueness: { scope: :currency }
 
   belongs_to :user
 
