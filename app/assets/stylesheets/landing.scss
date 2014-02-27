@@ -19,7 +19,7 @@
 @import 'mixins_and_variables';
 
 * {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.2em;
   font-family: "proxima-nova",sans-serif;
   color: $dark-gray;
@@ -38,6 +38,10 @@ a {
   &:hover {
     color: darken($brand, 15%);
   }
+}
+
+p {
+  font-weight: 300;
 }
 
 ::selection {
@@ -69,7 +73,7 @@ a {
   &.large {
     height: 50px;
     @include border-radius(25px);
-    padding: 11px 45px 0;
+    padding: 12px 45px 0;
     font-size: 21px !important
   }
 
@@ -88,6 +92,9 @@ a {
   &.brand {
     color: $white;
     background: rgba($brand,.75);
+    &:hover {
+      background: rgba($brand,1);
+    }
   }
 }
 
@@ -99,9 +106,8 @@ a {
   background: image_url('landing/header-bg.jpg') no-repeat center;
   background-attachment: fixed;
   background-size: cover;
-  height: 900px;
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
 header {
   padding-top: 16px;
@@ -111,10 +117,12 @@ header {
     ul {
       list-style: none;
       overflow: hidden;
+      margin: 0;
       li {
         display: inline-block;
         float: right;
         margin-right: 16px;
+        a { margin: 0 !important; }
 
         &.twitter {
           float: left;
@@ -146,12 +154,12 @@ header {
     font-style: italic;
     font-weight: 400;
     letter-spacing: -4px;
-    font-size: 6.75em;
+    font-size: 6em;
   }
   h2 {
     font-weight: 100;
     max-width: 490px;
-    font-size: 21px;
+    font-size: 1.1em;
     color: rgba($white,0.75);
     margin-bottom: 40px;
   }
@@ -160,20 +168,61 @@ header {
     background: image_url('landing/screen@2x.jpg') no-repeat top center;
     background-size: cover;
     width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
     height: 410px;
     border: 35px solid $black;
     border-bottom: none;
-    margin-left: -45%;
-    left: 50%;
     @include border-radius(33px 33px 0 0);
     @include box-shadow(0 0 0 2px #ccc);
     position: absolute;
-    bottom: 0;
+    left: 50%;
+    margin-left: 450px;
   }
+}
+
+.currencies-bg {
+  background: #F6F6F6;
+  padding: 100px 0;
+}
+.everywhere-bg {
+  background: rgba(#1F2932,.9) image_url('landing/everywhere-bg.jpg') no-repeat top center;
+  background-size: cover;
+  padding: 100px 0;
 }
 
 section {
   @include grid-row();
+  text-align: center;
+
+  h3 {
+    font-family: "crete-round", "proxima-nova",sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.8em;
+    margin: 0 auto 40px;
+  }
+
+  &.currencies {
+    .available-coins {
+      background: image_url('landing/available-coins.svg') no-repeat top center;
+      background-size: contain;
+      width: 542px;
+      height: 87px;
+      margin: 40px auto 0;
+    }
+  }
+
+  &.everywhere {
+    h3, p { color: $white;}
+    .devices {
+      background: image_url('landing/devices.svg') no-repeat top center;
+      background-size: contain;
+      width: 624px;
+      height: 226px;
+      margin: 0 auto 50px;
+    }
+  }
 
   article {
     @extend .large-8, .small-12, .columns, .small-centered;

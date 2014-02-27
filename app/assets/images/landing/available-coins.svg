@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1084px" height="174px" viewBox="0 0 1084 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>coinz</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="landing-page" sketch:type="MSArtboardGroup" transform="translate(-657.000000, -2382.000000)">
+            <g id="coinz" sketch:type="MSLayerGroup" transform="translate(659.000000, 2385.000000)">
+                <g id="Group" transform="translate(-0.468547, -0.474441)">
+                    <path d="M169,84.8721965 C169,131.54738 131.16731,169.381176 84.5,169.381176 C37.8326897,169.381176 0,131.54738 0,84.8721965 C0,38.2028412 37.8326897,0.363217257 84.5,0.363217257 C131.16731,0.363217257 169,38.2028412 169,84.8721965 L169,84.8721965 Z" id="Stroke-4869" stroke="#FC9D1C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                    <text id="B" fill="#FC9D1C" sketch:type="MSTextLayer" font-family="Proxima Nova Soft" font-size="120" font-weight="normal">
+                        <tspan x="47" y="125">B</tspan>
+                    </text>
+                    <rect id="Rectangle-8" fill="#FC9D1C" sketch:type="MSShapeGroup" x="77.4685466" y="35.4744409" width="10" height="18" rx="2"></rect>
+                    <rect id="Rectangle-8-copy" fill="#FC9D1C" sketch:type="MSShapeGroup" x="77.4685466" y="116.474441" width="10" height="18" rx="2"></rect>
+                </g>
+                <g id="Group-copy" transform="translate(573.000000, -0.474441)">
+                    <path d="M169,84.8721965 C169,131.54738 131.16731,169.381176 84.5,169.381176 C37.8326897,169.381176 0,131.54738 0,84.8721965 C0,38.2028412 37.8326897,0.363217257 84.5,0.363217257 C131.16731,0.363217257 169,38.2028412 169,84.8721965 L169,84.8721965 Z" id="Stroke-4869" stroke="#FFCA50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                    <text id="D" fill="#FFCA50" sketch:type="MSTextLayer" font-family="Proxima Nova Soft" font-size="120" font-weight="normal">
+                        <tspan x="47" y="125">D</tspan>
+                    </text>
+                    <rect id="Rectangle-8" fill="#FFCA50" sketch:type="MSShapeGroup" x="47" y="85" width="30" height="10" rx="2"></rect>
+                </g>
+                <g id="Group-copy-2" transform="translate(815.531453, -0.474441)">
+                    <path d="M218,84.5089792 C218,131.184163 180.16731,169.017958 133.5,169.017958 C86.8326897,169.017958 49,131.184163 49,84.5089792 C49,37.839624 86.8326897,0 133.5,0 C180.16731,0 218,37.839624 218,84.5089792 L218,84.5089792 Z" id="Stroke-4869" stroke="#D4D4D4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
+                    <g id="P-+-Rectangle-12" transform="translate(101.000000, 32.000000)" fill="#000000">
+                        <text id="P" sketch:type="MSTextLayer" font-family="Proxima Nova Soft" font-size="120" font-weight="normal">
+                            <tspan x="5" y="93">P</tspan>
+                        </text>
+                        <rect id="Rectangle-12" sketch:type="MSShapeGroup" x="0.468546638" y="13.4744409" width="10" height="80" rx="40"></rect>
+                    </g>
+                    <rect id="Rectangle-13" opacity="0.95" fill="#FC9D1C" sketch:type="MSShapeGroup" x="0" y="45" width="266" height="80" rx="50"></rect>
+                    <text id="Coming-soon" fill="#FFFFFF" sketch:type="MSTextLayer" font-family="Proxima Nova" font-size="36" font-weight="normal" sketch:alignment="middle">
+                        <tspan x="28.168" y="97">Coming soon</tspan>
+                    </text>
+                </g>
+                <g id="Group-copy" transform="translate(286.000000, -0.474441)" sketch:type="MSShapeGroup">
+                    <path d="M169,84.5089792 C169,131.184163 131.16731,169.017958 84.5,169.017958 C37.8326897,169.017958 0,131.184163 0,84.5089792 C0,37.839624 37.8326897,0 84.5,0 C131.16731,0 169,37.839624 169,84.5089792 L169,84.5089792 Z" id="Stroke-4869" stroke="#9B9B9B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <g id="L-+-Rectangle-8-copy" transform="translate(55.000000, 44.000000)" fill="#9B9B9B">
+                        <path d="M54.92,72.12 L21.32,72.12 L31.32,5.04 C31.32,2.4 29.16,0.24 26.52,0.24 C23.52,0.24 21.36,2.4 21.36,5.04 L11.36,73.8 C11.36,77.76 14.6,81 18.56,81 L54.92,81 C57.32,81 59.24,79.08 59.24,76.44 C59.24,74.04 57.32,72.12 54.92,72.12 Z" id="L"></path>
+                        <path d="M12.4681616,23.4744409 C11.3638048,23.4744409 10.6867108,24.3470976 10.9542469,25.4172419 L19.9828464,61.5316399 C20.2510912,62.6046192 21.3559799,63.4744409 22.4681616,63.4744409 L28.4689317,63.4744409 C29.5732885,63.4744409 30.2503825,62.6017842 29.9828464,61.5316399 L20.9542469,25.4172419 C20.686002,24.3442625 19.5811133,23.4744409 18.4689317,23.4744409 L12.4681616,23.4744409 Z" id="Rectangle-8-copy" transform="translate(20.468547, 43.474441) rotate(-270.000000) translate(-20.468547, -43.474441) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
