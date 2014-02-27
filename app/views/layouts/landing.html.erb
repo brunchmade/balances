@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-touch-icon-ipad.png">
+
+  	<title><%= content_for?(:title) ? yield(:title) : "Balances" %></title>
+
+  	<%= stylesheet_link_tag "landing", media: "all", "data-turbolinks-track" => true %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= csrf_meta_tags %>
+    <script type="text/javascript" src="//use.typekit.net/uux1oqi.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  </head>
+
+  <body>
+    <%= yield %>
+    <%= render "shared/footer" %>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+- content_for :title do
+  Balances – See all your cryptocoins in one place
+
+.header-bg
+  %header
+    %nav
+      %ul.menu
+        %li.twitter= link_to 'balancesapp', 'https://twitter.com/balancesapp'
+        %li= link_to 'Sign in', new_user_session_path, class: 'small clear white button'
+        %li= link_to 'Download for iOS', '#', class: 'small clear white button'
+
+    %h1 Balances
+    %h2 The simple way to monitor your bitcoin, litecoin, and dogecoin balances without compromsing your privacy.
+    = link_to 'Sign up – it\'s free', '#', class: 'large brand button'
+
+    .screen
+%section
+  %p hello

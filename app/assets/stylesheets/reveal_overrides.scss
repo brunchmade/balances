@@ -4,7 +4,7 @@
 
 
 .reveal-modal-bg {
-  background: rgba(255,255,255,.95);
+  background: rgba($white,.95);
 }
 
 #m-scan-qr {
@@ -43,7 +43,7 @@
       font-size: 1.2em;
     }
     p {
-      color: rgba(255,255,255,.5);
+      color: rgba($white,.5);
       font-weight: 300;
       font-size: .85em;
       width: 420px;
@@ -57,7 +57,7 @@
       left: 195px;
       z-index: 100;
       margin: 0 auto;
-      border: 3px dashed rgba(255,255,255,.5);
+      border: 3px dashed rgba($white,.5);
       @include border-radius(20px);
     }
   }

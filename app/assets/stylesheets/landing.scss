@@ -1,0 +1,186 @@
+/*
+ * This is a manifest file that'll be compiled into landing.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+
+@charset "utf-8";
+
+@import 'normalize-rails';
+@import 'compass';
+@import 'foundation_and_overrides';
+@import 'mixins_and_variables';
+
+* {
+  font-size: 16px;
+  line-height: 1.2em;
+  font-family: "proxima-nova",sans-serif;
+  color: $dark-gray;
+  font-weight: 300;
+  @media only screen and (max-width: $small-screen) {
+   font-size: .95em;
+  }
+}
+
+h1,h2,h3,h4,h5,h6 { font-family: "proxima-nova",sans-serif; color: $dark-gray; }
+
+a {
+  color: darken($brand, 5%);
+  text-decoration: underline;
+  @include transition(all .2s);
+  &:hover {
+    color: darken($brand, 15%);
+  }
+}
+
+::selection {
+  background: $brand;
+  color: $white !important;
+  }
+::-moz-selection {
+  background: $brand;
+  color: $white !important;
+}
+
+/*
+ * Buttons
+ */
+
+.button {
+  text-align: center;
+  font-weight: 300;
+  @include box-shadow(none);
+  @include transition(all .2s);
+  border: none;
+
+  &.small {
+    height: 30px;
+    @include border-radius(15px);
+    padding: 4px 20px 0;
+    font-size: 16px !important;
+  }
+  &.large {
+    height: 50px;
+    @include border-radius(25px);
+    padding: 11px 45px 0;
+    font-size: 21px !important
+  }
+
+  &.clear {
+    background: transparent;
+    border: 1px solid;
+    &.white {
+      border-color: rgba($white,.5);
+      color: rgba($white,.8);
+      &:hover {
+        border-color: rgba($white,.8);
+        color: rgba($white,1);
+      }
+    }
+  }
+  &.brand {
+    color: $white;
+    background: rgba($brand,.75);
+  }
+}
+
+/*
+ * Header
+ */
+
+.header-bg {
+  background: image_url('landing/header-bg.jpg') no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 900px;
+  position: relative;
+  overflow: hidden;
+}
+header {
+  padding-top: 16px;
+  text-align: center;
+
+  nav {
+    ul {
+      list-style: none;
+      overflow: hidden;
+      li {
+        display: inline-block;
+        float: right;
+        margin-right: 16px;
+
+        &.twitter {
+          float: left;
+          background: image_url('landing/twitter.svg') no-repeat top left;
+          background-size: contain;
+          height: 16px;
+          text-indent: 24px;
+          opacity: .6;
+          margin: 5px 0 0 16px;
+          @include transition(all .2s);
+          &:hover {
+            opacity: .8;
+          }
+          a {
+            color: $white;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  h1, h2 {
+    color: $white;
+    margin: 0 auto;
+  }
+  h1 {
+    font-family: "crete-round", "proxima-nova",sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -4px;
+    font-size: 6.75em;
+  }
+  h2 {
+    font-weight: 100;
+    max-width: 490px;
+    font-size: 21px;
+    color: rgba($white,0.75);
+    margin-bottom: 40px;
+  }
+
+  .screen {
+    background: image_url('landing/screen@2x.jpg') no-repeat top center;
+    background-size: cover;
+    width: 90%;
+    height: 410px;
+    border: 35px solid $black;
+    border-bottom: none;
+    margin-left: -45%;
+    left: 50%;
+    @include border-radius(33px 33px 0 0);
+    @include box-shadow(0 0 0 2px #ccc);
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+section {
+  @include grid-row();
+
+  article {
+    @extend .large-8, .small-12, .columns, .small-centered;
+  }
+  article.small {
+    @extend .large-5, .small-11, .columns, .small-centered;
+  }
+}
+
+@import 'footer';
