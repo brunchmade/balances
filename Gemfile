@@ -20,9 +20,6 @@ gem 'simple_form'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 gem 'sass-rails', '~> 4.0.0'
-# Turbolinks makes following links in your web application faster.
-# Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 gem 'zurb-foundation'
 
 group :staging, :development do

@@ -17,3 +17,9 @@
 
 
 = link_to '+ Add Address', new_address_path
+
+- content_for :javascript do
+  :javascript
+    $(function() {
+      H.testing = #{@addresses.html_safe}
+    });
