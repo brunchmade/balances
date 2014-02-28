@@ -117,6 +117,9 @@ p {
   background-size: cover;
   overflow: hidden;
   position: relative;
+  @media only screen and (max-width: $small-screen) {
+    background-attachment: scroll;
+  }
 }
 header {
   padding-top: 16px;
@@ -124,6 +127,9 @@ header {
 
   nav {
     margin-bottom: -20px;
+    @media only screen and (max-width: $small-screen) {
+      margin-bottom: 55px;
+    }
     ul {
       list-style: none;
       overflow: hidden;
@@ -191,6 +197,7 @@ header {
     }
     @media only screen and (max-width: $small-screen) {
       width: 80%;
+      max-width: 400px;
       margin-left: 10%;
       height: 140px;
       &:before {
@@ -222,6 +229,9 @@ header {
     position: absolute;
     left: 50%;
     margin-left: 450px;
+    @media only screen and (max-width: $small-screen) {
+      display: none;
+    }
   }
 }
 
@@ -239,6 +249,7 @@ header {
   padding: 100px 0;
   @media only screen and (max-width: $small-screen) {
    padding: 25px 0;
+   background-attachment: scroll;
   }
 }
 

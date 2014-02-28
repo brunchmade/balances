@@ -11,6 +11,8 @@ setHeaderHeight = ->
     $header.css "height", 900 + "px"
   else
     $header.height $(window).height()
+  if $(window).width() < 600
+    $header.css "height", "auto"
 
   $callout = $header.find("h1")
   $callout.css "marginTop", ($(window).height() / 4 - $callout.height()) + "px"
