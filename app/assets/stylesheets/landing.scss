@@ -17,6 +17,7 @@
 @import 'compass';
 @import 'foundation_and_overrides';
 @import 'mixins_and_variables';
+@import 'animate';
 
 * {
   font-size: 18px;
@@ -102,6 +103,13 @@ p {
  * Header
  */
 
+@-webkit-keyframes topspin  {
+  0%  { -webkit-transform:  rotate(0deg); }
+  50%  { -webkit-transform:  rotate(-22deg) translate(0,4px); }
+  100%  { -webkit-transform:  rotate(0deg); }
+}
+
+
 .header-bg {
   background: image_url('landing/header-bg.jpg') no-repeat center;
   background-attachment: fixed;
@@ -114,6 +122,7 @@ header {
   text-align: center;
 
   nav {
+    margin-bottom: -20px;
     ul {
       list-style: none;
       overflow: hidden;
@@ -154,8 +163,27 @@ header {
     font-style: italic;
     font-weight: 400;
     letter-spacing: -4px;
-    font-size: 6em;
+    font-size: 0;
+    background: image_url('landing/logo.svg') no-repeat bottom center;
+    background-size: contain;
+    width: 400px;
+    height: 200px;
+    overflow: hidden;
+    text-indent: -9999px;
+    margin-bottom: 40px;
+    &:before {
+      content: '';
+      background: image_url('landing/top.svg') no-repeat center;
+      background-size: contain;
+      width: 72px;
+      height: 83px;
+      display: block;
+      margin: 10px auto 30px;
+      -webkit-transform-origin: 40% 65%;
+      -webkit-animation: topspin 1.2s ease-in-out infinite;
+    }
   }
+
   h2 {
     font-weight: 100;
     max-width: 490px;
@@ -170,7 +198,7 @@ header {
     width: 90%;
     max-width: 900px;
     margin: 0 auto;
-    height: 410px;
+    height: 500px;
     border: 35px solid $black;
     border-bottom: none;
     @include border-radius(33px 33px 0 0);
@@ -181,14 +209,21 @@ header {
   }
 }
 
-.currencies-bg {
-  background: #F6F6F6;
+.unified-bg, .currencies-bg {
+  @include background-gradient(#F6F6F6,#ffffff);
   padding: 100px 0;
+  @media only screen and (max-width: $small-screen) {
+   padding: 50px 0;
+  }
 }
 .everywhere-bg {
   background: rgba(#1F2932,.9) image_url('landing/everywhere-bg.jpg') no-repeat top center;
   background-size: cover;
+  background-attachment: fixed;
   padding: 100px 0;
+  @media only screen and (max-width: $small-screen) {
+   padding: 25px 0;
+  }
 }
 
 section {
@@ -200,27 +235,42 @@ section {
     font-style: italic;
     font-weight: 400;
     font-size: 1.8em;
-    margin: 0 auto 40px;
+    margin: 0 auto 50px;
+    @media only screen and (max-width: $small-screen) {
+     margin-bottom: 25px;
+    }
   }
 
-  &.currencies {
-    .available-coins {
-      background: image_url('landing/available-coins.svg') no-repeat top center;
-      background-size: contain;
-      width: 542px;
-      height: 87px;
-      margin: 40px auto 0;
+  @mixin prop-height ($width, $height) {
+    $prop: $height / $width;
+    height: calc(#{$height} * #{$prop}) !important;
+  }
+
+  &.unified {
+    img {
+      margin: 80px auto;
+      @media only screen and (max-width: $small-screen) {
+       margin: 25px auto;
+      }
     }
   }
 
   &.everywhere {
     h3, p { color: $white;}
-    .devices {
-      background: image_url('landing/devices.svg') no-repeat top center;
-      background-size: contain;
-      width: 624px;
-      height: 226px;
-      margin: 0 auto 50px;
+    img {
+      margin-bottom: 50px;
+      @media only screen and (max-width: $small-screen) {
+       margin: 35px 0;
+      }
+    }
+  }
+
+  &.currencies {
+    img {
+      margin: 50px auto;
+      @media only screen and (max-width: $small-screen) {
+       margin: 25px auto;
+      }
     }
   }
 

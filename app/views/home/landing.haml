@@ -3,29 +3,41 @@
 
 .header-bg
   %header
-    %nav
+    %nav.animated.fadeInUp
       %ul.menu
         %li.twitter= link_to 'balancesapp', 'https://twitter.com/balancesapp'
         %li= link_to 'Sign in', new_user_session_path, class: 'small clear white button'
         %li= link_to 'Download for iOS', '#', class: 'small clear white button'
 
-    %h1 Balances
-    %h2 The simple way to monitor your bitcoin, litecoin, and dogecoin balances without compromsing your privacy.
-    = link_to 'Sign up – it\'s free', '#', class: 'large brand button'
+    .animated.fadeInUp
+      %h1 Balances
+      %h2 The simple way to monitor your bitcoin, litecoin, and dogecoin balances without compromsing your privacy.
+      = link_to 'Sign up – it\'s free', '#', class: 'large brand button'
 
-    .screen
+    .screen.animated.fadeInUp
 
-.currencies-bg
-  %section.currencies
+.unified-bg
+  %section.unified
     %article
-      %h3 Keep tabs on all your coins
-      %p They won't let you install a wallet on your phone, but that doesn't mean you have to be in the dark about your Bitcoin balances, transactions in, and all of your altcoins.
-      %p Balances lets you 'watch' any wallet address from any currency, and can send you push notifications when you receive or send coins.
-      .available-coins
+      %h3 All your coins in one place
+      %p Keeping track of your bitcoin, litecoin, and dogecoin balances is a huge hassle – Balances makes it simple. See balances from desktop, mobile, and web wallets in one unified list.
+    =image_tag('landing/screens@2x.png')
+    %article
+      %p You can 'watch' any wallet address from any currency, and Balances can send you push notifications when you receive money. PIN lock hides your balances from prying eyes.
 
 .everywhere-bg
   %section.everywhere
     %article
-      .devices
+      =image_tag('landing/devices.svg')
       %h3 Everywhere you go
-      %p Your wallets might live on your computer, on the web, or in  secret underground bunkers, but Balances keeps track of everything for you, and syncs across all of your devices. We don't store any of your coins – it's all read-only – so even if your phone is stolen, your coins will stay completely safe.
+      %p Your wallet might live on your computer, on the web, or in secret underground bunkers, but Balances keeps track of everything for you and syncs across all of your devices. We don't store any of your coins – it's all read-only. So even if your phone is stolen, your coins will stay completely safe.
+
+.currencies-bg
+  %section.currencies
+    %article
+      =image_tag('landing/available-coins.svg')
+
+%section
+  %article
+    %h3 Balances – The simple way to monitor your coins.
+    = link_to 'Sign up – it\'s free', '#', class: 'large brand button'
