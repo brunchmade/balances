@@ -1,0 +1,46 @@
+- content_for :title do
+  Balances – See all your cryptocoins in one place
+
+.header-bg
+  %header
+    %nav.animated.fadeInUp
+      %ul.menu
+        %li.logo
+          %h1
+            %span.top
+            Balances
+        %li= link_to 'Sign in', new_user_session_path, class: 'small clear white button'
+        %li.ios= link_to 'Download for iOS', '#', class: 'small clear white button'
+        %li.twitter= link_to 'balancesapp', 'https://twitter.com/balancesapp'
+
+    .animated.fadeInUp
+      %h2 The simple way to monitor your bitcoin, litecoin, and dogecoin balances without compromsing your privacy.
+      = link_to 'Get started', '#', class: 'large brand button'
+
+    .screen.animated.fadeInUp
+
+.unified-bg
+  %section.unified
+    %article
+      %h3 All your coins in one place
+      %p Keeping track of your bitcoin, litecoin, and dogecoin balances is a huge hassle – Balances makes it simple. See balances from desktop, mobile, and web wallets in one unified list.
+    =image_tag('landing/screens@2x.png')
+    %article
+      %p You can 'watch' any wallet address from any currency, and Balances can send you push notifications when you receive money. You can also convert values to any currency.
+
+.everywhere-bg
+  %section.everywhere
+    %article
+      =image_tag('landing/devices.svg')
+      %h3 Everywhere you go
+      %p Your wallet might live on your computer, on the web, or in secret underground bunkers, but Balances keeps track of everything for you and syncs across all of your devices. We don't store any of your coins – it's all read-only. So even if your phone is stolen, your coins will stay completely safe.
+
+.currencies-bg
+  %section.currencies
+    %article
+      =image_tag('landing/available-coins.svg')
+
+%section
+  %article
+    %h3 Balances – The simple way to monitor your coins.
+    = link_to 'Get started', '#', class: 'large brand button'

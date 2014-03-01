@@ -4,6 +4,7 @@
 
 $brand: #20d1cf;
 $white: #ffffff;
+$black: #000000;
 $light-gray: #ebebeb;
 $lighter-gray: #fafafa;
 $light-gray-2: #d4d4d4;
@@ -14,3 +15,14 @@ $dark-gray: #4a4a4a;
 /*
  * Mixins
  */
+
+@mixin background-gradient($from, $to) {
+  background: $from; /* Old browsers */
+  background: -moz-linear-gradient(top, $from 0%, $to 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to));
+  background: -webkit-linear-gradient(top, $from 0%,$to 100%);
+  background: -o-linear-gradient(top, $from 0%,$to 100%);
+  background: -ms-linear-gradient(top, $from 0%,$to 100%);
+  background: linear-gradient(to bottom, $from 0%,$to 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$from', endColorstr='$to',GradientType=0 );
+}

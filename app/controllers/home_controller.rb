@@ -6,4 +6,8 @@ class HomeController < ApplicationController
   def terms_privacy
   end
 
+  def landing
+    render layout: 'landing'
+  end
+
 end

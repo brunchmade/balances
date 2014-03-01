@@ -17,6 +17,8 @@ Balances::Application.routes.draw do
 
   get :terms_privacy, controller: 'home'
 
+  get :landing, controller: 'home'
+
   namespace :api do
     namespace :rest do
       namespace :v1 do
