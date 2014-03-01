@@ -106,7 +106,7 @@ p {
 
 @-webkit-keyframes topspin  {
   0%  { -webkit-transform:  rotate(0deg); }
-  50%  { -webkit-transform:  rotate(-17deg) translate(0,4px); }
+  50%  { -webkit-transform:  rotate(-17deg) translate(0,2px); }
   100%  { -webkit-transform:  rotate(0deg); }
 }
 
@@ -146,73 +146,61 @@ header {
           }
         }
         &.twitter {
-          float: left;
           background: image_url('landing/twitter.svg') no-repeat top left;
           background-size: contain;
           height: 16px;
           text-indent: 24px;
-          opacity: .6;
-          margin: 5px 0 0 16px;
+          opacity: .8;
+          margin: 5px 32px 0;
           @include transition(all .2s);
           &:hover {
-            opacity: .8;
+            opacity: 1;
           }
           a {
             color: $white;
             text-decoration: none;
+          }
+          @media only screen and (max-width: $small-screen) {
+            display: none;
+          }
+        }
+        &.logo {
+          float: left;
+
+          h1 {
+            background: image_url('landing/logo.svg') no-repeat top left;
+            background-size: contain;
+            background-position: 32px 0;
+            color: $white;
+            font-family: "crete-round", "proxima-nova",sans-serif;
+            font-style: italic;
+            font-size: 0;
+            margin: 0 0 0 16px;
+            width: 150px;
+            height: 24px;
+            .top {
+              background: image_url('landing/top.svg') no-repeat center;
+              background-size: contain;
+              width: 22px;
+              height: 32px;
+              display: block;
+              float: left;
+              margin: -5px 0 0;
+              -webkit-transform-origin: 28% 75%;
+              -webkit-animation: topspin 1.2s ease-in-out infinite;
+              -webkit-animation-delay: 2s;
+            }
           }
         }
       }
     }
   }
 
-  h1, h2 {
-    color: $white;
-    margin: 0 auto;
-  }
-  h1 {
-    font-family: "crete-round", "proxima-nova",sans-serif;
-    font-style: italic;
-    font-weight: 400;
-    letter-spacing: -4px;
-    font-size: 0;
-    background: image_url('landing/logo.svg') no-repeat bottom center;
-    background-size: contain;
-    width: 400px;
-    height: 200px;
-    overflow: hidden;
-    text-indent: -9999px;
-    margin-bottom: 40px;
-    &:before {
-      content: '';
-      background: image_url('landing/top.svg') no-repeat center;
-      background-size: contain;
-      width: 72px;
-      height: 83px;
-      display: block;
-      margin: 10px auto 30px;
-      -webkit-transform-origin: 35% 75%;
-      -webkit-animation: topspin 1.2s ease-in-out infinite;
-      -webkit-animation-delay: 2s;
-    }
-    @media only screen and (max-width: $small-screen) {
-      width: 80%;
-      max-width: 400px;
-      margin-left: 10%;
-      height: 140px;
-      &:before {
-        width: 53px;
-        height: 60px;
-      }
-    }
-  }
-
   h2 {
     font-weight: 100;
-    max-width: 490px;
-    font-size: 1.1em;
-    color: rgba($white,0.75);
-    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: $white;
+    margin: 0 auto 40px;
   }
 
   .screen {
@@ -221,7 +209,7 @@ header {
     width: 90%;
     max-width: 900px;
     margin: 0 auto;
-    height: 500px;
+    height: 550px;
     border: 35px solid $black;
     border-bottom: none;
     @include border-radius(33px 33px 0 0);

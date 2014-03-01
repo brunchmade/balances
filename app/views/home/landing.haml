@@ -5,14 +5,17 @@
   %header
     %nav.animated.fadeInUp
       %ul.menu
-        %li.twitter= link_to 'balancesapp', 'https://twitter.com/balancesapp'
+        %li.logo
+          %h1
+            %span.top
+            Balances
         %li= link_to 'Sign in', new_user_session_path, class: 'small clear white button'
         %li.ios= link_to 'Download for iOS', '#', class: 'small clear white button'
+        %li.twitter= link_to 'balancesapp', 'https://twitter.com/balancesapp'
 
     .animated.fadeInUp
-      %h1 Balances
       %h2 The simple way to monitor your bitcoin, litecoin, and dogecoin balances without compromsing your privacy.
-      = link_to 'Sign up – it\'s free', '#', class: 'large brand button'
+      = link_to 'Get started', '#', class: 'large brand button'
 
     .screen.animated.fadeInUp
 
@@ -23,7 +26,7 @@
       %p Keeping track of your bitcoin, litecoin, and dogecoin balances is a huge hassle – Balances makes it simple. See balances from desktop, mobile, and web wallets in one unified list.
     =image_tag('landing/screens@2x.png')
     %article
-      %p You can 'watch' any wallet address from any currency, and Balances can send you push notifications when you receive money. PIN lock hides your balances from prying eyes.
+      %p You can 'watch' any wallet address from any currency, and Balances can send you push notifications when you receive money. You can also convert values to any currency.
 
 .everywhere-bg
   %section.everywhere
@@ -40,4 +43,4 @@
 %section
   %article
     %h3 Balances – The simple way to monitor your coins.
-    = link_to 'Sign up – it\'s free', '#', class: 'large brand button'
+    = link_to 'Get started', '#', class: 'large brand button'
