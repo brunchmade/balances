@@ -9,7 +9,7 @@
 
   	<title><%= content_for?(:title) ? yield(:title) : "Balances" %></title>
 
-  	<%= stylesheet_link_tag "landing", media: "all", "data-turbolinks-track" => true %>
+  	<%= stylesheet_link_tag "landing", media: "all" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
     <script type="text/javascript" src="//use.typekit.net/uux1oqi.js"></script>
@@ -19,6 +19,6 @@
   <body>
     <%= yield %>
     <%= render "shared/footer" %>
-    <%= javascript_include_tag "landing", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "landing" %>
   </body>
 </html>
