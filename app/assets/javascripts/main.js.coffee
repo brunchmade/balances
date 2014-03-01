@@ -1,6 +1,4 @@
 $(document).ready ->
-  BalancesApp.start()
-
   $('#address_public_address').on 'paste', (event) ->
     # Timeout so that the paste event completes and the input has data.
     $.doTimeout 50, ->

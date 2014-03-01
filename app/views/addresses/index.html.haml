@@ -13,13 +13,16 @@
         %td= w.name
         %td= w.public_address
 
-#addressListRegion
-
+#address-list-region
 
 = link_to '+ Add Address', new_address_path
 
 - content_for :javascript do
   :javascript
     $(function() {
-      H.testing = #{@addresses.html_safe}
+      B.currentUser = new B.Models.CurrentUser(
+        #{@user.html_safe},
+        {addresses: #{@addresses.html_safe}}
+      );
+      BalancesApp.start();
     });

@@ -15,6 +15,10 @@ class Address < ActiveRecord::Base
     }
   }
 
+  def self.get_currency(name)
+    CURRENCIES[name.downcase.to_sym]
+  end
+
   def detect_currency
     first_bit = public_address[0]
     matching_currencies = CURRENCIES.values.select { |c| c[:symbol].any? { |s| s == first_bit } }

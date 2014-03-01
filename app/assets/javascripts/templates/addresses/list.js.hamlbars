@@ -1,0 +1,5 @@
+%table#address-list
+%table#address-list-total
+  %tr
+    %td Total value:
+    %td.value $$$

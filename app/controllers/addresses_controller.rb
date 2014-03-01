@@ -5,6 +5,13 @@ class AddressesController < ApplicationController
   respond_to :html
 
   def index
+    @user = Rabl::Renderer.new(
+      'users/current_user',
+      current_user,
+      view_path: 'app/views',
+      format: 'json',
+      scope: view_context
+    ).render
     @addresses = Rabl::Renderer.new(
       'addresses/show',
       current_user.addresses,

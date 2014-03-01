@@ -21,6 +21,7 @@
 //= require underscore
 //= require backbone
 //= require backbone.marionette
+//= require handlebars.runtime
 
 //= require jquery.ba-dotimeout
 //= require js-routes
@@ -31,6 +32,7 @@
 //= require_tree ./collections
 //= require balances_app
 
+//= require_tree ./templates
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
