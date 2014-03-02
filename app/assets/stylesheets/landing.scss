@@ -252,6 +252,13 @@ header {
    background-attachment: scroll;
   }
 }
+.security-bg {
+  @include background-gradient(#F6F6F6,#ffffff);
+  padding: 100px 0;
+  @media only screen and (max-width: $small-screen) {
+   padding: 50px 0;
+  }
+}
 
 section {
   @include grid-row();
@@ -287,6 +294,7 @@ section {
        margin: 35px 0;
        width: 90%;
        margin-left: 5%;
+       letter-spacing: -1px;
       }
     }
   }
@@ -296,6 +304,20 @@ section {
       margin: 50px auto;
       @media only screen and (max-width: $small-screen) {
        margin: 25px auto;
+      }
+    }
+  }
+
+  &.security {
+    .columns {
+      p {
+        text-align: left;
+        font-size: .9em;
+        a { font-size: .9em; }
+      }
+      img {
+        height: 80px;
+        margin: 20px auto 40px;
       }
     }
   }

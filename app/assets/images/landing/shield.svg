@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="85px" height="103px" viewBox="0 0 85 103" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>shield</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="landing-page" sketch:type="MSArtboardGroup" transform="translate(-865.000000, -6081.000000)" stroke="#F6CA0F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(866.000000, 6083.000000)">
+                <g sketch:type="MSShapeGroup">
+                    <path d="M41.5,-0.193448276 C36.3055833,6.15827586 26.0585417,10.1513793 17.2916667,10.1513793 C9.617625,10.1513793 5.04916667,8.29275862 0,3.25482759 L0,65.3237931 C0,65.3237931 4.2174375,89.3893103 41.5,99.8065517 C78.7825625,89.3893103 83,65.3237931 83,65.3237931 L83,3.25482759 C77.9439167,8.29275862 73.3806458,10.1513793 65.7083333,10.1513793 C56.9414583,10.1513793 46.6269792,6.15827586 41.5,-0.193448276 Z" id="Stroke-7198"></path>
+                    <path d="M41,-0.193448276 L41,99.8065517" id="Stroke-7199"></path>
+                    <path d="M0,48 L83,48" id="Stroke-7200"></path>
+                    <path d="M10,9.44586207 L10,48.082069" id="Stroke-7201"></path>
+                    <path d="M20,9.95431034 L20,48.0818966" id="Stroke-7202"></path>
+                    <path d="M31,7.18965517 L31,48.0827586" id="Stroke-7203"></path>
+                    <path d="M51,48.0824138 L51,96.2462069" id="Stroke-7204"></path>
+                    <path d="M62,48.0824138 L62,90.7686207" id="Stroke-7205"></path>
+                    <path d="M72,48.0824138 L72,82.7548276" id="Stroke-7206"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
