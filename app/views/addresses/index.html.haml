@@ -1,19 +1,6 @@
 %h2 Your Addresses
 
-%table
-  %thead
-    %tr
-      %th Currency
-      %th Name
-      %th Public Address
-  %tbody
-    - current_user.addresses.each do |w|
-      %tr
-        %td= w.currency
-        %td= w.name
-        %td= w.public_address
-
-#address-list-region
+%section#address-list-region
 
 = link_to '+ Add Address', new_address_path
 

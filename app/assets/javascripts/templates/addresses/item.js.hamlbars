@@ -1,4 +1,4 @@
 %td.currency-type
   %img{src: '{{ currency_image_path }}', width: 40, alt: '{{ currency }}'}
-%td {{ name }}
+%td {{ display_name }}
 %td.value 51.2452 {{ shortname }}
