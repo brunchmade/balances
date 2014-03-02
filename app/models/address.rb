@@ -17,6 +17,11 @@ class Address < ActiveRecord::Base
       name: 'Dogecoin',
       shortname: 'DOGE',
       symbol: ['D']
+    },
+    litecoin: {
+      name: 'Litecoin',
+      shortname: 'LTC',
+      symbol: ['L']
     }
   }
 
