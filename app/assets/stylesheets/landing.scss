@@ -115,10 +115,13 @@ p {
   background: image_url('landing/header-bg.jpg') no-repeat center;
   background-attachment: fixed;
   background-size: cover;
+  height: 750px;
   overflow: hidden;
   position: relative;
   @media only screen and (max-width: $small-screen) {
     background-attachment: scroll;
+    height: auto;
+    padding-bottom: 20px;
   }
 }
 header {
@@ -201,7 +204,7 @@ header {
     font-weight: 100;
     font-size: 2.4em;
     color: $white;
-    margin: 0 auto;
+    margin: 50px auto 0;
     max-width: 1050px;
     @media only screen and (max-width: $small-screen) {
       font-size: 1.5em;
@@ -220,15 +223,12 @@ header {
     background-size: cover;
     width: 90%;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 30px auto 0;
     height: 400px;
     border: 35px solid $black;
     border-bottom: none;
     @include border-radius(33px 33px 0 0);
     @include box-shadow(0 0 0 2px #ccc);
-    position: absolute;
-    left: 50%;
-    margin-left: 450px;
     @media only screen and (max-width: $small-screen) {
       display: none;
     }
@@ -237,16 +237,16 @@ header {
 
 .unified-bg, .currencies-bg {
   @include background-gradient(#F6F6F6,#ffffff);
-  padding: 100px 0;
+  padding: 80px 0;
   @media only screen and (max-width: $small-screen) {
-   padding: 50px 0;
+   padding: 30px 0;
   }
 }
 .everywhere-bg {
   background: rgba(#1F2932,.9) image_url('landing/everywhere-bg.jpg') no-repeat top center;
   background-size: cover;
   background-attachment: fixed;
-  padding: 100px 0;
+  padding: 80px 0;
   @media only screen and (max-width: $small-screen) {
    padding: 25px 0;
    background-attachment: scroll;
@@ -254,9 +254,9 @@ header {
 }
 .security-bg {
   @include background-gradient(#F6F6F6,#ffffff);
-  padding: 100px 0;
+  padding: 80px 0;
   @media only screen and (max-width: $small-screen) {
-   padding: 50px 0;
+   padding: 30px 0;
   }
 }
 

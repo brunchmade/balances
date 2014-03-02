@@ -18,6 +18,4 @@
 //= require foundation/foundation.dropdown
 //= require foundation/foundation.reveal
 
-//= require landing_main
-
 $(function(){ $(document).foundation(); });
