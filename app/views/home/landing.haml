@@ -14,8 +14,8 @@
         %li.twitter= link_to 'balancesapp', 'https://twitter.com/balancesapp'
 
     .animated.fadeInUp
-      %h2 All your digital currency balances in one place.
-      %h4 Introducing the easy way to view and convert your bitcoin, litecoin, and dogecoin balances – finally.
+      %h2 View all your digital currency balances in one place.
+      %h4 Finally, a simple and secure way to view your bitcoin, litecoin, and dogecoin balances and their combined value.
       = link_to 'Get started', '#', class: 'large brand button'
 
     .screen.animated.fadeInUp
@@ -23,30 +23,38 @@
 .unified-bg
   %section.unified
     %article
-      %h3 Powerful, hassle-free wallet monitoring
-      %p All your wallet addresses for bitcoin, litecoin, and dogecoin appear in a single list. View your total balance converted to your preferred <u>fiat currency</u>, or in BTC, LTC, or DOGE.
+      %h3 Hassle-free wallet monitoring
+      %p Enter your bitcoin, litecoin, and dogecoin wallet addresses and view your <u>read-only</u> balances on a single screen. See the combined value of all your wallets.
     =image_tag('landing/screens@2x.png')
     %article
-      %p Balances for iOS can send push notifications when you receive money – a must-have for miners, investors, and merchants.
+      %p
+        Miner? Investor? Merchant?
+        =link_to 'Download Balances for iOS', '#'
+        and we'll send you push notifications any time you receive money.
 
-.everywhere-bg
-  %section.everywhere
-    %article
-      =image_tag('landing/devices.svg')
-
+/ .everywhere-bg
+/   %section.everywhere
+/     %article
+/       =image_tag('landing/devices.svg')
+/
 .security-bg
   %section.security
-    %h3 Serious about security
+    %h3 We're serious about security
     .large-4.columns
       =image_tag('landing/shield.svg')
-      %p We use AES 256-bit SSL to encrypt your traffic and sync your balances between your iOS devices and the secure server.
+      %h5 Best-in-class encryption
+      %p
+        We use AES 256-bit SSL to encrypt your traffic and sync your balances between your iOS devices and the
+        =link_to 'secure server.', '#'
 
     .large-4.columns
       =image_tag('landing/oink.svg')
-      %p We collect revenue through iOS app sales – that's it. We don't sell data (even annonymously) to advertisers, and we never will.
+      %h5 We'll never sell your data
+      %p We make money via iOS app sales – that's it. We don't sell data (even annonymously) to anyone, and we never will.
 
     .large-4.columns
       =image_tag('landing/audit.svg')
+      %h5 Committed to the community
       %p
         We're committed to upholding the rigorous data security and privacy standards the community demands.
         =link_to 'Want to audit our source code?', 'mailto:balancesapp@gmail.com?subject=I want to audit Balances'
@@ -58,5 +66,5 @@
 
 %section
   %article
-    %h3 Bring order to your digital currency portfolio.
+    %h3 Stop manually checking up on your cryptocurrency portfolio.
     = link_to 'Get started with Balances', '#', class: 'large brand button'

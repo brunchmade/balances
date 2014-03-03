@@ -202,7 +202,7 @@ header {
 
   h2 {
     font-weight: 100;
-    font-size: 2.4em;
+    font-size: 2.3em;
     color: $white;
     margin: 50px auto 0;
     max-width: 1050px;
@@ -277,33 +277,34 @@ section {
 
   &.unified {
     img {
-      margin: 80px auto;
+      margin: 40px auto 60px;
       width: 90%;
       @media only screen and (max-width: $small-screen) {
-       margin: 25px 0;
+       margin: 25px 0 40px;
        margin-left: 5%;
       }
     }
   }
 
   &.everywhere {
-    h3, p { color: $white;}
+    h3 {
+      color: $white;
+      margin-bottom: 0;
+    }
     img {
-      margin-bottom: 50px;
+      margin-bottom: 40px;
       @media only screen and (max-width: $small-screen) {
-       margin: 35px 0;
        width: 90%;
        margin-left: 5%;
-       letter-spacing: -1px;
       }
     }
   }
 
   &.currencies {
     img {
-      margin: 50px auto;
+      margin: 40px auto;
       @media only screen and (max-width: $small-screen) {
-       margin: 25px auto;
+       margin: 20px auto;
       }
     }
   }
@@ -313,7 +314,7 @@ section {
       p {
         text-align: left;
         font-size: .9em;
-        a { font-size: .9em; }
+        a { font-size: 1em; }
       }
       img {
         height: 80px;
