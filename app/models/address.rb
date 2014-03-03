@@ -7,23 +7,11 @@ class Address < ActiveRecord::Base
 
   belongs_to :user
 
-  CURRENCIES = {
-    bitcoin: {
-      name: 'Bitcoin',
-      shortname: 'BTC',
-      symbol: ['1']
-    },
-    dogecoin: {
-      name: 'Dogecoin',
-      shortname: 'DOGE',
-      symbol: ['D']
-    },
-    litecoin: {
-      name: 'Litecoin',
-      shortname: 'LTC',
-      symbol: ['L']
-    }
-  }
+  CURRENCIES = [
+    Currencies::Bitcoin,
+    Currencies::Dogecoin,
+    Currencies::Litecoin
+  ]
 
   def self.get_currency(name)
     CURRENCIES[name.downcase.to_sym]
@@ -31,8 +19,8 @@ class Address < ActiveRecord::Base
 
   def detect_currency
     first_bit = public_address[0]
-    matching_currencies = CURRENCIES.values.select { |c| c[:symbol].any? { |s| s == first_bit } }
-    matching_currencies.map { |mc| mc[:name] }
+    currencies = CURRENCIES.select { |c| c.symbols.any? { |s| s == first_bit} }
+    currencies.map { |c| c.currency_name }
   end
 
 end
