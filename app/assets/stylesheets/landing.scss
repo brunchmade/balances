@@ -69,14 +69,20 @@ p {
   &.small {
     height: 30px;
     @include border-radius(15px);
-    padding: 4px 20px 0;
+    padding: 0 20px;
     font-size: 16px !important;
+    line-height: 30px;
   }
   &.large {
     height: 54px;
     @include border-radius(25px);
-    padding: 10px 50px 0;
-    font-size: 1.4em !important
+    padding: 0 50px;
+    font-size: 1.4em !important;
+    line-height: 56px;
+    @media only screen and (max-width: $small-screen) {
+      width: 100% !important;
+      padding: 0 !important;
+    }
   }
 
   &.clear {
@@ -207,7 +213,8 @@ header {
     margin: 50px auto 0;
     max-width: 1050px;
     @media only screen and (max-width: $small-screen) {
-      font-size: 1.5em;
+      font-size: 1.8em;
+      margin-bottom: .5em;
     }
   }
 
@@ -224,7 +231,7 @@ header {
     width: 90%;
     max-width: 900px;
     margin: 30px auto 0;
-    height: 400px;
+    height: 410px;
     border: 35px solid $black;
     border-bottom: none;
     @include border-radius(33px 33px 0 0);
