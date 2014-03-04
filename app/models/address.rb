@@ -13,8 +13,8 @@ class Address < ActiveRecord::Base
     Currencies::Litecoin
   ]
 
-  def self.get_currency(name)
-    CURRENCIES[name.downcase.to_sym]
+  def get_currency
+    "Currencies::#{currency}".constantize
   end
 
   def detect_currency

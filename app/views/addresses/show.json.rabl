@@ -7,7 +7,7 @@ attributes :id,
            :public_address
 
 node(:shortname) do |address|
-  Address.get_currency(address.currency)[:shortname]
+  address.get_currency.short_name
 end
 
 node(:currency_image_path) do |address|
