@@ -30,7 +30,7 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = Address.new(address_params)
+    @address = AddressService.create(address_params)
 
     flash[:notice] = if @address.save
       'Address created successfully!'

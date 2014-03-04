@@ -3,7 +3,7 @@ class Api::Rest::V1::AddressesController < Api::Rest::V1::BaseController
   respond_to :json
 
   def create
-    @address = Address.create(address_params)
+    @address = AddressService.create(address_params)
     respond_with @address
   end
 

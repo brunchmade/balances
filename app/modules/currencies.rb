@@ -19,5 +19,9 @@ module Currencies
       raise NotImplementedError.new("You must implment #{name}#balances")
     end
 
+    def self.valid?(address = nil)
+      raise NotImplementedError.new("You must implment #{name}#valid?")
+    end
+
   end
 end
