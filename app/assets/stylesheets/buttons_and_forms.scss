@@ -57,7 +57,7 @@ input[type=submit].delete-button {
   }
 }
 
-
+// Dropdown styles
 .f-dropdown {
   min-width: 180px;
   list-style: none;
@@ -82,6 +82,7 @@ input[type=submit].delete-button {
       width: 100%;
       display: inline-block;
       padding: 0;
+      @include transition(none);
     }
 
     &:hover,

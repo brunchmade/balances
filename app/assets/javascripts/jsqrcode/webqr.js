@@ -197,7 +197,7 @@ function setwebcam()
     $(".helptext").css( "display", "block");
     if(stype==1)
     {
-        setTimeout(captureToCanvas, 500);
+        setTimeout(captureToCanvas, 2500);
         return;
     }
     var n=navigator;
