@@ -1,0 +1,44 @@
+#address-list {
+  @extend .large-8, .small-12, .columns, .small-centered;
+  border: none;
+
+  tr {
+    background: none;
+  }
+
+  td {
+    padding: 15px 14px;
+    border-bottom: 1px solid $light-gray;
+    font-size: 1.2em;
+    font-weight: 400;
+    text-align: left;
+
+    &.currency-type {
+      width: 68px;
+    }
+
+    &.name {
+      word-break: break-all;
+    }
+
+    &.value {
+      text-align: right;
+    }
+  }
+}
+
+#address-list-total {
+  @extend .large-8, .small-12, .columns, .small-centered;
+  border: none;
+
+  tr {
+    background: none;
+  }
+
+  td {
+    padding: 15px 14px;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: right;
+  }
+}

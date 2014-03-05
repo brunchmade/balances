@@ -70,40 +70,41 @@ input[type=submit].delete-button {
 
 
   li {
-    padding: 6px 12px 4px;
     color: $medium-gray-2;
-    cursor: pointer;
     line-height: 20px;
     @include transition(all .1s);
+    cursor: default;
 
     a {
-      color: inherit;
+      padding: 6px 12px 4px;
       text-decoration: none;
-      width: 100%;
-      display: inline-block;
-      padding: 0;
-      @include transition(none);
-    }
 
-    &:hover,
-    &:focus {
-      background-color: $brand;
-      color: $white;
-    }
-    &.current {
-      font-weight: 600;
-      &:after {
-        background: image-url('checkmark.svg') no-repeat;
-        background-size: contain;
-        margin: 2px 0 0;
-        width: 12px;
-        height: 12px;
-        content: '';
-        float: right;
-        display: inline-block;
+      &:hover,
+      &:focus {
+        background-color: $brand;
+        color: $white;
       }
-      &:hover:after {
-        -webkit-filter: brightness(10);
+
+      &.current {
+        font-weight: 600;
+
+        &:after {
+          background: image-url('checkmark.svg') no-repeat;
+          background-size: contain;
+          margin: 2px 0 0;
+          width: 12px;
+          height: 12px;
+          content: '';
+          float: right;
+          display: inline-block;
+        }
+
+        &:hover,
+        &:focus {
+          &:after {
+            -webkit-filter: brightness(10);
+          }
+        }
       }
     }
   }

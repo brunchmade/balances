@@ -8,7 +8,9 @@ gem 'backbone-on-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails'
 gem 'devise'
+gem 'foundation-rails'
 gem 'haml'
+gem 'handlebars_assets'
 gem 'jquery-rails'
 gem 'js-routes'
 gem 'marionette-rails'
@@ -20,10 +22,6 @@ gem 'simple_form'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 gem 'sass-rails', '~> 4.0.0'
-# Turbolinks makes following links in your web application faster.
-# Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-gem 'zurb-foundation'
 
 group :staging, :development do
   gem 'letter_opener_web'

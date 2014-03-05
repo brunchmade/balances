@@ -1,4 +1,5 @@
 class window.Balances
+
   @Models: {}
   @Collections: {}
   @Views: {}

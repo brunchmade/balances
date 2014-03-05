@@ -4,21 +4,32 @@ class Address < ActiveRecord::Base
                         :public_address,
                         :user_id
   validates :public_address, uniqueness: { scope: :currency }
+  validate :valid_address
 
   belongs_to :user
 
-  CURRENCIES = {
-    bitcoin: {
-      name: 'Bitcoin',
-      shortname: 'BTC',
-      symbol: ['1']
-    }
-  }
+  CURRENCIES = [
+    Currencies::Bitcoin,
+    Currencies::Dogecoin,
+    Currencies::Litecoin
+  ]
+
+  def get_currency
+    "Currencies::#{currency}".constantize
+  end
 
   def detect_currency
     first_bit = public_address[0]
-    matching_currencies = CURRENCIES.values.select { |c| c[:symbol].any? { |s| s == first_bit } }
-    matching_currencies.map { |mc| mc[:name] }
+    currencies = CURRENCIES.select { |c| c.symbols.any? { |s| s == first_bit} }
+    currencies.map { |c| c.currency_name }
+  end
+
+  private
+
+  def valid_address
+    unless get_currency.valid?(public_address)
+      errors.add(:public_address, 'is invalid')
+    end
   end
 
 end

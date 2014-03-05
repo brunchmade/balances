@@ -12,10 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 
-//= require foundation/foundation
-//= require foundation/foundation.dropdown
-//= require foundation/foundation.reveal
+//= require foundation
+//= require vendor/modernizr
 
 $(function(){ $(document).foundation(); });

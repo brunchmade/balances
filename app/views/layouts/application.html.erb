@@ -19,8 +19,7 @@
 
   	<title><%= content_for?(:title) ? yield(:title) + ' - Balances' : "Balances" %></title>
 
-  	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+  	<%= stylesheet_link_tag "application", media: "all" %>
     <%= csrf_meta_tags %>
     <script type="text/javascript" src="//use.typekit.net/uux1oqi.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -30,7 +29,7 @@
     <%= render "shared/header" %>
     <%= yield %>
     <%= render "shared/footer" %>
-    <%= render "shared/templates" %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application" %>
+    <%= yield :javascript %>
   </body>
 </html>

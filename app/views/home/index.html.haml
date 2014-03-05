@@ -17,7 +17,7 @@
     =link_to '#', class: 'scan-qr', :data => { :'reveal-id' => 'm-scan-qr' } do
       =image_tag 'scan-qr@2x.png', width:31
 
-    .reveal-modal.medium#m-scan-qr
+    #m-scan-qr.reveal-modal.medium{data: {reveal: ''}}
       %a.close-reveal-modal &#215;
       .scan-viewer#outdiv{ onClick: 'setwebcam()' }
         %h6
