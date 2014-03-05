@@ -116,7 +116,7 @@ section {
     border-top: 1px solid $light-gray;
     border-bottom: 1px solid $light-gray;
 
-    a {
+    > a {
       color: $medium-gray-2;
       font-weight: 600;
       font-size: .8em;
