@@ -13,10 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 
-//  require foundation
-//= require foundation/foundation
-//= require foundation/foundation.dropdown
-//= require foundation/foundation.reveal
+//= require foundation
+//= require vendor/modernizr
 
 //= require underscore
 //= require backbone
@@ -25,7 +23,8 @@
 
 //= require jquery.ba-dotimeout
 //= require js-routes
-//= require utils/mark
+//= require_tree ./jsqrcode
+//= require_tree ./utils
 
 //= require balances
 //= require_tree ./models
@@ -33,6 +32,5 @@
 //= require balances_app
 
 //= require_tree ./templates
-//= require_tree .
-
-$(function(){ $(document).foundation(); });
+//= require_tree ./views
+//= require main

@@ -25,7 +25,7 @@
   font-family: "proxima-nova",sans-serif;
   color: $dark-gray;
   font-weight: 300;
-  @media only screen and (max-width: $small-screen) {
+  @media #{$small-only} {
    font-size: 16px;
    line-height: 1.1em;
   }
@@ -117,7 +117,7 @@ p {
   background-size: cover;
   overflow: hidden;
   position: relative;
-  @media only screen and (max-width: $small-screen) {
+  @media #{$small-only} {
     background-attachment: scroll;
   }
 }
@@ -127,7 +127,7 @@ header {
 
   nav {
     margin-bottom: -20px;
-    @media only screen and (max-width: $small-screen) {
+    @media #{$small-only} {
       margin-bottom: 55px;
     }
     ul {
@@ -141,7 +141,7 @@ header {
         a { margin: 0 !important; }
 
         &.ios {
-          @media only screen and (max-width: $small-screen) {
+          @media #{$small-only} {
             display: none;
           }
         }
@@ -160,7 +160,7 @@ header {
             color: $white;
             text-decoration: none;
           }
-          @media only screen and (max-width: $small-screen) {
+          @media #{$small-only} {
             display: none;
           }
         }
@@ -217,7 +217,7 @@ header {
     position: absolute;
     left: 50%;
     margin-left: 450px;
-    @media only screen and (max-width: $small-screen) {
+    @media #{$small-only} {
       display: none;
     }
   }
@@ -226,7 +226,7 @@ header {
 .unified-bg, .currencies-bg {
   @include background-gradient(#F6F6F6,#ffffff);
   padding: 100px 0;
-  @media only screen and (max-width: $small-screen) {
+  @media #{$small-only} {
    padding: 50px 0;
   }
 }
@@ -235,7 +235,7 @@ header {
   background-size: cover;
   background-attachment: fixed;
   padding: 100px 0;
-  @media only screen and (max-width: $small-screen) {
+  @media #{$small-only} {
    padding: 25px 0;
    background-attachment: scroll;
   }
@@ -251,7 +251,7 @@ section {
     font-weight: 400;
     font-size: 1.8em;
     margin: 0 auto 50px;
-    @media only screen and (max-width: $small-screen) {
+    @media #{$small-only} {
      margin-bottom: 25px;
     }
   }
@@ -260,7 +260,7 @@ section {
     img {
       margin: 80px auto;
       width: 90%;
-      @media only screen and (max-width: $small-screen) {
+      @media #{$small-only} {
        margin: 25px 0;
        margin-left: 5%;
       }
@@ -271,7 +271,7 @@ section {
     h3, p { color: $white;}
     img {
       margin-bottom: 50px;
-      @media only screen and (max-width: $small-screen) {
+      @media #{$small-only} {
        margin: 35px 0;
        width: 90%;
        margin-left: 5%;
@@ -282,7 +282,7 @@ section {
   &.currencies {
     img {
       margin: 50px auto;
-      @media only screen and (max-width: $small-screen) {
+      @media #{$small-only} {
        margin: 25px auto;
       }
     }

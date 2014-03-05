@@ -1,5 +1,8 @@
 $(document).ready ->
+  $(document).foundation()
+
   setHeaderHeight()
+
   $(window).resize =>
     setHeaderHeight()
 

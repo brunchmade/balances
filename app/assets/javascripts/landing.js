@@ -13,10 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require foundation/foundation
-//= require foundation/foundation.dropdown
-//= require foundation/foundation.reveal
+//= require foundation
+//= require vendor/modernizr
 
 //= require landing_main
-
-$(function(){ $(document).foundation(); });
