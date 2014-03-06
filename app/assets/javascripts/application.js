@@ -32,4 +32,5 @@
 
 //= require_tree ./templates
 //= require_tree ./views
-//= require main
+
+$(function(){ $(document).foundation(); });

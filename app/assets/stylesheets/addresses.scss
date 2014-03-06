@@ -1,3 +1,55 @@
+#address-form {
+  margin-bottom: 30px;
+
+  table {
+    width: 100%;
+    border: none;
+
+    td {
+      padding: 0;
+      vertical-align: middle;
+
+      &:first-child {
+        width: 40px;
+      }
+
+      &:last-child {
+        width: 31px;
+      }
+    }
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    color: $light-gray-2;
+    font-size: 1.375em;
+    font-weight: 400;
+    outline: none;
+
+    @include placeholder-style {
+      color: $light-gray-2;
+    }
+  }
+
+  .currency-type {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    @include border-radius(20px);
+    border: 1px dashed $light-gray-2;
+
+    &.is-filled {
+      border: none;
+    }
+  }
+
+  .scan-qr {
+    margin-left: 8px;
+  }
+}
+
 #address-list {
   @extend .large-8, .small-12, .columns, .small-centered;
   border: none;
@@ -40,5 +92,38 @@
     font-size: 1.2em;
     font-weight: 600;
     text-align: right;
+  }
+}
+
+#address-filters {
+  background: $lighter-gray;
+  border-top: 1px solid $light-gray;
+  border-bottom: 1px solid $light-gray;
+
+  > a {
+    height:20px;
+    margin: 18px 0;
+    padding-left: 23px;
+    display: inline-block;
+    color: $medium-gray-2;
+    font-weight: 600;
+    font-size: .8em;
+    line-height: 20px;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+
+    &.sort-by {
+      background: image-url('filter.svg') no-repeat top left;
+    }
+
+    &.currency-type {
+      float: right;
+      background: image-url('currencies/all-currencies@2x.png') no-repeat top left;
+      background-size: 18px;
+    }
   }
 }

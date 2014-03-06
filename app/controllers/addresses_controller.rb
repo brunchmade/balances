@@ -3,6 +3,7 @@ class AddressesController < ApplicationController
   before_filter :authenticate_user!
 
   respond_to :html
+  respond_to :json, only: [:detect_currency]
 
   def index
     @user = Rabl::Renderer.new(
@@ -47,7 +48,13 @@ class AddressesController < ApplicationController
       format.json {
         if params[:public_address].present?
           @address = Address.new(public_address: params[:public_address])
-          render json: {currency: @address.detect_currency}
+          currencies = @address.detect_currency
+          if currencies.size == 1
+            @address.currency = currencies.first
+            respond_with @address
+          else
+            render nothing: true, status: :bad_request
+          end
         else
           render nothing: true, status: :bad_request
         end

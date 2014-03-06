@@ -1,0 +1,20 @@
+%table
+  %tr
+    %td
+      .currency-type
+    %td
+      %input{name: 'address[public_address]', placeholder: 'Type, paste, or scan a new wallet address...'}
+    %td
+      %a.scan-qr{href: '#', title: 'Scan a QR code', data: {reveal_id: 'm-scan-qr'}}
+        = image_tag 'scan-qr@2x.png', width: 31
+
+#m-scan-qr.reveal-modal.medium{data: {reveal: ''}}
+  %a.close-reveal-modal &#215;
+  .scan-viewer#outdiv{ onClick: 'setwebcam()' }
+    %h6
+      = image_tag 'scan-qr-large.svg', width:89
+      %br
+      %br Click here to scan your QR code.
+    %p Privacy note: images from your webcam don't get uploaded to our server. The whole scanning process is done entirely in your browser.
+  %p.helptext Hold your public address up to your computer's camera
+  %h5#result Scanning for QR codes...

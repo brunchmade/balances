@@ -1,3 +1,38 @@
+%article#address-filters
+  %a.sort-by{href: '#', title: 'Chance your addresses sort order', data: {dropdown: 'd-filters'}} Sort by Name ▾
+  %ul#d-filters.f-dropdown{data: {dropdown_content: ''}}
+    %li
+      %a.current{href: '#', title: 'Sort by Name'} Name
+    %li
+      %a{href: '#', title: 'Sort by Number of Coins'} Number of Coins
+    %li
+      %a{href: '#', title: 'Sort by Value'} Value
+    %li
+      %a{href: '#', title: 'Sort by Currency Type'} Currency Type
+
+  %a.currency-type{href: '#', title: 'Chance what currency your addresses display in', data: {dropdown: 'd-balances'}} All Balances ▾
+  %ul#d-balances.f-dropdown{data: {dropdown_content: ''}}
+    %li
+      %a.icon.all-currencies.current{href: '#', title: 'Show all balances'} All Balances
+    %li
+      %h6 Show as current value in...
+    %li
+      %a.icon.bitcoin{href: '#', title: 'Show values in Bitcoin'} Bitcoin
+    %li
+      %a.icon.litecoin{href: '#', title: 'Show values in Litecoin'} Litecoin
+    %li
+      %a.icon.dogecoin{href: '#', title: 'Show values in Dogecoin'} Dogecoin
+    %li
+      %h6.lighter Fiat Currencies
+    %li
+      %a.icon.usd{href: '#', title: 'Show values in US Dollar'} US Dollar
+    %li
+      %a.icon.euro{href: '#', title: 'Show values in Euros'} Euros
+    %li
+      %a.icon.gbp{href: '#', title: 'Show values in Pounds Sterling'} Pounds Sterling
+    %li
+      %a.icon.yen{href: '#', title: 'Show values in Japanese Yen'} Japanese Yen
+
 %table#address-list
 %table#address-list-total
   %tr

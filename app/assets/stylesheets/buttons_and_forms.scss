@@ -4,7 +4,10 @@
 
 label { display: inline-block; }
 
-input[type=text], input[type=password], input[type=email], input[type=tel] {
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=tel] {
   @include border-radius(4px);
   @include box-shadow(none);
   padding: 6px 8px 4px;
@@ -57,22 +60,23 @@ input[type=submit].delete-button {
   }
 }
 
-// Dropdown styles
+// Dropdowns
 .f-dropdown {
-  min-width: 180px;
-  list-style: none;
-  background: $white;
   @include border-radius(6px);
   @include box-shadow(0 1px 4px 0 rgba(0,0,0,0.15));
-  border: 1px solid #E0E0E0;
-  font-size: .9em;
+  min-width: 180px;
   padding: 8px 0;
+  border: 1px solid #e0e0e0;
+  font-size: .9em;
 
+  &:after {
+    border-color: transparent transparent #e0e0e0 transparent;
+  }
 
   li {
+    @include transition(all .1s);
     color: $medium-gray-2;
     line-height: 20px;
-    @include transition(all .1s);
     cursor: default;
 
     a {
@@ -110,27 +114,33 @@ input[type=submit].delete-button {
   }
 
   h6 {
-    font-weight: 600;
     margin: 8px 12px 4px;
+    font-weight: 600;
+
     &.lighter {
       color: $medium-gray-2;
     }
   }
-  // For the Currency Type dropdown
-  .icon, .icon:hover, .icon:focus {
+
+  // Currency icons
+  .icon,
+  .icon:hover,
+  .icon:focus {
     text-indent: 26px;
     background-position: 12px center;
     background-repeat: no-repeat;
     background-size: 20px;
 
+    // Digital
     &.all-currencies { background-image: image-url('currencies/all-currencies@2x.png'); }
     &.bitcoin { background-image: image-url('currencies/bitcoin-small@2x.png'); }
     &.litecoin { background-image: image-url('currencies/litecoin-small@2x.png'); }
     &.dogecoin { background-image: image-url('currencies/dogecoin-small@2x.png'); }
-    //fiat
+
+    // Fiat
     &.usd { background-image: image-url('currencies/usd-small@2x.png'); }
     &.euro { background-image: image-url('currencies/euro-small@2x.png'); }
     &.gbp { background-image: image-url('currencies/gbp-small@2x.png'); }
     &.yen { background-image: image-url('currencies/yen-small@2x.png'); }
   }
-} // .dropdown
+}
