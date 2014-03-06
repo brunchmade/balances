@@ -25,7 +25,7 @@
   font-family: "proxima-nova",sans-serif;
   color: $dark-gray;
   font-weight: 300;
-  @media #{$small-only} {
+  @media only screen and (max-width: $small-screen) {
     font-size: 16px;
     line-height: 1.1em;
   }
@@ -79,7 +79,7 @@ p {
     padding: 0 50px;
     font-size: 1.4em !important;
     line-height: 56px;
-    @media #{$small-only} {
+    @media only screen and (max-width: $small-screen) {
       width: 100% !important;
       padding: 0 !important;
     }
@@ -124,7 +124,7 @@ p {
   height: 750px;
   overflow: hidden;
   position: relative;
-  @media #{$small-only} {
+  @media only screen and (max-width: $small-screen) {
     background-attachment: scroll;
     height: auto;
     padding-bottom: 20px;
@@ -136,7 +136,7 @@ header {
 
   nav {
     margin-bottom: 0px;
-    @media #{$small-only} {
+    @media only screen and (max-width: $small-screen) {
       margin-bottom: 55px;
     }
     ul {
@@ -150,7 +150,7 @@ header {
 
         &.ios {
           margin: 0 16px 0 0;
-          @media #{$small-only} {
+          @media only screen and (max-width: $small-screen) {
             display: none;
           }
         }
@@ -169,7 +169,7 @@ header {
             font-size: 16px;
             text-decoration: none;
           }
-          @media #{$small-only} {
+          @media only screen and (max-width: $small-screen) {
             display: none;
           }
         }
@@ -212,7 +212,7 @@ header {
     color: $white;
     margin: 50px auto 0;
     max-width: 1050px;
-    @media #{$small-only} {
+    @media only screen and (max-width: $small-screen) {
       font-size: 1.8em;
       margin-bottom: .5em;
     }
@@ -236,7 +236,7 @@ header {
     border-bottom: none;
     @include border-radius(33px 33px 0 0);
     @include box-shadow(0 0 0 2px #ccc);
-    @media #{$small-only} {
+    @media only screen and (max-width: $small-screen) {
       display: none;
     }
   }
@@ -245,7 +245,7 @@ header {
 .unified-bg, .currencies-bg {
   @include background-gradient(#F6F6F6,#ffffff);
   padding: 80px 0;
-  @media #{$small-only} {
+  @media only screen and (max-width: $small-screen) {
     padding: 30px 0;
   }
 }
@@ -254,7 +254,7 @@ header {
   background-size: cover;
   background-attachment: fixed;
   padding: 80px 0;
-  @media #{$small-only} {
+  @media only screen and (max-width: $small-screen) {
     padding: 25px 0;
     background-attachment: scroll;
   }
@@ -262,7 +262,7 @@ header {
 .security-bg {
   @include background-gradient(#F6F6F6,#ffffff);
   padding: 80px 0;
-  @media #{$small-only} {
+  @media only screen and (max-width: $small-screen) {
     padding: 30px 0;
   }
 }
@@ -277,7 +277,7 @@ section {
     font-weight: 400;
     font-size: 1.8em;
     margin: 0 auto 50px;
-    @media #{$small-only} {
+    @media only screen and (max-width: $small-screen) {
       margin-bottom: 25px;
     }
   }
@@ -286,7 +286,7 @@ section {
     img {
       margin: 40px auto 60px;
       width: 90%;
-      @media #{$small-only} {
+      @media only screen and (max-width: $small-screen) {
         margin: 25px 0 40px;
         margin-left: 5%;
       }
@@ -300,7 +300,7 @@ section {
     }
     img {
       margin-bottom: 40px;
-      @media #{$small-only} {
+      @media only screen and (max-width: $small-screen) {
         width: 90%;
         margin-left: 5%;
       }
@@ -310,7 +310,7 @@ section {
   &.currencies {
     img {
       margin: 40px auto;
-      @media #{$small-only} {
+      @media only screen and (max-width: $small-screen) {
         margin: 20px auto;
       }
     }

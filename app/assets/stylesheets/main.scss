@@ -4,7 +4,7 @@
   font-family: "proxima-nova",sans-serif;
   color: $dark-gray;
   font-weight: 300;
-  @media #{$small-only} {
+  @media only screen and (max-width: $small-screen) {
    font-size: .95em;
   }
 }

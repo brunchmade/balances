@@ -18,14 +18,14 @@ header {
     background-size: contain;
     float: left;
     display: block;
-    @media #{$small-only} {
+    @media only screen and (max-width: $small-screen) {
      float: none;
      margin: 16px auto 0;
     }
   } // #logo
 
   nav {
-    @media #{$small-only} {
+    @media only screen and (max-width: $small-screen) {
      display: none;
     }
 

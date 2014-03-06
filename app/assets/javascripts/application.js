@@ -14,7 +14,6 @@
 //= require jquery_ujs
 
 //= require foundation
-//= require vendor/modernizr
 
 //= require underscore
 //= require backbone
