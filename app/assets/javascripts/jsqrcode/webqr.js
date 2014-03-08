@@ -148,6 +148,7 @@ function htmlEntities(str) {
 function read(a)
 {
     var html= htmlEntities(a);
+    document.getElementById('success').play();
     $(".overlay").css("border-color","#7ED321");
     document.getElementById("result").innerHTML=html;
     $("#result").css("background-image","none");
