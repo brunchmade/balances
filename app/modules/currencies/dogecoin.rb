@@ -1,10 +1,17 @@
 module Currencies
   class Dogecoin < Base
 
-    API = 'http://dogechain.info/chain/Dogecoin/q'
+    API = 'https://dogechain.info/chain/Dogecoin/q'
     CURRENCY_NAME = 'Dogecoin'
     SHORT_NAME = 'DOGE'
     SYMBOLS = ['D']
+
+    def self.info(address)
+      info = {}.with_indifferent_access
+      info[:balance] = balance(address)
+      info[:is_valid] = valid?(address)
+      info
+    end
 
     def self.balance(address)
       url = "#{API}/addressbalance/#{address}"

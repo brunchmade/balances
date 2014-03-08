@@ -1,23 +1,27 @@
 module Currencies
   class Litecoin < Base
 
-    API = 'http://explorer.litecoin.net/chain/Litecoin/q'
+    API = 'https://ltc.blockr.io/api/v1'
     CURRENCY_NAME = 'Litecoin'
     SHORT_NAME = 'LTC'
     SYMBOLS = ['L']
 
+    def self.info(address)
+      url = "#{API}/address/info/#{address}"
+      response = open(url) { |v| JSON(v.read).with_indifferent_access }
+      response[:data]
+    end
+
     def self.balance(address)
-      received_url = "#{API}/getreceivedbyaddress/#{address}"
-      received_response = open(received_url) { |v| v.read }
-      sent_url = "#{API}/getsentbyaddress/#{address}"
-      sent_response = open(sent_url) { |v| v.read }
-      received_response.to_f - sent_response.to_f
+      url = "#{API}/address/info/#{address}"
+      response = open(url) { |v| JSON(v.read).with_indifferent_access }
+      response[:data][:balance]
     end
 
     def self.valid?(address)
-      url = "#{API}/checkaddress/#{address}"
-      response = open(url) { |v| v.read }
-      !['X5', 'SZ', 'CK'].include?(response)
+      url = "#{API}/address/info/#{address}"
+      response = open(url) { |v| JSON(v.read).with_indifferent_access }
+      response[:data][:is_valid]
     end
 
   end

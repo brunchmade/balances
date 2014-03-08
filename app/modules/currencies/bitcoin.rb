@@ -1,23 +1,27 @@
 module Currencies
   class Bitcoin < Base
 
-    API = 'http://blockchain.info'
+    API = 'https://btc.blockr.io/api/v1'
     CURRENCY_NAME = 'Bitcoin'
     SHORT_NAME = 'BTC'
     SYMBOLS = ['1']
 
-    def self.balance(address)
-      url = "#{API}/address/#{address}?format=json"
+    def self.info(address)
+      url = "#{API}/address/info/#{address}"
       response = open(url) { |v| JSON(v.read).with_indifferent_access }
-      # Converting because response is in Satoshi
-      response[:final_balance] / 100000000.to_f
+      response[:data]
+    end
+
+    def self.balance(address)
+      url = "#{API}/address/info/#{address}"
+      response = open(url) { |v| JSON(v.read).with_indifferent_access }
+      response[:data][:balance]
     end
 
     def self.valid?(address)
-      url = URI.parse("#{API}/address/#{address}?format=json")
-      req = Net::HTTP.new(url.host, url.port)
-      res = req.request_head(url.path)
-      res.code == '200'
+      url = "#{API}/address/info/#{address}"
+      response = open(url) { |v| JSON(v.read).with_indifferent_access }
+      response[:data][:is_valid]
     end
 
   end
