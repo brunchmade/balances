@@ -20,6 +20,8 @@ var camhtml='<object id="iembedflash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444
 
 var vidhtml = '<div class="overlay"></div><video id="v" autoplay></video>';
 
+var inithtml = ''
+
 function dragenter(e) {
   e.stopPropagation();
   e.preventDefault();
@@ -148,14 +150,16 @@ function htmlEntities(str) {
 function read(a)
 {
     var html= htmlEntities(a);
-    document.getElementById('success').play();
     $(".overlay").css("border-color","#7ED321");
     document.getElementById("result").innerHTML=html;
     $("#result").css("background-image","none");
     v = document.getElementById("v");
     v.pause();
+    document.getElementById('qr-success').play();
     window.currentStream.stop();
     window.currentStream = null;
+    qrcode.callback = null;
+    document.getElementById("outdiv").innerHTML = window.camEnabler;
 }
 
 function isCanvasSupported(){
@@ -194,6 +198,7 @@ function load()
 
 function setwebcam()
 {
+    window.camEnabler = document.getElementById("outdiv").innerHTML;
 	$("#result").css( "display", "inline-block");
     $(".helptext").css( "display", "block");
     if(stype==1)
