@@ -150,15 +150,16 @@ function htmlEntities(str) {
 function read(a)
 {
     var html= htmlEntities(a);
+    document.getElementById('qr-success').play();
     $(".overlay").css("border-color","#7ED321");
     document.getElementById("result").innerHTML=html;
     $("#result").css("background-image","none");
     v = document.getElementById("v");
     v.pause();
-    document.getElementById('qr-success').play();
     window.currentStream.stop();
     window.currentStream = null;
     qrcode.callback = null;
+    $('#m-scan-qr').foundation('reveal', 'close');
     document.getElementById("outdiv").innerHTML = window.camEnabler;
 }
 
@@ -198,7 +199,10 @@ function load()
 
 function setwebcam()
 {
+    load();
     window.camEnabler = document.getElementById("outdiv").innerHTML;
+    stype = 0;
+
 	$("#result").css( "display", "inline-block");
     $(".helptext").css( "display", "block");
     if(stype==1)
