@@ -2,7 +2,18 @@
  * Buttons and Forms
  */
 
-label { display: inline-block; }
+label {
+  display: inline-block;
+}
+i.labels { color: darken($light-gray-2, 20%); font-size: .875em; }
+
+.form-helptext {
+  margin-top: -10px;
+  font-size: .875em;
+  font-style: italic;
+  color: $medium-gray;
+}
+
 
 input[type=text],
 input[type=password],
@@ -36,14 +47,17 @@ input[type=submit] {
   }
 }
 
+hr {
+  margin-top: 100px;
+}
+
 input[type=submit].delete-button {
   color: lighten(red, 20%);
-  border: 1px solid rgba(0,0,0,.1);
+  border: 1px solid lighten(red, 45%);
   background: transparent;
   padding: 6px 20px;
   font-size: .85em;
   font-weight: 100;
-  float: right;
   &:hover {
     color: red;
     border-color: red;
