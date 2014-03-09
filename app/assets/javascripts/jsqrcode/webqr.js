@@ -164,6 +164,11 @@ function read(a)
     document.getElementById("outdiv").innerHTML = window.camEnabler;
     $("#result").css( "display", "none");
     $(".helptext").css( "display", "none");
+
+    $("#address-field").addClass('highlight');
+    setTimeout(function(){
+      $("#address-field").removeClass('highlight');
+    },2000);
 }
 
 function isCanvasSupported(){

@@ -30,6 +30,20 @@ a {
   color: $white !important;
 }
 
+@-webkit-keyframes yellow-fade {
+ 0% {background: #ffff99;}
+ 100% {background: none;}
+}
+
+@keyframes yellow-fade {
+ 0% {background: #ffff99;}
+ 100% {background: none;}
+}
+.highlight {
+  -webkit-animation: yellow-fade 2s ease-in 1;
+  animation: yellow-fade 2s ease-in 1;
+}
+
 section {
   @include grid-row();
 
