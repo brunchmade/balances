@@ -149,22 +149,21 @@ function htmlEntities(str) {
 
 function read(a)
 {
-    var address= htmlEntities(a);
-
     sound = document.getElementById('qr-success');
     sound.volume=0.75;
     sound.play();
 
     $(".overlay").css("border-color","#7ED321");
+    var address= htmlEntities(a);
     document.getElementById("address-field").value=address;
-    $("#result").css("background-image","none");
-    v = document.getElementById("v");
-    v.pause();
+    document.getElementById("v").pause();
     window.currentStream.stop();
     window.currentStream = null;
     qrcode.callback = null;
     $('#m-scan-qr').foundation('reveal', 'close');
     document.getElementById("outdiv").innerHTML = window.camEnabler;
+    $("#result").css( "display", "none");
+    $(".helptext").css( "display", "none");
 }
 
 function isCanvasSupported(){
