@@ -15,6 +15,10 @@ module Currencies
       defined?(self::SYMBOLS) ? self::SYMBOLS : 'Symbol undefined.'
     end
 
+    def self.info(address = nil)
+      raise NotImplementedError.new("You must implment #{name}#info")
+    end
+
     def self.balance(address = nil)
       raise NotImplementedError.new("You must implment #{name}#balances")
     end

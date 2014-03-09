@@ -15,7 +15,9 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
 
   _handleKeyupInput:
     _.debounce (event) ->
-      return if isPasteKey(event) or isSelectAllKey(event) or isArrowKey(event)
+      return if isPasteKey(event) or
+                isSelectAllKey(event) or
+                isArrowKey(event)
 
       inputVal = @inputAddress.val()
       @_clearErrors()
@@ -30,8 +32,19 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
             @$('.currency-type').addClass('is-filled').html $('<img />',
               src: response.currency_image_path
               alt: response.currency)
-      # else
-        # @model.info()
+      else
+        @model.info
+          data:
+            public_address: inputVal
+          success: (response) =>
+            if response.is_valid
+              @$('.currency-type').addClass('is-filled').html $('<img />',
+                src: response.currency_image_path
+                alt: response.currency)
+            else
+              @_addError()
+          error: =>
+            @_addError()
     , 800
 
   _handlePasteInput: (event) ->
@@ -44,17 +57,18 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
         @_addError()
         return
 
-      @model.detectCurrency
+      @model.info
         data:
           public_address: inputVal
         success: (response) =>
-          @$('.currency-type').addClass('is-filled').html $('<img />',
-            src: response.currency_image_path
-            alt: response.currency)
+          if response.is_valid
+            @$('.currency-type').addClass('is-filled').html $('<img />',
+              src: response.currency_image_path
+              alt: response.currency)
+          else
+            @_addError()
         error: =>
           @_addError()
-
-      # @model.info()
 
   _handleCutInput: (event) ->
     # Timeout so that the cut event completes and the input has data.

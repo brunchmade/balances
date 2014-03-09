@@ -1,5 +1,7 @@
 class Address < ActiveRecord::Base
 
+  attr_accessor :is_valid
+
   validates_presence_of :currency,
                         :public_address,
                         :user_id
@@ -20,8 +22,16 @@ class Address < ActiveRecord::Base
 
   def detect_currency
     first_bit = public_address[0]
-    currencies = CURRENCIES.select { |c| c.symbols.any? { |s| s == first_bit} }
-    currencies.map { |c| c.currency_name }
+    currency = CURRENCIES.detect { |c| c.symbols.any? { |s| s == first_bit} }
+    self.currency = currency.currency_name
+  end
+
+  def info
+    detect_currency
+    info = get_currency.info(public_address)
+    self.balance = info[:balance]
+    self.is_valid = info[:is_valid]
+    info
   end
 
   private

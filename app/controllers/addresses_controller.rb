@@ -48,13 +48,8 @@ class AddressesController < ApplicationController
       format.json {
         if params[:public_address].present?
           @address = Address.new(public_address: params[:public_address])
-          currencies = @address.detect_currency
-          if currencies.size == 1
-            @address.currency = currencies.first
-            respond_with @address
-          else
-            render nothing: true, status: :bad_request
-          end
+          @address.detect_currency
+          respond_with @address
         else
           render nothing: true, status: :bad_request
         end
@@ -66,18 +61,13 @@ class AddressesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to addresses_path }
       format.json {
-        # if params[:public_address].present?
-        #   @address = Address.new(public_address: params[:public_address])
-        #   currencies = @address.detect_currency
-        #   if currencies.size == 1
-        #     @address.currency = currencies.first
-        #     respond_with @address
-        #   else
-        #     render nothing: true, status: :bad_request
-        #   end
-        # else
-        #   render nothing: true, status: :bad_request
-        # end
+        if params[:public_address].present?
+          @address = Address.new(public_address: params[:public_address])
+          @address.info
+          respond_with @address
+        else
+          render nothing: true, status: :bad_request
+        end
       }
     end
   end

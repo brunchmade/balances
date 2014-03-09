@@ -12,12 +12,12 @@ class B.Models.Address extends Backbone.Model
         opts.error?()
 
   info: (opts = {}) ->
-    # $.ajax
-    #   url: Routes.info_addresses_path()
-    #   type: 'get'
-    #   dataType: 'json'
-    #   data: opts.data
-    #   success: (response) =>
-    #     opts.success?(response)
-    #   error: ->
-    #     opts.error?()
+    $.ajax
+      url: Routes.info_addresses_path()
+      type: 'get'
+      dataType: 'json'
+      data: opts.data
+      success: (response) =>
+        opts.success?(response)
+      error: ->
+        opts.error?()
