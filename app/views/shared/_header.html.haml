@@ -12,9 +12,9 @@
         - else
           %li.user= link_to 'Sign in', new_user_session_path
 
-      %ul.f-dropdown#d-user
+      %ul.f-dropdown#d-user{:data => {'dropdown-content' => true}}
         %li= link_to 'Account Settings', settings_path
-        %li= link_to 'Feedback', 'mailto:balancesapp@gmail.com?subject=Some feedback on the Balances app :)'
+        %li= link_to 'Feedback & Suggestions', 'http://balances.uservoice.com/forums/244164-suggestions', target: '_blank'
         - if user_signed_in?
           %li= link_to 'Log out', destroy_user_session_path, method: :delete
 
