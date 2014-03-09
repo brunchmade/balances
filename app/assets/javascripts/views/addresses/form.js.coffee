@@ -5,12 +5,12 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
   tagName: 'article'
 
   events:
-    'keydown .public-address': '_handleKeyupInput'
-    'paste .public-address': '_handlePasteInput'
-    'cut .public-address': '_handleCutInput'
+    'keydown .address-public-address': '_handleKeyupInput'
+    'paste .address-public-address': '_handlePasteInput'
+    'cut .address-public-address': '_handleCutInput'
 
   onShow: ->
-    @inputAddress or= @$('.public-address')
+    @inputAddress or= @$('.address-public-address')
     @inputName or= @$('.name')
 
   _handleKeyupInput:
