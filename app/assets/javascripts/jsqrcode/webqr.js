@@ -149,10 +149,14 @@ function htmlEntities(str) {
 
 function read(a)
 {
-    var html= htmlEntities(a);
-    document.getElementById('qr-success').play();
+    var address= htmlEntities(a);
+
+    sound = document.getElementById('qr-success');
+    sound.volume=0.75;
+    sound.play();
+
     $(".overlay").css("border-color","#7ED321");
-    document.getElementById("result").innerHTML=html;
+    document.getElementById("address-field").value=address;
     $("#result").css("background-image","none");
     v = document.getElementById("v");
     v.pause();
