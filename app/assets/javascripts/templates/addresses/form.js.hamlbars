@@ -2,8 +2,10 @@
   %tr
     %td
       .currency-type
-    %td
-      %input#address-field{name: 'address[public_address]', placeholder: 'Type, paste, or scan a new wallet address...', autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false'}
+    %td.address-input
+      %input#address-field.public-address{name: 'address[public_address]', placeholder: 'Type, paste, or scan a new wallet address...', autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false'}
+      %span.address-balance
+      %input.address-name{name: 'address[name]', placeholder: 'Give it a nickname', autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false'}
     %td
       %a.scan-qr{href: '#', title: 'Scan a QR code', data: {reveal_id: 'm-scan-qr'}}
         = image_tag 'scan-qr@2x.png', width: 31

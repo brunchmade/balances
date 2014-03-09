@@ -9,6 +9,7 @@ Balances::Application.routes.draw do
 
   resources :addresses do
     get :detect_currency, on: :collection
+    get :info, on: :collection
   end
 
   devise_scope :user do |variable|

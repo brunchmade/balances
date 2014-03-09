@@ -20,16 +20,22 @@
   }
 
   input {
+    @include placeholder-style {
+      color: $light-gray-2;
+    }
+    @include transition(left .25s);
     width: 100%;
     padding: 8px;
+    position: relative;
+    left: 0;
     border: none;
-    color: $light-gray-2;
+    color: $medium-gray;
     font-size: 1.375em;
     font-weight: 400;
     outline: none;
 
-    @include placeholder-style {
-      color: $light-gray-2;
+    &.is-invalid {
+      color: $red;
     }
   }
 
@@ -43,6 +49,16 @@
     &.is-filled {
       border: none;
     }
+  }
+
+  .address-input {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .address-balance,
+  .address-name {
+    display: none;
   }
 
   .scan-qr {
