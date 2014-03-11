@@ -18,6 +18,7 @@
 @import 'mixins_and_variables';
 @import 'foundation_and_overrides';
 @import 'animate';
+@import 'buttons_and_forms';
 
 * {
   font-size: 20px;
@@ -53,57 +54,6 @@ p {
 ::-moz-selection {
   background: $brand;
   color: $white !important;
-}
-
-/*
- * Buttons
- */
-
-.button {
-  text-align: center;
-  font-weight: 300;
-  @include box-shadow(none);
-  @include transition(all .2s);
-  border: none;
-
-  &.small {
-    height: 30px;
-    @include border-radius(15px);
-    padding: 0 20px;
-    font-size: 16px !important;
-    line-height: 30px;
-  }
-  &.large {
-    height: 54px;
-    @include border-radius(25px);
-    padding: 0 50px;
-    font-size: 1.4em !important;
-    line-height: 56px;
-    @media only screen and (max-width: $small-screen) {
-      width: 100% !important;
-      padding: 0 !important;
-    }
-  }
-
-  &.clear {
-    background: transparent;
-    border: 1px solid;
-    &.white {
-      border-color: rgba($white,.5);
-      color: rgba($white,.8);
-      &:hover {
-        border-color: rgba($white,.8);
-        color: rgba($white,1);
-      }
-    }
-  }
-  &.brand {
-    color: $white;
-    background: rgba($brand,.75);
-    &:hover {
-      background: rgba($brand,1);
-    }
-  }
 }
 
 /*

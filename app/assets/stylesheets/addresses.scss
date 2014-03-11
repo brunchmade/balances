@@ -14,7 +14,7 @@
       }
 
       &:last-child {
-        width: 31px;
+        width: 39px;
       }
     }
   }
@@ -23,16 +23,18 @@
     @include placeholder-style {
       color: $light-gray-2;
     }
-    @include transition(left .25s);
     width: 100%;
     padding: 8px;
-    position: relative;
-    left: 0;
     border: none;
     color: $medium-gray;
     font-size: 1.375em;
     font-weight: 400;
     outline: none;
+    vertical-align: middle;
+
+    &.is-valid {
+      color: $green;
+    }
 
     &.is-invalid {
       color: $red;
@@ -56,13 +58,39 @@
     overflow: hidden;
   }
 
-  .address-balance,
   .address-name {
-    display: none;
+    width: auto;
   }
 
-  .scan-qr {
-    margin-left: 8px;
+  .hidden-public-firstbits {
+    display: none;
+    padding: 8px;
+    font-size: 1.375em;
+    font-weight: 400;
+  }
+
+  .address-actions {
+    padding-left: 8px;
+    white-space: nowrap;
+  }
+
+  .btn-save {
+    margin-bottom: 0;
+    font-size: 13px;
+  }
+
+  .btn-cancel {
+    font-size: 24px;
+    color: $light-gray-2;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+
+  .address-balance,
+  .address-name,
+  .btn-save,
+  .btn-cancel {
+    display: none;
   }
 }
 

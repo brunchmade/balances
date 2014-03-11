@@ -16,6 +16,7 @@
 //= require foundation
 
 //= require underscore
+//= require underscore.string
 //= require backbone
 //= require backbone.marionette
 //= require handlebars.runtime

@@ -10,6 +10,8 @@ class Address < ActiveRecord::Base
 
   belongs_to :user
 
+  before_save :clean_attributes
+
   CURRENCIES = [
     Currencies::Bitcoin,
     Currencies::Dogecoin,
@@ -40,6 +42,11 @@ class Address < ActiveRecord::Base
     unless get_currency.valid?(public_address)
       errors.add(:public_address, 'is invalid')
     end
+  end
+
+  def clean_attributes
+    self.public_address.strip! if self.public_address.present?
+    self.name.strip! if self.name.present?
   end
 
 end

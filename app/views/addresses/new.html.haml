@@ -1,7 +1,0 @@
-%h2 Add Address
-
-= simple_form_for @address do |f|
-  = f.input :public_address, as: :string, placeholder: 'e.g. 1BrQpq4qdxnwJoD2WKKNMo4PLa8oi2mxAU'
-  = f.input :currency, collection: Address::CURRENCIES.map { |c| c.currency_name }
-  = f.input :name, as: :string, placeholder: 'e.g. Donations'
-  = f.button :submit

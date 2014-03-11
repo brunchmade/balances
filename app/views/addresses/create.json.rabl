@@ -1,11 +1,14 @@
 object @address
 
-attributes :balance,
+attributes :id,
+           :user_id,
+           :balance,
            :currency,
-           :is_valid
+           :name,
+           :public_address
 
 node(:shortname) do |address|
- address.get_currency.short_name
+  address.get_currency.short_name
 end
 
 node(:currency_image_path) do |address|

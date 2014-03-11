@@ -8,10 +8,19 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
     'keydown .address-public-address': '_handleKeyupInput'
     'paste .address-public-address': '_handlePasteInput'
     'cut .address-public-address': '_handleCutInput'
+    'click .btn-save': '_handleSave'
+    'click .btn-cancel': '_handleCancel'
 
   onShow: ->
-    @inputAddress or= @$('.address-public-address')
-    @inputName or= @$('.name')
+    @balance = @$('.address-balance')
+    @currencyType = @$('.currency-type')
+    @inputAddress = @$('.address-public-address')
+    @inputName = @$('.address-name')
+    @hiddenAddress = @$('.hidden-public-address')
+    @hiddenAddressFirstbits = @$('.hidden-public-firstbits')
+    @btnQrScan = @$('.scan-qr')
+    @btnSave = @$('.btn-save')
+    @btnCancel = @$('.btn-cancel')
 
   _handleKeyupInput:
     _.debounce (event) ->
@@ -29,18 +38,14 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
           data:
             public_address: inputVal
           success: (response) =>
-            @$('.currency-type').addClass('is-filled').html $('<img />',
-              src: response.currency_image_path
-              alt: response.currency)
+            @_setCurrencyImage response
       else
         @model.info
           data:
             public_address: inputVal
           success: (response) =>
             if response.is_valid
-              @$('.currency-type').addClass('is-filled').html $('<img />',
-                src: response.currency_image_path
-                alt: response.currency)
+              @_isValidAddress response
             else
               @_addError()
           error: =>
@@ -51,7 +56,8 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
     # Timeout so that the paste event completes and the input has data.
     $.doTimeout 50, =>
       inputVal = @inputAddress.val()
-      @_reset()
+      @_clearErrors()
+      @_clearCurrencyImage()
 
       if inputVal.length < 27 or inputVal.length > 34
         @_addError()
@@ -62,9 +68,7 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
           public_address: inputVal
         success: (response) =>
           if response.is_valid
-            @$('.currency-type').addClass('is-filled').html $('<img />',
-              src: response.currency_image_path
-              alt: response.currency)
+            @_isValidAddress response
           else
             @_addError()
         error: =>
@@ -73,7 +77,49 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
   _handleCutInput: (event) ->
     # Timeout so that the cut event completes and the input has data.
     $.doTimeout 50, =>
-      @_reset() if @inputAddress.val().length is 0
+      if @inputAddress.val().length is 0
+        @_clearErrors()
+        @_clearCurrencyImage()
+
+  _handleSave: (event) ->
+    event.preventDefault()
+    balance = @balance.text()
+    @collection.create
+      balance: balance.slice(0, _.indexOf(balance, ' '))
+      currency: @currencyType.find('img').attr('alt')
+      name: _.string.trim(@inputName.val())
+      public_address: _.string.trim(@inputAddress.val())
+    ,
+      wait: true
+      success: (model, response, options) =>
+        @_reset()
+      error: (model, response, options) ->
+        _.each JSON.parse(response.responseText).errors, (msg, key) =>
+          mark "#{_.string.titleize(_.string.humanize(key))} #{msg}"
+
+  _handleCancel: (event) ->
+    event.preventDefault()
+    @_reset(false)
+
+  _setCurrencyImage: (response) ->
+    @currencyType.addClass('is-filled').html $('<img />',
+      src: response.currency_image_path
+      alt: response.currency)
+
+  _isValidAddress: (response) ->
+    @_setCurrencyImage response
+    @btnQrScan.hide()
+    @btnSave.css('display', 'inline-block')
+    @btnCancel.css('display', 'inline-block')
+    @hiddenAddressFirstbits.text @inputAddress.val().slice(0,8)
+    @inputAddress
+      .addClass('is-valid')
+      .css('width', @hiddenAddressFirstbits.outerWidth())
+      .prop('disabled', true)
+    @balance.text("#{response.balance} #{response.shortname}").show()
+    inputNameWidth = @$('.address-input').outerWidth() - @inputAddress.outerWidth() - @balance.outerWidth() - 10
+    @inputName.css('width', inputNameWidth).show().focus()
+    @
 
   _addError: ->
     @inputAddress.addClass 'is-invalid'
@@ -82,8 +128,15 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
     @inputAddress.removeClass 'is-invalid'
 
   _clearCurrencyImage: ->
-    @$('.currency-type').removeClass('is-filled').html('')
+    @currencyType.removeClass('is-filled').html('')
 
-  _reset: ->
+  _reset: (clearAddress = true) ->
     @_clearErrors()
     @_clearCurrencyImage()
+    @btnQrScan.show()
+    @btnSave.hide()
+    @btnCancel.hide()
+    @inputName.val('').hide()
+    @balance.text('').hide()
+    @inputAddress.removeClass('is-valid').prop('disabled', false).css('width', '100%')
+    @inputAddress.val('') if clearAddress

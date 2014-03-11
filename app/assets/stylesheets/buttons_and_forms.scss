@@ -1,11 +1,67 @@
 /*
  * Buttons and Forms
  */
+.button {
+  text-align: center;
+  font-weight: 300;
+  @include box-shadow(none);
+  @include transition(all .2s);
+  border: none;
+
+  &.small {
+    @include border-radius(15px);
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 30px;
+  }
+
+  &.large {
+    @include border-radius(25px);
+    padding: 0 50px;
+    font-size: 1.4em;
+    line-height: 56px;
+
+    @media only screen and (max-width: $small-screen) {
+      width: 100%;
+      padding: 0;
+    }
+  }
+
+  &.clear {
+    background: transparent;
+    border: 1px solid;
+
+    &.white {
+      border-color: rgba($white,.5);
+      color: rgba($white,.8);
+
+      &:hover,
+      &:focus {
+        border-color: rgba($white,.8);
+        color: rgba($white,1);
+      }
+    }
+  }
+
+  &.brand {
+    color: $white;
+    background: rgba($brand,.75);
+
+    &:hover,
+    &:focus {
+      background: rgba($brand,1);
+    }
+  }
+}
 
 label {
   display: inline-block;
 }
-i.labels { color: darken($light-gray-2, 20%); font-size: .875em; }
+
+i.labels {
+  color: darken($light-gray-2, 20%);
+  font-size: .875em;
+}
 
 .form-helptext {
   margin-top: -10px;
