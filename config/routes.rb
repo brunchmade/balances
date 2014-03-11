@@ -1,7 +1,9 @@
 Balances::Application.routes.draw do
   devise_for :users
 
-  root to: 'home#index'
+  root to: 'static#root'
+  get :home, controller: 'static'
+  get :terms_privacy, controller: 'static'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: 'admin/letter_opener'
@@ -15,10 +17,6 @@ Balances::Application.routes.draw do
   devise_scope :user do |variable|
     get :settings, to: 'devise/registrations#edit'
   end
-
-  get :terms_privacy, controller: 'home'
-
-  get :landing, controller: 'home'
 
   namespace :api do
     namespace :rest do
