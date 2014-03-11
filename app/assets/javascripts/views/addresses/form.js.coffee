@@ -11,6 +11,9 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
     'click .btn-save': '_handleSave'
     'click .btn-cancel': '_handleCancel'
 
+  initialize: ->
+    @listenTo B.eventBus, 'scan:qr', @_handleScanQr
+
   onShow: ->
     @balance = @$('.address-balance')
     @currencyType = @$('.currency-type')
@@ -80,6 +83,26 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
       if @inputAddress.val().length is 0
         @_clearErrors()
         @_clearCurrencyImage()
+
+  _handleScanQr: ->
+    inputVal = @inputAddress.val()
+    @_clearErrors()
+    @_clearCurrencyImage()
+
+    if inputVal.length < 27 or inputVal.length > 34
+      @_addError()
+      return
+
+    @model.info
+      data:
+        public_address: inputVal
+      success: (response) =>
+        if response.is_valid
+          @_isValidAddress response
+        else
+          @_addError()
+      error: =>
+        @_addError()
 
   _handleSave: (event) ->
     event.preventDefault()

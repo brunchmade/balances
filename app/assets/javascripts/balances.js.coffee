@@ -4,4 +4,6 @@ class window.Balances
   @Collections: {}
   @Views: {}
 
+  @eventBus = _.clone(Backbone.Events)
+
 window.B = window.Balances
