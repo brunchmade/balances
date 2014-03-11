@@ -34,5 +34,7 @@
 //= require_tree ./templates
 //= require_tree ./views
 
-$(function(){ $(document).foundation('reveal', {animation: 'fade'}); });
-
+$(function(){
+  $(document).foundation();
+  $(document).foundation('reveal', {animation: 'fade'});
+});

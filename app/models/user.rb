@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def display_name
+    self.username || self.email
+  end
+
   # So Devise knows this field is optional
   def email_required?
     false

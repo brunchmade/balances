@@ -7,6 +7,7 @@
   height: 70px;
   margin-bottom: 30px;
 }
+
 header {
   @include grid-row();
 
@@ -30,11 +31,11 @@ header {
     }
 
     ul.menu {
-      li {
+      > li {
         float: left;
         margin: 0 1em;
 
-        a {
+        > a {
           color: $white;
           text-decoration: none;
           font-weight: 400;
@@ -55,6 +56,10 @@ header {
           float: right;
         }
       }
+    }
+
+    .f-dropdown {
+      text-align: left;
     }
   } // nav
 } // header

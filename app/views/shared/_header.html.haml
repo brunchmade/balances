@@ -7,14 +7,13 @@
           %li= link_to 'All Balances', addresses_path, class: cp(addresses_path)
           %li= link_to 'Recent Transactions', '#', class: cp(addresses_path)
           %li= link_to 'Integrations', '#', class: cp(addresses_path)
-          %li.user= link_to 'wells ▾', '#', :data => { :dropdown => 'd-user' }, class: cp(addresses_path)
+          %li.user
+            = link_to "#{current_user.display_name} ▾", '#', data: {dropdown: 'd-user'}
+            %ul#d-user.f-dropdown{data: {dropdown_content: ''}}
+              %li= link_to 'Account Settings', settings_path
+              %li= link_to 'Feedback & Suggestions', 'http://balances.uservoice.com/forums/244164-suggestions', target: '_blank'
+              - if user_signed_in?
+                %li= link_to 'Log out', destroy_user_session_path, method: :delete
 
         - else
           %li.user= link_to 'Sign in', new_user_session_path
-
-      %ul.f-dropdown#d-user{:data => {'dropdown-content' => true}}
-        %li= link_to 'Account Settings', settings_path
-        %li= link_to 'Feedback & Suggestions', 'http://balances.uservoice.com/forums/244164-suggestions', target: '_blank'
-        - if user_signed_in?
-          %li= link_to 'Log out', destroy_user_session_path, method: :delete
-
