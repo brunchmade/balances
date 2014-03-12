@@ -1,7 +1,7 @@
 .top-bar
   %header
     = link_to '', root_path, id: 'logo'
-    %nav
+    %nav.main
       %ul.menu
         - if user_signed_in?
           %li= link_to 'All Balances', addresses_path, class: cp(addresses_path)
@@ -14,6 +14,23 @@
               %li= link_to 'Feedback & Suggestions', 'http://balances.uservoice.com/forums/244164-suggestions', target: '_blank'
               - if user_signed_in?
                 %li= link_to 'Log out', destroy_user_session_path, method: :delete
+
+        - else
+          %li.user= link_to 'Sign in', new_user_session_path
+    %nav.mobile
+      = link_to '', '#', data: {dropdown: 'd-mobile'}, id: 'hamburger'
+      %ul#d-mobile.f-dropdown{data: {dropdown_content: ''}}
+        - if user_signed_in?
+          %li= link_to 'All Balances', addresses_path, class: cp(addresses_path)
+          %li= link_to 'Recent Transactions', '#', class: cp(addresses_path)
+          %li= link_to 'Integrations', '#', class: cp(addresses_path)
+          %li.user
+      = link_to "#{current_user.display_name} ▾", '#', data: {dropdown: 'd-mobile-user'}, class: 'user'
+      %ul#d-mobile-user.f-dropdown{data: {dropdown_content: ''}}
+        %li= link_to 'Account Settings', settings_path
+        %li= link_to 'Feedback & Suggestions', 'http://balances.uservoice.com/forums/244164-suggestions', target: '_blank'
+        - if user_signed_in?
+          %li= link_to 'Log out', destroy_user_session_path, method: :delete
 
         - else
           %li.user= link_to 'Sign in', new_user_session_path

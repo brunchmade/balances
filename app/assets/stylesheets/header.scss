@@ -6,6 +6,7 @@
   background: $brand;
   height: 70px;
   margin-bottom: 30px;
+  overflow: visible;
 }
 
 header {
@@ -21,13 +22,53 @@ header {
     display: block;
     @media only screen and (max-width: $small-screen) {
      float: none;
-     margin: 16px auto 0;
+     position: absolute;
+     margin: 16px 50% 0;
+     left: -16px;
     }
   } // #logo
 
   nav {
-    @media only screen and (max-width: $small-screen) {
-     display: none;
+    &.main {
+      @media only screen and (max-width: $small-screen) {
+      display: none;
+      }
+    }
+    &.mobile {
+      @media only screen and (min-width: $small-screen) {
+      display: none;
+      }
+      #hamburger {
+        height: 24px;
+        width: 30px;
+        margin: 22px .95em;
+        background: image-url('hamburger.svg') no-repeat;
+        background-size: contain;
+        float: left;
+        display: block;
+        &:hover, &:active {
+          opacity: .7;
+        }
+      } // #hamburger
+
+      .user {
+        color: $white;
+        text-decoration: none;
+        font-weight: 400;
+        margin-top: 26px;
+        display: inline-block;
+        float: right;
+        font-size: 16px;
+        margin-right: .95em;
+
+        &.current { text-decoration: underline; }
+
+        &:hover,
+        &:focus {
+          color: $white;
+          text-decoration: underline;
+        }
+      }
     }
 
     ul.menu {
