@@ -6,20 +6,42 @@ class AddressesController < ApplicationController
   respond_to :html, only: [:index, :show]
 
   def index
-    @user = Rabl::Renderer.new(
-      'users/current_user',
-      current_user,
-      view_path: 'app/views',
-      format: 'json',
-      scope: view_context
-    ).render
-    @addresses = Rabl::Renderer.new(
-      'addresses/show',
-      current_user.addresses,
-      view_path: 'app/views',
-      format: 'json',
-      scope: view_context
-    ).render
+    addresses = current_user.addresses
+    sorted_addresses = case params[:order]
+    when 'name'
+      addresses.order("NULLIF(name, '') ASC")
+    when 'coins'
+      addresses.order("balance DESC")
+    when 'balance'
+      addresses.order("balance DESC")
+    when 'currency'
+      addresses.order("currency ASC, NULLIF(name, '') ASC")
+    else
+      addresses.order("NULLIF(name, '') ASC")
+    end
+
+    respond_to do |format|
+      format.html {
+        @user = Rabl::Renderer.new(
+          'users/current_user',
+          current_user,
+          view_path: 'app/views',
+          format: 'json',
+          scope: view_context
+        ).render
+        @addresses = Rabl::Renderer.new(
+          'addresses/show',
+          sorted_addresses,
+          view_path: 'app/views',
+          format: 'json',
+          scope: view_context
+        ).render
+      }
+      format.json {
+        @addresses = sorted_addresses
+        respond_with @addresses
+      }
+    end
   end
 
   def show

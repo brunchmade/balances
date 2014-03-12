@@ -1,14 +1,17 @@
 %article#address-filters
-  %a.sort-by{href: '#', title: 'Chance your addresses sort order', data: {dropdown: 'd-filters'}} Sort by Name ▾
+  %a.sort-by{href: '#', title: 'Chance your addresses sort order', data: {dropdown: 'd-filters'}}
+    Sort by
+    %span Name
+    ▾
   %ul#d-filters.f-dropdown{data: {dropdown_content: ''}}
     %li
-      %a.current{href: '#', title: 'Sort by Name'} Name
+      %a.current{href: '#', title: 'Sort by Name', data: {sort: 'name'}} Name
     %li
-      %a{href: '#', title: 'Sort by Number of Coins'} Number of Coins
+      %a{href: '#', title: 'Sort by Number of Coins', data: {sort: 'coins'}} Number of Coins
     %li
-      %a{href: '#', title: 'Sort by Value'} Value
+      %a{href: '#', title: 'Sort by Value', data: {sort: 'balance'}} Value
     %li
-      %a{href: '#', title: 'Sort by Currency Type'} Currency Type
+      %a{href: '#', title: 'Sort by Currency Type', data: {sort: 'currency'}} Currency Type
 
   %a.currency-type{href: '#', title: 'Chance what currency your addresses display in', data: {dropdown: 'd-balances'}} All Balances ▾
   %ul#d-balances.f-dropdown{data: {dropdown_content: ''}}

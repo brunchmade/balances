@@ -185,6 +185,11 @@
       color: $medium-gray-3;
     }
 
+    span {
+      color: $medium-gray-2;
+      font-weight: 600;
+    }
+
     &.sort-by {
       background: image-url('filter.svg') no-repeat top left;
     }
