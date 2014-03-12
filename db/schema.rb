@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304032111) do
+ActiveRecord::Schema.define(version: 20140312223643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20140304032111) do
 
   add_index "addresses", ["public_address", "currency"], name: "index_addresses_on_public_address_and_currency", unique: true, using: :btree
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
+
+  create_table "currency_conversions", force: true do |t|
+    t.text     "name"
+    t.integer  "crypsty_id"
+    t.decimal  "to_btc",     precision: 18, scale: 8
+    t.decimal  "to_usd",     precision: 18, scale: 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "currency_conversions", ["name"], name: "index_currency_conversions_on_name", unique: true, using: :btree
 
   create_table "tokens", force: true do |t|
     t.text     "token",      null: false
