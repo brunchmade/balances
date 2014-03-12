@@ -56,16 +56,19 @@
 
 label {
   display: inline-block;
+  font-size: .8em;
+  font-weight: 600;
 }
 
 i.labels {
   color: darken($light-gray-2, 20%);
-  font-size: .875em;
+  font-size: .8em;
 }
 
 .form-helptext {
   margin-top: -10px;
-  font-size: .875em;
+  font-size: 1em;
+  line-height: 1.2em;
   font-style: italic;
   color: $medium-gray;
 }
@@ -78,11 +81,12 @@ input[type=tel] {
   @include border-radius(4px);
   @include box-shadow(none);
   padding: 6px 8px 4px;
-  font-size: 1em;
+  font-size: 1.2em;
   border: 1px solid $light-gray-2;
   &:focus {
     border:1px solid $brand;
     box-shadow: 0 0 3px tint($brand, 80%);
+    background: $white;
   }
 }
 
@@ -91,7 +95,7 @@ input[type=submit] {
   @include box-shadow(none);
   border: none;
   padding: 10px 30px;
-  font-size: 1em;
+  font-size: 1.2em;
   font-weight: 600;
   background: $brand;
   color: $white;
@@ -112,7 +116,7 @@ input[type=submit].delete-button {
   border: 1px solid lighten(red, 45%);
   background: transparent;
   padding: 6px 20px;
-  font-size: .85em;
+  font-size: 1em;
   font-weight: 100;
   &:hover {
     color: red;

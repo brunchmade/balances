@@ -54,6 +54,9 @@ section {
   article.small {
     @extend .large-5, .small-11, .columns, .small-centered;
   }
+  article.medium {
+    @extend .large-6, .small-12, .columns, .small-centered;
+  }
 
   .announcement {
     @include border-radius(6px);
