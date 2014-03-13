@@ -1,3 +1,0 @@
-[submodule "app/assets/javascripts/jsqrcode"]
-	path = app/assets/javascripts/jsqrcode
-	url = git@github.com:wellsriley/jsqrcode.git
