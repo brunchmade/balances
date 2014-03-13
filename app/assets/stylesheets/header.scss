@@ -29,6 +29,7 @@ header {
   } // #logo
 
   nav {
+    @include transition(all .1s);
     &.main {
       @media only screen and (max-width: $small-screen) {
       display: none;
@@ -39,15 +40,16 @@ header {
       display: none;
       }
       #hamburger {
-        height: 24px;
-        width: 30px;
-        margin: 22px .95em;
+        height: 20px;
+        width: 25px;
+        margin: 25px .95em;
         background: image-url('hamburger.svg') no-repeat;
         background-size: contain;
         float: left;
         display: block;
+        opacity: .8;
         &:hover, &:active {
-          opacity: .7;
+          opacity: 1;
         }
       } // #hamburger
 
@@ -60,13 +62,14 @@ header {
         float: right;
         font-size: 16px;
         margin-right: .95em;
+        opacity: .8;
 
-        &.current { text-decoration: underline; }
+        &.current { opacity: 1; }
 
         &:hover,
         &:focus {
           color: $white;
-          text-decoration: underline;
+          opacity: 1;
         }
       }
     }
@@ -82,13 +85,14 @@ header {
           font-weight: 400;
           margin-top: 26px;
           display: inline-block;
+          opacity: .8;
 
-          &.current { text-decoration: underline; }
+          &.current { opacity: 1; }
 
           &:hover,
           &:focus {
             color: $white;
-            text-decoration: underline;
+            opacity: 1;
           }
         }
 

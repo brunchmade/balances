@@ -10,7 +10,7 @@
     %td.address-actions
       %a.scan-qr{href: '#', title: 'Scan a QR code', data: {reveal_id: 'm-scan-qr'}}
         = image_tag 'scan-qr@2x.png', width: 31
-      %a.btn-save.button.brand.clear.small{href: '#', title: 'Save Address'} Save Address
+      %a.btn-save.button.brand.clear.small{href: '#', title: 'Save Address'} Save
       %a.btn-cancel{href: '#', title: 'Cancel'} &times;
 
 #m-scan-qr.reveal-modal.medium{data: {reveal: ''}}

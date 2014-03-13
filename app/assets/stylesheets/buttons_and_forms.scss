@@ -138,10 +138,10 @@ input[type=submit].delete-button {
 .f-dropdown {
   @include border-radius(6px);
   @include box-shadow(0 1px 4px 0 rgba(0,0,0,0.15));
-  min-width: 180px;
-  padding: 8px 0;
+  min-width: 200px;
+  padding: 8px 6px;
   border: 1px solid #e0e0e0;
-  font-size: .9em;
+  font-size: 1em;
   @media only screen and (max-width: $small-screen) {
     font-size: 1.3em;
   }
@@ -159,6 +159,7 @@ input[type=submit].delete-button {
     a {
       padding: 6px 12px 4px;
       text-decoration: none;
+      @include border-radius(4px);
       @media only screen and (max-width: $small-screen) {
         padding: 12px 12px 8px;
       }

@@ -5,8 +5,7 @@
       %ul.menu
         - if user_signed_in?
           %li= link_to 'All Balances', addresses_path, class: cp(addresses_path)
-          %li= link_to 'Recent Transactions', '#', class: cp(addresses_path)
-          %li= link_to 'Integrations', '#', class: cp(addresses_path)
+          %li= link_to 'Recent Transactions', '#', class: ''
           %li.user
             = link_to "#{current_user.display_name} ▾", '#', data: {dropdown: 'd-user'}
             %ul#d-user.f-dropdown{data: {dropdown_content: ''}}

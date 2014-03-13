@@ -10,7 +10,9 @@
 
 footer {
   @include grid-row();
-
+  @media only screen and (max-width: $small-screen) {
+    text-align: center;
+  }
   a {
     font-size: .8em;
     color: $medium-gray;
@@ -21,15 +23,18 @@ footer {
   p {
     color: $medium-gray;
     font-size: .8em;
-    @extend .large-4, .small-12, .push-2, .columns;
+    @extend .large-2, .small-12, .push-2, .columns;
   }
 
   nav {
-    @extend .large-4, .small-12, .push-2, .columns;
+    @extend .large-8, .small-12, .columns;
 
     ul {
       list-style: none;
       text-align: right;
+      @media only screen and (max-width: $small-screen) {
+        text-align: center;
+      }
 
       li {
         display: inline;

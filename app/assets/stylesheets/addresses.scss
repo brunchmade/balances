@@ -31,6 +31,9 @@
     font-weight: 400;
     outline: none;
     vertical-align: middle;
+    @media only screen and (max-width: $small-screen) {
+      padding: 2px;
+    }
 
     &.is-valid {
       color: $green;
@@ -47,6 +50,11 @@
     margin-right: 8px;
     @include border-radius(20px);
     border: 1px dashed $light-gray-2;
+    @media only screen and (max-width: $small-screen) {
+      width: 30px;
+      height: 30px;
+      margin: 0px;
+    }
 
     &.is-filled {
       border: none;
@@ -84,6 +92,10 @@
     color: $light-gray-2;
     text-decoration: none;
     vertical-align: middle;
+
+    &:hover, &:active {
+      color: $medium-gray;
+    }
   }
 
   .address-balance,
@@ -91,6 +103,10 @@
   .btn-save,
   .btn-cancel {
     display: none;
+  }
+
+  .scan-qr {
+    @include mobile-hidden;
   }
 }
 
@@ -108,9 +124,15 @@
     font-size: 1.2em;
     font-weight: 400;
     text-align: left;
+    @media only screen and (max-width: $small-screen) {
+      padding: 10px 5px;
+    }
 
     &.currency-type {
       width: 68px;
+      @media only screen and (max-width: $small-screen) {
+        width: 40px;
+      }
     }
 
     &.name {
@@ -136,6 +158,9 @@
     font-size: 1.2em;
     font-weight: 600;
     text-align: right;
+    @media only screen and (max-width: $small-screen) {
+      padding: 10px 5px;
+    }
   }
 }
 
@@ -154,9 +179,10 @@
     line-height: 20px;
     text-decoration: none;
 
+
     &:hover,
     &:focus {
-      text-decoration: underline;
+      color: $medium-gray-3;
     }
 
     &.sort-by {
