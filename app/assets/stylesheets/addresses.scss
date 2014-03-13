@@ -140,8 +140,7 @@
 }
 
 #address-filters {
-  background: $lighter-gray;
-  border-top: 1px solid $light-gray;
+  @include background-gradient($white,$lighter-gray);
   border-bottom: 1px solid $light-gray;
 
   > a {
