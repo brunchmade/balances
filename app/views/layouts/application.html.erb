@@ -9,13 +9,13 @@
   	<meta charset="utf-8" />
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<%= image_tag 'apple-touch-icon.png' %>">
+    <link rel="apple-touch-icon" sizes="152x152" href="<%= image_tag 'apple-touch-icon-ipad.png' %>">
 
     <meta name="application-name" content="Balances"/>
     <meta name="msapplication-TileColor" content="#20D1CF"/>
-    <meta name="msapplication-square70x70logo" content="/assets/win8-tiny.png"/>
-    <meta name="msapplication-square150x150logo" content="/assets/win8-tile.png"/>
+    <meta name="msapplication-square70x70logo" content="<%= image_tag 'win8-tiny.png' %>"/>
+    <meta name="msapplication-square150x150logo" content="<%= image_tag 'win8-tile.png' %>"/>
 
   	<title><%= content_for?(:title) ? yield(:title) + ' - Balances' : "Balances" %></title>
 
