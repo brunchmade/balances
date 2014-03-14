@@ -9,9 +9,35 @@ class B.Views.AddressList extends Backbone.Marionette.CompositeView
     'click #d-filters a': '_handleSort'
     'click #d-balances a': '_handleConversion'
 
+  serializeData: ->
+    _.extend super,
+      @_getConversion(),
+
   onRender: ->
     @_updateSort()
     @_updateConversion()
+
+  _getConversion: ->
+    switch @collection.conversion
+      when 'all'
+        balance_value: @model.get('total_btc')
+        converted_shortname: 'BTC'
+      when 'btc'
+        balance_value: @model.get('total_btc')
+        converted_shortname: 'BTC'
+      when 'doge'
+        balance_value: @model.get('total_doge')
+        converted_shortname: 'DOGE'
+      when 'ltc'
+        balance_value: @model.get('total_ltc')
+        converted_shortname: 'LTC'
+      when 'usd'
+        balance_value: "$#{@model.get('total_usd')}"
+        converted_shortname: ''
+      else
+        balance_value: @model.get('total_btc')
+        converted_shortname: 'BTC'
+
 
   _handleSort: (event) ->
     event.preventDefault()

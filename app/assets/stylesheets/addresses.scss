@@ -158,6 +158,12 @@
     font-size: 1.2em;
     font-weight: 600;
     text-align: right;
+
+    &.value {
+      width: 1px;
+      white-space: nowrap;
+    }
+
     @media only screen and (max-width: $small-screen) {
       padding: 10px 5px;
     }

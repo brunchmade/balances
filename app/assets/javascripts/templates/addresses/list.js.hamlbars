@@ -42,4 +42,4 @@
 %table#address-list-total
   %tr
     %td Total value:
-    %td.value $$$
+    %td.value {{ balance_value }} {{ converted_shortname }}

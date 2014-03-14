@@ -47,6 +47,12 @@ module Currencies
       trim_trailing_zeros value.to_f
     end
 
+    def self.to_usd(value)
+      cc = CurrencyConversion.find_by_name(self.currency_name)
+      converted_value = value.to_f * cc.to_usd.to_f
+      ActiveSupport::NumberHelper.number_to_rounded(converted_value, precision: 2).to_f
+    end
+
     # Check for trailing zeros and remove them.
     def self.trim_trailing_zeros(num)
       if num != 0

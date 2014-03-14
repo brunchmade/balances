@@ -10,4 +10,5 @@
     collection: B.currentUser.addresses
 
   @addressListRegion.show new B.Views.AddressList
+    model: B.currentUser
     collection: B.currentUser.addresses

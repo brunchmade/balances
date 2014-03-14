@@ -16,3 +16,4 @@ node(:balance) { |address| Currencies::Base.trim_trailing_zeros(address.balance)
 node(:balance_btc) { |address| address.get_currency.to_btc(address.balance) }
 node(:balance_doge) { |address| address.get_currency.to_doge(address.balance) }
 node(:balance_ltc) { |address| address.get_currency.to_ltc(address.balance) }
+node(:balance_usd) { |address| address.get_currency.to_usd(address.balance) }
