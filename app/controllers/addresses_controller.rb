@@ -13,7 +13,7 @@ class AddressesController < ApplicationController
     when 'coins'
       addresses.order("balance DESC")
     when 'balance'
-      addresses.order("balance DESC")
+      addresses.order("balance_btc DESC")
     when 'currency'
       addresses.order("currency ASC, NULLIF(name, '') ASC")
     else

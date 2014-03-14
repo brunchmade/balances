@@ -25,5 +25,11 @@ module Currencies
       !['X5', 'SZ', 'CK'].include?(response)
     end
 
+    # Conversions
+    def self.to_ltc(value)
+      value_btc = self.to_btc(value)
+      Currencies::Bitcoin.to_ltc value_btc
+    end
+
   end
 end

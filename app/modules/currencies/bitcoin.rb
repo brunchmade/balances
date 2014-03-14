@@ -24,5 +24,24 @@ module Currencies
       response[:data][:is_valid]
     end
 
+    # Conversions
+    def self.to_btc(value)
+      trim_trailing_zeros value
+    end
+
+    def self.to_doge(value)
+      cc = CurrencyConversion.find_by_name(Currencies::Dogecoin.currency_name)
+      converted_value = value.to_f / cc.to_btc.to_f
+      precise_value = ActiveSupport::NumberHelper.number_to_rounded(converted_value, precision: 8).to_f
+      trim_trailing_zeros precise_value
+    end
+
+    def self.to_ltc(value)
+      cc = CurrencyConversion.find_by_name(Currencies::Litecoin.currency_name)
+      converted_value = value.to_f / cc.to_btc.to_f
+      precise_value = ActiveSupport::NumberHelper.number_to_rounded(converted_value, precision: 8).to_f
+      trim_trailing_zeros precise_value
+    end
+
   end
 end

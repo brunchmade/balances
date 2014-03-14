@@ -2,7 +2,6 @@ object @address
 
 attributes :id,
            :user_id,
-           :balance,
            :currency,
            :name,
            :public_address
@@ -14,3 +13,5 @@ end
 node(:currency_image_path) do |address|
   image_path "currencies/#{address.currency.downcase}@2x.png"
 end
+
+node(:balance) { |address| Currencies::Base.trim_trailing_zeros(address.balance) }
