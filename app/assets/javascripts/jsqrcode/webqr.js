@@ -170,7 +170,7 @@ function read(a)
     $("#address-field").removeClass('highlight');
   },2000);
 
-  B.eventBus.trigger('scan:qr')
+  B.App.vent.trigger('scan:qr')
 }
 
 function isCanvasSupported(){

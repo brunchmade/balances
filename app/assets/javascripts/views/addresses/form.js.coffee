@@ -12,7 +12,7 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
     'click .btn-cancel': '_handleCancel'
 
   initialize: ->
-    @listenTo B.eventBus, 'scan:qr', @_handleScanQr
+    @listenTo B.App.vent, 'scan:qr', @_handleScanQr
 
   onShow: ->
     @balance = @$('.address-balance')

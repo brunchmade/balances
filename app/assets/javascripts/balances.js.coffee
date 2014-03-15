@@ -1,9 +1,8 @@
-class window.Balances
+class @Balances
 
+  @App: null
   @Models: {}
   @Collections: {}
   @Views: {}
 
-  @eventBus = _.clone(Backbone.Events)
-
-window.B = window.Balances
+@B = @Balances

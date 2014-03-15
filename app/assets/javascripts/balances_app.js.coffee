@@ -12,3 +12,5 @@
   @addressListRegion.show new B.Views.AddressList
     model: B.currentUser
     collection: B.currentUser.addresses
+
+@B.App = @BalancesApp
