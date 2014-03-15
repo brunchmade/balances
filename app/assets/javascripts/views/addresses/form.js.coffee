@@ -110,15 +110,15 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
     @collection.create
       balance: balance.slice(0, _.indexOf(balance, ' '))
       currency: @currencyType.find('img').attr('alt')
-      name: _.string.trim(@inputName.val())
-      public_address: _.string.trim(@inputAddress.val())
+      name: _.str.trim(@inputName.val())
+      public_address: _.str.trim(@inputAddress.val())
     ,
       wait: true
       success: (model, response, options) =>
         @_reset()
       error: (model, response, options) ->
         _.each JSON.parse(response.responseText).errors, (msg, key) =>
-          mark "#{_.string.titleize(_.string.humanize(key))} #{msg}"
+          mark "#{_.str.titleize(_.str.humanize(key))} #{msg}"
 
   _handleCancel: (event) ->
     event.preventDefault()

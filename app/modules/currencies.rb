@@ -34,40 +34,20 @@ module Currencies
     # for currencies that are not BTC or themselves.
     def self.to_btc(value)
       cc = CurrencyConversion.find_by_name(self.currency_name)
-      converted_value = value.to_f * cc.to_btc.to_f
-      precise_value = ActiveSupport::NumberHelper.number_to_rounded(converted_value, precision: 8).to_f
-      trim_trailing_zeros precise_value
+      value.to_f * cc.to_btc.to_f
     end
 
     def self.to_doge(value)
-      trim_trailing_zeros value.to_f
+      value.to_f
     end
 
     def self.to_ltc(value)
-      trim_trailing_zeros value.to_f
+      value.to_f
     end
 
     def self.to_usd(value)
       cc = CurrencyConversion.find_by_name(self.currency_name)
-      converted_value = value.to_f * cc.to_usd.to_f
-      ActiveSupport::NumberHelper.number_to_rounded(converted_value, precision: 2).to_f
-    end
-
-    # Check for trailing zeros and remove them.
-    def self.trim_trailing_zeros(num)
-      if num != 0
-        if m = num.to_s.match(/([0-9]*)(\.0+[1-9]*|\.0*[1-9]+)(0*)/)
-          if m[2].match(/[1-9]+/)
-            "#{m[1]}#{m[2]}".to_f
-          else
-            m[1].to_f
-          end
-        else
-          num
-        end
-      else
-        0
-      end
+      value.to_f * cc.to_usd.to_f
     end
 
   end

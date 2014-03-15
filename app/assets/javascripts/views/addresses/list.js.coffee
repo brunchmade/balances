@@ -32,7 +32,7 @@ class B.Views.AddressList extends Backbone.Marionette.CompositeView
         balance_value: @model.get('total_ltc')
         converted_shortname: 'LTC'
       when 'usd'
-        balance_value: "$#{@model.get('total_usd')}"
+        balance_value: '$' + @model.get('total_usd')
         converted_shortname: ''
       else
         balance_value: @model.get('total_btc')

@@ -14,4 +14,7 @@ node(:currency_image_path) do |address|
   image_path "currencies/#{address.currency.downcase}@2x.png"
 end
 
-node(:balance) { |address| Currencies::Base.trim_trailing_zeros(address.balance) }
+node(:balance) do |address|
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(address.balance, precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end

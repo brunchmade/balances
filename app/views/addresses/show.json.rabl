@@ -12,8 +12,27 @@ node(:currency_image_path) do |address|
   image_path "currencies/#{address.currency.downcase}@2x.png"
 end
 
-node(:balance) { |address| Currencies::Base.trim_trailing_zeros(address.balance) }
-node(:balance_btc) { |address| address.get_currency.to_btc(address.balance) }
-node(:balance_doge) { |address| address.get_currency.to_doge(address.balance) }
-node(:balance_ltc) { |address| address.get_currency.to_ltc(address.balance) }
-node(:balance_usd) { |address| address.get_currency.to_usd(address.balance) }
+node(:balance) do |address|
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(address.balance, precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
+node(:balance_btc) do |address|
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(address.get_currency.to_btc(address.balance), precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
+node(:balance_doge) do |address|
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(address.get_currency.to_doge(address.balance), precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
+node(:balance_ltc) do |address|
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(address.get_currency.to_ltc(address.balance), precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
+node(:balance_usd) do |address|
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(address.get_currency.to_usd(address.balance), precision: 2)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end

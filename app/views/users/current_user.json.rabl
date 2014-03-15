@@ -5,29 +5,25 @@ attributes :id,
            :username
 
 node(:total_btc) do |user|
-  total = user.addresses.inject(0) do |sum, address|
-    sum + address.get_currency.to_btc(address.balance)
-  end
-  Currencies::Base.trim_trailing_zeros(total)
+  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_btc(address.balance) }
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
 end
 
 node(:total_doge) do |user|
-  total = user.addresses.inject(0) do |sum, address|
-    sum + address.get_currency.to_doge(address.balance)
-  end
-  Currencies::Base.trim_trailing_zeros(total)
+  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_doge(address.balance) }
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
 end
 
 node(:total_ltc) do |user|
-  total = user.addresses.inject(0) do |sum, address|
-    sum + address.get_currency.to_ltc(address.balance)
-  end
-  Currencies::Base.trim_trailing_zeros(total)
+  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_ltc(address.balance) }
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
 end
 
 node(:total_usd) do |user|
-  total = user.addresses.inject(0) do |sum, address|
-    sum + address.get_currency.to_usd(address.balance)
-  end
-  Currencies::Base.trim_trailing_zeros(total)
+  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_usd(address.balance) }
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
 end

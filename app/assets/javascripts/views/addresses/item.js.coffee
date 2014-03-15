@@ -23,7 +23,7 @@ class B.Views.AddressItem extends Backbone.Marionette.ItemView
         balance_value: @model.get('balance_ltc')
         converted_shortname: 'LTC'
       when 'usd'
-        balance_value: "$#{@model.get('balance_usd')}"
+        balance_value: '$' + @model.get('balance_usd')
         converted_shortname: ''
       else
         balance_value: @model.get('balance')
