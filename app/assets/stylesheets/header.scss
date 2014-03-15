@@ -7,6 +7,10 @@
   height: 70px;
   margin-bottom: 30px;
   overflow: visible;
+  @media only screen and (max-width: $small-screen) {
+   height: 50px;
+   margin-bottom: 15px;
+  }
 }
 
 header {
@@ -22,8 +26,10 @@ header {
     display: block;
     @media only screen and (max-width: $small-screen) {
      float: none;
+     height: 32px;
+     width: 28px;
      position: absolute;
-     margin: 16px 50% 0;
+     margin: 10px 50% 0;
      left: -16px;
     }
   } // #logo
@@ -42,7 +48,7 @@ header {
       #hamburger {
         height: 20px;
         width: 25px;
-        margin: 25px .95em;
+        margin: 15px .95em;
         background: image-url('hamburger.svg') no-repeat;
         background-size: contain;
         float: left;
@@ -57,7 +63,7 @@ header {
         color: $white;
         text-decoration: none;
         font-weight: 400;
-        margin-top: 26px;
+        margin-top: 18px;
         display: inline-block;
         float: right;
         font-size: 16px;

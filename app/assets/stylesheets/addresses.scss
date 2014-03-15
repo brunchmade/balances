@@ -1,5 +1,8 @@
 #address-form {
   margin-bottom: 30px;
+  @media only screen and (max-width: $small-screen) {
+   margin-bottom: 5px;
+  }
 
   table {
     width: 100%;
@@ -173,6 +176,9 @@
 #address-filters {
   @include background-gradient($white,$lighter-gray);
   border-bottom: 1px solid $light-gray;
+  @media only screen and (max-width: $small-screen) {
+   background: lighten($light-gray, 2.5%);
+  }
 
   > a {
     height:20px;
@@ -184,6 +190,9 @@
     font-size: .8em;
     line-height: 20px;
     text-decoration: none;
+    @media only screen and (max-width: $small-screen) {
+     margin: 10px 0 7px;
+    }
 
 
     &:hover,
