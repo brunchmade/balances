@@ -8,7 +8,7 @@
           %li= link_to 'All Balances', addresses_path, class: cp(addresses_path)
           %li= link_to 'Recent Transactions', '#', class: ''
           %li.user
-            = link_to "#{current_user.display_name} ▾", '#', data: {dropdown: 'd-user'}
+            = link_to "#{current_user.display_name}", '#', data: {dropdown: 'd-user'}, class: 'dn-arr'
         - else
           %li.user= link_to 'Sign in', new_user_session_path
 
@@ -19,7 +19,7 @@
           %li= link_to 'All Balances', addresses_path, class: cp(addresses_path)
           %li= link_to 'Recent Transactions', '#', class: ''
 
-        = link_to "#{current_user.display_name} ▾", '#', data: {dropdown: 'd-user'}, class: 'user'
+        = link_to "#{current_user.display_name}", '#', data: {dropdown: 'd-user'}, class: 'user dn-arr'
 
       - else
         = link_to 'Sign in', new_user_session_path, class: 'user'

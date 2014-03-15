@@ -102,3 +102,26 @@ section {
   } // .announcement
 
 } // .section
+
+.dn-arr {
+  &:after {
+    content: '';
+    width: 5px;
+    height: 2px;
+    margin-left: 4px;
+    display: inline-block;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid $white;
+    vertical-align: 10%;
+  }
+}
+#address-filters .dn-arr:after {
+  width: 4px;
+  height: 2px;
+  margin-left: 3px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid $medium-gray-2;
+}
+

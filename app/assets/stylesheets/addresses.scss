@@ -201,8 +201,8 @@
     }
 
     span {
-      color: $medium-gray-2;
-      font-weight: 600;
+      color: inherit;
+      font-weight: inherit;
     }
 
     &.sort-by {
