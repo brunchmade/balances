@@ -1,8 +1,8 @@
 require 'tasks/helpers/rake_logger'
 
-namespace :update do
+namespace :currency_conversions do
 
-  task currency_conversions: :environment do
+  task update: :environment do
     RakeLogger.log "=== Updating Currency Conversions ==="
 
     CurrencyConversion.find_each do |cc|
