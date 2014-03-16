@@ -210,8 +210,9 @@
     }
 
     &.currency-type {
+      @include currency-symbols;
       float: right;
-      background: image-url('currencies/all-currencies@2x.png') no-repeat top left;
+      background: no-repeat top left;
       background-size: 18px;
     }
   }

@@ -27,3 +27,21 @@ node(:total_usd) do |user|
   rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
   ActiveSupport::NumberHelper.number_to_delimited(rounded)
 end
+
+node(:total_eur) do |user|
+  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_eur(address.balance) }
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
+node(:total_gbp) do |user|
+  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_gbp(address.balance) }
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
+node(:total_jpy) do |user|
+  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_jpy(address.balance) }
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end

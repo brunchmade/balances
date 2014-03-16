@@ -11,6 +11,7 @@ class B.Views.AddressList extends Backbone.Marionette.CompositeView
 
   serializeData: ->
     _.extend super,
+      selected_currency: @collection.conversion
       @_getConversion(),
 
   onRender: ->
@@ -33,6 +34,15 @@ class B.Views.AddressList extends Backbone.Marionette.CompositeView
         converted_shortname: 'LTC'
       when 'usd'
         balance_value: '$' + @model.get('total_usd')
+        converted_shortname: ''
+      when 'eur'
+        balance_value: '€' + @model.get('total_eur')
+        converted_shortname: ''
+      when 'gbp'
+        balance_value: '£' + @model.get('total_gbp')
+        converted_shortname: ''
+      when 'jpy'
+        balance_value: '¥' + @model.get('total_jpy')
         converted_shortname: ''
       else
         balance_value: @model.get('total_btc')

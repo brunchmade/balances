@@ -13,30 +13,30 @@
     %li
       %a{href: '#', title: 'Sort by Currency Type', data: {sort: 'currency'}} Currency Type
 
-  %a.currency-type{href: '#', title: 'Chance what currency your addresses display in', data: {dropdown: 'd-balances'}}
+  %a{class: 'currency-type {{ selected_currency }}', href: '#', title: 'Chance what currency your addresses display in', data: {dropdown: 'd-balances'}}
     %span.dn-arr All Balances
 
   %ul#d-balances.f-dropdown{data: {dropdown_content: ''}}
     %li
-      %a.icon.all-currencies.current{href: '#', title: 'Show all balances', data: {conversion: 'all'}} All Balances
+      %a.icon.all.current{href: '#', title: 'Show all balances', data: {conversion: 'all'}} All Balances
     %li
       %h6 Show as current value in...
     %li
-      %a.icon.bitcoin{href: '#', title: 'Show values in Bitcoin', data: {conversion: 'btc'}} Bitcoin
+      %a.icon.btc{href: '#', title: 'Show values in Bitcoin', data: {conversion: 'btc'}} Bitcoin
     %li
-      %a.icon.litecoin{href: '#', title: 'Show values in Litecoin', data: {conversion: 'ltc'}} Litecoin
+      %a.icon.ltc{href: '#', title: 'Show values in Litecoin', data: {conversion: 'ltc'}} Litecoin
     %li
-      %a.icon.dogecoin{href: '#', title: 'Show values in Dogecoin', data: {conversion: 'doge'}} Dogecoin
+      %a.icon.doge{href: '#', title: 'Show values in Dogecoin', data: {conversion: 'doge'}} Dogecoin
     %li
       %h6.lighter Fiat Currencies
     %li
       %a.icon.usd{href: '#', title: 'Show values in US Dollar', data: {conversion: 'usd'}} US Dollar
     %li
-      %a.icon.euro{href: '#', title: 'Show values in Euros', data: {conversion: 'eur'}} Euros
+      %a.icon.eur{href: '#', title: 'Show values in Euros', data: {conversion: 'eur'}} Euros
     %li
       %a.icon.gbp{href: '#', title: 'Show values in Pounds Sterling', data: {conversion: 'gbp'}} Pounds Sterling
     %li
-      %a.icon.yen{href: '#', title: 'Show values in Japanese Yen', data: {conversion: 'jpy'}} Japanese Yen
+      %a.icon.jpy{href: '#', title: 'Show values in Japanese Yen', data: {conversion: 'jpy'}} Japanese Yen
 
 %table#address-list
 %table#address-list-total

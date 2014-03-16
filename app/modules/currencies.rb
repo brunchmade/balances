@@ -50,5 +50,20 @@ module Currencies
       value.to_f * cc.to_usd.to_f
     end
 
+    def self.to_eur(value)
+      cc = CurrencyConversion.find_by_name(self.currency_name)
+      value.to_f * cc.to_eur.to_f
+    end
+
+    def self.to_gbp(value)
+      cc = CurrencyConversion.find_by_name(self.currency_name)
+      value.to_f * cc.to_gbp.to_f
+    end
+
+    def self.to_jpy(value)
+      cc = CurrencyConversion.find_by_name(self.currency_name)
+      value.to_f * cc.to_jpy.to_f
+    end
+
   end
 end

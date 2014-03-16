@@ -25,6 +25,20 @@ $dark-gray: #4a4a4a;
  * Mixins
  */
 
+@mixin currency-symbols {
+  // Digital
+  &.all { background-image: image-url('currencies/all-currencies@2x.png'); }
+  &.btc { background-image: image-url('currencies/bitcoin-small@2x.png'); }
+  &.ltc { background-image: image-url('currencies/litecoin-small@2x.png'); }
+  &.doge { background-image: image-url('currencies/dogecoin-small@2x.png'); }
+
+  // Fiat
+  &.usd { background-image: image-url('currencies/usd-small@2x.png'); }
+  &.eur { background-image: image-url('currencies/euro-small@2x.png'); }
+  &.gbp { background-image: image-url('currencies/gbp-small@2x.png'); }
+  &.jpy { background-image: image-url('currencies/yen-small@2x.png'); }
+}
+
 @mixin background-gradient($from, $to) {
   background: $from; /* Old browsers */
   background: -moz-linear-gradient(top, $from 0%, $to 100%);

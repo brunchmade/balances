@@ -23,4 +23,25 @@ class CurrencyConversion < ActiveRecord::Base
     self.save
   end
 
+  def cache_to_eur
+    url = 'http://rate-exchange.appspot.com/currency?from=usd&to=eur'
+    response = open(url) { |v| JSON(v.read).with_indifferent_access }
+    self.to_eur = response[:rate].to_f * self.to_usd
+    self.save
+  end
+
+  def cache_to_gbp
+    url = 'http://rate-exchange.appspot.com/currency?from=usd&to=gbp'
+    response = open(url) { |v| JSON(v.read).with_indifferent_access }
+    self.to_gbp = response[:rate].to_f * self.to_usd
+    self.save
+  end
+
+  def cache_to_jpy
+    url = 'http://rate-exchange.appspot.com/currency?from=usd&to=jpy'
+    response = open(url) { |v| JSON(v.read).with_indifferent_access }
+    self.to_jpy = response[:rate].to_f * self.to_usd
+    self.save
+  end
+
 end

@@ -25,6 +25,15 @@ class B.Views.AddressItem extends Backbone.Marionette.ItemView
       when 'usd'
         balance_value: '$' + @model.get('balance_usd')
         converted_shortname: ''
+      when 'eur'
+        balance_value: '€' + @model.get('balance_eur')
+        converted_shortname: ''
+      when 'gbp'
+        balance_value: '£' + @model.get('balance_gbp')
+        converted_shortname: ''
+      when 'jpy'
+        balance_value: '¥' + @model.get('balance_jpy')
+        converted_shortname: ''
       else
         balance_value: @model.get('balance')
         converted_shortname: @model.get('shortname')

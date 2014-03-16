@@ -36,3 +36,18 @@ node(:balance_usd) do |address|
   rounded = ActiveSupport::NumberHelper.number_to_rounded(address.get_currency.to_usd(address.balance), precision: 2)
   ActiveSupport::NumberHelper.number_to_delimited(rounded)
 end
+
+node(:balance_eur) do |address|
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(address.get_currency.to_eur(address.balance), precision: 2)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
+node(:balance_gbp) do |address|
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(address.get_currency.to_gbp(address.balance), precision: 2)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
+node(:balance_jpy) do |address|
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(address.get_currency.to_jpy(address.balance), precision: 2)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
