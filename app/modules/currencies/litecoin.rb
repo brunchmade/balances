@@ -7,20 +7,17 @@ module Currencies
     SYMBOLS = ['L']
 
     def self.info(address)
-      url = "#{API}/address/info/#{address}"
-      response = open(url) { |v| JSON(v.read).with_indifferent_access }
+      response = self.get_response("#{API}/address/info/#{address}")
       response[:data]
     end
 
     def self.balance(address)
-      url = "#{API}/address/info/#{address}"
-      response = open(url) { |v| JSON(v.read).with_indifferent_access }
+      response = self.get_response("#{API}/address/info/#{address}")
       response[:data][:balance]
     end
 
     def self.valid?(address)
-      url = "#{API}/address/info/#{address}"
-      response = open(url) { |v| JSON(v.read).with_indifferent_access }
+      response = self.get_response("#{API}/address/info/#{address}")
       response[:data][:is_valid]
     end
 

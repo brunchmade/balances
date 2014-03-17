@@ -14,14 +14,18 @@ module Currencies
     end
 
     def self.balance(address)
-      url = "#{API}/addressbalance/#{address}"
-      response = open(url) { |v| v.read }
+      response = self.get_response("#{API}/addressbalance/#{address}", {
+        force_sslv3: true,
+        parse_json: false
+      })
       response.to_f
     end
 
     def self.valid?(address)
-      url = "#{API}/checkaddress/#{address}"
-      response = open(url) { |v| v.read }
+      response = self.get_response("#{API}/checkaddress/#{address}", {
+        force_sslv3: true,
+        parse_json: false
+      })
       !['X5', 'SZ', 'CK'].include?(response)
     end
 

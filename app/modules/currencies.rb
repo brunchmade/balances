@@ -16,6 +16,33 @@ module Currencies
       defined?(self::SYMBOLS) ? self::SYMBOLS : 'Symbol undefined.'
     end
 
+    # General methods
+    def self.get_response(url, opts = {})
+      options = {
+        force_sslv3: false,
+        parse_json: true
+      }.merge(opts)
+
+      uri = URI.parse(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+
+      if options[:force_sslv3]
+        http.ssl_version = :SSLv3
+      else
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
+
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+
+      if options[:parse_json]
+        JSON(response.body).with_indifferent_access
+      else
+        response.body
+      end
+    end
+
     # Implemented methods
     def self.info(address = nil)
       raise NotImplementedError.new("You must implment #{name}#info")
