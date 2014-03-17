@@ -108,7 +108,7 @@ class B.Views.AddressForm extends Backbone.Marionette.ItemView
     event.preventDefault()
     balance = @balance.text()
     @collection.create
-      balance: balance.slice(0, _.indexOf(balance, ' '))
+      balance: balance.slice(0, _.indexOf(balance, ' ')).replace(/,/g, '')
       currency: @currencyType.find('img').attr('alt')
       name: _.str.trim(@inputName.val())
       public_address: _.str.trim(@inputAddress.val())
