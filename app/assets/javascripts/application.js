@@ -12,29 +12,24 @@
 //
 //= require jquery
 //= require jquery_ujs
-
-//= require foundation
-
+//
 //= require underscore
 //= require underscore.string
 //= require backbone
 //= require backbone.marionette
 //= require handlebars.runtime
-
+//
+//= require foundation
 //= require jquery.ba-dotimeout
 //= require js-routes
 //= require_tree ./jsqrcode
 //= require_tree ./utils
-
-//= require balances
-//= require_tree ./models
-//= require_tree ./collections
-//= require balances_app
-
-//= require_tree ./templates
-//= require_tree ./views
-
-$(function(){
-  $(document).foundation();
-  $(document).foundation('reveal', {animation: 'fade'});
-});
+//
+//= require_tree ./backbone/config
+//= require ./backbone/app
+//= require_tree ./backbone/entities
+//= require_tree ./backbone/controllers
+//= require_tree ./backbone/views
+//= require_tree ./backbone/apps
+//
+//= require ./main

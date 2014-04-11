@@ -1,13 +1,8 @@
-%section
-  #address-form-region
-  #address-list-region
-
 - content_for :javascript do
   :javascript
     $(function() {
-      B.currentUser = new B.Models.CurrentUser(
-        #{@user.html_safe},
-        {addresses: #{@addresses.html_safe}}
-      );
-      BalancesApp.start();
+      Balances.start({
+        currentUser: #{@user.html_safe},
+        addresses: #{@addresses.html_safe}
+      });
     });
