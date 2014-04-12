@@ -144,26 +144,26 @@
     id: 'address-form'
     tagName: 'article'
 
+    ui:
+      balance: '.address-balance'
+      currencyType: '.currency-type'
+      inputAddress: '.address-public-address'
+      inputName: '.address-name'
+      hiddenAddress: '.hidden-public-address'
+      hiddenAddressFirstbits: '.hidden-public-firstbits'
+      btnQrScan: '.scan-qr'
+      btnSave: '.btn-save'
+      btnCancel: '.btn-cancel'
+
     events:
-      'keydown .address-public-address': '_handleKeyupInput'
-      'paste .address-public-address': '_handlePasteInput'
-      'cut .address-public-address': '_handleCutInput'
-      'click .btn-save': '_handleSave'
-      'click .btn-cancel': '_handleCancel'
+      'keydown @ui.inputAddress': '_handleKeyupInput'
+      'paste @ui.inputAddress': '_handlePasteInput'
+      'cut @ui.inputAddress': '_handleCutInput'
+      'click @ui.btnSave': '_handleSave'
+      'click @ui.btnCancel': '_handleCancel'
 
     initialize: ->
       @listenTo App.vent, 'scan:qr', @_handleScanQr
-
-    onShow: ->
-      @balance = @$('.address-balance')
-      @currencyType = @$('.currency-type')
-      @inputAddress = @$('.address-public-address')
-      @inputName = @$('.address-name')
-      @hiddenAddress = @$('.hidden-public-address')
-      @hiddenAddressFirstbits = @$('.hidden-public-firstbits')
-      @btnQrScan = @$('.scan-qr')
-      @btnSave = @$('.btn-save')
-      @btnCancel = @$('.btn-cancel')
 
     _handleKeyupInput:
       _.debounce (event) ->
@@ -171,7 +171,7 @@
                   isSelectAllKey(event) or
                   isArrowKey(event)
 
-        inputVal = @inputAddress.val()
+        inputVal = @ui.inputAddress.val()
         @_clearErrors()
 
         if inputVal.length is 0
@@ -198,7 +198,7 @@
     _handlePasteInput: (event) ->
       # Timeout so that the paste event completes and the input has data.
       $.doTimeout 50, =>
-        inputVal = @inputAddress.val()
+        inputVal = @ui.inputAddress.val()
         @_clearErrors()
         @_clearCurrencyImage()
 
@@ -220,12 +220,12 @@
     _handleCutInput: (event) ->
       # Timeout so that the cut event completes and the input has data.
       $.doTimeout 50, =>
-        if @inputAddress.val().length is 0
+        if @ui.inputAddress.val().length is 0
           @_clearErrors()
           @_clearCurrencyImage()
 
     _handleScanQr: ->
-      inputVal = @inputAddress.val()
+      inputVal = @ui.inputAddress.val()
       @_clearErrors()
       @_clearCurrencyImage()
 
@@ -246,12 +246,12 @@
 
     _handleSave: (event) ->
       event.preventDefault()
-      balance = @balance.text()
+      balance = @ui.balance.text()
       @collection.create
         balance: balance.slice(0, _.indexOf(balance, ' ')).replace(/,/g, '')
-        currency: @currencyType.find('img').attr('alt')
-        name: _.str.trim(@inputName.val())
-        public_address: _.str.trim(@inputAddress.val())
+        currency: @ui.currencyType.find('img').attr('alt')
+        name: _.str.trim(@ui.inputName.val())
+        public_address: _.str.trim(@ui.inputAddress.val())
       ,
         wait: true
         success: (model, response, options) =>
@@ -265,41 +265,41 @@
       @_reset(false)
 
     _setCurrencyImage: (response) ->
-      @currencyType.addClass('is-filled').html $('<img />',
+      @ui.currencyType.addClass('is-filled').html $('<img />',
         src: response.currency_image_path
         alt: response.currency)
 
     _isValidAddress: (response) ->
       @_setCurrencyImage response
-      @btnQrScan.hide()
-      @btnSave.css('display', 'inline-block')
-      @btnCancel.css('display', 'inline-block')
-      @hiddenAddressFirstbits.text @inputAddress.val().slice(0,8)
-      @inputAddress
+      @ui.btnQrScan.hide()
+      @ui.btnSave.css('display', 'inline-block')
+      @ui.btnCancel.css('display', 'inline-block')
+      @ui.hiddenAddressFirstbits.text @ui.inputAddress.val().slice(0,8)
+      @ui.inputAddress
         .addClass('is-valid')
-        .css('width', @hiddenAddressFirstbits.outerWidth())
+        .css('width', @ui.hiddenAddressFirstbits.outerWidth())
         .prop('disabled', true)
-      @balance.text("#{response.balance} #{response.shortname}").show()
-      inputNameWidth = @$('.address-input').outerWidth() - @inputAddress.outerWidth() - @balance.outerWidth() - 10
-      @inputName.css('width', inputNameWidth).show().focus()
+      @ui.balance.text("#{response.balance} #{response.shortname}").show()
+      inputNameWidth = @$('.address-input').outerWidth() - @ui.inputAddress.outerWidth() - @ui.balance.outerWidth() - 10
+      @ui.inputName.css('width', inputNameWidth).show().focus()
       @
 
     _addError: ->
-      @inputAddress.addClass 'is-invalid'
+      @ui.inputAddress.addClass 'is-invalid'
 
     _clearErrors: ->
-      @inputAddress.removeClass 'is-invalid'
+      @ui.inputAddress.removeClass 'is-invalid'
 
     _clearCurrencyImage: ->
-      @currencyType.removeClass('is-filled').html('')
+      @ui.currencyType.removeClass('is-filled').html('')
 
     _reset: (clearAddress = true) ->
       @_clearErrors()
       @_clearCurrencyImage()
-      @btnQrScan.show()
-      @btnSave.hide()
-      @btnCancel.hide()
-      @inputName.val('').hide()
-      @balance.text('').hide()
-      @inputAddress.removeClass('is-valid').prop('disabled', false).css('width', '100%')
-      @inputAddress.val('') if clearAddress
+      @ui.btnQrScan.show()
+      @ui.btnSave.hide()
+      @ui.btnCancel.hide()
+      @ui.inputName.val('').hide()
+      @ui.balance.text('').hide()
+      @ui.inputAddress.removeClass('is-valid').prop('disabled', false).css('width', '100%')
+      @ui.inputAddress.val('') if clearAddress
