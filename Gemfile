@@ -23,6 +23,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 gem 'sass-rails', '~> 4.0.0'
 gem 'zurb-foundation'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'rails_12factor'

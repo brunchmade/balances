@@ -123,6 +123,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.8.4)
+    newrelic_rpm (3.7.3.204)
     normalize-rails (3.0)
     orm_adapter (0.5.0)
     pg (0.17.1)
@@ -222,6 +223,7 @@ DEPENDENCIES
   js-routes
   letter_opener_web
   marionette-rails
+  newrelic_rpm
   normalize-rails
   pg
   rabl
