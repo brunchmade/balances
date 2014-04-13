@@ -25,7 +25,9 @@ class Address < ActiveRecord::Base
   def detect_currency
     first_bit = public_address[0]
     currency = CURRENCIES.detect { |c| c.symbols.any? { |s| s == first_bit} }
-    self.currency = currency.currency_name
+    if currency
+      self.currency = currency.currency_name
+    end
   end
 
   def info

@@ -37,7 +37,7 @@
 
   <body>
     <%= render "shared/header" %>
-    <%= yield %>
+    <div id="main-region"><%= yield %></div>
     <%= render "shared/footer" %>
     <%= javascript_include_tag "application" %>
     <%= yield :javascript %>
