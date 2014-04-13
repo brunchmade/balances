@@ -5,27 +5,28 @@
   ##############################################################################
 
   class Entities.Address extends Entities.Model
-    detectCurrency: (opts = {}) ->
-      $.ajax
-        url: Routes.detect_currency_addresses_path()
-        type: 'get'
-        dataType: 'json'
-        data: opts.data
-        success: (response) =>
-          opts.success?(response)
-        error: ->
-          opts.error?()
+    displayName: ->
+      if @get('name')
+        @get('name')
+      else
+        @get('public_address')
 
-    info: (opts = {}) ->
-      $.ajax
+    fetchCurrency: (opts = {}) ->
+      _.defaults opts,
+        url: Routes.detect_currency_addresses_path()
+        data:
+          public_address: @get('public_address')
+
+      @fetch opts
+
+    fetchInfo: (opts) ->
+      _.defaults opts,
         url: Routes.info_addresses_path()
-        type: 'get'
-        dataType: 'json'
-        data: opts.data
-        success: (response) =>
-          opts.success?(response)
-        error: ->
-          opts.error?()
+        data:
+          public_address: @get('public_address')
+
+      @fetch opts
+
 
   ##############################################################################
   # Collections

@@ -2,4 +2,6 @@
 
   _.extend Marionette.View::,
 
-    templateHelpers: ->
+    reRender: ->
+      @render()
+      @triggerMethod 'show' if @_isShown

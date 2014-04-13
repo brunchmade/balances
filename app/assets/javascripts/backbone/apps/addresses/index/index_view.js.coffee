@@ -22,7 +22,7 @@
 
     serializeData: ->
       _.extend super,
-        display_name: if @model.get('name') then @model.get('name') else @model.get('public_address'),
+        display_name: @model.displayName(),
         @_getConversion()
 
     _getConversion: ->
@@ -65,12 +65,15 @@
       'click #d-filters a': '_handleSort'
       'click #d-balances a': '_handleConversion'
 
+    initialize: ->
+      @listenTo @collection, 'change:conversion', @reRender
+
     serializeData: ->
       _.extend super,
         selected_currency: @collection.conversion
         @_getConversion()
 
-    onRender: ->
+    onShow: ->
       @_updateSort()
       @_updateConversion()
 
@@ -121,7 +124,7 @@
       event.preventDefault()
       $target = $(event.currentTarget)
       @collection.conversion = $target.data('conversion')
-      @render()
+      @collection.trigger 'change:conversion'
 
     _updateSort: ->
       $target = @$("#d-filters a[data-sort='#{@collection.sortOrder}']")
@@ -163,6 +166,8 @@
       'click @ui.btnCancel': '_handleCancel'
 
     initialize: ->
+      @listenTo @model, 'change:currency_image_path', @_changeCurrencyImage
+      @listenTo @model, 'change:is_valid', @_changeIsValid
       @listenTo App.vent, 'scan:qr', @_handleScanQr
 
     _handleKeyupInput:
@@ -171,26 +176,17 @@
                   isSelectAllKey(event) or
                   isArrowKey(event)
 
-        inputVal = @ui.inputAddress.val()
+        public_address = @ui.inputAddress.val()
+        @model.set(public_address: public_address)
+
         @_clearErrors()
 
-        if inputVal.length is 0
-          @_clearCurrencyImage()
-        else if inputVal.length < 27
-          @model.detectCurrency
-            data:
-              public_address: inputVal
-            success: (response) =>
-              @_setCurrencyImage response
+        if public_address.length is 0
+          @model.set(currency_image_path: null)
+        else if public_address.length < 27
+          @model.fetchCurrency()
         else
-          @model.info
-            data:
-              public_address: inputVal
-            success: (response) =>
-              if response.is_valid
-                @_isValidAddress response
-              else
-                @_addError()
+          @model.fetchInfo
             error: =>
               @_addError()
       , 800
@@ -198,22 +194,16 @@
     _handlePasteInput: (event) ->
       # Timeout so that the paste event completes and the input has data.
       $.doTimeout 50, =>
-        inputVal = @ui.inputAddress.val()
-        @_clearErrors()
-        @_clearCurrencyImage()
+        public_address = @ui.inputAddress.val()
+        @model.set(public_address: public_address)
 
-        if inputVal.length < 27 or inputVal.length > 34
+        @_clearErrors()
+
+        if public_address.length < 27 or public_address.length > 34
           @_addError()
           return
 
-        @model.info
-          data:
-            public_address: inputVal
-          success: (response) =>
-            if response.is_valid
-              @_isValidAddress response
-            else
-              @_addError()
+        @model.fetchInfo
           error: =>
             @_addError()
 
@@ -221,39 +211,31 @@
       # Timeout so that the cut event completes and the input has data.
       $.doTimeout 50, =>
         if @ui.inputAddress.val().length is 0
+          @model.clear()
           @_clearErrors()
-          @_clearCurrencyImage()
 
     _handleScanQr: ->
-      inputVal = @ui.inputAddress.val()
-      @_clearErrors()
-      @_clearCurrencyImage()
+      public_address = @ui.inputAddress.val()
+      @model.set(public_address: public_address)
 
-      if inputVal.length < 27 or inputVal.length > 34
+      @_clearErrors()
+
+      if public_address.length < 27 or public_address.length > 34
         @_addError()
         return
 
-      @model.info
-        data:
-          public_address: inputVal
-        success: (response) =>
-          if response.is_valid
-            @_isValidAddress response
-          else
-            @_addError()
+      @model.fetchInfo
         error: =>
           @_addError()
 
     _handleSave: (event) ->
       event.preventDefault()
       balance = @ui.balance.text()
-      @collection.create
+      @model.set
         balance: balance.slice(0, _.indexOf(balance, ' ')).replace(/,/g, '')
-        currency: @ui.currencyType.find('img').attr('alt')
         name: _.str.trim(@ui.inputName.val())
-        public_address: _.str.trim(@ui.inputAddress.val())
-      ,
-        wait: true
+
+      @collection.create @model.attributes,
         success: (model, response, options) =>
           @_reset()
         error: (model, response, options) ->
@@ -264,25 +246,30 @@
       event.preventDefault()
       @_reset(false)
 
-    _setCurrencyImage: (response) ->
-      @ui.currencyType.addClass('is-filled').html $('<img />',
-        src: response.currency_image_path
-        alt: response.currency)
+    _changeCurrencyImage: ->
+      if @model.get('currency_image_path')
+        @ui.currencyType.addClass('is-filled').html $('<img />',
+          src: @model.get('currency_image_path')
+          alt: @model.get('currency'))
+      else
+        @ui.currencyType.removeClass('is-filled').html('')
 
-    _isValidAddress: (response) ->
-      @_setCurrencyImage response
-      @ui.btnQrScan.hide()
-      @ui.btnSave.css('display', 'inline-block')
-      @ui.btnCancel.css('display', 'inline-block')
-      @ui.hiddenAddressFirstbits.text @ui.inputAddress.val().slice(0,8)
-      @ui.inputAddress
-        .addClass('is-valid')
-        .css('width', @ui.hiddenAddressFirstbits.outerWidth())
-        .prop('disabled', true)
-      @ui.balance.text("#{response.balance} #{response.shortname}").show()
-      inputNameWidth = @$('.address-input').outerWidth() - @ui.inputAddress.outerWidth() - @ui.balance.outerWidth() - 10
-      @ui.inputName.css('width', inputNameWidth).show().focus()
-      @
+    _changeIsValid: ->
+      if @model.get('is_valid')
+        @ui.btnQrScan.hide()
+        @ui.btnSave.css('display', 'inline-block')
+        @ui.btnCancel.css('display', 'inline-block')
+        @ui.hiddenAddressFirstbits.text @model.get('public_address').slice(0,8)
+        @ui.inputAddress
+          .addClass('is-valid')
+          .css('width', @ui.hiddenAddressFirstbits.outerWidth())
+          .prop('disabled', true)
+        @ui.balance.text("#{@model.get('balance')} #{@model.get('shortname')}").show()
+        inputNameWidth = @$('.address-input').outerWidth() - @ui.inputAddress.outerWidth() - @ui.balance.outerWidth() - 10
+        @ui.inputName.css('width', inputNameWidth).show().focus()
+      else
+        @model.clear()
+        @_addError()
 
     _addError: ->
       @ui.inputAddress.addClass 'is-invalid'
@@ -290,12 +277,9 @@
     _clearErrors: ->
       @ui.inputAddress.removeClass 'is-invalid'
 
-    _clearCurrencyImage: ->
-      @ui.currencyType.removeClass('is-filled').html('')
-
     _reset: (clearAddress = true) ->
+      @model.clear()
       @_clearErrors()
-      @_clearCurrencyImage()
       @ui.btnQrScan.show()
       @ui.btnSave.hide()
       @ui.btnCancel.hide()
