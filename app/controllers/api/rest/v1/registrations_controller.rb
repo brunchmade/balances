@@ -23,6 +23,7 @@ class Api::Rest::V1::RegistrationsController < Api::Rest::V1::BaseController
     conditions = user_params.dup
     password = conditions.delete(:password)
     @user = User.find_first_by_auth_conditions(conditions)
+
     if @user.valid_password?(password)
       @user.generate_auth_token
       @user.update_attributes! sign_in_count: @user.sign_in_count + 1
