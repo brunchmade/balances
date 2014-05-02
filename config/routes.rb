@@ -4,6 +4,7 @@ Balances::Application.routes.draw do
   root to: 'static#root'
   get :home, controller: 'static'
   get :terms_privacy, controller: 'static'
+  get :teaser, controller: 'static'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: 'admin/letter_opener'
