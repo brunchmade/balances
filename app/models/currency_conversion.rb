@@ -24,23 +24,35 @@ class CurrencyConversion < ActiveRecord::Base
   end
 
   def cache_to_eur
-    url = 'http://rate-exchange.appspot.com/currency?from=usd&to=eur'
-    response = open(url) { |v| JSON(v.read).with_indifferent_access }
-    self.to_eur = response[:rate].to_f * self.to_usd
+    # url = 'http://rate-exchange.appspot.com/currency?from=usd&to=eur'
+    # response = open(url) { |v| JSON(v.read).with_indifferent_access }
+    # self.to_eur = response[:rate].to_f * self.to_usd
+    url = 'https://blockchain.info/tobtc?currency=EUR&value=1'
+    response = open(url) { |v| v.read }
+    self.to_eur = 1 / response.to_f
+    self.to_eur *= self.to_btc unless self.name == 'Bitcoin'
     self.save
   end
 
   def cache_to_gbp
-    url = 'http://rate-exchange.appspot.com/currency?from=usd&to=gbp'
-    response = open(url) { |v| JSON(v.read).with_indifferent_access }
-    self.to_gbp = response[:rate].to_f * self.to_usd
+    # url = 'http://rate-exchange.appspot.com/currency?from=usd&to=gbp'
+    # response = open(url) { |v| JSON(v.read).with_indifferent_access }
+    # self.to_gbp = response[:rate].to_f * self.to_usd
+    url = 'https://blockchain.info/tobtc?currency=GBP&value=1'
+    response = open(url) { |v| v.read }
+    self.to_gbp = 1 / response.to_f
+    self.to_gbp *= self.to_btc unless self.name == 'Bitcoin'
     self.save
   end
 
   def cache_to_jpy
-    url = 'http://rate-exchange.appspot.com/currency?from=usd&to=jpy'
-    response = open(url) { |v| JSON(v.read).with_indifferent_access }
-    self.to_jpy = response[:rate].to_f * self.to_usd
+    # url = 'http://rate-exchange.appspot.com/currency?from=usd&to=jpy'
+    # response = open(url) { |v| JSON(v.read).with_indifferent_access }
+    # self.to_jpy = response[:rate].to_f * self.to_usd
+    url = 'https://blockchain.info/tobtc?currency=JPY&value=1'
+    response = open(url) { |v| v.read }
+    self.to_jpy = 1 / response.to_f
+    self.to_jpy *= self.to_btc unless self.name == 'Bitcoin'
     self.save
   end
 
