@@ -4,6 +4,86 @@ class CoinbaseController < ApplicationController
   before_filter :set_client
 
   def auth
+    # If token already exists, attempt to refresh it.
+    if token = current_user.tokens.where(provider: :coinbase).first
+      begin
+        access_token = OAuth2::AccessToken.new(@client, token.token, {
+          expires_at: token.expires_at,
+          refresh_token: token.refresh_token
+        })
+        refreshed_access_token = access_token.refresh!
+        expires_at = get_expires_at(refreshed_access_token)
+
+        token.update_attributes(
+          expires_at: expires_at,
+          refresh_token: refreshed_access_token.refresh_token,
+          token: refreshed_access_token.token
+        )
+
+        redirect_to addresses_path
+
+      rescue OAuth2::Error => e
+        redirect_to_auth_url
+      end
+
+    # No previous token found so create a new one.
+    else
+      redirect_to_auth_url
+    end
+  end
+
+  def callback
+    if params[:code].present?
+      access_token = @client.auth_code.get_token(params[:code], redirect_uri: ENV['COINBASE_CALLBACK_URL'])
+      expires_at = get_expires_at(access_token)
+
+      # If token already exists, update it.
+      if token = current_user.tokens.where(provider: :coinbase).first
+        token.update_attributes(
+          expires_at: expires_at,
+          refresh_token: access_token.refresh_token,
+          token: access_token.token
+        )
+
+      # If no token exists, create a new one.
+      else
+        coinbase_user = JSON.parse(access_token.get('/api/v1/users').body)
+        coinbase_user = coinbase_user['users'][0]['user']
+
+        current_user.tokens.create(
+          expires_at: expires_at,
+          provider: :coinbase,
+          provider_uid: coinbase_user['id'],
+          refresh_token: access_token.refresh_token,
+          token: access_token.token
+        )
+      end
+    end
+
+    redirect_to addresses_path
+  end
+
+  private
+
+  def get_expires_at(access_token)
+    if access_token.expires_at
+      Time.at(access_token.expires_at).to_datetime
+    elsif access_token.expires_in
+      (Time.now() + access_token.expires_in).to_datetime
+    else
+      nil
+    end
+  end
+
+  def set_client
+    @client = OAuth2::Client.new(
+      ENV['COINBASE_CLIENT_ID'],
+      ENV['COINBASE_CLIENT_SECRET'],
+      site: 'https://coinbase.com'
+    )
+  end
+
+  def redirect_to_auth_url
     auth_url = @client.auth_code.authorize_url({
       redirect_uri: ENV['COINBASE_CALLBACK_URL']
     })
@@ -26,50 +106,6 @@ class CoinbaseController < ApplicationController
     else
       redirect_to auth_url
     end
-  end
-
-  def callback
-    if params[:code].present?
-      access_token = @client.auth_code.get_token(params[:code], redirect_uri: ENV['COINBASE_CALLBACK_URL'])
-      expires_at = if access_token.expires_at
-        Time.at(access_token.expires_at).to_datetime
-      elsif access_token.expires_in
-        (Time.now() + access_token.expires_in).to_datetime
-      else
-        nil
-      end
-
-      if token = current_user.tokens.where(provider: :coinbase).first
-        token.update_attributes(
-          expires_at: expires_at,
-          provider: :coinbase,
-          refresh_token: access_token.refresh_token,
-          token: access_token.token
-        )
-      else
-        coinbase_user = JSON.parse(access_token.get('/api/v1/users').body)
-        coinbase_user = coinbase_user['users'][0]['user']
-
-        current_user.tokens.create(
-          expires_at: expires_at,
-          provider: :coinbase,
-          provider_uid: coinbase_user['id'],
-          refresh_token: access_token.refresh_token,
-          token: access_token.token
-        )
-      end
-    end
-    redirect_to addresses_path
-  end
-
-  private
-
-  def set_client
-    @client = OAuth2::Client.new(
-      ENV['COINBASE_CLIENT_ID'],
-      ENV['COINBASE_CLIENT_SECRET'],
-      site: 'https://coinbase.com'
-    )
   end
 
 end
