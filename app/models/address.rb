@@ -10,6 +10,9 @@ class Address < ActiveRecord::Base
 
   belongs_to :user
 
+  scope :integrations, where(integration: true)
+  scope :nonintegrations, where(integration: false)
+
   before_save :clean_attributes
 
   CURRENCIES = [

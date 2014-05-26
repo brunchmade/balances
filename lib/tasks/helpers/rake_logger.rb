@@ -1,4 +1,5 @@
 class RakeLogger
+
   def self.log (message)
     @start_time = Time.now unless @start_time
     @last_logged_time = Time.now unless @last_logged_time
@@ -7,4 +8,5 @@ class RakeLogger
     puts "#{timestamp} - #{time_since}s - #{message}"
     @last_logged_time = Time.now
   end
+
 end
