@@ -9,8 +9,18 @@
     tagName: 'section'
 
     regions:
+      sidebarRegion: '#address-sidebar-region'
       formRegion: '#address-form-region'
       listRegion: '#address-list-region'
+
+  ##############################################################################
+  # Sidebar
+  ##############################################################################
+
+  class Index.Sidebar extends App.Views.ItemView
+    template: 'addresses/index/sidebar'
+    tagName: 'aside'
+    id: 'address-sidebar'
 
   ##############################################################################
   # List

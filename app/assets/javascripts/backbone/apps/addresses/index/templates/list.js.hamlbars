@@ -12,23 +12,14 @@
       %a{href: '#', title: 'Sort by Value', data: {sort: 'balance'}} Value
     %li
       %a{href: '#', title: 'Sort by Currency Type', data: {sort: 'currency'}} Currency Type
-    %li
-      %h6.lighter Show only...
-    %li
-      %a{href: '#', title: 'Bitcoin', data: {sort: 'bitcoin'}} Bitcoin
-    %li
-      %a{href: '#', title: 'Litecoin', data: {sort: 'litecoin'}} Litecoin
-    %li
-      %a{href: '#', title: 'Dogecoin', data: {sort: 'dogecoin'}} Dogecoin
 
-  %a{class: 'currency-type {{ selected_currency }}', href: '#', title: 'Chance what currency your addresses display in', data: {dropdown: 'd-balances'}}
-    %span.dn-arr All Balances
+  %a{class: 'currency-type {{ selected_currency }}', href: '#', title: 'Choose what currency your balances display in', data: {dropdown: 'd-balances'}}
+    Converted to
+    %span.dn-arr
 
   %ul#d-balances.f-dropdown{data: {dropdown_content: ''}}
     %li
-      %a.icon.all.current{href: '#', title: 'Show all balances', data: {conversion: 'all'}} All Balances
-    %li
-      %h6 Show as current value in...
+      %a.icon.all.current{href: '#', title: 'Show all balances', data: {conversion: 'all'}} No Conversion
     %li
       %a.icon.btc{href: '#', title: 'Show values in Bitcoin', data: {conversion: 'btc'}} Bitcoin
     %li

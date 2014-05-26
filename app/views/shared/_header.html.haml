@@ -11,9 +11,18 @@
             = link_to "#{current_user.display_name}", '#', data: {dropdown: 'd-user'}, class: 'dn-arr'
           %li.current-balance
             Balance
-            %span.lighter USD
             &asymp;
-            $FOO.LOL
+            $1068.23
+            = link_to "USD", '#', data: {dropdown: 'd-fiat'}, class: 'dn-arr lighter'
+            %ul#d-fiat.f-dropdown{data: {dropdown_content: ''}}
+              %li
+                %a.icon.usd{href: '#', title: 'Show values in US Dollar', data: {conversion: 'usd'}} US Dollar
+              %li
+                %a.icon.eur{href: '#', title: 'Show values in Euros', data: {conversion: 'eur'}} Euros
+              %li
+                %a.icon.gbp{href: '#', title: 'Show values in Pounds Sterling', data: {conversion: 'gbp'}} Pounds Sterling
+              %li
+                %a.icon.jpy{href: '#', title: 'Show values in Japanese Yen', data: {conversion: 'jpy'}} Japanese Yen
         - else
           %li.user= link_to 'Sign in', new_user_session_path
 
@@ -35,3 +44,9 @@
         %li= link_to 'Feedback & Suggestions', 'http://balances.uservoice.com/forums/244164-suggestions', target: '_blank'
         %li= link_to 'Log out', destroy_user_session_path, method: :delete
 
+.ticker-bar
+  %ul
+    %li.refresh= link_to 'Refresh', '#', class: 'refresh-data'
+    %li BTC $512.43
+    %li LTC $43.54
+    %li DOGE $0.01

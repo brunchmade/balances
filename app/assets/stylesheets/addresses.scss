@@ -1,4 +1,64 @@
+#address-sidebar {
+  @extend .large-3, .columns;
+  height: 800px;
+  border-top: 1px solid $light-gray;
+  padding: 0 1.5em 0 .5em;
+}
+
+#currency-filters {
+  list-style-type: none;
+
+  li {
+    margin: 10px 0;
+    line-height: 30px;
+    padding: 4px 10px;
+    @include border-radius(4px);
+    @include transition(all .2s);
+
+    &.current,
+    &:hover,
+    &:focus {
+      background-color: #ff9b84;
+      color: $white;
+      a {
+        color: $white;
+      }
+      .total, .grand-total {
+        color: rgba(0,0,0,.5);
+      }
+    }
+
+    .grand-total {
+      font-size: .8em;
+      font-weight: 400;
+      float: right;
+      line-height: 30px;
+      color: rgba($dark-gray, .5);
+    }
+
+    .total {
+      font-size: .8em;
+      font-weight: 400;
+      float: right;
+      text-align: right;
+      line-height: auto;
+      color: rgba($dark-gray, .5);
+
+      .fiat {
+        color: rgba($dark-gray, .25);
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: $dark-gray;
+    }
+  }
+} // #currency-filters
+
+
 #address-form {
+  display: none;
   margin-bottom: 30px;
   @media only screen and (max-width: $small-screen) {
    margin-bottom: 5px;
@@ -115,7 +175,7 @@
 }
 
 #address-list {
-  @extend .large-8, .small-12, .columns, .small-centered;
+  @extend .large-9, .small-12, .columns;
   border: none;
 
   tr {
@@ -150,7 +210,7 @@
 }
 
 #address-list-total {
-  @extend .large-8, .small-12, .columns, .small-centered;
+  @extend .large-9, .small-12, .columns;
   border: none;
 
   tr {
@@ -182,11 +242,9 @@
 }
 
 #address-filters {
-  @include background-gradient($white,$lighter-gray);
+  background: lighten($light-gray, 5%);
+  border-top: 1px solid $light-gray;
   border-bottom: 1px solid $light-gray;
-  @media only screen and (max-width: $small-screen) {
-   background: lighten($light-gray, 2.5%);
-  }
 
   > a {
     height:20px;

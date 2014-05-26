@@ -23,7 +23,7 @@ footer {
   p {
     color: $medium-gray;
     font-size: .8em;
-    @extend .large-2, .small-12, .push-2, .columns;
+    @extend .large-4, .small-12, .columns;
   }
 
   nav {

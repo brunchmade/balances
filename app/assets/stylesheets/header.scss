@@ -4,12 +4,11 @@
 
 .top-bar {
   background: $brand;
+  border-bottom: 1px solid darken($brand,5%);
   height: 70px;
-  margin-bottom: 30px;
   overflow: visible;
   @media only screen and (max-width: $small-screen) {
    height: 50px;
-   margin-bottom: 15px;
   }
 }
 
@@ -105,7 +104,7 @@ header {
         }
 
         .lighter {
-          opacity: .7;
+          opacity: .8;
           color: $white;
         }
 
@@ -125,3 +124,41 @@ header {
     }
   } // nav
 } // header
+
+.ticker-bar {
+  padding: 20px 0;
+
+  ul {
+    @extend .row;
+    margin-bottom: 0;
+    list-style-type: none;
+
+    li {
+      float: right;
+      margin-left: 1em;
+      margin-right: 1em;
+      font-size: .8em;
+      text-align: right;
+
+      &.refresh {
+        float: left;
+        text-align: left;
+        margin-left: 1em;
+
+        .refresh-data {
+          display: block;
+          width: 24px;
+          height: 19px;
+          text-indent: -9999px;
+          background: image-url('refresh.svg') no-repeat;
+          opacity: .7;
+
+          &:hover {
+            @include transform(rotate(45deg));
+            opacity: .9;
+          }
+        }
+      }
+    }
+  }
+}

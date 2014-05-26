@@ -3,7 +3,7 @@
     %td
       .currency-type
     %td.address-input
-      %input#address-field.address-public-address{name: 'address[public_address]', placeholder: 'Type, paste, or scan a new wallet address...', autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false'}
+      %input#address-field.address-public-address{name: 'address[public_address]', placeholder: 'Type, scan, or import a new wallet address', autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false'}
       %span.address-balance
       %input.address-name{name: 'address[name]', placeholder: 'Give it a nickname...', autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false'}
       %span.hidden-public-firstbits
