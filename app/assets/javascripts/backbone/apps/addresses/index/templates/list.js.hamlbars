@@ -12,6 +12,14 @@
       %a{href: '#', title: 'Sort by Value', data: {sort: 'balance'}} Value
     %li
       %a{href: '#', title: 'Sort by Currency Type', data: {sort: 'currency'}} Currency Type
+    %li
+      %h6.lighter Show only...
+    %li
+      %a{href: '#', title: 'Bitcoin', data: {sort: 'bitcoin'}} Bitcoin
+    %li
+      %a{href: '#', title: 'Litecoin', data: {sort: 'litecoin'}} Litecoin
+    %li
+      %a{href: '#', title: 'Dogecoin', data: {sort: 'dogecoin'}} Dogecoin
 
   %a{class: 'currency-type {{ selected_currency }}', href: '#', title: 'Chance what currency your addresses display in', data: {dropdown: 'd-balances'}}
     %span.dn-arr All Balances
@@ -41,5 +49,14 @@
 %table#address-list
 %table#address-list-total
   %tr
-    %td Total value:
+    %td Total BTC:
+    %td.value {{ balance_value }} {{ converted_shortname }}
+  %tr
+    %td Total LTC:
+    %td.value {{ balance_value }} {{ converted_shortname }}
+  %tr
+    %td Total DOGE:
+    %td.value {{ balance_value }} {{ converted_shortname }}
+  %tr.total-value
+    %td Total value in USD:
     %td.value {{ balance_value }} {{ converted_shortname }}

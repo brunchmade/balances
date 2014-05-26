@@ -17,7 +17,7 @@
       }
 
       &:last-child {
-        width: 39px;
+        width: 60px;
       }
     }
   }
@@ -81,7 +81,6 @@
   }
 
   .address-actions {
-    padding-left: 8px;
     white-space: nowrap;
   }
 
@@ -108,8 +107,10 @@
     display: none;
   }
 
-  .scan-qr {
+  .scan-qr, .import-csv {
     @include mobile-hidden;
+    text-decoration: none;
+    margin-left: 8px;
   }
 }
 
@@ -154,12 +155,19 @@
 
   tr {
     background: none;
+
+    &.total-value {
+      border-top: 2px solid $light-gray;
+      td {
+        padding: 15px 14px;
+        font-weight: 600;
+      }
+    }
   }
 
   td {
-    padding: 15px 14px;
+    padding: 0 14px 15px;
     font-size: 1.2em;
-    font-weight: 600;
     text-align: right;
 
     &.value {

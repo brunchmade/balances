@@ -84,12 +84,14 @@ header {
       > li {
         float: left;
         margin: 0 1em;
+        color: $white;
+        font-weight: 300;
+        margin-top: 26px;
 
         > a {
           color: $white;
           text-decoration: none;
           font-weight: 400;
-          margin-top: 26px;
           display: inline-block;
           opacity: .8;
 
@@ -100,6 +102,15 @@ header {
             color: $white;
             opacity: 1;
           }
+        }
+
+        .lighter {
+          opacity: .7;
+          color: $white;
+        }
+
+        &.current-balance {
+          float: right;
         }
 
         &.user {

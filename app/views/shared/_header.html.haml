@@ -9,6 +9,11 @@
           %li= link_to 'Recent Transactions', '#', class: ''
           %li.user
             = link_to "#{current_user.display_name}", '#', data: {dropdown: 'd-user'}, class: 'dn-arr'
+          %li.current-balance
+            Balance
+            %span.lighter USD
+            &asymp;
+            $FOO.LOL
         - else
           %li.user= link_to 'Sign in', new_user_session_path
 
