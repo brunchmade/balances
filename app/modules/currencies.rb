@@ -1,5 +1,3 @@
-require 'open-uri'
-
 module Currencies
   class Base
 

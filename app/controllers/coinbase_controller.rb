@@ -13,6 +13,10 @@ class CoinbaseController < ApplicationController
         })
         refreshed_access_token = access_token.refresh!
         expires_at = get_expires_at(refreshed_access_token)
+        coinbase_user = JSON.parse(refreshed_access_token.get('/api/v1/users').body)
+        coinbase_user = coinbase_user['users'][0]['user']
+
+        update_or_create_coinbase_address coinbase_user
 
         token.update_attributes(
           expires_at: expires_at,
@@ -36,20 +40,19 @@ class CoinbaseController < ApplicationController
     if params[:code].present?
       access_token = @client.auth_code.get_token(params[:code], redirect_uri: ENV['COINBASE_CALLBACK_URL'])
       expires_at = get_expires_at(access_token)
+      coinbase_user = JSON.parse(access_token.get('/api/v1/users').body)
+      coinbase_user = coinbase_user['users'][0]['user']
 
-      # If token already exists, update it.
+      update_or_create_coinbase_address coinbase_user
+
+      # Update or create Coinbase auth token
       if token = current_user.tokens.where(provider: :coinbase).first
         token.update_attributes(
           expires_at: expires_at,
           refresh_token: access_token.refresh_token,
           token: access_token.token
         )
-
-      # If no token exists, create a new one.
       else
-        coinbase_user = JSON.parse(access_token.get('/api/v1/users').body)
-        coinbase_user = coinbase_user['users'][0]['user']
-
         current_user.tokens.create(
           expires_at: expires_at,
           provider: :coinbase,
@@ -81,6 +84,24 @@ class CoinbaseController < ApplicationController
       ENV['COINBASE_CLIENT_SECRET'],
       site: 'https://coinbase.com'
     )
+  end
+
+  def update_or_create_coinbase_address(coinbase_user)
+    if coinbase_address = current_user.addresses.where(integration: Integrations::Coinbase.integration_name, integration_uid: coinbase_user['id']).first
+      coinbase_address.update_attributes(
+        balance: coinbase_user['balance']['amount'],
+        balance_btc: coinbase_user['balance']['amount']
+      )
+    else
+      AddressService.create(
+        balance: coinbase_user['balance']['amount'],
+        currency: Currencies::Bitcoin.currency_name,
+        integration: Integrations::Coinbase.integration_name,
+        integration_uid: coinbase_user['id'],
+        name: Integrations::Coinbase.integration_name,
+        user_id: current_user.id
+      )
+    end
   end
 
   def redirect_to_auth_url
