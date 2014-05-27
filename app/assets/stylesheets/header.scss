@@ -126,38 +126,71 @@ header {
 } // header
 
 .ticker-bar {
-  padding: 20px 0;
+  padding: 25px 0;
+  @extend .row;
+
+  .refresh {
+    @extend .large-3, .columns;
+
+    .refresh-data {
+      display: block;
+      width: 24px;
+      height: 32px;
+      text-indent: -9999px;
+      background: image-url('refresh.svg') no-repeat left center;
+      opacity: .7;
+
+      &:hover {
+        @include transform(rotate(45deg));
+        opacity: .9;
+      }
+    }
+  } // .refresh
+
+  .add-new {
+    @extend .large-3, .columns;
+  }
 
   ul {
-    @extend .row;
+    @extend .large-6, .columns;
     margin-bottom: 0;
     list-style-type: none;
 
     li {
       float: right;
-      margin-left: 1em;
-      margin-right: 1em;
+      margin-left: 1.6em;
       font-size: .8em;
       text-align: right;
 
-      &.refresh {
-        float: left;
-        text-align: left;
-        margin-left: 1em;
+      &.icon {
+        @include currency-symbols;
+        background: no-repeat center left;
+        background-size: 18px;
+        line-height: 32px;
+        text-indent: 22px;
+      }
 
-        .refresh-data {
-          display: block;
-          width: 24px;
-          height: 19px;
-          text-indent: -9999px;
-          background: image-url('refresh.svg') no-repeat;
-          opacity: .7;
-
-          &:hover {
-            @include transform(rotate(45deg));
-            opacity: .9;
-          }
-        }
+      .downtrend:after {
+        content: '';
+        display: inline-block;
+        vertical-align: 15%;
+        width: 4px;
+        height: 2px;
+        margin-left: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid red;
+      }
+      .uptrend:after {
+        content: '';
+        display: inline-block;
+        vertical-align: 15%;
+        width: 4px;
+        height: 2px;
+        margin-left: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 4px solid green;
       }
     }
   }

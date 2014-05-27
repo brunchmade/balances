@@ -15,19 +15,6 @@
     @include border-radius(4px);
     @include transition(all .2s);
 
-    &.current,
-    &:hover,
-    &:focus {
-      background-color: #ff9b84;
-      color: $white;
-      a {
-        color: $white;
-      }
-      .total, .grand-total {
-        color: rgba(0,0,0,.5);
-      }
-    }
-
     .grand-total {
       font-size: .8em;
       font-weight: 400;
@@ -52,6 +39,27 @@
     a {
       text-decoration: none;
       color: $dark-gray;
+    }
+
+    &:hover,
+    &:active {
+      a {
+        color: lighten($dark-gray,20%);
+      }
+    }
+
+    &.current {
+      background-color: #1CA9C9;
+      color: $white;
+      a {
+        color: $white;
+      }
+      .total, .grand-total {
+        color: rgba(0,0,0,.5);
+      }
+      .fiat {
+        color: rgba(0,0,0,.3);
+      }
     }
   }
 } // #currency-filters

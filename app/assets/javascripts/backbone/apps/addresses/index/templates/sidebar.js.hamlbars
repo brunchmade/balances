@@ -1,19 +1,19 @@
 %ul#currency-filters
   %li.current
-    %a{href: '#', title: 'All Currencies', data: {show: 'all'}} All Currencies
+    %a{href: '#', title: 'Show all currencies', data: {show: 'all'}} All Currencies
     .grand-total $1068.23
   %li
-    %a{href: '#', title: 'Bitcoin', data: {show: 'bitcoin'}} Bitcoin
+    %a{href: '#', title: 'Show only Bitcoin', data: {show: 'bitcoin'}} Bitcoin
     .total
       \.34 BTC
       .fiat $129.99
   %li
-    %a{href: '#', title: 'Litecoin', data: {show: 'litecoin'}} Litecoin
+    %a{href: '#', title: 'Show only Litecoin', data: {show: 'litecoin'}} Litecoin
     .total
       13.53 LTC
       .fiat $424.76
   %li
-    %a{href: '#', title: 'Dogecoin', data: {show: 'dogecoin'}} Dogecoin
+    %a{href: '#', title: 'Show only Dogecoin', data: {show: 'dogecoin'}} Dogecoin
     .total
       104,424 DOGE
       .fiat $513.43
