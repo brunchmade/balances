@@ -152,7 +152,7 @@ header {
   }
 
   ul {
-    @extend .large-6, .columns;
+    @extend .large-6, .medium-1, .columns;
     margin-bottom: 0;
     list-style-type: none;
 
