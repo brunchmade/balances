@@ -1,5 +1,5 @@
 #address-sidebar {
-  @extend .large-3, .columns;
+  @extend .large-3, .medium-4, .columns;
   height: 800px;
   border-top: 1px solid $light-gray;
   padding: 0 1.5em 0 .5em;
@@ -183,7 +183,7 @@
 }
 
 #address-list {
-  @extend .large-9, .small-12, .columns;
+  @extend .large-9, .medium-8, .small-12, .columns;
   border: none;
 
   tr {
@@ -218,7 +218,7 @@
 }
 
 #address-list-total {
-  @extend .large-9, .small-12, .columns;
+  @extend .large-9, .medium-8, .small-12, .columns;
   border: none;
 
   tr {

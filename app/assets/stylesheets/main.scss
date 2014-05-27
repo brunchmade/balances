@@ -49,13 +49,13 @@ section {
   @include grid-row();
 
   article {
-    @extend .large-9, .small-12, .columns;
+    @extend .large-9, .medium-8, .small-12, .columns;
   }
   article.small {
-    @extend .large-5, .small-11, .columns;
+    @extend .large-5, .medium-8, .small-11, .columns;
   }
   article.medium {
-    @extend .large-6, .small-12, .columns;
+    @extend .large-6, .medium-8, .small-12, .columns;
   }
 
   .announcement {

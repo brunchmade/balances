@@ -130,7 +130,7 @@ header {
   @extend .row;
 
   .refresh {
-    @extend .large-3, .columns;
+    @extend .large-3, .medium-1, .small-6, .columns;
 
     .refresh-data {
       display: block;
@@ -148,11 +148,11 @@ header {
   } // .refresh
 
   .add-new {
-    @extend .large-3, .columns;
+    @extend .large-3, .medium-4, .small-6, .columns;
   }
 
   ul {
-    @extend .large-6, .medium-1, .columns;
+    @extend .large-6, .medium-7, .columns;
     margin-bottom: 0;
     list-style-type: none;
 
