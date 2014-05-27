@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
             :email_requirements,
             :username_requirements
 
-  has_many :addresses
-  has_many :tokens
+  has_many :addresses, dependent: :destroy
+  has_many :tokens, dependent: :destroy
 
   # Used for allowing username or email address for registration with Devise
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -38,7 +38,11 @@ class User < ActiveRecord::Base
 
   def generate_auth_token
     t = SecureRandom.urlsafe_base64(32)
-    token = tokens.create(token: t)
+    token = tokens.create(
+      token: t,
+      provider: :balances_mobile,
+      provider_uid: self.id
+    )
     self.auth_token = token.token
   end
 

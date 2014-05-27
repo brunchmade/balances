@@ -15,6 +15,11 @@ Balances::Application.routes.draw do
     get :info, on: :collection
   end
 
+  namespace :coinbase do
+    get :auth
+    get :callback
+  end
+
   devise_scope :user do |variable|
     get :settings, to: 'devise/registrations#edit'
   end
