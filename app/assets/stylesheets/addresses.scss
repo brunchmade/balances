@@ -1,3 +1,6 @@
+/* -------------------
+/* header
+/* -------------------*/
 #address-header {
   padding: 25px 0;
   @extend .row;
@@ -12,15 +15,15 @@
 
     .refresh-data {
       display: block;
-      width: 24px;
+      width: 27px;
       height: 32px;
       text-indent: -9999px;
       background: image-url('refresh.svg') no-repeat left center;
-      opacity: .7;
+      opacity: .5;
 
       &:hover {
         @include transform(rotate(45deg));
-        opacity: .9;
+        opacity: 1;
       }
     }
   } // .refresh
@@ -74,6 +77,10 @@
   }
 } // #address-header
 
+
+/* -------------------
+/* sidebar
+/* -------------------*/
 #address-sidebar {
   @extend .large-3, .medium-4, .columns;
   height: 800px;
@@ -140,7 +147,30 @@
   }
 } // #currency-filters
 
+#secondary-nav {
+  margin-top: 60px;
+  border-top: 1px solid $light-gray;
+  list-style-type: none;
+  padding: 10px 1.5em 0 .5em;
 
+  li {
+    margin: 8px 0;
+  }
+  a {
+    color: rgba($medium-gray-2,.8);
+    font-size: .9em;
+    text-decoration: none;
+
+    &:hover {
+      color: $brand;
+      text-decoration: underline;
+    }
+  }
+} // #secondary-nav
+
+/* -------------------
+/* form
+/* -------------------*/
 #address-form {
   display: none;
   margin-bottom: 30px;
@@ -293,6 +323,9 @@
   }
 }
 
+/* -------------------
+/* list
+/* -------------------*/
 #address-list-total {
   @extend .large-9, .medium-8, .small-12, .columns;
   border: none;

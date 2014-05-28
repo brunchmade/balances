@@ -45,6 +45,11 @@ a {
   animation: yellow-fade 2s ease-in 1;
 }
 
+code {
+  display: inline;
+  color: $brand;
+}
+
 section {
   @include grid-row();
 

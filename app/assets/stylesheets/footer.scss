@@ -4,7 +4,7 @@
 
 .footer-bg {
   border-top: 1px solid $light-gray;
-  padding-top: 5px;
+  padding: 20px 0;
   margin-top: 120px;
 }
 
@@ -23,11 +23,16 @@ footer {
   p {
     color: $medium-gray;
     font-size: .8em;
-    @extend .large-4, .small-12, .columns;
+    @extend .medium-6, .small-12, .columns;
+
+    a {
+      font-size: 1em;
+      color: $brand;
+    }
   }
 
   nav {
-    @extend .large-8, .small-12, .columns;
+    @extend .medium-6, .small-12, .columns;
 
     ul {
       list-style: none;

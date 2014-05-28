@@ -1,7 +1,7 @@
 .refresh
   %a.refresh-data{href: '#', title: 'Refresh data'}
 .add-new
-  %a.small.clear.button{href: '#', title: 'Add a new address'} + New Address
+  %a.small.clear.button.icon.add{href: '#', title: 'Add a new Bitcoin, Litecoin, or Dogecoin address'} New Address
 %ul
   %li.icon.doge
     $0.01

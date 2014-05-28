@@ -17,3 +17,13 @@
     .total
       104,424 DOGE
       .fiat $513.43
+
+%ul#secondary-nav
+  %li
+    %a{href: '#', title: 'Add Coinbase balance'} Add Coinbase wallet
+  %li
+    %a{href: '#', title: 'Add Blockchain.info balance'} Add Blockchain.info wallet
+  %li
+    %a{href: '#', title: 'Download from the App Store'} Get Balances for iOS
+  %li
+    %a{href: '#', title: 'Import a list of addresses from a web or desktop wallet'} Import addresses (CSV)

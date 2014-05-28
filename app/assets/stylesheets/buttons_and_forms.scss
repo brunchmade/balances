@@ -13,7 +13,7 @@
 
   &.small {
     @include border-radius(15px);
-    padding: 0 20px;
+    padding: 1px 20px 0;
     line-height: 30px;
   }
 
@@ -61,7 +61,16 @@
       background: rgba($brand-teal,1);
     }
   }
-}
+
+  &.icon {
+    &.add {
+      background: image-url('button-add.svg') no-repeat;
+      background-position: 10px center;
+      background-size: 12px;
+      text-indent: 8px;
+    }
+  }
+} // .button
 
 label {
   display: inline-block;
