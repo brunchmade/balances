@@ -14,6 +14,12 @@
   }
 }
 
+@-webkit-keyframes topspin  {
+  0%  { -webkit-transform:  rotate(0deg); }
+  50%  { -webkit-transform:  rotate(-17deg) translate(0,2px); }
+  100%  { -webkit-transform:  rotate(0deg); }
+}
+
 header {
   @include grid-row();
 
@@ -32,6 +38,10 @@ header {
      position: absolute;
      margin: 10px 50% 0;
      left: -16px;
+    }
+    &:hover {
+      -webkit-transform-origin: 28% 75%;
+      -webkit-animation: topspin 1.2s ease-in-out infinite;
     }
   } // #logo
 
