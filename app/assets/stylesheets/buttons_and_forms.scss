@@ -54,11 +54,11 @@
 
   &.brand {
     color: $white;
-    background: rgba($brand,.75);
+    background: rgba($brand-teal,.75);
 
     &:hover,
     &:focus {
-      background: rgba($brand,1);
+      background: rgba($brand-teal,1);
     }
   }
 }
@@ -93,8 +93,8 @@ input[type=tel] {
   font-size: 1.2em;
   border: 1px solid $light-gray-2;
   &:focus {
-    border:1px solid $brand;
-    box-shadow: 0 0 3px tint($brand, 80%);
+    border:1px solid $brand-teal;
+    box-shadow: 0 0 3px tint($brand-teal, 80%);
     background: $white;
   }
 }
@@ -106,13 +106,13 @@ input[type=submit] {
   padding: 10px 30px;
   font-size: 1.2em;
   font-weight: 600;
-  background: $brand;
+  background: $brand-teal;
   color: $white;
   @include transition(all .2s);
 
   &:hover,
   &:focus {
-    background: darken($brand, 5%);
+    background: darken($brand-teal, 5%);
   }
 }
 
@@ -175,7 +175,7 @@ input[type=submit].delete-button {
 
       &:hover,
       &:focus {
-        background-color: $brand;
+        background-color: $brand-teal;
         color: $white;
       }
 

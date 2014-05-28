@@ -9,9 +9,18 @@
     tagName: 'section'
 
     regions:
+      headerRegion: '#address-header-region'
       sidebarRegion: '#address-sidebar-region'
       formRegion: '#address-form-region'
       listRegion: '#address-list-region'
+
+  ##############################################################################
+  # Header
+  ##############################################################################
+
+  class Index.Header extends App.Views.ItemView
+    template: 'addresses/index/header'
+    id: 'address-header'
 
   ##############################################################################
   # Sidebar

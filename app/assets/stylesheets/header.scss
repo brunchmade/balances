@@ -7,8 +7,10 @@
   border-bottom: 1px solid darken($brand,5%);
   height: 70px;
   overflow: visible;
+  margin-bottom: 30px;
   @media only screen and (max-width: $small-screen) {
    height: 50px;
+   margin-bottom: 15px;
   }
 }
 
@@ -124,74 +126,3 @@ header {
     }
   } // nav
 } // header
-
-.ticker-bar {
-  padding: 25px 0;
-  @extend .row;
-
-  .refresh {
-    @extend .large-3, .medium-1, .small-6, .columns;
-
-    .refresh-data {
-      display: block;
-      width: 24px;
-      height: 32px;
-      text-indent: -9999px;
-      background: image-url('refresh.svg') no-repeat left center;
-      opacity: .7;
-
-      &:hover {
-        @include transform(rotate(45deg));
-        opacity: .9;
-      }
-    }
-  } // .refresh
-
-  .add-new {
-    @extend .large-3, .medium-4, .small-6, .columns;
-  }
-
-  ul {
-    @extend .large-6, .medium-7, .columns;
-    margin-bottom: 0;
-    list-style-type: none;
-
-    li {
-      float: right;
-      margin-left: 1.6em;
-      font-size: .8em;
-      text-align: right;
-
-      &.icon {
-        @include currency-symbols;
-        background: no-repeat center left;
-        background-size: 18px;
-        line-height: 32px;
-        text-indent: 22px;
-      }
-
-      .downtrend:after {
-        content: '';
-        display: inline-block;
-        vertical-align: 15%;
-        width: 4px;
-        height: 2px;
-        margin-left: 0;
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 4px solid red;
-      }
-      .uptrend:after {
-        content: '';
-        display: inline-block;
-        vertical-align: 15%;
-        width: 4px;
-        height: 2px;
-        margin-left: 0;
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-bottom: 4px solid green;
-      }
-    }
-  }
-}

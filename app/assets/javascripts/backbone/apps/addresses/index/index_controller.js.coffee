@@ -5,11 +5,16 @@
       @layout = new Index.Layout
 
       @listenTo @layout, 'show', ->
+        @showHeader()
         @showSidebar()
         @showForm()
         @showList()
 
       App.mainRegion.show @layout
+
+    showHeader: ->
+      @layout.headerRegion.show new Index.Header
+        collection: App.request('get:current:user').addresses
 
     showSidebar: ->
       @layout.sidebarRegion.show new Index.Sidebar

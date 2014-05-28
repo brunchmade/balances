@@ -43,17 +43,3 @@
         %li= link_to 'Account Settings', settings_path
         %li= link_to 'Feedback & Suggestions', 'http://balances.uservoice.com/forums/244164-suggestions', target: '_blank'
         %li= link_to 'Log out', destroy_user_session_path, method: :delete
-
-.ticker-bar
-  .refresh= link_to 'Refresh', '#', class: 'refresh-data'
-  .add-new= link_to '+ Add new address', '#', class: 'small clear button'
-  %ul
-    %li.icon.doge
-      DOGE $0.01
-      %span.uptrend
-    %li.icon.ltc
-      LTC $43.54
-      %span.downtrend
-    %li.icon.btc
-      BTC $512.43
-      %span.uptrend

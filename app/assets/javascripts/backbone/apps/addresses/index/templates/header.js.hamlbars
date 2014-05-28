@@ -1,0 +1,14 @@
+.refresh
+  %a.refresh-data{href: '#', title: 'Refresh data'}
+.add-new
+  %a.small.clear.button{href: '#', title: 'Add a new address'} + New Address
+%ul
+  %li.icon.doge
+    $0.01
+    %span.uptrend
+  %li.icon.ltc
+    $43.54
+    %span.downtrend
+  %li.icon.btc
+    $512.43
+    %span.uptrend
