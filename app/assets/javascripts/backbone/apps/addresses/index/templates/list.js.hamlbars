@@ -1,4 +1,4 @@
-%article#address-filters
+#address-filters
   %a.sort-by{href: '#', title: 'Chance your addresses sort order', data: {dropdown: 'd-filters'}}
     Sort by
     %span.dn-arr Name
@@ -38,6 +38,7 @@
       %a.icon.jpy{href: '#', title: 'Show values in Japanese Yen', data: {conversion: 'jpy'}} Japanese Yen
 
 %table#address-list
+
 %table#address-list-total
   %tr
     %td Total BTC:

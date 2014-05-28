@@ -6,6 +6,10 @@
   @extend .row;
   margin-top: -30px;
 
+  @media only screen and (max-width: $medium-screen) {
+    padding: 15px 0;
+  }
+
   @media only screen and (max-width: $small-screen) {
     margin-top: -15px;
   }
@@ -30,6 +34,10 @@
 
   .add-new {
     @extend .large-4, .medium-5, .small-6, .columns;
+
+    @media only screen and (max-width: $small-screen) {
+      text-align: right;
+    }
   }
 
   ul {
@@ -37,11 +45,22 @@
     margin-bottom: 0;
     list-style-type: none;
 
+    @media only screen and (max-width: $small-screen) {
+      text-align: center;
+      margin-top: 20px;
+    }
+
     li {
       float: right;
       margin-left: 1.6em;
       font-size: .8em;
       text-align: right;
+
+      @media only screen and (max-width: $small-screen) {
+        float: none;
+        display: inline-block;
+        margin: 0 2em;
+      }
 
       &.icon {
         @include currency-symbols;
@@ -83,13 +102,17 @@
 /* -------------------*/
 #address-sidebar {
   @extend .large-3, .medium-4, .columns;
-  height: 800px;
   border-top: 1px solid $light-gray;
   padding: 0 1.5em 0 .5em;
+
+  @media only screen and (max-width: $small-screen) {
+    display: none;
+  }
 }
 
 #currency-filters {
   list-style-type: none;
+  width: 100%;
 
   li {
     margin: 10px 0;
@@ -288,8 +311,22 @@
   }
 }
 
-#address-list {
+
+/* -------------------
+/* list
+/* -------------------*/
+#address-list-region {
   @extend .large-9, .medium-8, .small-12, .columns;
+  border-top: 1px solid $light-gray;
+  padding-right: 0;
+
+  @media only screen and (max-width: $small-screen) {
+    padding: 0;
+  }
+}
+
+#address-list {
+  width: 100%;
   border: none;
 
   tr {
@@ -314,7 +351,6 @@
     }
 
     &.name {
-      word-break: break-all;
     }
 
     &.value {
@@ -323,11 +359,8 @@
   }
 }
 
-/* -------------------
-/* list
-/* -------------------*/
 #address-list-total {
-  @extend .large-9, .medium-8, .small-12, .columns;
+  width: 100%;
   border: none;
 
   tr {
@@ -360,8 +393,8 @@
 
 #address-filters {
   background: lighten($light-gray, 5%);
-  border-top: 1px solid $light-gray;
   border-bottom: 1px solid $light-gray;
+  padding: 0 1em;
 
   > a {
     height:20px;
