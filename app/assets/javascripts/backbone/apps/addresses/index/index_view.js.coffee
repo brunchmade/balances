@@ -80,13 +80,12 @@
     itemView: Index.Item
     id: 'address-list-container'
 
+    collectionEvent:
+      'change:conversion': 'reRender'
+
     events:
       'click #d-filters a': '_handleSort'
       'click #d-balances a': '_handleConversion'
-
-    initialize: ->
-      # TODO: Make a collectionEvent
-      @listenTo @collection, 'change:conversion', @reRender
 
     serializeData: ->
       _.extend super,
@@ -180,6 +179,10 @@
       btnSave: '.btn-save'
       btnCancel: '.btn-cancel'
 
+    modelEvents:
+      'change:currency_image_path': '_changeCurrencyImage'
+      'change:is_valid': '_changeIsValid'
+
     events:
       'keydown @ui.inputAddress': '_handleKeyupInput'
       'paste @ui.inputAddress': '_handlePasteInput'
@@ -188,9 +191,6 @@
       'click @ui.btnCancel': '_handleCancel'
 
     initialize: ->
-      # TODO: Make these modelEvents
-      @listenTo @model, 'change:currency_image_path', @_changeCurrencyImage
-      @listenTo @model, 'change:is_valid', @_changeIsValid
       @listenTo App.vent, 'scan:qr', @_handleScanQr
 
     _handleKeyupInput:

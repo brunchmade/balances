@@ -116,6 +116,7 @@ input[type=submit] {
   font-size: 1.2em;
   font-weight: 600;
   background: $brand-teal;
+  outline: none;
   color: $white;
   @include transition(all .2s);
 
