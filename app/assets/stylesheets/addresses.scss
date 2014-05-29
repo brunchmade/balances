@@ -371,6 +371,10 @@
       td {
         padding: 15px 14px;
         font-weight: 600;
+
+        @media only screen and (max-width: $small-screen) {
+          padding-right: 5px;
+        }
       }
     }
   }
