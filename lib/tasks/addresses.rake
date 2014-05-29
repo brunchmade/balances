@@ -5,7 +5,7 @@ namespace :addresses do
   task update_balances: :environment do
     RakeLogger.log "=== Updating Address Balances ==="
 
-    Address.find_each do |address|
+    Address.nonintegrations.find_each do |address|
       RakeLogger.log "Updating address: #{address.id}"
       currency = address.get_currency
       address.balance = currency.balance(address.public_address)

@@ -3,23 +3,35 @@ class Address < ActiveRecord::Base
   attr_accessor :is_valid
 
   validates_presence_of :currency,
-                        :public_address,
                         :user_id
-  validates :public_address, uniqueness: { scope: :currency }
-  validate :valid_address
+  with_options unless: Proc.new { |a| a.integration.present? } do |address|
+    address.validates :public_address, presence: true, uniqueness: { scope: :currency }
+    address.validate :valid_address
+  end
 
   belongs_to :user
+
+  scope :integrations, where("COALESCE(integration, '') <> ''")
+  scope :nonintegrations, where("COALESCE(integration, '') = ''")
 
   before_save :clean_attributes
 
   CURRENCIES = [
     Currencies::Bitcoin,
     Currencies::Dogecoin,
-    Currencies::Litecoin
+    Currencies::Litecoin,
+  ]
+
+  INTEGRATIONS = [
+    Integrations::Coinbase,
   ]
 
   def get_currency
     "Currencies::#{currency}".constantize
+  end
+
+  def get_integration
+    "Integrations::#{integration}".constantize
   end
 
   def detect_currency

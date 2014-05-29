@@ -85,6 +85,7 @@
       'click #d-balances a': '_handleConversion'
 
     initialize: ->
+      # TODO: Make a collectionEvent
       @listenTo @collection, 'change:conversion', @reRender
 
     serializeData: ->
@@ -93,6 +94,7 @@
         @_getConversion()
 
     onShow: ->
+      # TODO: Move this to be event based from the controller
       @_updateSort()
       @_updateConversion()
 
@@ -128,6 +130,7 @@
 
     _handleSort: (event) ->
       event.preventDefault()
+      # TODO: Move sorting into controller
       @collection.sortOrder = $(event.currentTarget).data('sort')
 
       @collection.fetch
@@ -136,11 +139,11 @@
           order: @collection.sortOrder
 
       @_updateSort()
-      # Closes dropdown
-      @$('.sort-by').click()
+      @$('.sort-by').click() # Closes dropdown
 
     _handleConversion: (event) ->
       event.preventDefault()
+      # TODO: Move converting into controller
       $target = $(event.currentTarget)
       @collection.conversion = $target.data('conversion')
       @collection.trigger 'change:conversion'
@@ -185,6 +188,7 @@
       'click @ui.btnCancel': '_handleCancel'
 
     initialize: ->
+      # TODO: Make these modelEvents
       @listenTo @model, 'change:currency_image_path', @_changeCurrencyImage
       @listenTo @model, 'change:is_valid', @_changeIsValid
       @listenTo App.vent, 'scan:qr', @_handleScanQr

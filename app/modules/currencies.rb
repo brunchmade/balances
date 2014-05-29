@@ -1,5 +1,3 @@
-require 'open-uri'
-
 module Currencies
   class Base
 
@@ -58,7 +56,7 @@ module Currencies
 
     # Conversions
     # Currencies other than BTC only need to implement conversion methods
-    # for currencies that are not BTC or themselves.
+    # for currencies that are not BTC, themselves or fiat.
     def self.to_btc(value)
       cc = CurrencyConversion.find_by_name(self.currency_name)
       value.to_f * cc.to_btc.to_f
