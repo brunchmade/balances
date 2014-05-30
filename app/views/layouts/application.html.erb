@@ -32,6 +32,7 @@
 
   	<%= stylesheet_link_tag "application", media: "all" %>
     <%= csrf_meta_tags %>
+
     <script type="text/javascript" src="//use.typekit.net/uux1oqi.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
@@ -40,6 +41,8 @@
     <%= render "shared/header" %>
     <div id="main-region"><%= yield %></div>
     <%= render "shared/footer" %>
+
+    <%= include_gon %>
     <%= javascript_include_tag "application" %>
     <%= yield :javascript %>
   </body>

@@ -28,14 +28,10 @@
       %a.icon.doge{href: '#', title: 'Show values in Dogecoin', data: {conversion: 'doge'}} Dogecoin
     %li
       %h6.lighter Fiat Currencies
+    {{#each fiat_currencies}}
     %li
-      %a.icon.usd{href: '#', title: 'Show values in US Dollar', data: {conversion: 'usd'}} US Dollar
-    %li
-      %a.icon.eur{href: '#', title: 'Show values in Euros', data: {conversion: 'eur'}} Euros
-    %li
-      %a.icon.gbp{href: '#', title: 'Show values in Pounds Sterling', data: {conversion: 'gbp'}} Pounds Sterling
-    %li
-      %a.icon.jpy{href: '#', title: 'Show values in Japanese Yen', data: {conversion: 'jpy'}} Japanese Yen
+      %a{class: 'icon {{ this.short_name }}', href: '#', title: 'Show values in {{ this.name }}', data: {conversion: '{{ this.short_name }}'}} {{ this.name }}
+    {{/each}}
 
 %table#address-list
 

@@ -90,6 +90,7 @@
     serializeData: ->
       _.extend super,
         selected_currency: @collection.conversion
+        fiat_currencies: gon.fiat_currencies
         @_getConversion()
 
     onShow: ->

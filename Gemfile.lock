@@ -94,6 +94,9 @@ GEM
       dotenv (>= 0.7)
       thor (>= 0.13.6)
     fssm (0.2.10)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     haml (4.0.5)
       tilt
     handlebars_assets (0.15)
@@ -229,6 +232,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   foreman
+  gon
   haml
   handlebars_assets
   jquery-rails
