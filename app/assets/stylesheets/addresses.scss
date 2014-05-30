@@ -170,11 +170,47 @@
   }
 } // #currency-filters
 
+#announcement {
+  margin-top: 40px;
+  border-top: 1px solid $light-gray;
+  padding-top: 40px;
+  text-align: center;
+  position: relative;
+
+  a {
+    text-decoration: none;
+  }
+
+  h4 {
+    font-size: .9em;
+    margin: 20px 0 10px;
+    color: $medium-gray-3;
+  }
+
+  p {
+    font-size: .9em;
+    color: $medium-gray-2;
+    margin: 0;
+  }
+
+  .close-announcement {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.5em;
+    font-weight: 100;
+    opacity: .25;
+    text-decoration: none;
+    color: $medium-gray-3;
+    &:hover { opacity: 1; }
+  }
+}
+
 #secondary-nav {
-  margin-top: 60px;
+  margin-top: 40px;
   border-top: 1px solid $light-gray;
   list-style-type: none;
-  padding: 10px 1.5em 0 .5em;
+  padding: 30px 1.5em 0 .5em;
 
   li {
     margin: 8px 0;

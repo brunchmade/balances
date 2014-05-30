@@ -18,12 +18,19 @@
       104,424 DOGE
       .fiat $513.43
 
+#announcement
+  %a.close-announcement &#215;
+  %a{href: 'http://apple.com', title: 'Download Balances from the App Store', data: {show: 'dogecoin'}}
+    = image_tag 'ios.svg', width: 74
+    %h4 Take your balances with you
+    %p Balances is now available for iOS with unlimited address sync, push notifications, QR scanning, PIN security, and more.
+
 %ul#secondary-nav
   %li
-    %a{href: '#', title: 'Add Coinbase balance'} Add Coinbase wallet
+    %a{href: './coinbase/auth', title: 'Add Coinbase wallet'} Add Coinbase wallet
   %li
-    %a{href: '#', title: 'Add Blockchain.info balance'} Add Blockchain.info wallet
+    %a{href: 'http://blockchain.info', title: 'Add Blockchain.info wallet'} Add Blockchain.info wallet
   %li
-    %a{href: '#', title: 'Download from the App Store'} Get Balances for iOS
+    %a{href: 'http://apple.com', title: 'Download Balances from the App Store'} Get Balances for iOS
   %li
-    %a{href: '#', title: 'Import a list of addresses from a web or desktop wallet'} Import addresses (CSV)
+    %a{href: '#', title: 'Import a list of addresses from a web or desktop wallet', data: {reveal_id: 'import-csv'}} Import addresses (CSV)
