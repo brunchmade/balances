@@ -148,8 +148,18 @@ input[type=submit].delete-button {
   h2 {
     display: none;
   }
-  ul li {
-    color: lighten(red, 20%);
+  ul {
+    list-style-type: none;
+    li {
+      color: rgba(red, .8);
+    }
+  }
+}
+
+.field_with_errors {
+  input {
+    border:1px solid rgba(red, .5);
+    box-shadow: 0 0 3px rgba(red, .5);
   }
 }
 

@@ -175,6 +175,7 @@
 } // #currency-filters
 
 #announcement {
+  display: none;
   margin-top: 40px;
   border-top: 1px solid $light-gray;
   padding-top: 40px;
@@ -384,9 +385,9 @@
     }
 
     &.currency-type {
-      width: 68px;
+      width: 55px;
       @media only screen and (max-width: $small-screen) {
-        width: 40px;
+        width: 35px;
       }
     }
 
