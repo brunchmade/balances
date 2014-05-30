@@ -21,6 +21,7 @@
 //
 //= require foundation/foundation
 //= require foundation/foundation.reveal
+//= require foundation/foundation.dropdown
 //= require jquery.ba-dotimeout
 //= require js-routes
 //= require_tree ./jsqrcode
