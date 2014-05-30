@@ -27,7 +27,7 @@
 
 %ul#secondary-nav
   %li
-    %a{href: './coinbase/auth', title: 'Add Coinbase wallet'} Add Coinbase wallet
+    %a{href: "{{ routes 'coinbase_auth_path' }}", title: 'Add Coinbase balance'} Add Coinbase wallet
   %li
     %a{href: 'http://blockchain.info', title: 'Add Blockchain.info wallet'} Add Blockchain.info wallet
   %li

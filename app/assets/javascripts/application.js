@@ -19,11 +19,12 @@
 //= require backbone.marionette
 //= require handlebars.runtime
 //
-//= require foundation
+//= require foundation/foundation
+//= require foundation/foundation.reveal
 //= require jquery.ba-dotimeout
 //= require js-routes
 //= require_tree ./jsqrcode
-//= require_tree ./utils
+//= require_tree ./lib
 //
 //= require_tree ./backbone/config
 //= require ./backbone/app

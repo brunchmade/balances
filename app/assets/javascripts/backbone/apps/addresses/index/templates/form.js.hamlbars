@@ -15,8 +15,6 @@
       %a.btn-save.button.brand.clear.small{href: '#', title: 'Save Address'} Save
       %a.btn-cancel{href: '#', title: 'Cancel'} &times;
 
-%a{href: '/coinbase/auth'} + Coinbase
-
 #m-scan-qr.reveal-modal.medium{data: {reveal: ''}}
   %a.close-reveal-modal &#215;
   .scan-viewer#outdiv{ onClick: 'setwebcam()' }
