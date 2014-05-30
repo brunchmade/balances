@@ -12,13 +12,13 @@
   margin: 0;
 
   &.small {
-    @include border-radius(15px);
+    @include border-radius(20px);
     padding: 1px 20px 0;
     line-height: 30px;
   }
 
   &.large {
-    @include border-radius(25px);
+    @include border-radius(40px);
     padding: 0 50px;
     font-size: 1.4em;
     line-height: 56px;
@@ -41,12 +41,12 @@
     }
 
     &.white {
-      border-color: rgba($white,.5);
+      border-color: rgba($white,.25);
       color: rgba($white,.8);
 
       &:hover,
       &:focus {
-        border-color: rgba($white,.8);
+        border-color: rgba($white,.5);
         color: rgba($white,1);
       }
     }
@@ -54,11 +54,31 @@
 
   &.brand {
     color: $white;
-    background: rgba($brand-teal,.75);
+    background: rgba($brand-teal,.85);
 
     &:hover,
     &:focus {
       background: rgba($brand-teal,1);
+    }
+  }
+
+  &.blue {
+    color: $white;
+    background: rgba($brand,.85);
+
+    &:hover,
+    &:focus {
+      background: rgba($brand,1);
+    }
+  }
+
+  &.purple {
+    color: $white;
+    background: rgba($brand-purple,.85);
+
+    &:hover,
+    &:focus {
+      background: rgba($brand-purple,1);
     }
   }
 

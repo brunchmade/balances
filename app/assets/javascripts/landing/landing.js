@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require ./wow.min
 //= require ./main
