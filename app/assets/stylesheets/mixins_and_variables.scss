@@ -28,16 +28,16 @@ $dark-gray: #4a4a4a;
 
 @mixin currency-symbols {
   // Digital
-  &.all { background-image: image-url('currencies/all-currencies@2x.png'); }
-  &.btc { background-image: image-url('currencies/bitcoin-small@2x.png'); }
-  &.ltc { background-image: image-url('currencies/litecoin-small@2x.png'); }
-  &.doge { background-image: image-url('currencies/dogecoin-small@2x.png'); }
+  &.all { background-image: image-url('currencies/all-currencies.svg'); }
+  &.btc { background-image: image-url('currencies/bitcoin-small.svg'); }
+  &.ltc { background-image: image-url('currencies/litecoin-small.svg'); }
+  &.doge { background-image: image-url('currencies/dogecoin-small.svg'); }
 
   // Fiat
-  &.usd { background-image: image-url('currencies/usd-small@2x.png'); }
-  &.eur { background-image: image-url('currencies/euro-small@2x.png'); }
-  &.gbp { background-image: image-url('currencies/gbp-small@2x.png'); }
-  &.jpy { background-image: image-url('currencies/yen-small@2x.png'); }
+  &.usd { background-image: image-url('currencies/usd-small.svg'); }
+  &.eur { background-image: image-url('currencies/euro-small.svg'); }
+  &.gbp { background-image: image-url('currencies/gbp-small.svg'); }
+  &.jpy { background-image: image-url('currencies/yen-small.svg'); }
 }
 
 @mixin background-gradient($from, $to) {

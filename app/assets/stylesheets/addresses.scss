@@ -15,7 +15,7 @@
   }
 
   .refresh {
-    @extend .large-3, .medium-1, .small-6, .columns;
+    @extend .large-3, .medium-1, .small-2, .columns;
 
     .refresh-data {
       display: block;
@@ -33,7 +33,7 @@
   } // .refresh
 
   .add-new {
-    @extend .large-4, .medium-5, .small-6, .columns;
+    @extend .large-4, .medium-5, .small-10, .columns;
 
     @media only screen and (max-width: $small-screen) {
       text-align: right;
@@ -59,7 +59,7 @@
       @media only screen and (max-width: $small-screen) {
         float: none;
         display: inline-block;
-        margin: 0 2em;
+        margin: 0 5px;
       }
 
       &.icon {
@@ -68,6 +68,10 @@
         background-size: 18px;
         line-height: 32px;
         text-indent: 22px;
+
+        @media only screen and (max-width: $small-screen) {
+          text-indent: 18px;
+        }
       }
 
       .downtrend:after {
