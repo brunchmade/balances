@@ -87,8 +87,8 @@
       'change:conversion': 'reRender'
 
     events:
-      'click #d-filters a': '_handleSort'
-      'click #d-balances a': '_handleConversion'
+      'click #d-filters a': '_clickSort'
+      'click #d-balances a': '_clickConversion'
 
     serializeData: ->
       _.extend super,
@@ -130,7 +130,7 @@
           balance_value: @model.get('total_btc')
           converted_shortname: 'BTC'
 
-    _handleSort: (event) ->
+    _clickSort: (event) ->
       event.preventDefault()
       # TODO: Move sorting into controller
       @collection.sortOrder = $(event.currentTarget).data('sort')
@@ -143,7 +143,7 @@
       @_updateSort()
       @$('.sort-by').click() # Closes dropdown
 
-    _handleConversion: (event) ->
+    _clickConversion: (event) ->
       event.preventDefault()
       # TODO: Move converting into controller
       $target = $(event.currentTarget)
@@ -188,16 +188,16 @@
       'change:is_valid': '_changeIsValid'
 
     events:
-      'keydown @ui.inputAddress': '_handleKeyupInput'
-      'paste @ui.inputAddress': '_handlePasteInput'
-      'cut @ui.inputAddress': '_handleCutInput'
-      'click @ui.btnSave': '_handleSave'
-      'click @ui.btnCancel': '_handleCancel'
+      'keydown @ui.inputAddress': '_keydownInput'
+      'paste @ui.inputAddress': '_pasteInput'
+      'cut @ui.inputAddress': '_cutInput'
+      'click @ui.btnSave': '_clickSave'
+      'click @ui.btnCancel': '_clickCancel'
 
     initialize: ->
-      @listenTo App.vent, 'scan:qr', @_handleScanQr
+      @listenTo App.vent, 'scan:qr', @_scanQr
 
-    _handleKeyupInput:
+    _keydownInput:
       _.debounce (event) ->
         return if isPasteKey(event) or
                   isSelectAllKey(event) or
@@ -218,7 +218,7 @@
               @_addError()
       , 800
 
-    _handlePasteInput: (event) ->
+    _pasteInput: (event) ->
       # Timeout so that the paste event completes and the input has data.
       $.doTimeout 50, =>
         public_address = @ui.inputAddress.val()
@@ -234,14 +234,14 @@
           error: =>
             @_addError()
 
-    _handleCutInput: (event) ->
+    _cutInput: (event) ->
       # Timeout so that the cut event completes and the input has data.
       $.doTimeout 50, =>
         if @ui.inputAddress.val().length is 0
           @model.clear()
           @_clearErrors()
 
-    _handleScanQr: ->
+    _scanQr: ->
       public_address = @ui.inputAddress.val()
       @model.set(public_address: public_address)
 
@@ -255,7 +255,7 @@
         error: =>
           @_addError()
 
-    _handleSave: (event) ->
+    _clickSave: (event) ->
       event.preventDefault()
       balance = @ui.balance.text()
       @model.set
@@ -269,7 +269,7 @@
           _.each JSON.parse(response.responseText).errors, (msg, key) =>
             mark "#{_.str.titleize(_.str.humanize(key))} #{msg}"
 
-    _handleCancel: (event) ->
+    _clickCancel: (event) ->
       event.preventDefault()
       @_reset(false)
 

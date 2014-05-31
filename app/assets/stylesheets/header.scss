@@ -23,34 +23,6 @@
 header {
   @include grid-row();
 
-  #logo {
-    height: 36px;
-    width: 32px;
-    margin: 16px .95em;
-    background: image-url('logo.svg') no-repeat;
-    background-size: contain;
-    float: left;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-indent: 100%;
-
-    @media only screen and (max-width: $small-screen) {
-     float: none;
-     height: 32px;
-     width: 28px;
-     position: absolute;
-     margin: 10px 50% 0;
-     left: -16px;
-    }
-
-    &:hover,
-    &:focus {
-      -webkit-transform-origin: 28% 75%;
-      -webkit-animation: topspin 1.2s ease-in-out infinite;
-    }
-  } // #logo
-
   nav {
     @include transition(all .1s);
     &.main {
@@ -60,8 +32,9 @@ header {
     }
     &.mobile {
       @media only screen and (min-width: $small-screen) {
-      display: none;
+        display: none;
       }
+
       #hamburger {
         @include opacity(0.8);
         height: 20px;
@@ -83,6 +56,7 @@ header {
       } // #hamburger
 
       .user {
+        @include opacity(0.8);
         color: $white;
         text-decoration: none;
         font-weight: 400;
@@ -91,14 +65,15 @@ header {
         float: right;
         font-size: 16px;
         margin-right: .95em;
-        opacity: .8;
 
-        &.current { opacity: 1; }
+        &.current {
+          @include opacity(1);
+        }
 
         &:hover,
         &:focus {
+          @include opacity(1);
           color: $white;
-          opacity: 1;
         }
       }
     }
@@ -112,24 +87,21 @@ header {
         margin-top: 26px;
 
         > a {
+          @include opacity(0.8);
           color: $white;
           text-decoration: none;
           font-weight: 400;
           display: inline-block;
-          opacity: .8;
 
-          &.current { opacity: 1; }
+          &.current {
+            @include opacity(1);
+          }
 
           &:hover,
           &:focus {
+            @include opacity(1);
             color: $white;
-            opacity: 1;
           }
-        }
-
-        .lighter {
-          opacity: .8;
-          color: $white;
         }
 
         &.current-balance {
@@ -148,3 +120,59 @@ header {
     }
   } // nav
 } // header
+
+#logo {
+  height: 36px;
+  width: 32px;
+  margin: 16px .95em;
+  background: image-url('logo.svg') no-repeat;
+  background-size: contain;
+  float: left;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-indent: 100%;
+
+  @media only screen and (max-width: $small-screen) {
+   float: none;
+   height: 32px;
+   width: 28px;
+   position: absolute;
+   margin: 10px 50% 0;
+   left: -16px;
+  }
+
+  &:hover,
+  &:focus {
+    -webkit-transform-origin: 28% 75%;
+    -webkit-animation: topspin 1.2s ease-in-out infinite;
+  }
+} // #logo
+
+#header-balance {
+  color: $white;
+  font-weight: 300;
+
+  > a {
+    @include opacity(0.8);
+    color: $white;
+    text-decoration: none;
+    font-weight: 400;
+    display: inline-block;
+
+    &.current {
+      @include opacity(1);
+    }
+
+    &:hover,
+    &:focus {
+      @include opacity(1);
+      color: $white;
+    }
+  }
+
+  .lighter {
+    @include opacity(0.8);
+    color: $white;
+  }
+}

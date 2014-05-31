@@ -11,16 +11,7 @@
       %li.user
         %a.dn-arr{href: '#', data: {dropdown: 'd-user'}} {{ display_name }}
       %li.current-balance
-        Balance
-        &asymp;
-        $1068.23
-        %a.dn-arr.lighter{href: '#', data: {dropdown: 'd-fiat'}} USD
-        %ul#d-fiat.f-dropdown{data: {dropdown_content: ''}}
-          // TODO: Need to add `current` class for preselected value
-          {{#each gon.fiat_currencies}}
-          %li
-            %a{class: 'icon {{ this.short_name }}', href: '#', title: 'Show values in {{ this.name }}', data: {conversion: '{{ this.short_name }}'}} {{ this.name }}
-          {{/each}}
+        #header-balance-region
       {{else}}
       %li.user
         %a{href: "{{ routes 'new_user_session_path' }}"} Sign In

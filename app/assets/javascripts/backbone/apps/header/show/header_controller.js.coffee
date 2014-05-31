@@ -5,4 +5,11 @@
       @layout = new Show.Layout
         model: App.currentUser
 
+      @listenTo @layout, 'show', ->
+        @showBalance()
+
       App.mainHeaderRegion.show @layout
+
+    showBalance: ->
+      @layout.balanceRegion.show new Show.Balance
+        model: App.currentUser

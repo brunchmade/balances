@@ -44,6 +44,7 @@ class ApplicationController < ActionController::Base
   def setup_gon
     gon.user_voice_url = 'http://balances.uservoice.com/forums/244164-suggestions'
 
+    gon.default_fiat_currency = :usd
     gon.fiat_currencies = {
       usd: {
         name: 'US Dollar',
