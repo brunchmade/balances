@@ -75,7 +75,7 @@ p {
 
 
 .header-bg {
-  @include background-gradient(darken($brand,40%),darken($brand,35%));
+  @include background-gradient(#1D232B,#49586A);
   min-height: 980px;
   position: relative;
 }
@@ -184,7 +184,7 @@ header {
     width: 60%;
     max-width: 780px;
     max-height: 40%;
-    @include box-shadow(0 10px 30px #000);
+    @include box-shadow(0 10px 30px rgba(0,0,0,.5));
   }
 
   .read-more {
