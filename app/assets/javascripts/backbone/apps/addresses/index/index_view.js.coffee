@@ -14,6 +14,7 @@
       formRegion: '#address-form-region'
       listRegion: '#address-list-region'
 
+
   ##############################################################################
   # Header
   ##############################################################################
@@ -21,6 +22,7 @@
   class Index.Header extends App.Views.ItemView
     template: 'addresses/index/header'
     id: 'address-header'
+
 
   ##############################################################################
   # Sidebar
@@ -30,6 +32,7 @@
     template: 'addresses/index/sidebar'
     tagName: 'aside'
     id: 'address-sidebar'
+
 
   ##############################################################################
   # List
@@ -159,6 +162,7 @@
       @$('#d-balances .current').removeClass 'current'
       $target.addClass 'current'
       @$('.currency-type span').text $target.text()
+
 
   ##############################################################################
   # Form

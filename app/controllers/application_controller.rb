@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
   end
 
   def setup_gon
+    gon.user_voice_url = 'http://balances.uservoice.com/forums/244164-suggestions'
+
     gon.fiat_currencies = [
       {name: 'US Dollar', short_name: 'usd'},
       {name: 'Euros', short_name: 'eur'},

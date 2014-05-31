@@ -9,14 +9,15 @@
       addresses: options.addresses
 
   App.addRegions
-    mainRegion: '#main-region'
+    mainHeaderRegion: '#main-header-region'
+    mainContentRegion: '#main-content-region'
+
+  App.addInitializer ->
+    App.module('HeaderApp').start()
 
   App.on 'initialize:after', (options) ->
     if Backbone.history
       Backbone.history.start(pushState: true)
       @navigate(@rootRoute, trigger: true) if @getCurrentRoute() is ''
-
-  App.reqres.setHandler 'get:current:user', ->
-    App.currentUser
 
   App
