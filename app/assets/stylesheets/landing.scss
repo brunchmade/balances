@@ -108,11 +108,11 @@ header {
           background: image_url('landing/twitter.svg') no-repeat center left;
           background-size: 21px;
           text-indent: 25px;
-          opacity: .8;
+          @include opacity(.8);
           margin: 2px 32px 0 0;
           @include transition(all .2s);
           &:hover {
-            opacity: 1;
+            @include opacity(1);
           }
           a {
             color: $white;

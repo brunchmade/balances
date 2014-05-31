@@ -76,7 +76,7 @@
     right: 14px;
     font-size: 5em;
     font-weight: 100;
-    opacity: .5;
+    @include opacity(.5);
     text-decoration: none;
     &:hover { opacity: 1; }
   }

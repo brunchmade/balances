@@ -23,11 +23,11 @@
       height: 32px;
       text-indent: -9999px;
       background: image-url('refresh.svg') no-repeat left center;
-      opacity: .5;
+      @include opacity(.5);
 
       &:hover {
         @include transform(rotate(45deg));
-        opacity: 1;
+        @include opacity(1);
       }
     }
   } // .refresh
@@ -204,10 +204,10 @@
     right: 5px;
     font-size: 1.5em;
     font-weight: 100;
-    opacity: .25;
+    @include opacity(.25);
     text-decoration: none;
     color: $medium-gray-3;
-    &:hover { opacity: 1; }
+    &:hover { @include opacity(1); }
   }
 }
 
