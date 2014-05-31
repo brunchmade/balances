@@ -83,7 +83,7 @@
     itemView: Index.Item
     id: 'address-list-container'
 
-    collectionEvent:
+    collectionEvents:
       'change:conversion': 'reRender'
 
     events:

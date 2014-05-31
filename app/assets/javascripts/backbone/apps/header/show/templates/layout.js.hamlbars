@@ -17,6 +17,7 @@
         $1068.23
         %a.dn-arr.lighter{href: '#', data: {dropdown: 'd-fiat'}} USD
         %ul#d-fiat.f-dropdown{data: {dropdown_content: ''}}
+          // TODO: Need to add `current` class for preselected value
           {{#each fiat_currencies}}
           %li
             %a{class: 'icon {{ this.short_name }}', href: '#', title: 'Show values in {{ this.name }}', data: {conversion: '{{ this.short_name }}'}} {{ this.name }}
