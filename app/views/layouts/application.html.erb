@@ -39,6 +39,14 @@
 
     <%= include_gon %>
     <%= javascript_include_tag "application" %>
+    <script type='text/javascript'>
+      $(function() {
+        Balances.start({
+          currentUser: <%= @current_user_json.html_safe %>,
+          addresses: <%= @current_user_addresses_json.html_safe %>
+        });
+      });
+    </script>
     <%= yield :javascript %>
   </body>
 </html>

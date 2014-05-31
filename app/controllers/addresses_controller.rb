@@ -21,22 +21,7 @@ class AddressesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html {
-        @user = Rabl::Renderer.new(
-          'users/current_user',
-          current_user,
-          view_path: 'app/views',
-          format: 'json',
-          scope: view_context
-        ).render
-        @addresses = Rabl::Renderer.new(
-          'addresses/show',
-          sorted_addresses,
-          view_path: 'app/views',
-          format: 'json',
-          scope: view_context
-        ).render
-      }
+      format.html
       format.json {
         @addresses = sorted_addresses
         respond_with @addresses
