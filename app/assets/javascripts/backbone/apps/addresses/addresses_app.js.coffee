@@ -6,6 +6,7 @@
 
     controller:
       index: ->
+        App.vent.trigger 'update:header:nav'
         new AddressesApp.Index.Controller
 
   App.addInitializer ->

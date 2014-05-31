@@ -5,7 +5,6 @@
     %ul.menu
       {{#if is_signed_in}}
       %li
-        // TODO: Need to add `current` class when on this page
         %a{href: "{{ routes 'addresses_path' }}"} All Balances
       %li
         %a{href: '#'} Recent Transactions
