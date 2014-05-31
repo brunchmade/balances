@@ -11,5 +11,3 @@
     serializeData: ->
       _.extend super,
         is_signed_in: App.currentUser.isSignedIn()
-        fiat_currencies: gon.fiat_currencies
-        user_voice_url: gon.user_voice_url

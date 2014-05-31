@@ -17,12 +17,28 @@ class ApplicationController < ActionController::Base
   def setup_gon
     gon.user_voice_url = 'http://balances.uservoice.com/forums/244164-suggestions'
 
-    gon.fiat_currencies = [
-      {name: 'US Dollar', short_name: 'usd'},
-      {name: 'Euros', short_name: 'eur'},
-      {name: 'Pounds Sterling', short_name: 'gbp'},
-      {name: 'Japanese Yen', short_name: 'jpy'},
-    ]
+    gon.fiat_currencies = {
+      usd: {
+        name: 'US Dollar',
+        short_name: 'usd',
+        symbol: '$',
+      },
+      eur: {
+        name: 'Euros',
+        short_name: 'eur',
+        symbol: '€',
+      },
+      gbp: {
+        name: 'Pounds Sterling',
+        short_name: 'gbp',
+        symbol: '£',
+      },
+      jpy: {
+        name: 'Japanese Yen',
+        short_name: 'jpy',
+        symbol: '¥',
+      },
+    }
   end
 
 end

@@ -18,7 +18,7 @@
         %a.dn-arr.lighter{href: '#', data: {dropdown: 'd-fiat'}} USD
         %ul#d-fiat.f-dropdown{data: {dropdown_content: ''}}
           // TODO: Need to add `current` class for preselected value
-          {{#each fiat_currencies}}
+          {{#each gon.fiat_currencies}}
           %li
             %a{class: 'icon {{ this.short_name }}', href: '#', title: 'Show values in {{ this.name }}', data: {conversion: '{{ this.short_name }}'}} {{ this.name }}
           {{/each}}
@@ -44,6 +44,6 @@
     %li
       %a{href: "{{ routes 'settings_path' }}"} Account Settings
     %li
-      %a{href: '{{ user_voice_url }}', target: '_blank'} Feedback &amp; Suggestions
+      %a{href: '{{ gon.user_voice_url }}', target: '_blank'} Feedback &amp; Suggestions
     %li
       %a{href: "{{ routes 'destroy_user_session_path' }}", data: {method: 'delete'}} Log out

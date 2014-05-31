@@ -5,3 +5,6 @@
     reRender: ->
       @render()
       @triggerMethod 'show' if @_isShown
+
+    templateHelpers: ->
+      gon: gon

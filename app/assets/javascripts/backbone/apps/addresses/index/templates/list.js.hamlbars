@@ -28,7 +28,7 @@
       %a.icon.doge{href: '#', title: 'Show values in Dogecoin', data: {conversion: 'doge'}} Dogecoin
     %li
       %h6.lighter Fiat Currencies
-    {{#each fiat_currencies}}
+    {{#each gon.fiat_currencies}}
     %li
       %a{class: 'icon {{ this.short_name }}', href: '#', title: 'Show values in {{ this.name }}', data: {conversion: '{{ this.short_name }}'}} {{ this.name }}
     {{/each}}
