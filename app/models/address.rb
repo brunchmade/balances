@@ -42,6 +42,10 @@ class Address < ActiveRecord::Base
     end
   end
 
+  def display_name
+    self.name.present? ? self.name : self.public_address
+  end
+
   def info
     detect_currency
     info = get_currency.info(public_address)

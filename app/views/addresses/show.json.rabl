@@ -3,6 +3,7 @@ object @address
 attributes :id,
            :user_id,
            :currency,
+           :display_name,
            :name,
            :public_address
 

@@ -7,8 +7,6 @@
   class Entities.UserBase extends Entities.Model
     initialize: (attributes, options = {}) ->
       @listenTo @, 'change:username change:email', @_updateDisplayName
-
-      @_updateDisplayName()
       @_onInitialize attributes, options
 
     displayName: ->

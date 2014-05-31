@@ -44,7 +44,6 @@
 
     serializeData: ->
       _.extend super,
-        display_name: @model.displayName(),
         @_getConversion()
 
     _getConversion: ->

@@ -6,10 +6,7 @@
 
   class Entities.Address extends Entities.Model
     displayName: ->
-      if @get('name')
-        @get('name')
-      else
-        @get('public_address')
+      @get('name') or @get('public_address')
 
     fetchCurrency: (opts = {}) ->
       _.defaults opts,

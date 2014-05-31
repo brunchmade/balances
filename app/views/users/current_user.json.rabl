@@ -1,6 +1,7 @@
 object @user
 
 attributes :id,
+           :display_name,
            :email,
            :username
 
