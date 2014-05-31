@@ -159,7 +159,8 @@
       $target = @$("#d-balances a[data-conversion='#{@collection.conversion}']")
       @$('#d-balances .current').removeClass 'current'
       $target.addClass 'current'
-      @$('.currency-type span').text $target.text()
+      @$('.currency-type .conversion-label').toggle @collection.conversion isnt 'all'
+      @$('.currency-type .selected-conversion').text $target.text()
 
 
   ##############################################################################

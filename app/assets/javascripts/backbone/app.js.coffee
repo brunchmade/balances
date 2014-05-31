@@ -21,7 +21,7 @@
       Backbone.history.start(pushState: true)
       @navigate(@rootRoute, trigger: true) if @getCurrentRoute() is ''
 
-
+  # Updates the Apps selected Fiat Currency and triggers an event to let views know.
   App.commands.setHandler 'update:fiat:currency', (fiatCurrencyShortName) =>
     App.fiatCurrency = gon.fiat_currencies[fiatCurrencyShortName]
     App.vent.trigger 'updated:fiat:currency'
