@@ -27,11 +27,7 @@
     %li
       %a.icon.doge{href: '#', title: 'Show values in Dogecoin', data: {conversion: 'doge'}} Dogecoin
     %li
-      %h6.lighter Fiat Currencies
-    {{#each gon.fiat_currencies}}
-    %li
-      %a{class: 'icon {{ this.short_name }}', href: '#', title: 'Show values in {{ this.name }}', data: {conversion: '{{ this.short_name }}'}} {{ this.name }}
-    {{/each}}
+      %a{class: 'icon {{ fiat_currency.short_name }}', href: '#', title: 'Show values in {{ fiat_currency.name }}', data: {conversion: '{{ fiat_currency.short_name }}'}} Fiat ({{ fiat_currency_short_name }})
 
 %table#address-list
 

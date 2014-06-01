@@ -83,6 +83,7 @@
     id: 'address-list-container'
 
     ui:
+      'fiatCurrency': '#d-balances li:last-child a'
       'sortBy': '.sort-by'
       'sortByLabel': '.sort-by span'
       'conversionPrelabel': '.currency-type .conversion-prelabel'
@@ -95,9 +96,14 @@
       'click #d-filters a': '_clickSort'
       'click #d-balances a': '_clickConversion'
 
+    initialize: ->
+      @listenTo App.vent, 'updated:fiat:currency', @_updateFiatCurrency
+
     serializeData: ->
       _.extend super,
         selected_currency: @collection.conversion
+        fiat_currency: App.fiatCurrency
+        fiat_currency_short_name: App.fiatCurrency.short_name.toUpperCase()
         @_getConversion()
 
     onShow: ->
@@ -144,6 +150,16 @@
       event.preventDefault()
       $target = $(event.currentTarget)
       @collection.setConversion $target.data('conversion')
+
+    _updateFiatCurrency: ->
+      if _.contains _.pluck(gon.fiat_currencies, 'short_name'), @collection.conversion
+        @collection.setConversion App.fiatCurrency.short_name
+      else
+        @ui.fiatCurrency.attr(
+          class: "icon #{App.fiatCurrency.short_name}"
+          title: "Show values in #{App.fiatCurrency.name}"
+          'data-conversion': App.fiatCurrency.short_name
+        ).text "Fiat (#{App.fiatCurrency.short_name.toUpperCase()})"
 
     _updateSort: ->
       $target = @$("#d-filters a[data-sort='#{@collection.sortOrder}']")
