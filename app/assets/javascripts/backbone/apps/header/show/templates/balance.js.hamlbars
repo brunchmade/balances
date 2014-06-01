@@ -1,7 +1,7 @@
 Balance
 &asymp;
-{{ balance }}
-%a.dn-arr.lighter{href: '#', data: {dropdown: 'd-fiat'}} {{ fiat_currency_short_name }}
+{{ fiat_currency.symbol }}{{ balance }}
+%a.dn-arr.lighter{href: '#', data: {dropdown: 'd-fiat'}} {{ fiat_currency.short_name_upper }}
 %ul#d-fiat.f-dropdown{data: {dropdown_content: ''}}
   {{#each gon.fiat_currencies}}
   %li

@@ -44,37 +44,29 @@
 
     serializeData: ->
       _.extend super,
-        @_getConversion()
+        conversion: @_getConversion()
 
     _getConversion: ->
-      switch @model.collection.conversion
-        when 'all'
-          balance_value: @model.get('balance')
-          converted_shortname: @model.get('shortname')
-        when 'btc'
-          balance_value: @model.get('balance_btc')
-          converted_shortname: 'BTC'
-        when 'doge'
-          balance_value: @model.get('balance_doge')
-          converted_shortname: 'DOGE'
-        when 'ltc'
-          balance_value: @model.get('balance_ltc')
-          converted_shortname: 'LTC'
-        when 'usd'
-          balance_value: gon.fiat_currencies[@model.collection.conversion].symbol + @model.get('balance_usd')
-          converted_shortname: ''
-        when 'eur'
-          balance_value: gon.fiat_currencies[@model.collection.conversion].symbol + @model.get('balance_eur')
-          converted_shortname: ''
-        when 'gbp'
-          balance_value: gon.fiat_currencies[@model.collection.conversion].symbol + @model.get('balance_gbp')
-          converted_shortname: ''
-        when 'jpy'
-          balance_value: gon.fiat_currencies[@model.collection.conversion].symbol + @model.get('balance_jpy')
-          converted_shortname: ''
+      conversion = {}
+
+      conversion.balance =
+        if _.contains _.keys(gon.cryptocurrencies), @model.collection.conversion
+          @model.get("balance_#{gon.cryptocurrencies[@model.collection.conversion].short_name}")
+        else if _.contains _.keys(gon.fiat_currencies), @model.collection.conversion
+          fiatCurrency = gon.fiat_currencies[@model.collection.conversion]
+          fiatCurrency.symbol + @model.get("balance_#{fiatCurrency.short_name}")
         else
-          balance_value: @model.get('balance')
-          converted_shortname: @model.get('shortname')
+          @model.get('balance')
+
+      conversion.short_name =
+        if _.contains _.keys(gon.cryptocurrencies), @model.collection.conversion
+          gon.cryptocurrencies[@model.collection.conversion].short_name_upper
+        else if _.contains _.keys(gon.fiat_currencies), @model.collection.conversion
+          ''
+        else
+          @model.get('short_name')
+
+      conversion
 
   class Index.List extends App.Views.CompositeView
     template: 'addresses/index/list'
@@ -150,7 +142,7 @@
           class: "icon #{App.fiatCurrency.short_name}"
           title: "Show values in #{App.fiatCurrency.name}"
           'data-conversion': App.fiatCurrency.short_name
-        ).text "Fiat (#{App.fiatCurrency.short_name.toUpperCase()})"
+        ).text "Fiat (#{App.fiatCurrency.short_name_upper})"
 
     _updateSort: ->
       $target = @$("#d-filters a[data-sort='#{@collection.sortOrder}']")
@@ -294,7 +286,7 @@
           .addClass('is-valid')
           .css('width', @ui.hiddenAddressFirstbits.outerWidth())
           .prop('disabled', true)
-        @ui.balance.text("#{@model.get('balance')} #{@model.get('shortname')}").show()
+        @ui.balance.text("#{@model.get('balance')} #{@model.get('short_name')}").show()
         inputNameWidth = @$('.address-input').outerWidth() - @ui.inputAddress.outerWidth() - @ui.balance.outerWidth() - 10
         @ui.inputName.css('width', inputNameWidth).show().focus()
       else

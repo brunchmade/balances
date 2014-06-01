@@ -3,7 +3,7 @@ object @address
 attributes :currency,
            :is_valid
 
-node(:shortname) do |address|
+node(:short_name) do |address|
  address.get_currency.short_name
 end
 

@@ -7,7 +7,7 @@ attributes :id,
            :name,
            :public_address
 
-node(:shortname) { |address| address.get_currency.short_name }
+node(:short_name) { |address| address.get_currency.short_name }
 
 node(:currency_image_path) do |address|
   image_path "currencies/#{address.currency.downcase}.svg"

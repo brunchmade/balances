@@ -2,5 +2,5 @@
   %img{src: '{{ currency_image_path }}', width: 40, alt: '{{ currency }}'}
 %td.name {{ display_name }}
 %td.value
-  %span.balance {{ balance_value }}
-  %span.shortname {{ converted_shortname }}
+  %span.balance {{ conversion.balance }}
+  %span.shortname {{ conversion.short_name }}
