@@ -27,20 +27,20 @@
     %li
       %a.icon.doge{href: '#', title: 'Show values in Dogecoin', data: {conversion: 'doge'}} Dogecoin
     %li
-      %a{class: 'icon {{ fiat_currency.short_name }}', href: '#', title: 'Show values in {{ fiat_currency.name }}', data: {conversion: '{{ fiat_currency.short_name }}'}} Fiat ({{ fiat_currency_short_name }})
+      %a{class: 'icon {{ fiat_currency.short_name }}', href: '#', title: 'Show values in {{ fiat_currency.name }}', data: {conversion: '{{ fiat_currency.short_name }}'}} Fiat ({{ fiat_currency.short_name_upper }})
 
 %table#address-list
 
 %table#address-list-total
   %tr
-    %td Total BTC:
-    %td.value {{ balance_value }} {{ converted_shortname }}
+    %td Total {{ gon.cryptocurrencies.btc.short_name_upper }}:
+    %td.value {{ balance_btc }}
   %tr
-    %td Total LTC:
-    %td.value {{ balance_value }} {{ converted_shortname }}
+    %td Total {{ gon.cryptocurrencies.ltc.short_name_upper }}:
+    %td.value {{ balance_ltc }}
   %tr
-    %td Total DOGE:
-    %td.value {{ balance_value }} {{ converted_shortname }}
+    %td Total {{ gon.cryptocurrencies.doge.short_name_upper }}:
+    %td.value {{ balance_doge }}
   %tr.total-value
-    %td Total value in USD:
-    %td.value {{ balance_value }} {{ converted_shortname }}
+    %td Total value in {{ conversion.short_name }}:
+    %td.value {{ conversion.balance }}

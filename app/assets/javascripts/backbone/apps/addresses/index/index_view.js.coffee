@@ -61,16 +61,16 @@
           balance_value: @model.get('balance_ltc')
           converted_shortname: 'LTC'
         when 'usd'
-          balance_value: '$' + @model.get('balance_usd')
+          balance_value: gon.fiat_currencies[@model.collection.conversion].symbol + @model.get('balance_usd')
           converted_shortname: ''
         when 'eur'
-          balance_value: '€' + @model.get('balance_eur')
+          balance_value: gon.fiat_currencies[@model.collection.conversion].symbol + @model.get('balance_eur')
           converted_shortname: ''
         when 'gbp'
-          balance_value: '£' + @model.get('balance_gbp')
+          balance_value: gon.fiat_currencies[@model.collection.conversion].symbol + @model.get('balance_gbp')
           converted_shortname: ''
         when 'jpy'
-          balance_value: '¥' + @model.get('balance_jpy')
+          balance_value: gon.fiat_currencies[@model.collection.conversion].symbol + @model.get('balance_jpy')
           converted_shortname: ''
         else
           balance_value: @model.get('balance')
@@ -103,42 +103,33 @@
       _.extend super,
         selected_currency: @collection.conversion
         fiat_currency: App.fiatCurrency
-        fiat_currency_short_name: App.fiatCurrency.short_name.toUpperCase()
-        @_getConversion()
+        conversion: @_getConversion()
 
     onShow: ->
       @_updateSort()
       @_updateConversion()
 
     _getConversion: ->
-      switch @collection.conversion
-        when 'all'
-          balance_value: @model.get('total_btc')
-          converted_shortname: 'BTC'
-        when 'btc'
-          balance_value: @model.get('total_btc')
-          converted_shortname: 'BTC'
-        when 'doge'
-          balance_value: @model.get('total_doge')
-          converted_shortname: 'DOGE'
-        when 'ltc'
-          balance_value: @model.get('total_ltc')
-          converted_shortname: 'LTC'
-        when 'usd'
-          balance_value: '$' + @model.get('total_usd')
-          converted_shortname: ''
-        when 'eur'
-          balance_value: '€' + @model.get('total_eur')
-          converted_shortname: ''
-        when 'gbp'
-          balance_value: '£' + @model.get('total_gbp')
-          converted_shortname: ''
-        when 'jpy'
-          balance_value: '¥' + @model.get('total_jpy')
-          converted_shortname: ''
+      conversion = {}
+
+      conversion.balance =
+        if _.contains _.keys(gon.cryptocurrencies), @collection.conversion
+          @model.get("total_#{gon.cryptocurrencies[@collection.conversion].short_name}")
+        else if _.contains _.keys(gon.fiat_currencies), @collection.conversion
+          fiatCurrency = gon.fiat_currencies[@collection.conversion]
+          fiatCurrency.symbol + @model.get("total_#{fiatCurrency.short_name}")
         else
-          balance_value: @model.get('total_btc')
-          converted_shortname: 'BTC'
+          @model.get('total_btc')
+
+      conversion.short_name =
+        if _.contains _.keys(gon.cryptocurrencies), @collection.conversion
+          gon.cryptocurrencies[@collection.conversion].short_name_upper
+        else if _.contains _.keys(gon.fiat_currencies), @collection.conversion
+          gon.fiat_currencies[@collection.conversion].short_name_upper
+        else
+          gon.cryptocurrencies['btc'].short_name_upper
+
+      conversion
 
     _clickSort: (event) ->
       event.preventDefault()

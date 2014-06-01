@@ -5,6 +5,24 @@ attributes :id,
            :email,
            :username
 
+node(:balance_btc) do |user|
+  total = user.addresses.bitcoin.inject(0) { |sum, address| sum + address.balance }
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
+node(:balance_doge) do |user|
+  total = user.addresses.dogecoin.inject(0) { |sum, address| sum + address.balance }
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
+node(:balance_ltc) do |user|
+  total = user.addresses.litecoin.inject(0) { |sum, address| sum + address.balance }
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
 node(:total_btc) do |user|
   total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_btc(address.balance) }
   rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)

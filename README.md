@@ -3,11 +3,13 @@
 ## Adding a Currency
 1. Add to `app/modules/currencies/` a file named after the currency. e.g. `app/modules/currencies/bitcoin.rb`
 1. Setup your new currency ruby file with `API`, `CURRENCY_NAME`, `SHORT_NAME`, `SYMBOLS`, `#info`, `#balance`, `#valid?`. e.g. [see below](#currency-file-example)
-1. Add the currency to the `CURRENCIES` array in `app/models/address.rb`.
+1. Add a currency scope and the currency to the `CURRENCIES` array in `app/models/address.rb`.
 1. Add currency conversion methods to other currencies and base class. e.g. `#to_btc`
 1. Update `lib/tasks/currency_conversation.rake#populate` and then run it.
 1. Update `app/views/addresses/show.json.rabl` to have corresponding `balance_{{CURRENCY_SHORT_NAME}}` node.
-1. Update `app/views/users/current_user.json.rabl` with corresponding `total_{{CURRENCY_SHORT_NAME}}` node.
+1. Update `app/views/users/current_user.json.rabl` with corresponding `balance_{{CURRENCY_SHORT_NAME}}` and `total_{{CURRENCY_SHORT_NAME}}` nodes.
+1. Update `gon.cryptocurrencies` in `app/controllers/application_controller.rb#setup_gon`.
+1. Update JS views for the address list sidebar, address list footer totals, address list ticker
 
 ###### Currency file example:
 ```ruby

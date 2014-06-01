@@ -44,26 +44,48 @@ class ApplicationController < ActionController::Base
   def setup_gon
     gon.user_voice_url = 'http://balances.uservoice.com/forums/244164-suggestions'
 
+    gon.cryptocurrencies = {
+      btc: {
+        name: Currencies::Bitcoin.currency_name,
+        short_name: Currencies::Bitcoin.short_name.downcase,
+        short_name_upper: Currencies::Bitcoin.short_name,
+      },
+      ltc: {
+        name: Currencies::Litecoin.currency_name,
+        short_name: Currencies::Litecoin.short_name.downcase,
+        short_name_upper: Currencies::Litecoin.short_name,
+      },
+      doge: {
+        name: Currencies::Dogecoin.currency_name,
+        short_name: Currencies::Dogecoin.short_name.downcase,
+        short_name_upper: Currencies::Dogecoin.short_name,
+      },
+    }
+
     gon.default_fiat_currency = :usd
     gon.fiat_currencies = {
       usd: {
         name: 'US Dollar',
         short_name: 'usd',
+        short_name_upper: 'USD',
         symbol: '$',
       },
       eur: {
         name: 'Euros',
         short_name: 'eur',
+        short_name_upper: 'EUR',
         symbol: '€',
       },
       gbp: {
         name: 'Pounds Sterling',
         short_name: 'gbp',
+        short_name_upper: 'GBP',
         symbol: '£',
       },
       jpy: {
         name: 'Japanese Yen',
         short_name: 'jpy',
+        short_name_upper: 'JPY',
         symbol: '¥',
       },
     }
