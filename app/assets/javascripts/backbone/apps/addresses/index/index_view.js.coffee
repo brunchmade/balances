@@ -82,6 +82,12 @@
     itemView: Index.Item
     id: 'address-list-container'
 
+    ui:
+      'sortBy': '.sort-by'
+      'sortByLabel': '.sort-by span'
+      'conversionPrelabel': '.currency-type .conversion-prelabel'
+      'conversionLabel': '.currency-type .conversion-label'
+
     collectionEvents:
       'change:conversion': 'reRender'
 
@@ -95,7 +101,6 @@
         @_getConversion()
 
     onShow: ->
-      # TODO: Move this to be event based from the controller
       @_updateSort()
       @_updateConversion()
 
@@ -131,36 +136,27 @@
 
     _clickSort: (event) ->
       event.preventDefault()
-      # TODO: Move sorting into controller
-      @collection.sortOrder = $(event.currentTarget).data('sort')
-
-      @collection.fetch
-        reset: true
-        data:
-          order: @collection.sortOrder
-
+      @collection.setSortOrder $(event.currentTarget).data('sort')
       @_updateSort()
-      @$('.sort-by').click() # Closes dropdown
+      @ui.sortBy.click() # Closes dropdown
 
     _clickConversion: (event) ->
       event.preventDefault()
-      # TODO: Move converting into controller
       $target = $(event.currentTarget)
-      @collection.conversion = $target.data('conversion')
-      @collection.trigger 'change:conversion'
+      @collection.setConversion $target.data('conversion')
 
     _updateSort: ->
       $target = @$("#d-filters a[data-sort='#{@collection.sortOrder}']")
       @$('#d-filters .current').removeClass 'current'
       $target.addClass 'current'
-      @$('.sort-by span').text $target.text()
+      @ui.sortByLabel.text $target.text()
 
     _updateConversion: ->
       $target = @$("#d-balances a[data-conversion='#{@collection.conversion}']")
       @$('#d-balances .current').removeClass 'current'
       $target.addClass 'current'
-      @$('.currency-type .conversion-label').toggle @collection.conversion isnt 'all'
-      @$('.currency-type .selected-conversion').text $target.text()
+      @ui.conversionPrelabel.toggle @collection.conversion isnt 'all'
+      @ui.conversionLabel.text $target.text()
 
 
   ##############################################################################

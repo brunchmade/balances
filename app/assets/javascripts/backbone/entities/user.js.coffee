@@ -19,5 +19,5 @@
     isSignedIn: ->
       !!@id
 
-    _onInitialize: (attributes, options = {}) ->
+    _onInitialize: (attributes, options) ->
       @addresses = new App.Entities.Addresses(options.addresses or {})

@@ -14,8 +14,8 @@
       %a{href: '#', title: 'Sort by Currency Type', data: {sort: 'currency'}} Currency Type
 
   %a{class: 'currency-type {{ selected_currency }}', href: '#', title: 'Choose what currency your balances display in', data: {dropdown: 'd-balances'}}
-    %span.conversion-label Converted to
-    %span.selected-conversion.dn-arr
+    %span.conversion-prelabel Converted to
+    %span.conversion-label.dn-arr
 
   %ul#d-balances.f-dropdown{data: {dropdown_content: ''}}
     %li

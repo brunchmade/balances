@@ -2,7 +2,14 @@
 
   class Index.Controller extends App.Controllers.Base
     initialize: ->
+      @addresses = App.currentUser.addresses
       @layout = new Index.Layout
+
+      @listenTo @addresses, 'change:sort:order', ->
+        @addresses.fetch
+          reset: true
+          data:
+            order: @addresses.sortOrder
 
       @listenTo @layout, 'show', ->
         @showHeader()
@@ -14,18 +21,18 @@
 
     showHeader: ->
       @layout.headerRegion.show new Index.Header
-        collection: App.currentUser.addresses
+        collection: @addresses
 
     showSidebar: ->
       @layout.sidebarRegion.show new Index.Sidebar
-        collection: App.currentUser.addresses
+        collection: @addresses
 
     showForm: ->
       @layout.formRegion.show new Index.Form
         model: new App.Entities.Address
-        collection: App.currentUser.addresses
+        collection: @addresses
 
     showList: ->
       @layout.listRegion.show new Index.List
         model: App.currentUser
-        collection: App.currentUser.addresses
+        collection: @addresses
