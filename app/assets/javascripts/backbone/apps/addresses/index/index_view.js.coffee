@@ -23,6 +23,16 @@
     template: 'addresses/index/header'
     id: 'address-header'
 
+    ui:
+      newAddressBtn: '.add-new a'
+
+    events:
+      'click @ui.newAddressBtn': '_clickNewAddress'
+
+    _clickNewAddress: (event) ->
+      event.preventDefault()
+      App.vent.trigger 'toggle:addresses:form'
+
 
   ##############################################################################
   # Sidebar
@@ -218,6 +228,7 @@
       'click @ui.btnCancel': '_clickCancel'
 
     initialize: ->
+      @listenTo App.vent, 'toggle:addresses:form', @_toggle
       @listenTo App.vent, 'scan:qr', @_scanQr
 
     _keydownInput:
@@ -263,6 +274,9 @@
         if @ui.inputAddress.val().length is 0
           @model.clear()
           @_clearErrors()
+
+    _toggle: ->
+      @$el.slideToggle()
 
     _scanQr: ->
       public_address = @ui.inputAddress.val()
