@@ -6,7 +6,7 @@ class Token < ActiveRecord::Base
 
   belongs_to :user
 
-  scope :balances_mobile, where(provider: :balances_mobile)
-  scope :coinbase, where(provider: :coinbase)
+  scope :balances_mobile, -> { where(provider: :balances_mobile) }
+  scope :coinbase, -> { where(provider: :coinbase) }
 
 end

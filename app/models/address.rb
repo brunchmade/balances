@@ -11,11 +11,11 @@ class Address < ActiveRecord::Base
 
   belongs_to :user
 
-  scope :integrations, where("COALESCE(integration, '') <> ''")
-  scope :nonintegrations, where("COALESCE(integration, '') = ''")
-  scope :bitcoin, where(currency: Currencies::Bitcoin.currency_name)
-  scope :dogecoin, where(currency: Currencies::Dogecoin.currency_name)
-  scope :litecoin, where(currency: Currencies::Litecoin.currency_name)
+  scope :integrations, -> { where("COALESCE(integration, '') <> ''") }
+  scope :nonintegrations, -> { where("COALESCE(integration, '') = ''") }
+  scope :bitcoin, -> { where(currency: Currencies::Bitcoin.currency_name) }
+  scope :dogecoin, -> { where(currency: Currencies::Dogecoin.currency_name) }
+  scope :litecoin, -> { where(currency: Currencies::Litecoin.currency_name) }
 
   before_save :clean_attributes
 
