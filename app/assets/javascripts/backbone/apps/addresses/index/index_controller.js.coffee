@@ -24,7 +24,18 @@
         collection: @addresses
 
     showSidebar: ->
-      @layout.sidebarRegion.show new Index.Sidebar
+      @sidebarLayout = new Index.Sidebar
+        model: App.currentUser
+        collection: @addresses
+
+      @listenTo @sidebarLayout, 'show', ->
+        @showSidebarBalances()
+
+      @layout.sidebarRegion.show @sidebarLayout
+
+    showSidebarBalances: ->
+      @sidebarLayout.balances.show new Index.SidebarBalances
+        model: App.currentUser
         collection: @addresses
 
     showForm: ->

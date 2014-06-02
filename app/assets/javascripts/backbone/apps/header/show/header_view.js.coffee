@@ -41,7 +41,7 @@
       serializeData: ->
         _.extend super,
           fiat_currency: App.fiatCurrency
-          balance: @model.get("total_#{App.fiatCurrency.short_name}")
+          balance: @model.get('totals')[App.fiatCurrency.short_name]
 
       onShow: ->
         @$("#d-fiat a[data-conversion=#{App.fiatCurrency.short_name}]").addClass 'current'

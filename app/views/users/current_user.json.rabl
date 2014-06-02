@@ -5,62 +5,40 @@ attributes :id,
            :email,
            :username
 
-node(:balance_btc) do |user|
-  total = user.addresses.bitcoin.inject(0) { |sum, address| sum + address.balance }
-  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
-  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+node(:balances) do |user|
+  balances = {}
+
+  Address::CURRENCIES.each do |currency|
+    balances[currency.short_name.downcase] = {}
+
+    balance = user.addresses.send(currency.currency_name.downcase).inject(0) { |sum, address| sum + address.get_currency.send("to_#{currency.short_name.downcase}", address.balance) }
+    rounded = ActiveSupport::NumberHelper.number_to_rounded(balance, precision: 8, strip_insignificant_zeros: true)
+    balances[currency.short_name.downcase]['balance'] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
+
+    ['usd', 'eur', 'gbp', 'jpy'].each do |fiat_currency|
+      balance = user.addresses.send(currency.currency_name.downcase).inject(0) { |sum, address| sum + address.get_currency.send("to_#{fiat_currency}", address.balance) }
+      rounded = ActiveSupport::NumberHelper.number_to_rounded(balance, precision: 2)
+      balances[currency.short_name.downcase]["balance_#{fiat_currency}"] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
+    end
+  end
+
+  balances
 end
 
-node(:balance_doge) do |user|
-  total = user.addresses.dogecoin.inject(0) { |sum, address| sum + address.balance }
-  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
-  ActiveSupport::NumberHelper.number_to_delimited(rounded)
-end
+node(:totals) do |user|
+  totals = {}
 
-node(:balance_ltc) do |user|
-  total = user.addresses.litecoin.inject(0) { |sum, address| sum + address.balance }
-  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
-  ActiveSupport::NumberHelper.number_to_delimited(rounded)
-end
+  Address::CURRENCIES.each do |currency|
+    total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.send("to_#{currency.short_name.downcase}", address.balance) }
+    rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+    totals[currency.short_name.downcase] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
+  end
 
-node(:total_btc) do |user|
-  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_btc(address.balance) }
-  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
-  ActiveSupport::NumberHelper.number_to_delimited(rounded)
-end
+  ['usd', 'eur', 'gbp', 'jpy'].each do |fiat_currency|
+    total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.send("to_#{fiat_currency}", address.balance) }
+    rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
+    totals[fiat_currency] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
+  end
 
-node(:total_doge) do |user|
-  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_doge(address.balance) }
-  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
-  ActiveSupport::NumberHelper.number_to_delimited(rounded)
-end
-
-node(:total_ltc) do |user|
-  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_ltc(address.balance) }
-  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
-  ActiveSupport::NumberHelper.number_to_delimited(rounded)
-end
-
-node(:total_usd) do |user|
-  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_usd(address.balance) }
-  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
-  ActiveSupport::NumberHelper.number_to_delimited(rounded)
-end
-
-node(:total_eur) do |user|
-  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_eur(address.balance) }
-  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
-  ActiveSupport::NumberHelper.number_to_delimited(rounded)
-end
-
-node(:total_gbp) do |user|
-  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_gbp(address.balance) }
-  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
-  ActiveSupport::NumberHelper.number_to_delimited(rounded)
-end
-
-node(:total_jpy) do |user|
-  total = user.addresses.inject(0) { |sum, address| sum + address.get_currency.to_jpy(address.balance) }
-  rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
-  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+  totals
 end

@@ -7,7 +7,7 @@
 1. Add currency conversion methods to other currencies and base class. e.g. `#to_btc`
 1. Update `lib/tasks/currency_conversation.rake#populate` and then run it.
 1. Update `app/views/addresses/show.json.rabl` to have corresponding `balance_{{CURRENCY_SHORT_NAME}}` node.
-1. Update `app/views/users/current_user.json.rabl` with corresponding `balance_{{CURRENCY_SHORT_NAME}}` and `total_{{CURRENCY_SHORT_NAME}}` nodes.
+1. Update `balances` and `totals` nodes in `app/views/users/current_user.json.rabl`.
 1. Update `gon.cryptocurrencies` in `app/controllers/application_controller.rb#setup_gon`.
 1. Update JS views for the address list sidebar, address list footer totals, address list ticker
 
@@ -50,5 +50,5 @@ end
 1. Update `app/models/currency_conversion.rb` with a `cache_to_{{CURRENCY_NAME}}` method.
 1. Update `lib/tasks/currency_conversation.rake#update` and then run it.
 1. Update `app/views/addresses/show.json.rabl` with corresponding `balance_{{CURRENCY_SHORT_NAME}}` node.
-1. Update `app/views/users/current_user.json.rabl` with corresponding `total_{{CURRENCY_SHORT_NAME}}` node.
+1. Update `balances` and `totals` nodes in `app/views/users/current_user.json.rabl`.
 1. Update `gon.fiat_currencies` in `app/controllers/application_controller.rb#setup_gon`.

@@ -119,11 +119,12 @@
   width: 100%;
 
   li {
-    margin: 10px 0;
-    line-height: 30px;
-    padding: 4px 10px;
     @include border-radius(4px);
     @include transition(all .2s);
+    @include clearfix;
+    margin: 10px 0;
+    padding: 4px 10px;
+    line-height: 30px;
 
     .grand-total {
       font-size: .8em;
@@ -134,9 +135,10 @@
     }
 
     .total {
+      width: 50%;
+      float: left;
       font-size: .8em;
       font-weight: 400;
-      float: right;
       text-align: right;
       line-height: auto;
       color: rgba($dark-gray, .5);
@@ -147,6 +149,8 @@
     }
 
     a {
+      width: 50%;
+      float: left;
       text-decoration: none;
       color: $dark-gray;
     }

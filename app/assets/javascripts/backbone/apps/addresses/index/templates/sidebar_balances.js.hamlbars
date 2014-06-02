@@ -1,0 +1,24 @@
+%li.current
+  %a{href: '#', title: 'Show all currencies'} All Currencies
+  .grand-total {{ fiat_currency.symbol }}{{ balance }}
+{{#if has_btc}}
+%li
+  %a{href: '#', title: "Show only {{ gon.cryptocurrencies.btc.name }}"} {{ gon.cryptocurrencies.btc.name }}
+  .total
+    {{ balances.btc.balance }} {{ gon.cryptocurrencies.btc.short_name_upper }}
+    .fiat {{ fiat_currency.symbol}}{{ obj balances.btc balance_fiat_currency }}
+{{/if}}
+{{#if has_ltc}}
+%li
+  %a{href: '#', title: "Show only {{ gon.cryptocurrencies.ltc.name }}"} {{ gon.cryptocurrencies.ltc.name }}
+  .total
+    {{ balances.ltc.balance }} {{ gon.cryptocurrencies.ltc.short_name_upper }}
+    .fiat {{ fiat_currency.symbol}}{{ obj balances.ltc balance_fiat_currency }}
+{{/if}}
+{{#if has_doge}}
+%li
+  %a{href: '#', title: "Show only {{ gon.cryptocurrencies.doge.name }}"} {{ gon.cryptocurrencies.doge.name }}
+  .total
+    {{ balances.doge.balance }} {{ gon.cryptocurrencies.doge.short_name_upper }}
+    .fiat {{ fiat_currency.symbol}}{{ obj balances.doge balance_fiat_currency }}
+{{/if}}

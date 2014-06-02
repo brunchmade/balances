@@ -28,15 +28,39 @@
   # Sidebar
   ##############################################################################
 
-  class Index.Sidebar extends App.Views.ItemView
+  class Index.Sidebar extends App.Views.Layout
     template: 'addresses/index/sidebar'
     tagName: 'aside'
     id: 'address-sidebar'
+
+    regions:
+      balances: '#addresses-sidebar-balances'
+
+  class Index.SidebarBalances extends App.Views.Layout
+    template: 'addresses/index/sidebar_balances'
+    tagName: 'ul'
+    id: 'currency-filters'
+
+    initialize: ->
+      @listenTo App.vent, 'updated:fiat:currency', @reRender
+
+    serializeData: ->
+      _.extend super,
+        fiat_currency: App.fiatCurrency
+        balance: @model.get('totals')[App.fiatCurrency.short_name]
+        balance_fiat_currency: "balance_#{App.fiatCurrency.short_name}"
+        has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
+        has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
+        has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
 
 
   ##############################################################################
   # List
   ##############################################################################
+
+  class Index.Empty extends App.Views.ItemView
+    template: 'addresses/index/empty'
+    tagName: 'tr'
 
   class Index.Item extends App.Views.ItemView
     template: 'addresses/index/item'
@@ -72,6 +96,7 @@
     template: 'addresses/index/list'
     itemViewContainer: '#address-list'
     itemView: Index.Item
+    emptyView: Index.Empty
     id: 'address-list-container'
 
     ui:
@@ -96,6 +121,9 @@
         selected_currency: @collection.conversion
         fiat_currency: App.fiatCurrency
         conversion: @_getConversion()
+        has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
+        has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
+        has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
 
     onShow: ->
       @_updateSort()
@@ -106,12 +134,12 @@
 
       conversion.balance =
         if _.contains _.keys(gon.cryptocurrencies), @collection.conversion
-          @model.get("total_#{gon.cryptocurrencies[@collection.conversion].short_name}")
+          @model.get('totals')[gon.cryptocurrencies[@collection.conversion].short_name]
         else if _.contains _.keys(gon.fiat_currencies), @collection.conversion
           fiatCurrency = gon.fiat_currencies[@collection.conversion]
-          fiatCurrency.symbol + @model.get("total_#{fiatCurrency.short_name}")
+          fiatCurrency.symbol + @model.get('totals')[fiatCurrency.short_name]
         else
-          @model.get('total_btc')
+          @model.get('totals').btc
 
       conversion.short_name =
         if _.contains _.keys(gon.cryptocurrencies), @collection.conversion

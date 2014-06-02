@@ -32,15 +32,21 @@
 %table#address-list
 
 %table#address-list-total
+  {{#if has_btc}}
   %tr
     %td Total {{ gon.cryptocurrencies.btc.short_name_upper }}:
-    %td.value {{ balance_btc }}
+    %td.value {{ balances.btc.balance }}
+  {{/if}}
+  {{#if has_ltc}}
   %tr
     %td Total {{ gon.cryptocurrencies.ltc.short_name_upper }}:
-    %td.value {{ balance_ltc }}
+    %td.value {{ balances.ltc.balance }}
+  {{/if}}
+  {{#if has_doge}}
   %tr
     %td Total {{ gon.cryptocurrencies.doge.short_name_upper }}:
-    %td.value {{ balance_doge }}
+    %td.value {{ balances.doge.balance }}
+  {{/if}}
   %tr.total-value
     %td Total value in {{ conversion.short_name }}:
     %td.value {{ conversion.balance }}

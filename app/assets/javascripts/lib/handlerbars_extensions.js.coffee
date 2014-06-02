@@ -10,3 +10,6 @@ Handlebars.registerHelper 'include', (template, options) ->
 
 Handlebars.registerHelper 'routes', (route, opts...) ->
   Routes[route] opts...
+
+Handlebars.registerHelper 'obj', (obj, key) ->
+  obj[key]
