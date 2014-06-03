@@ -89,6 +89,27 @@ class ApplicationController < ActionController::Base
         symbol: '¥',
       },
     }
+
+    gon.currency_conversion = {
+      btc: {},
+      ltc: {},
+      doge: {},
+    }
+    ['usd', 'eur', 'gbp', 'jpy'].each do |fiat_currency|
+      key = "to_#{fiat_currency}"
+
+      value = CurrencyConversion.find_by_name('Bitcoin').send(key)
+      rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 2)
+      gon.currency_conversion[:btc][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
+
+      value = CurrencyConversion.find_by_name('Litecoin').send(key)
+      rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 2)
+      gon.currency_conversion[:ltc][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
+
+      value = CurrencyConversion.find_by_name('Dogecoin').send(key)
+      rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 2)
+      gon.currency_conversion[:doge][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
+    end
   end
 
 end

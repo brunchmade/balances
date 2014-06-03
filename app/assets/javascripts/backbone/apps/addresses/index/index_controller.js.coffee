@@ -21,7 +21,6 @@
 
     showHeader: ->
       @layout.headerRegion.show new Index.Header
-        collection: @addresses
 
     showSidebar: ->
       @sidebarLayout = new Index.Sidebar

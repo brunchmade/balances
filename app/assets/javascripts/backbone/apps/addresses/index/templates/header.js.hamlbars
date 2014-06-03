@@ -4,11 +4,11 @@
   %a.small.clear.button.icon.add{href: '#', title: 'Add a new Bitcoin, Litecoin, or Dogecoin address'} New Address
 %ul
   %li.icon.doge
-    $0.01
-    %span.uptrend
+    {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.doge to_fiat_currency }}
+    / %span.uptrend
   %li.icon.ltc
-    $43.54
-    %span.downtrend
+    {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.ltc to_fiat_currency }}
+    / %span.downtrend
   %li.icon.btc
-    $512.43
-    %span.uptrend
+    {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.btc to_fiat_currency }}
+    / %span.uptrend

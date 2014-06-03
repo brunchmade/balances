@@ -29,6 +29,14 @@
     events:
       'click @ui.newAddressBtn': '_clickNewAddress'
 
+    initialize: ->
+      @listenTo App.vent, 'updated:fiat:currency', @reRender
+
+    serializeData: ->
+      _.extend super,
+        fiat_currency: App.fiatCurrency
+        to_fiat_currency: "to_#{App.fiatCurrency.short_name}"
+
     _clickNewAddress: (event) ->
       event.preventDefault()
       App.vent.trigger 'toggle:addresses:form'
