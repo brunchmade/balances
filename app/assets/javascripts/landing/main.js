@@ -19,10 +19,10 @@ $(function() {
 });
 
 
-$('.read-more').click(function(event) {
+$('.scroll-to').click(function(event) {
   event.preventDefault();
-
+  var destination = $(this).data('scroll-to');
   $('html, body').animate({
-    scrollTop: $('#unified-bg').offset().top
-  }, 1000);
+    scrollTop: $(destination).offset().top
+  }, 700);
 });

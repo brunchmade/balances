@@ -11,24 +11,27 @@
             Balances
         %li= link_to 'Log in', new_user_session_path, class: 'small transparent button'
         %li.ios= link_to 'Download for iOS', '#', class: 'small clear white button'
-        %li.signup= link_to 'Get started', '#', class: 'small blue button'
+        %li.signup= link_to 'Sign up', '#', class: 'small blue button'
 
     .animated.fadeIn
       %h2 View all your digital currency balances in one place.
-      %h4 Finally, a simple and secure way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value.
+      %h4
+        Finally, a simple and
+        =link_to 'secure', '#security-bg', class: 'huh scroll-to', data: {'scroll-to' => '#security-bg'}
+        way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value.
 
     .screen.animated.fadeIn
       =image_tag('landing/hero.gif')
 
     .buttons.animated.fadeInUp
-      = link_to 'Get started', '#', class: 'blue button'
+      = link_to 'Sign up', '#', class: 'blue button'
       = link_to 'Try a demo', '#', class: 'clear white button'
 
     .mobile-button.animated.fadeInUp
       = link_to 'View on the App Store', '#', class: 'blue button'
 
     .wow.fadeIn{data: {'wow-delay' => '2s' }}
-      = link_to '', '#unified-bg', class: 'read-more'
+      = link_to '', '#unified-bg', class: 'read-more scroll-to', data: {'scroll-to' => '#unified-bg'}
 
 
 #unified-bg
@@ -50,27 +53,30 @@
 /     %article
 /       =image_tag('landing/devices.svg')
 /
-.security-bg
+#security-bg
   %section.security
     %h3 We're serious about security
     .large-4.columns
       =image_tag('landing/shield.svg')
       %h5 Best-in-class encryption
       %p
-        We use AES 256-bit SSL to encrypt your traffic and sync your balances between your iOS devices and the
-        =link_to 'secure server.', '#'
+        We use AES 256-bit SSL to encrypt your traffic and sync your balances between your iOS devices and the secure server.
 
     .large-4.columns
       =image_tag('landing/oink.svg')
-      %h5 We'll never sell your data
-      %p We make money via iOS app sales – that's it. We don't sell data (even annonymously) to anyone, and we never will.
+      %h5 We can't access your money
+      %p
+        We use the
+        =link_to 'public blockchain', 'https://en.bitcoin.it/wiki/Block_chain'
+        to derive balance and transaction data, never your private keys. No one can access your coins using the data you share with us.
 
     .large-4.columns
-      =image_tag('landing/audit.svg')
-      %h5 Committed to the community
+      =image_tag('landing/love.svg')
+      %h5 We'll never sell your data
       %p
-        We're committed to upholding the rigorous data security and privacy standards the community demands.
-        =link_to 'Want to audit our source code?', 'mailto:balancesapp@gmail.com?subject=I want to audit Balances'
+        We love our customers. We only make money from iOS app sales and website ads. We don't sell
+        %u any
+        user data to anyone, and we never will.
 
 #currencies-bg
   %section.currencies

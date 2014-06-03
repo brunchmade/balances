@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="120px" height="104px" viewBox="0 0 120 104" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <title>oink</title>
-    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="landing-page" sketch:type="MSArtboardGroup" transform="translate(-1050.000000, -6081.000000)" stroke-linecap="round" stroke="#F6CA0F" stroke-width="3">
-            <g id="Group" sketch:type="MSLayerGroup" transform="translate(1051.000000, 6083.000000)">
-                <path d="M56.5440197,19.9485132 C65.6092378,19.355571 75.4054892,22.4564986 82.7966003,27.9612461" id="Stroke-4734" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
-                <path d="M117.126898,37.9771623 C117.126898,43.5580307 112.653862,47.9930784 107.029752,47.9930784" id="Stroke-4735" sketch:type="MSShapeGroup"></path>
-                <path d="M58.563449,7.92941386 C54.2337927,7.92941386 50.0596323,8.01755392 46.0672207,8.90897045 C41.1640464,0.321323962 30.224798,-2.62335538 21.6422236,2.30247217 C26.2788332,4.9626995 29.5906972,9.59005275 30.3722163,15.0667557 C19.7096297,21.4749388 11.8096224,31.9676126 10.0971464,43.9867119 L0,43.9867119 L0,64.0185442 L14.1360049,64.0185442 C21.315076,80.04401 38.2661654,88.0567429 58.563449,88.0567429 C85.2804984,88.0567429 106.940897,70.1623072 106.940897,47.8408365 C106.940897,25.5253753 85.2804984,7.92941386 58.563449,7.92941386 L58.563449,7.92941386 Z" id="Stroke-4736" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
-                <path d="M40,85.6525224 L40,100.075442" id="Stroke-4737" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
-                <path d="M76,85.1361018 L76,100.075842" id="Stroke-4738" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
-                <path d="M34.3302977,39.9803455 C34.3302977,42.1918598 32.5208891,43.9867119 30.2914392,43.9867119 C28.0619892,43.9867119 26.2525806,42.1918598 26.2525806,39.9803455 C26.2525806,37.7688312 28.0619892,35.973979 30.2914392,35.973979 C32.5208891,35.973979 34.3302977,37.7688312 34.3302977,39.9803455 L34.3302977,39.9803455 Z" id="Stroke-4739" stroke-linejoin="round" sketch:type="MSShapeGroup"></path>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="120" height="104" viewBox="0 0 120 104" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><title>oink</title><g sketch:type="MSLayerGroup" stroke-linecap="round" stroke="#F6CA0F" stroke-width="3" fill="none"><path d="M57.544 21.949c9.065-.593 18.861 2.508 26.253 8.013" sketch:type="MSShapeGroup"/><path d="M118.127 39.977c0 5.581-4.473 10.016-10.097 10.016" sketch:type="MSShapeGroup"/><path d="M59.563 9.929c-4.33 0-8.504.088-12.496.98-4.903-8.588-15.842-11.532-24.425-6.606 4.637 2.66 7.948 7.288 8.73 12.764-10.663 6.408-18.563 16.901-20.275 28.92h-10.097v20.032h14.136c7.179 16.025 24.13 24.038 44.427 24.038 26.717 0 48.377-17.894 48.377-40.216 0-22.315-21.66-39.911-48.377-39.911z" sketch:type="MSShapeGroup"/><path d="M41 87.653v14.423" sketch:type="MSShapeGroup"/><path d="M77 87.136v14.94" sketch:type="MSShapeGroup"/><path d="M35.33 41.98c0 2.212-1.809 4.006-4.039 4.006-2.229 0-4.039-1.795-4.039-4.006 0-2.212 1.809-4.006 4.039-4.006 2.229 0 4.039 1.795 4.039 4.006z" sketch:type="MSShapeGroup"/></g></svg>
