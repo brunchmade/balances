@@ -221,6 +221,7 @@
       hiddenAddress: '.hidden-public-address'
       hiddenAddressFirstbits: '.hidden-public-firstbits'
       btnQrScan: '.scan-qr'
+      btnImportCSV: '.import-csv'
       btnSave: '.btn-save'
       btnCancel: '.btn-cancel'
 
@@ -329,6 +330,7 @@
     _changeIsValid: ->
       if @model.get('is_valid')
         @ui.btnQrScan.hide()
+        @ui.btnImportCSV.hide()
         @ui.btnSave.css('display', 'inline-block')
         @ui.btnCancel.css('display', 'inline-block')
         @ui.hiddenAddressFirstbits.text @model.get('public_address').slice(0,8)
@@ -353,6 +355,7 @@
       @model.clear()
       @_clearErrors()
       @ui.btnQrScan.show()
+      @ui.btnImportCSV.show()
       @ui.btnSave.hide()
       @ui.btnCancel.hide()
       @ui.inputName.val('').hide()

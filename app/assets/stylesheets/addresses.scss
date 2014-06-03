@@ -240,25 +240,24 @@
 /* -------------------*/
 #address-form {
   display: none;
-  margin-bottom: 30px;
-  @media only screen and (max-width: $small-screen) {
-   margin-bottom: 5px;
-  }
+  border-top: 1px solid $light-gray;
+  padding-top: 10px;
 
   table {
     width: 100%;
     border: none;
+    margin-bottom: 10px;
 
     td {
-      padding: 0;
       vertical-align: middle;
 
       &:first-child {
-        width: 40px;
+        width: 34px;
+        padding-left: 15px;
       }
 
       &:last-child {
-        width: 60px;
+        width: 80px;
       }
     }
   }
@@ -268,7 +267,7 @@
       color: $light-gray-2;
     }
     width: 100%;
-    padding: 8px;
+    padding: 0 2px;
     border: none;
     color: $medium-gray;
     font-size: 1.375em;
@@ -289,10 +288,10 @@
   }
 
   .currency-type {
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
     margin-right: 8px;
-    @include border-radius(20px);
+    @include border-radius(17px);
     border: 1px dashed $light-gray-2;
     @media only screen and (max-width: $small-screen) {
       width: 30px;
@@ -328,6 +327,15 @@
   .btn-save {
     margin-bottom: 0;
     font-size: 13px;
+    border: 0;
+    padding: 0 25px;
+    background: rgba($brand-teal,.85);
+    font-weight: 300;
+
+    &:hover, &:active {
+      background: rgba($brand-teal,1);
+      color: $white;
+    }
   }
 
   .btn-cancel {
@@ -335,6 +343,7 @@
     color: $light-gray-2;
     text-decoration: none;
     vertical-align: middle;
+    margin-left: 10px;
 
     &:hover, &:active {
       color: $medium-gray;
