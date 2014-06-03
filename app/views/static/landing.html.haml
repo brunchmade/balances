@@ -3,28 +3,31 @@
 
 .header-bg
   %header
-    %nav.wow.fadeInDown{data: {'wow-delay' => '1s' }}
+    %nav.animated.fadeInDown
       %ul.menu
         %li.logo
           %h1
             %span.top
             Balances
-        %li= link_to 'Sign in', new_user_session_path, class: 'small clear white button'
+        %li= link_to 'Log in', new_user_session_path, class: 'small transparent button'
         %li.ios= link_to 'Download for iOS', '#', class: 'small clear white button'
-        %li.twitter= link_to 'balancesapp', 'https://twitter.com/balancesapp', target: '_blank'
+        %li.signup= link_to 'Get started', '#', class: 'small blue button'
 
-    .wow.fadeIn
+    .animated.fadeIn
       %h2 View all your digital currency balances in one place.
-      %h4 Finally, a simple and secure way to view your bitcoin, litecoin, and dogecoin balances and their combined value.
+      %h4 Finally, a simple and secure way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value.
 
-    .screen.wow.fadeIn
+    .screen.animated.fadeIn
       =image_tag('landing/hero.gif')
 
-    .wow.fadeInUp{data: {'wow-delay' => '1s' }}
+    .buttons.animated.fadeInUp
       = link_to 'Get started', '#', class: 'blue button'
       = link_to 'Try a demo', '#', class: 'clear white button'
 
-    .wow.fadeIn{data: {'wow-delay' => '1s' }}
+    .mobile-button.animated.fadeInUp
+      = link_to 'View on the App Store', '#', class: 'blue button'
+
+    .wow.fadeIn{data: {'wow-delay' => '2s' }}
       = link_to '', '#unified-bg', class: 'read-more'
 
 
@@ -33,12 +36,14 @@
     %article
       %h3 Read-only wallet monitoring
       %p Enter your bitcoin, litecoin, and dogecoin addresses and view your balances on a single screen. See the combined value of all your wallets without risking the security of your coins.
-    =image_tag('landing/screens@2x.png')
+    =image_tag('landing/screens@2x.png', :class => 'preview')
     %article
       %p
         Miner? Investor? Merchant?
         =link_to 'Download Balances for iOS', '#'
         and we'll send you push notifications any time you receive money.
+
+      =link_to image_tag('landing/app-store.svg'), '#', class: 'app-store'
 
 / .everywhere-bg
 /   %section.everywhere

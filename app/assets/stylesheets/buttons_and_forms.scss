@@ -29,6 +29,17 @@
     }
   }
 
+  &.transparent {
+    background: transparent;
+    border: 1px solid transparent;
+    color: rgba($white,.5);
+
+    &:hover,
+    &:focus {
+      color: rgba($white,1);
+    }
+  }
+
   &.clear {
     background: transparent;
     border: 1px solid $light-gray-2;
