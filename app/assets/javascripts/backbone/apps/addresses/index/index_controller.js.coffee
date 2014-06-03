@@ -2,20 +2,47 @@
 
   class Index.Controller extends App.Controllers.Base
     initialize: ->
+      @addresses = App.currentUser.addresses
       @layout = new Index.Layout
 
+      @listenTo @addresses, 'change:sort:order', ->
+        @addresses.fetch
+          reset: true
+          data:
+            order: @addresses.sortOrder
+
       @listenTo @layout, 'show', ->
+        @showHeader()
+        @showSidebar()
         @showForm()
         @showList()
 
-      App.mainRegion.show @layout
+      App.mainContentRegion.show @layout
+
+    showHeader: ->
+      @layout.headerRegion.show new Index.Header
+
+    showSidebar: ->
+      @sidebarLayout = new Index.Sidebar
+        model: App.currentUser
+        collection: @addresses
+
+      @listenTo @sidebarLayout, 'show', ->
+        @showSidebarBalances()
+
+      @layout.sidebarRegion.show @sidebarLayout
+
+    showSidebarBalances: ->
+      @sidebarLayout.balances.show new Index.SidebarBalances
+        model: App.currentUser
+        collection: @addresses
 
     showForm: ->
       @layout.formRegion.show new Index.Form
         model: new App.Entities.Address
-        collection: App.request('get:current:user').addresses
+        collection: @addresses
 
     showList: ->
       @layout.listRegion.show new Index.List
-        model: App.request('get:current:user')
-        collection: App.request('get:current:user').addresses
+        model: App.currentUser
+        collection: @addresses

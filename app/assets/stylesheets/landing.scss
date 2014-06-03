@@ -17,7 +17,8 @@
 @import 'compass';
 @import 'mixins_and_variables';
 @import 'foundation_and_overrides';
-@import 'animate';
+@import 'foundation_medium_grid';
+@import 'animate_custom';
 @import 'buttons_and_forms';
 
 * {
@@ -66,20 +67,19 @@ p {
   100%  { -webkit-transform:  rotate(0deg); }
 }
 
+@-webkit-keyframes bounce  {
+  0%  { -webkit-transform:  translate(0,0); }
+  50%  { -webkit-transform:  translate(0,10px); }
+  100%  { -webkit-transform:  translate(0,0); }
+}
+
 
 .header-bg {
-  background: image_url('landing/header-bg.jpg') no-repeat center;
-  background-attachment: fixed;
-  background-size: cover;
-  height: 750px;
-  overflow: hidden;
+  @include background-gradient(#1D232B,#49586A);
+  min-height: 980px;
   position: relative;
-  @media only screen and (max-width: $small-screen) {
-    background-attachment: scroll;
-    height: auto;
-    padding-bottom: 20px;
-  }
 }
+
 header {
   padding: 16px 16px 0;
   text-align: center;
@@ -108,11 +108,11 @@ header {
           background: image_url('landing/twitter.svg') no-repeat center left;
           background-size: 21px;
           text-indent: 25px;
-          opacity: .8;
+          @include opacity(.8);
           margin: 2px 32px 0 0;
           @include transition(all .2s);
           &:hover {
-            opacity: 1;
+            @include opacity(1);
           }
           a {
             color: $white;
@@ -175,25 +175,43 @@ header {
     margin-bottom: 40px;
   }
 
+  a.button {
+    margin: 10px;
+  }
+
   .screen {
-    background: image_url('landing/screen@2x.jpg') no-repeat top center;
-    background-size: cover;
-    width: 90%;
-    max-width: 900px;
-    margin: 30px auto 0;
-    height: 410px;
-    border: 35px solid $black;
-    border-bottom: none;
-    @include border-radius(33px 33px 0 0);
-    @include box-shadow(0 0 0 2px #ccc);
-    @media only screen and (max-width: $small-screen) {
-      display: none;
+    margin: 60px auto;
+    width: 60%;
+    max-width: 780px;
+    max-height: 40%;
+    @include box-shadow(0 10px 30px rgba(0,0,0,.5));
+  }
+
+  .read-more {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -100px;
+    text-decoration: none;
+    display: block;
+    padding: 20px 100px 10px;
+    -webkit-animation: bounce 3s ease-in-out infinite;
+    -webkit-animation-delay: 1s;
+
+    &:after {
+      content: '';
+      width: 10px;
+      display: inline-block;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid $white;
     }
   }
 }
 
-.unified-bg, .currencies-bg {
-  @include background-gradient(#F6F6F6,#ffffff);
+#unified-bg, #currencies-bg {
+  @include background-gradient(#fcfcfc,#ffffff);
+  border-top: 1px solid #eee;
   padding: 80px 0;
   @media only screen and (max-width: $small-screen) {
     padding: 30px 0;
@@ -210,7 +228,8 @@ header {
   }
 }
 .security-bg {
-  @include background-gradient(#F6F6F6,#ffffff);
+  @include background-gradient(#fcfcfc,#ffffff);
+  border-top: 1px solid #eee;
   padding: 80px 0;
   @media only screen and (max-width: $small-screen) {
     padding: 30px 0;

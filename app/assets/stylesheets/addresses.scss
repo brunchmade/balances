@@ -1,4 +1,245 @@
+/* -------------------
+/* header
+/* -------------------*/
+#address-header {
+  padding: 25px 0;
+  @extend .row;
+  margin-top: -30px;
+
+  @media only screen and (max-width: $medium-screen) {
+    padding: 15px 0;
+  }
+
+  @media only screen and (max-width: $small-screen) {
+    margin-top: -15px;
+  }
+
+  .refresh {
+    @extend .large-3, .medium-1, .small-2, .columns;
+
+    .refresh-data {
+      display: block;
+      width: 27px;
+      height: 32px;
+      text-indent: -9999px;
+      background: image-url('refresh.svg') no-repeat left center;
+      @include opacity(.5);
+
+      &:hover {
+        @include transform(rotate(45deg));
+        @include opacity(1);
+      }
+    }
+  } // .refresh
+
+  .add-new {
+    @extend .large-4, .medium-5, .small-10, .columns;
+
+    @media only screen and (max-width: $small-screen) {
+      text-align: right;
+    }
+  }
+
+  ul {
+    @extend .large-5, .medium-6, .columns;
+    margin-bottom: 0;
+    list-style-type: none;
+
+    @media only screen and (max-width: $small-screen) {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    li {
+      float: right;
+      margin-left: 1.6em;
+      font-size: .8em;
+      text-align: right;
+
+      @media only screen and (max-width: $small-screen) {
+        float: none;
+        display: inline-block;
+        margin: 0 5px;
+      }
+
+      &.icon {
+        @include currency-symbols;
+        background: no-repeat center left;
+        background-size: 18px;
+        line-height: 32px;
+        text-indent: 22px;
+
+        @media only screen and (max-width: $small-screen) {
+          text-indent: 18px;
+        }
+      }
+
+      .downtrend:after {
+        content: '';
+        display: inline-block;
+        vertical-align: 15%;
+        width: 4px;
+        height: 2px;
+        margin-left: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid red;
+      }
+      .uptrend:after {
+        content: '';
+        display: inline-block;
+        vertical-align: 15%;
+        width: 4px;
+        height: 2px;
+        margin-left: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 4px solid green;
+      }
+    }
+  }
+} // #address-header
+
+
+/* -------------------
+/* sidebar
+/* -------------------*/
+#address-sidebar {
+  @extend .large-3, .medium-4, .columns;
+  border-top: 1px solid $light-gray;
+  padding: 0 1.5em 0 .5em;
+
+  @media only screen and (max-width: $small-screen) {
+    display: none;
+  }
+}
+
+#currency-filters {
+  list-style-type: none;
+  width: 100%;
+
+  li {
+    @include border-radius(4px);
+    @include transition(all .2s);
+    @include clearfix;
+    margin: 10px 0;
+    padding: 4px 10px;
+    line-height: 30px;
+
+    .grand-total {
+      font-size: .8em;
+      font-weight: 400;
+      float: right;
+      line-height: 30px;
+      color: rgba($dark-gray, .5);
+    }
+
+    .total {
+      width: 50%;
+      float: left;
+      font-size: .8em;
+      font-weight: 400;
+      text-align: right;
+      line-height: auto;
+      color: rgba($dark-gray, .5);
+
+      .fiat {
+        color: rgba($dark-gray, .25);
+      }
+    }
+
+    a {
+      width: 50%;
+      float: left;
+      text-decoration: none;
+      color: $dark-gray;
+    }
+
+    &:hover,
+    &:active {
+      a {
+        color: lighten($dark-gray,20%);
+      }
+    }
+
+    &.current {
+      background-color: $brand-teal;
+      color: $white;
+      a {
+        color: $white;
+      }
+      .total, .grand-total {
+        color: rgba(0,0,0,.5);
+      }
+      .fiat {
+        color: rgba(0,0,0,.3);
+      }
+    }
+  }
+} // #currency-filters
+
+#announcement {
+  margin-top: 40px;
+  border-top: 1px solid $light-gray;
+  padding-top: 40px;
+  text-align: center;
+  position: relative;
+
+  a {
+    text-decoration: none;
+  }
+
+  h4 {
+    font-size: .9em;
+    margin: 20px 0 10px;
+    color: $medium-gray-3;
+  }
+
+  p {
+    font-size: .9em;
+    color: $medium-gray-2;
+    margin: 0;
+  }
+
+  .close-announcement {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.5em;
+    font-weight: 100;
+    @include opacity(.25);
+    text-decoration: none;
+    color: $medium-gray-3;
+    &:hover { @include opacity(1); }
+  }
+}
+
+#secondary-nav {
+  margin-top: 40px;
+  border-top: 1px solid $light-gray;
+  list-style-type: none;
+  padding: 30px 1.5em 0 .5em;
+
+  li {
+    margin: 8px 0;
+  }
+  a {
+    color: rgba($medium-gray-2,.8);
+    font-size: .9em;
+    text-decoration: none;
+
+    &:hover {
+      color: $brand;
+      text-decoration: underline;
+    }
+  }
+} // #secondary-nav
+
+/* -------------------
+/* form
+/* -------------------*/
 #address-form {
+  display: none;
   margin-bottom: 30px;
   @media only screen and (max-width: $small-screen) {
    margin-bottom: 5px;
@@ -17,7 +258,7 @@
       }
 
       &:last-child {
-        width: 39px;
+        width: 60px;
       }
     }
   }
@@ -81,7 +322,6 @@
   }
 
   .address-actions {
-    padding-left: 8px;
     white-space: nowrap;
   }
 
@@ -108,13 +348,29 @@
     display: none;
   }
 
-  .scan-qr {
+  .scan-qr, .import-csv {
     @include mobile-hidden;
+    text-decoration: none;
+    margin-left: 8px;
+  }
+}
+
+
+/* -------------------
+/* list
+/* -------------------*/
+#address-list-region {
+  @extend .large-9, .medium-8, .small-12, .columns;
+  border-top: 1px solid $light-gray;
+  padding-right: 0;
+
+  @media only screen and (max-width: $small-screen) {
+    padding: 0;
   }
 }
 
 #address-list {
-  @extend .large-8, .small-12, .columns, .small-centered;
+  width: 100%;
   border: none;
 
   tr {
@@ -132,14 +388,13 @@
     }
 
     &.currency-type {
-      width: 68px;
+      width: 62px;
       @media only screen and (max-width: $small-screen) {
-        width: 40px;
+        width: 36px;
       }
     }
 
     &.name {
-      word-break: break-all;
     }
 
     &.value {
@@ -149,17 +404,28 @@
 }
 
 #address-list-total {
-  @extend .large-8, .small-12, .columns, .small-centered;
+  width: 100%;
   border: none;
 
   tr {
     background: none;
+
+    &.total-value {
+      border-top: 2px solid $light-gray;
+      td {
+        padding: 15px 14px;
+        font-weight: 600;
+
+        @media only screen and (max-width: $small-screen) {
+          padding-right: 5px;
+        }
+      }
+    }
   }
 
   td {
-    padding: 15px 14px;
+    padding: 0 14px 15px;
     font-size: 1.2em;
-    font-weight: 600;
     text-align: right;
 
     &.value {
@@ -174,11 +440,9 @@
 }
 
 #address-filters {
-  @include background-gradient($white,$lighter-gray);
+  background: lighten($light-gray, 5%);
   border-bottom: 1px solid $light-gray;
-  @media only screen and (max-width: $small-screen) {
-   background: lighten($light-gray, 2.5%);
-  }
+  padding: 0 1em;
 
   > a {
     height:20px;

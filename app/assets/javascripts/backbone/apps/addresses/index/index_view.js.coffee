@@ -9,12 +9,76 @@
     tagName: 'section'
 
     regions:
+      headerRegion: '#address-header-region'
+      sidebarRegion: '#address-sidebar-region'
       formRegion: '#address-form-region'
       listRegion: '#address-list-region'
+
+
+  ##############################################################################
+  # Header
+  ##############################################################################
+
+  class Index.Header extends App.Views.ItemView
+    template: 'addresses/index/header'
+    id: 'address-header'
+
+    ui:
+      newAddressBtn: '.add-new a'
+
+    events:
+      'click @ui.newAddressBtn': '_clickNewAddress'
+
+    initialize: ->
+      @listenTo App.vent, 'updated:fiat:currency', @reRender
+
+    serializeData: ->
+      _.extend super,
+        fiat_currency: App.fiatCurrency
+        to_fiat_currency: "to_#{App.fiatCurrency.short_name}"
+
+    _clickNewAddress: (event) ->
+      event.preventDefault()
+      App.vent.trigger 'toggle:addresses:form'
+
+
+  ##############################################################################
+  # Sidebar
+  ##############################################################################
+
+  class Index.Sidebar extends App.Views.Layout
+    template: 'addresses/index/sidebar'
+    tagName: 'aside'
+    id: 'address-sidebar'
+
+    regions:
+      balances: '#addresses-sidebar-balances'
+
+  class Index.SidebarBalances extends App.Views.Layout
+    template: 'addresses/index/sidebar_balances'
+    tagName: 'ul'
+    id: 'currency-filters'
+
+    initialize: ->
+      @listenTo App.vent, 'updated:fiat:currency', @reRender
+
+    serializeData: ->
+      _.extend super,
+        fiat_currency: App.fiatCurrency
+        balance: @model.get('totals')[App.fiatCurrency.short_name]
+        balance_fiat_currency: "balance_#{App.fiatCurrency.short_name}"
+        has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
+        has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
+        has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
+
 
   ##############################################################################
   # List
   ##############################################################################
+
+  class Index.Empty extends App.Views.ItemView
+    template: 'addresses/index/empty'
+    tagName: 'tr'
 
   class Index.Item extends App.Views.ItemView
     template: 'addresses/index/item'
@@ -22,124 +86,123 @@
 
     serializeData: ->
       _.extend super,
-        display_name: @model.displayName(),
-        @_getConversion()
+        conversion: @_getConversion()
 
     _getConversion: ->
-      switch @model.collection.conversion
-        when 'all'
-          balance_value: @model.get('balance')
-          converted_shortname: @model.get('shortname')
-        when 'btc'
-          balance_value: @model.get('balance_btc')
-          converted_shortname: 'BTC'
-        when 'doge'
-          balance_value: @model.get('balance_doge')
-          converted_shortname: 'DOGE'
-        when 'ltc'
-          balance_value: @model.get('balance_ltc')
-          converted_shortname: 'LTC'
-        when 'usd'
-          balance_value: '$' + @model.get('balance_usd')
-          converted_shortname: ''
-        when 'eur'
-          balance_value: '€' + @model.get('balance_eur')
-          converted_shortname: ''
-        when 'gbp'
-          balance_value: '£' + @model.get('balance_gbp')
-          converted_shortname: ''
-        when 'jpy'
-          balance_value: '¥' + @model.get('balance_jpy')
-          converted_shortname: ''
+      conversion = {}
+
+      conversion.balance =
+        if _.contains _.keys(gon.cryptocurrencies), @model.collection.conversion
+          @model.get("balance_#{gon.cryptocurrencies[@model.collection.conversion].short_name}")
+        else if _.contains _.keys(gon.fiat_currencies), @model.collection.conversion
+          fiatCurrency = gon.fiat_currencies[@model.collection.conversion]
+          fiatCurrency.symbol + @model.get("balance_#{fiatCurrency.short_name}")
         else
-          balance_value: @model.get('balance')
-          converted_shortname: @model.get('shortname')
+          @model.get('balance')
+
+      conversion.short_name =
+        if _.contains _.keys(gon.cryptocurrencies), @model.collection.conversion
+          gon.cryptocurrencies[@model.collection.conversion].short_name_upper
+        else if _.contains _.keys(gon.fiat_currencies), @model.collection.conversion
+          ''
+        else
+          @model.get('short_name')
+
+      conversion
 
   class Index.List extends App.Views.CompositeView
     template: 'addresses/index/list'
     itemViewContainer: '#address-list'
     itemView: Index.Item
+    emptyView: Index.Empty
     id: 'address-list-container'
 
+    ui:
+      'fiatCurrency': '#d-balances li:last-child a'
+      'sortBy': '.sort-by'
+      'sortByLabel': '.sort-by span'
+      'conversionPrelabel': '.currency-type .conversion-prelabel'
+      'conversionLabel': '.currency-type .conversion-label'
+
+    collectionEvents:
+      'change:conversion': 'reRender'
+
     events:
-      'click #d-filters a': '_handleSort'
-      'click #d-balances a': '_handleConversion'
+      'click #d-filters a': '_clickSort'
+      'click #d-balances a': '_clickConversion'
 
     initialize: ->
-      # TODO: Make a collectionEvent
-      @listenTo @collection, 'change:conversion', @reRender
+      @listenTo App.vent, 'updated:fiat:currency', @_updateFiatCurrency
 
     serializeData: ->
       _.extend super,
         selected_currency: @collection.conversion
-        @_getConversion()
+        fiat_currency: App.fiatCurrency
+        conversion: @_getConversion()
+        has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
+        has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
+        has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
 
     onShow: ->
-      # TODO: Move this to be event based from the controller
       @_updateSort()
       @_updateConversion()
 
     _getConversion: ->
-      switch @collection.conversion
-        when 'all'
-          balance_value: @model.get('total_btc')
-          converted_shortname: 'BTC'
-        when 'btc'
-          balance_value: @model.get('total_btc')
-          converted_shortname: 'BTC'
-        when 'doge'
-          balance_value: @model.get('total_doge')
-          converted_shortname: 'DOGE'
-        when 'ltc'
-          balance_value: @model.get('total_ltc')
-          converted_shortname: 'LTC'
-        when 'usd'
-          balance_value: '$' + @model.get('total_usd')
-          converted_shortname: ''
-        when 'eur'
-          balance_value: '€' + @model.get('total_eur')
-          converted_shortname: ''
-        when 'gbp'
-          balance_value: '£' + @model.get('total_gbp')
-          converted_shortname: ''
-        when 'jpy'
-          balance_value: '¥' + @model.get('total_jpy')
-          converted_shortname: ''
+      conversion = {}
+
+      conversion.balance =
+        if _.contains _.keys(gon.cryptocurrencies), @collection.conversion
+          @model.get('totals')[gon.cryptocurrencies[@collection.conversion].short_name]
+        else if _.contains _.keys(gon.fiat_currencies), @collection.conversion
+          fiatCurrency = gon.fiat_currencies[@collection.conversion]
+          fiatCurrency.symbol + @model.get('totals')[fiatCurrency.short_name]
         else
-          balance_value: @model.get('total_btc')
-          converted_shortname: 'BTC'
+          @model.get('totals').btc
 
-    _handleSort: (event) ->
+      conversion.short_name =
+        if _.contains _.keys(gon.cryptocurrencies), @collection.conversion
+          gon.cryptocurrencies[@collection.conversion].short_name_upper
+        else if _.contains _.keys(gon.fiat_currencies), @collection.conversion
+          gon.fiat_currencies[@collection.conversion].short_name_upper
+        else
+          gon.cryptocurrencies['btc'].short_name_upper
+
+      conversion
+
+    _clickSort: (event) ->
       event.preventDefault()
-      # TODO: Move sorting into controller
-      @collection.sortOrder = $(event.currentTarget).data('sort')
-
-      @collection.fetch
-        reset: true
-        data:
-          order: @collection.sortOrder
-
+      @collection.setSortOrder $(event.currentTarget).data('sort')
       @_updateSort()
-      @$('.sort-by').click() # Closes dropdown
+      @ui.sortBy.click() # Closes dropdown
 
-    _handleConversion: (event) ->
+    _clickConversion: (event) ->
       event.preventDefault()
-      # TODO: Move converting into controller
       $target = $(event.currentTarget)
-      @collection.conversion = $target.data('conversion')
-      @collection.trigger 'change:conversion'
+      @collection.setConversion $target.data('conversion')
+
+    _updateFiatCurrency: ->
+      if _.contains _.pluck(gon.fiat_currencies, 'short_name'), @collection.conversion
+        @collection.setConversion App.fiatCurrency.short_name
+      else
+        @ui.fiatCurrency.attr(
+          class: "icon #{App.fiatCurrency.short_name}"
+          title: "Show values in #{App.fiatCurrency.name}"
+          'data-conversion': App.fiatCurrency.short_name
+        ).text "Fiat (#{App.fiatCurrency.short_name_upper})"
 
     _updateSort: ->
       $target = @$("#d-filters a[data-sort='#{@collection.sortOrder}']")
       @$('#d-filters .current').removeClass 'current'
       $target.addClass 'current'
-      @$('.sort-by span').text $target.text()
+      @ui.sortByLabel.text $target.text()
 
     _updateConversion: ->
       $target = @$("#d-balances a[data-conversion='#{@collection.conversion}']")
       @$('#d-balances .current').removeClass 'current'
       $target.addClass 'current'
-      @$('.currency-type span').text $target.text()
+      @ui.conversionPrelabel.toggle @collection.conversion isnt 'all'
+      @ui.conversionLabel.text $target.text()
+
 
   ##############################################################################
   # Form
@@ -161,20 +224,22 @@
       btnSave: '.btn-save'
       btnCancel: '.btn-cancel'
 
+    modelEvents:
+      'change:currency_image_path': '_changeCurrencyImage'
+      'change:is_valid': '_changeIsValid'
+
     events:
-      'keydown @ui.inputAddress': '_handleKeyupInput'
-      'paste @ui.inputAddress': '_handlePasteInput'
-      'cut @ui.inputAddress': '_handleCutInput'
-      'click @ui.btnSave': '_handleSave'
-      'click @ui.btnCancel': '_handleCancel'
+      'keydown @ui.inputAddress': '_keydownInput'
+      'paste @ui.inputAddress': '_pasteInput'
+      'cut @ui.inputAddress': '_cutInput'
+      'click @ui.btnSave': '_clickSave'
+      'click @ui.btnCancel': '_clickCancel'
 
     initialize: ->
-      # TODO: Make these modelEvents
-      @listenTo @model, 'change:currency_image_path', @_changeCurrencyImage
-      @listenTo @model, 'change:is_valid', @_changeIsValid
-      @listenTo App.vent, 'scan:qr', @_handleScanQr
+      @listenTo App.vent, 'toggle:addresses:form', @_toggle
+      @listenTo App.vent, 'scan:qr', @_scanQr
 
-    _handleKeyupInput:
+    _keydownInput:
       _.debounce (event) ->
         return if isPasteKey(event) or
                   isSelectAllKey(event) or
@@ -195,7 +260,7 @@
               @_addError()
       , 800
 
-    _handlePasteInput: (event) ->
+    _pasteInput: (event) ->
       # Timeout so that the paste event completes and the input has data.
       $.doTimeout 50, =>
         public_address = @ui.inputAddress.val()
@@ -211,14 +276,17 @@
           error: =>
             @_addError()
 
-    _handleCutInput: (event) ->
+    _cutInput: (event) ->
       # Timeout so that the cut event completes and the input has data.
       $.doTimeout 50, =>
         if @ui.inputAddress.val().length is 0
           @model.clear()
           @_clearErrors()
 
-    _handleScanQr: ->
+    _toggle: ->
+      @$el.slideToggle()
+
+    _scanQr: ->
       public_address = @ui.inputAddress.val()
       @model.set(public_address: public_address)
 
@@ -232,7 +300,7 @@
         error: =>
           @_addError()
 
-    _handleSave: (event) ->
+    _clickSave: (event) ->
       event.preventDefault()
       balance = @ui.balance.text()
       @model.set
@@ -246,7 +314,7 @@
           _.each JSON.parse(response.responseText).errors, (msg, key) =>
             mark "#{_.str.titleize(_.str.humanize(key))} #{msg}"
 
-    _handleCancel: (event) ->
+    _clickCancel: (event) ->
       event.preventDefault()
       @_reset(false)
 
@@ -268,7 +336,7 @@
           .addClass('is-valid')
           .css('width', @ui.hiddenAddressFirstbits.outerWidth())
           .prop('disabled', true)
-        @ui.balance.text("#{@model.get('balance')} #{@model.get('shortname')}").show()
+        @ui.balance.text("#{@model.get('balance')} #{@model.get('short_name')}").show()
         inputNameWidth = @$('.address-input').outerWidth() - @ui.inputAddress.outerWidth() - @ui.balance.outerWidth() - 10
         @ui.inputName.css('width', inputNameWidth).show().focus()
       else

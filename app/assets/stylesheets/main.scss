@@ -5,7 +5,7 @@
   color: $dark-gray;
   font-weight: 300;
   @media only screen and (max-width: $small-screen) {
-   font-size: .95em;
+   font-size: .96em;
   }
 }
 
@@ -21,12 +21,12 @@ a {
 }
 
 ::selection {
-  background: $brand;
+  background: lighten($brand, 30%);
   color: $white !important;
 }
 
 ::-moz-selection {
-  background: $brand;
+  background: lighten($brand, 30%);
   color: $white !important;
 }
 
@@ -45,17 +45,22 @@ a {
   animation: yellow-fade 2s ease-in 1;
 }
 
+code {
+  display: inline;
+  color: $brand;
+}
+
 section {
   @include grid-row();
 
   article {
-    @extend .large-8, .small-12, .columns, .small-centered;
+    @extend .large-9, .medium-8, .small-12, .columns;
   }
   article.small {
-    @extend .large-5, .small-11, .columns, .small-centered;
+    @extend .large-5, .medium-8, .small-11, .columns;
   }
   article.medium {
-    @extend .large-6, .small-12, .columns, .small-centered;
+    @extend .large-6, .medium-8, .small-12, .columns;
   }
 
   .announcement {

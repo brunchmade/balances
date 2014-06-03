@@ -4,35 +4,24 @@
 
 .top-bar {
   background: $brand;
+  border-bottom: 1px solid darken($brand,5%);
   height: 70px;
-  margin-bottom: 30px;
   overflow: visible;
+  margin-bottom: 30px;
   @media only screen and (max-width: $small-screen) {
    height: 50px;
    margin-bottom: 15px;
   }
 }
 
+@-webkit-keyframes topspin  {
+  0%  { -webkit-transform:  rotate(0deg); }
+  50%  { -webkit-transform:  rotate(-17deg) translate(0,2px); }
+  100%  { -webkit-transform:  rotate(0deg); }
+}
+
 header {
   @include grid-row();
-
-  #logo {
-    height: 36px;
-    width: 32px;
-    margin: 16px .95em;
-    background: image-url('logo@2x.png') no-repeat;
-    background-size: contain;
-    float: left;
-    display: block;
-    @media only screen and (max-width: $small-screen) {
-     float: none;
-     height: 32px;
-     width: 28px;
-     position: absolute;
-     margin: 10px 50% 0;
-     left: -16px;
-    }
-  } // #logo
 
   nav {
     @include transition(all .1s);
@@ -43,9 +32,11 @@ header {
     }
     &.mobile {
       @media only screen and (min-width: $small-screen) {
-      display: none;
+        display: none;
       }
+
       #hamburger {
+        @include opacity(0.8);
         height: 20px;
         width: 25px;
         margin: 15px .95em;
@@ -53,13 +44,19 @@ header {
         background-size: contain;
         float: left;
         display: block;
-        opacity: .8;
-        &:hover, &:active {
-          opacity: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-indent: 100%;
+
+        &:hover,
+        &:focus,
+        &:active {
+          @include opacity(1);
         }
       } // #hamburger
 
       .user {
+        @include opacity(0.8);
         color: $white;
         text-decoration: none;
         font-weight: 400;
@@ -68,14 +65,15 @@ header {
         float: right;
         font-size: 16px;
         margin-right: .95em;
-        opacity: .8;
 
-        &.current { opacity: 1; }
+        &.current {
+          @include opacity(1);
+        }
 
         &:hover,
         &:focus {
+          @include opacity(1);
           color: $white;
-          opacity: 1;
         }
       }
     }
@@ -84,22 +82,30 @@ header {
       > li {
         float: left;
         margin: 0 1em;
+        color: $white;
+        font-weight: 300;
+        margin-top: 26px;
 
         > a {
+          @include opacity(0.8);
           color: $white;
           text-decoration: none;
           font-weight: 400;
-          margin-top: 26px;
           display: inline-block;
-          opacity: .8;
 
-          &.current { opacity: 1; }
+          &.current {
+            @include opacity(1);
+          }
 
           &:hover,
           &:focus {
+            @include opacity(1);
             color: $white;
-            opacity: 1;
           }
+        }
+
+        &.current-balance {
+          float: right;
         }
 
         &.user {
@@ -114,3 +120,59 @@ header {
     }
   } // nav
 } // header
+
+#logo {
+  height: 36px;
+  width: 32px;
+  margin: 16px .95em;
+  background: image-url('logo.svg') no-repeat;
+  background-size: contain;
+  float: left;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-indent: 100%;
+
+  @media only screen and (max-width: $small-screen) {
+   float: none;
+   height: 32px;
+   width: 28px;
+   position: absolute;
+   margin: 10px 50% 0;
+   left: -16px;
+  }
+
+  &:hover,
+  &:focus {
+    -webkit-transform-origin: 28% 75%;
+    -webkit-animation: topspin 1.2s ease-in-out infinite;
+  }
+} // #logo
+
+#header-balance {
+  color: $white;
+  font-weight: 300;
+
+  > a {
+    @include opacity(0.8);
+    color: $white;
+    text-decoration: none;
+    font-weight: 400;
+    display: inline-block;
+
+    &.current {
+      @include opacity(1);
+    }
+
+    &:hover,
+    &:focus {
+      @include opacity(1);
+      color: $white;
+    }
+  }
+
+  .lighter {
+    @include opacity(0.8);
+    color: $white;
+  }
+}

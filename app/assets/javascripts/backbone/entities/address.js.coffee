@@ -6,26 +6,23 @@
 
   class Entities.Address extends Entities.Model
     displayName: ->
-      if @get('name')
-        @get('name')
-      else
-        @get('public_address')
+      @get('name') or @get('public_address')
 
-    fetchCurrency: (opts = {}) ->
-      _.defaults opts,
+    fetchCurrency: (options = {}) ->
+      _.defaults options,
         url: Routes.detect_currency_addresses_path()
         data:
           public_address: @get('public_address')
 
-      @fetch opts
+      @fetch options
 
-    fetchInfo: (opts) ->
-      _.defaults opts,
+    fetchInfo: (options = {}) ->
+      _.defaults options,
         url: Routes.info_addresses_path()
         data:
           public_address: @get('public_address')
 
-      @fetch opts
+      @fetch options
 
 
   ##############################################################################
@@ -35,5 +32,22 @@
   class Entities.Addresses extends Entities.Collection
     model: Entities.Address
     url: -> Routes.addresses_path()
-    sortOrder: 'name'
-    conversion: 'all'
+
+    defaultSortOrder: 'name'
+    defaultConversion: 'all'
+
+    initialize: (models, options = {}) ->
+      _.defaults options,
+        sortOrder: @defaultSortOrder
+        conversion: @defaultConversion
+
+      @sortOrder = options.sortOrder
+      @conversion = options.conversion
+
+    setSortOrder: (sortOrder) ->
+      @sortOrder = sortOrder
+      @trigger 'change:sort:order'
+
+    setConversion: (conversion) ->
+      @conversion = conversion
+      @trigger 'change:conversion'

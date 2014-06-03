@@ -3,17 +3,17 @@
     %td
       .currency-type
     %td.address-input
-      %input#address-field.address-public-address{name: 'address[public_address]', placeholder: 'Type, paste, or scan a new wallet address...', autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false'}
+      %input#address-field.address-public-address{name: 'address[public_address]', placeholder: 'Type, scan, or import a new wallet address', autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false'}
       %span.address-balance
       %input.address-name{name: 'address[name]', placeholder: 'Give it a nickname...', autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false'}
       %span.hidden-public-firstbits
     %td.address-actions
       %a.scan-qr{href: '#', title: 'Scan a QR code', data: {reveal_id: 'm-scan-qr'}}
         = image_tag 'scan-qr@2x.png', width: 31
+      %a.import-csv{href: '#', title: 'Import CSV from desktop client', data: {reveal_id: 'import-csv'}}
+        = image_tag 'import-csv.svg', width: 25
       %a.btn-save.button.brand.clear.small{href: '#', title: 'Save Address'} Save
       %a.btn-cancel{href: '#', title: 'Cancel'} &times;
-
-%a{href: '/coinbase/auth'} + Coinbase
 
 #m-scan-qr.reveal-modal.medium{data: {reveal: ''}}
   %a.close-reveal-modal &#215;
@@ -28,3 +28,12 @@
 
 <canvas id="qr-canvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
 = audio_tag 'qr-success.mp3', preload: 'auto', id: 'qr-success'
+
+#import-csv.reveal-modal.medium{data: {reveal: ''}}
+  %a.close-reveal-modal &#215;
+  %h6
+    = image_tag 'import-csv.svg', width: 100
+    %br
+    %br Bulk Address Uploader
+  %p Import a CSV of addresses from your desktop client or web wallet. Must be in the format "Label","Address" to work properly.
+  %a.button.brand{href: '#', title: 'Choose file...'} Choose file...

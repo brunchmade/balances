@@ -1,0 +1,39 @@
+%header
+  %a#logo{href: "{{ routes 'root_path' }}"} Balances
+
+  %nav.main
+    %ul.menu
+      {{#if is_signed_in}}
+      %li
+        %a{href: "{{ routes 'addresses_path' }}"} All Balances
+      %li
+        %a{href: '#'} Recent Transactions
+      %li.user
+        %a.dn-arr{href: '#', data: {dropdown: 'd-user'}} {{ display_name }}
+      %li.current-balance
+        #header-balance-region
+      {{else}}
+      %li.user
+        %a{href: "{{ routes 'new_user_session_path' }}"} Sign In
+      {{/if}}
+
+  %nav.mobile
+    {{#if is_signed_in}}
+    %a#hamburger{href: '#', data: {dropdown: 'd-mobile'}} Balances
+    %ul#d-mobile.f-dropdown{data: {dropdown_content: ''}}
+      %li
+        %a{href: "{{ routes 'addresses_path' }}"} All Balances
+      %li
+        %a{href: '#'} Recent Transactions
+    %a.user.dn-arr{href: '#', data: {dropdown: 'd-user'}} {{ display_name }}
+    {{else}}
+    %a{href: "{{ routes 'new_user_session_path' }}"} Sign In
+    {{/if}}
+
+  %ul#d-user.f-dropdown{data: {dropdown_content: ''}}
+    %li
+      %a{href: "{{ routes 'settings_path' }}"} Account Settings
+    %li
+      %a{href: '{{ gon.user_voice_url }}', target: '_blank'} Feedback &amp; Suggestions
+    %li
+      %a{href: "{{ routes 'destroy_user_session_path' }}", data: {method: 'delete'}} Log out

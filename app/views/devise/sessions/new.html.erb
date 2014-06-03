@@ -3,6 +3,8 @@
     <h2>Sign in</h2>
 
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= devise_hacky_error_messages! %>
+
       <div><%= f.text_field :login, :autofocus => true, :placeholder => 'Username or Email Address', autocorrect: 'off', autocapitalize: 'off', autocomplete: 'off', spellcheck: 'false' %></div>
 
       <div><%= f.password_field :password, :placeholder => 'Password' %></div>

@@ -1,4 +1,4 @@
-%article#address-filters
+#address-filters
   %a.sort-by{href: '#', title: 'Chance your addresses sort order', data: {dropdown: 'd-filters'}}
     Sort by
     %span.dn-arr Name
@@ -13,14 +13,13 @@
     %li
       %a{href: '#', title: 'Sort by Currency Type', data: {sort: 'currency'}} Currency Type
 
-  %a{class: 'currency-type {{ selected_currency }}', href: '#', title: 'Chance what currency your addresses display in', data: {dropdown: 'd-balances'}}
-    %span.dn-arr All Balances
+  %a{class: 'currency-type {{ selected_currency }}', href: '#', title: 'Choose what currency your balances display in', data: {dropdown: 'd-balances'}}
+    %span.conversion-prelabel Converted to
+    %span.conversion-label.dn-arr
 
   %ul#d-balances.f-dropdown{data: {dropdown_content: ''}}
     %li
-      %a.icon.all.current{href: '#', title: 'Show all balances', data: {conversion: 'all'}} All Balances
-    %li
-      %h6 Show as current value in...
+      %a.icon.all.current{href: '#', title: 'Show all balances', data: {conversion: 'all'}} No Conversion
     %li
       %a.icon.btc{href: '#', title: 'Show values in Bitcoin', data: {conversion: 'btc'}} Bitcoin
     %li
@@ -28,18 +27,26 @@
     %li
       %a.icon.doge{href: '#', title: 'Show values in Dogecoin', data: {conversion: 'doge'}} Dogecoin
     %li
-      %h6.lighter Fiat Currencies
-    %li
-      %a.icon.usd{href: '#', title: 'Show values in US Dollar', data: {conversion: 'usd'}} US Dollar
-    %li
-      %a.icon.eur{href: '#', title: 'Show values in Euros', data: {conversion: 'eur'}} Euros
-    %li
-      %a.icon.gbp{href: '#', title: 'Show values in Pounds Sterling', data: {conversion: 'gbp'}} Pounds Sterling
-    %li
-      %a.icon.jpy{href: '#', title: 'Show values in Japanese Yen', data: {conversion: 'jpy'}} Japanese Yen
+      %a{class: 'icon {{ fiat_currency.short_name }}', href: '#', title: 'Show values in {{ fiat_currency.name }}', data: {conversion: '{{ fiat_currency.short_name }}'}} Fiat ({{ fiat_currency.short_name_upper }})
 
 %table#address-list
+
 %table#address-list-total
+  {{#if has_btc}}
   %tr
-    %td Total value:
-    %td.value {{ balance_value }} {{ converted_shortname }}
+    %td Total {{ gon.cryptocurrencies.btc.short_name_upper }}:
+    %td.value {{ balances.btc.balance }}
+  {{/if}}
+  {{#if has_ltc}}
+  %tr
+    %td Total {{ gon.cryptocurrencies.ltc.short_name_upper }}:
+    %td.value {{ balances.ltc.balance }}
+  {{/if}}
+  {{#if has_doge}}
+  %tr
+    %td Total {{ gon.cryptocurrencies.doge.short_name_upper }}:
+    %td.value {{ balances.doge.balance }}
+  {{/if}}
+  %tr.total-value
+    %td Total value in {{ conversion.short_name }}:
+    %td.value {{ conversion.balance }}

@@ -3,7 +3,7 @@
 
 .header-bg
   %header
-    %nav.animated.fadeInUp
+    %nav.wow.fadeInDown{data: {'wow-delay' => '1s' }}
       %ul.menu
         %li.logo
           %h1
@@ -13,14 +13,22 @@
         %li.ios= link_to 'Download for iOS', '#', class: 'small clear white button'
         %li.twitter= link_to 'balancesapp', 'https://twitter.com/balancesapp', target: '_blank'
 
-    .animated.fadeInUp
+    .wow.fadeIn
       %h2 View all your digital currency balances in one place.
       %h4 Finally, a simple and secure way to view your bitcoin, litecoin, and dogecoin balances and their combined value.
-      = link_to 'Get started', '#', class: 'large brand button'
 
-    .screen.animated.fadeInUp
+    .screen.wow.fadeIn
+      =image_tag('landing/hero.gif')
 
-.unified-bg
+    .wow.fadeInUp{data: {'wow-delay' => '1s' }}
+      = link_to 'Get started', '#', class: 'blue button'
+      = link_to 'Try a demo', '#', class: 'clear white button'
+
+    .wow.fadeIn{data: {'wow-delay' => '1s' }}
+      = link_to '', '#unified-bg', class: 'read-more'
+
+
+#unified-bg
   %section.unified
     %article
       %h3 Read-only wallet monitoring
@@ -59,7 +67,7 @@
         We're committed to upholding the rigorous data security and privacy standards the community demands.
         =link_to 'Want to audit our source code?', 'mailto:balancesapp@gmail.com?subject=I want to audit Balances'
 
-.currencies-bg
+#currencies-bg
   %section.currencies
     %article
       =image_tag('landing/available-coins.svg')
@@ -67,5 +75,4 @@
 %section
   %article
     %h3 Stop manually checking up on your cryptocurrency portfolio.
-    = link_to 'Get started with Balances', '#', class: 'large brand button'
-    = link_to 'Download Balances', '#', class: 'large brand button'
+    = link_to 'Get started with Balances', '#', class: 'large blue button'

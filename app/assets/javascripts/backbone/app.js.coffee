@@ -7,16 +7,23 @@
   App.on 'initialize:before', (options) ->
     @currentUser = new App.Entities.CurrentUser options.currentUser,
       addresses: options.addresses
+    @fiatCurrency = gon.fiat_currencies[gon.default_fiat_currency]
 
   App.addRegions
-    mainRegion: '#main-region'
+    mainHeaderRegion: '#main-header-region'
+    mainContentRegion: '#main-content-region'
+
+  App.addInitializer ->
+    App.module('HeaderApp').start()
 
   App.on 'initialize:after', (options) ->
     if Backbone.history
       Backbone.history.start(pushState: true)
       @navigate(@rootRoute, trigger: true) if @getCurrentRoute() is ''
 
-  App.reqres.setHandler 'get:current:user', ->
-    App.currentUser
+  # Updates the Apps selected Fiat Currency and triggers an event to let views know.
+  App.commands.setHandler 'update:fiat:currency', (fiatCurrencyShortName) =>
+    App.fiatCurrency = gon.fiat_currencies[fiatCurrencyShortName]
+    App.vent.trigger 'updated:fiat:currency'
 
   App

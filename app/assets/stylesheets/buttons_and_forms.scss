@@ -6,17 +6,19 @@
   font-weight: 300;
   @include box-shadow(none);
   @include transition(all .2s);
+  @include border-radius(25px);
+  padding: 14px 50px;
   border: none;
+  margin: 0;
 
   &.small {
-    @include border-radius(15px);
-    padding: 0 20px;
-    font-size: 16px;
+    @include border-radius(20px);
+    padding: 1px 20px 0;
     line-height: 30px;
   }
 
   &.large {
-    @include border-radius(25px);
+    @include border-radius(40px);
     padding: 0 50px;
     font-size: 1.4em;
     line-height: 56px;
@@ -29,15 +31,22 @@
 
   &.clear {
     background: transparent;
-    border: 1px solid;
+    border: 1px solid $light-gray-2;
+    color: $medium-gray;
+
+    &:hover,
+    &:focus {
+      border-color: darken($light-gray-2, 20%);
+      color: $dark-gray;
+    }
 
     &.white {
-      border-color: rgba($white,.5);
+      border-color: rgba($white,.25);
       color: rgba($white,.8);
 
       &:hover,
       &:focus {
-        border-color: rgba($white,.8);
+        border-color: rgba($white,.5);
         color: rgba($white,1);
       }
     }
@@ -45,14 +54,43 @@
 
   &.brand {
     color: $white;
-    background: rgba($brand,.75);
+    background: rgba($brand-teal,.85);
+
+    &:hover,
+    &:focus {
+      background: rgba($brand-teal,1);
+    }
+  }
+
+  &.blue {
+    color: $white;
+    background: rgba($brand,.85);
 
     &:hover,
     &:focus {
       background: rgba($brand,1);
     }
   }
-}
+
+  &.purple {
+    color: $white;
+    background: rgba($brand-purple,.85);
+
+    &:hover,
+    &:focus {
+      background: rgba($brand-purple,1);
+    }
+  }
+
+  &.icon {
+    &.add {
+      background: image-url('button-add.svg') no-repeat;
+      background-position: 10px center;
+      background-size: 12px;
+      text-indent: 8px;
+    }
+  }
+} // .button
 
 label {
   display: inline-block;
@@ -84,8 +122,8 @@ input[type=tel] {
   font-size: 1.2em;
   border: 1px solid $light-gray-2;
   &:focus {
-    border:1px solid $brand;
-    box-shadow: 0 0 3px tint($brand, 80%);
+    border:1px solid $brand-teal;
+    box-shadow: 0 0 3px tint($brand-teal, 80%);
     background: $white;
   }
 }
@@ -97,13 +135,14 @@ input[type=submit] {
   padding: 10px 30px;
   font-size: 1.2em;
   font-weight: 600;
-  background: $brand;
+  background: $brand-teal;
+  outline: none;
   color: $white;
   @include transition(all .2s);
 
   &:hover,
   &:focus {
-    background: darken($brand, 5%);
+    background: darken($brand-teal, 5%);
   }
 }
 
@@ -129,8 +168,18 @@ input[type=submit].delete-button {
   h2 {
     display: none;
   }
-  ul li {
-    color: lighten(red, 20%);
+  ul {
+    list-style-type: none;
+    li {
+      color: rgba(red, .8);
+    }
+  }
+}
+
+.field_with_errors {
+  input {
+    border:1px solid rgba(red, .5);
+    box-shadow: 0 0 3px rgba(red, .5);
   }
 }
 
@@ -138,7 +187,7 @@ input[type=submit].delete-button {
 .f-dropdown {
   @include border-radius(6px);
   @include box-shadow(0 1px 4px 0 rgba(0,0,0,0.15));
-  min-width: 200px;
+  min-width: 220px;
   padding: 8px 6px;
   border: 1px solid #e0e0e0;
   font-size: 1em;
@@ -166,7 +215,7 @@ input[type=submit].delete-button {
 
       &:hover,
       &:focus {
-        background-color: $brand;
+        background-color: $brand-teal;
         color: $white;
       }
 

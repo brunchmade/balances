@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    self.username || self.email
+    self.username.present? ? self.username : self.email
   end
 
   # So Devise knows this field is optional

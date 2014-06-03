@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<html lang="en">
   <head>
   	<meta charset="utf-8" />
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,29 +12,41 @@
     <meta property="og:description" content="View all your digital currency balances in one place. Finally, a simple and secure way to view your bitcoin, litecoin, and dogecoin balances and their combined value." />
 
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="shortcut icon" href="<%= image_path 'favicon.ico' %>" />
     <link rel="apple-touch-icon" sizes="120x120" href="<%= image_path 'apple-touch-icon.png' %>">
     <link rel="apple-touch-icon" sizes="152x152" href="<%= image_path 'apple-touch-icon-ipad.png' %>">
     <link rel="shortcut icon" sizes="196x196" href="<%= image_path 'android-touch-icon.png' %>">
 
     <meta name="application-name" content="Balances"/>
-    <meta name="msapplication-TileColor" content="#20D1CF"/>
+    <meta name="msapplication-TileColor" content="#1CA9C9"/>
     <meta name="msapplication-square70x70logo" content="<%= image_path 'win8-tiny.png' %>"/>
     <meta name="msapplication-square150x150logo" content="<%= image_path 'win8-tile.png' %>"/>
+
+    <link rel="shortcut icon" href="<%= image_path 'favicon.png' %>" />
 
   	<title><%= content_for?(:title) ? yield(:title) + ' - Balances' : "Balances" %></title>
 
   	<%= stylesheet_link_tag "application", media: "all" %>
     <%= csrf_meta_tags %>
+
     <script type="text/javascript" src="//use.typekit.net/uux1oqi.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
 
   <body>
-    <%= render "shared/header" %>
-    <div id="main-region"><%= yield %></div>
+    <div id="main-header-region"></div>
+    <div id="main-content-region"><%= yield %></div>
     <%= render "shared/footer" %>
+
+    <%= include_gon %>
     <%= javascript_include_tag "application" %>
+    <script type='text/javascript'>
+      $(function() {
+        Balances.start({
+          currentUser: <%= @current_user_json.html_safe %>,
+          addresses: <%= @current_user_addresses_json.html_safe %>
+        });
+      });
+    </script>
     <%= yield :javascript %>
   </body>
 </html>

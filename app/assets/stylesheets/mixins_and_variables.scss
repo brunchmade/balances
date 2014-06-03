@@ -2,7 +2,9 @@
  * Variables
  */
 
-$brand: #20d1cf;
+$brand: #1CA9C9;
+$brand-teal: #4bcfcd;
+$brand-purple: #817DB8;
 $white: #ffffff;
 $black: #000000;
 $green: #7bd500;
@@ -27,26 +29,26 @@ $dark-gray: #4a4a4a;
 
 @mixin currency-symbols {
   // Digital
-  &.all { background-image: image-url('currencies/all-currencies@2x.png'); }
-  &.btc { background-image: image-url('currencies/bitcoin-small@2x.png'); }
-  &.ltc { background-image: image-url('currencies/litecoin-small@2x.png'); }
-  &.doge { background-image: image-url('currencies/dogecoin-small@2x.png'); }
+  &.all { background-image: image-url('currencies/all-currencies.svg'); }
+  &.btc { background-image: image-url('currencies/bitcoin-small.svg'); }
+  &.ltc { background-image: image-url('currencies/litecoin-small.svg'); }
+  &.doge { background-image: image-url('currencies/dogecoin-small.svg'); }
 
   // Fiat
-  &.usd { background-image: image-url('currencies/usd-small@2x.png'); }
-  &.eur { background-image: image-url('currencies/euro-small@2x.png'); }
-  &.gbp { background-image: image-url('currencies/gbp-small@2x.png'); }
-  &.jpy { background-image: image-url('currencies/yen-small@2x.png'); }
+  &.usd { background-image: image-url('currencies/usd-small.svg'); }
+  &.eur { background-image: image-url('currencies/euro-small.svg'); }
+  &.gbp { background-image: image-url('currencies/gbp-small.svg'); }
+  &.jpy { background-image: image-url('currencies/yen-small.svg'); }
 }
 
 @mixin background-gradient($from, $to) {
   background: $from; /* Old browsers */
-  background: -moz-linear-gradient(top, $from 0%, $to 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to));
-  background: -webkit-linear-gradient(top, $from 0%,$to 100%);
-  background: -o-linear-gradient(top, $from 0%,$to 100%);
-  background: -ms-linear-gradient(top, $from 0%,$to 100%);
-  background: linear-gradient(to bottom, $from 0%,$to 100%);
+  background: -moz-linear-gradient(left top, $from 0%, $to 100%);
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,$from), color-stop(100%,$to));
+  background: -webkit-linear-gradient(left top, $from 0%,$to 100%);
+  background: -o-linear-gradient(left top, $from 0%,$to 100%);
+  background: -ms-linear-gradient(left top, $from 0%,$to 100%);
+  background: linear-gradient(left top, $from 0%,$to 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$from', endColorstr='$to',GradientType=0 );
 }
 

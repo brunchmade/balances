@@ -3,13 +3,14 @@ object @address
 attributes :id,
            :user_id,
            :currency,
+           :display_name,
            :name,
            :public_address
 
-node(:shortname) { |address| address.get_currency.short_name }
+node(:short_name) { |address| address.get_currency.short_name }
 
 node(:currency_image_path) do |address|
-  image_path "currencies/#{address.currency.downcase}@2x.png"
+  image_path "currencies/#{address.currency.downcase}.svg"
 end
 
 node(:balance) do |address|
