@@ -5,6 +5,17 @@ attributes :id,
            :email,
            :username
 
+node(:has_currency) do |user|
+  currencies = {}
+
+  Address::CURRENCIES.each do |currency|
+    name = currency.currency_name.downcase
+    currencies[name] = user.addresses.send(name).any?
+  end
+
+  currencies
+end
+
 node(:balances) do |user|
   balances = {}
 

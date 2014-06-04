@@ -35,14 +35,17 @@
 
     defaultSortOrder: 'name'
     defaultConversion: 'all'
+    defaultCurrencyFilter: 'all'
 
     initialize: (models, options = {}) ->
       _.defaults options,
         sortOrder: @defaultSortOrder
         conversion: @defaultConversion
+        currencyFilter: @defaultCurrencyFilter
 
       @sortOrder = options.sortOrder
       @conversion = options.conversion
+      @currencyFilter = options.currencyFilter
 
     setSortOrder: (sortOrder) ->
       @sortOrder = sortOrder
@@ -51,3 +54,7 @@
     setConversion: (conversion) ->
       @conversion = conversion
       @trigger 'change:conversion'
+
+    setCurrencyFilter: (currencyFilter) ->
+      @currencyFilter = currencyFilter
+      @trigger 'change:currency:filter'

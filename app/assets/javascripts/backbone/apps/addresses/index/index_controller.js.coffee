@@ -11,21 +11,15 @@
           reset: true
           data:
             order: @addresses.sortOrder
+            filter: @addresses.currencyFilter
 
-      # Filtering address is done client side (until we implement pagination).
-      @listenTo @addresses, 'filter:currency', (currencyShortName) ->
-        @allAddresses or= @addresses.clone() # Save original collection for later.
-
-        if currencyShortName is 'all'
-          @addresses.set @allAddresses.models
-        else
-          @addresses.set @allAddresses.clone().filter (model) ->
-            model.get('short_name') is currencyShortName
-
-        # Trigger sort and conversion incase something other than the default
-        # was already selected.
-        # @addresses.trigger 'change:sort:order'
-        # @addresses.trigger 'change:conversion'
+      # Filtering address is done server side.
+      @listenTo @addresses, 'change:currency:filter', ->
+        @addresses.fetch
+          reset: true
+          data:
+            order: @addresses.sortOrder
+            filter: @addresses.currencyFilter
 
       # Show regions
       @listenTo @layout, 'show', ->

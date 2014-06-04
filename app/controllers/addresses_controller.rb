@@ -6,24 +6,32 @@ class AddressesController < ApplicationController
   respond_to :html, only: [:index, :show]
 
   def index
-    addresses = current_user.addresses
-    sorted_addresses = case params[:order]
-    when 'name'
-      addresses.order("NULLIF(name, '') ASC")
-    when 'coins'
-      addresses.order("balance DESC")
-    when 'balance'
-      addresses.order("balance_btc DESC")
-    when 'currency'
-      addresses.order("currency ASC, NULLIF(name, '') ASC")
-    else
-      addresses.order("NULLIF(name, '') ASC")
-    end
+    @addresses = current_user.addresses
+
+    @addresses =
+      if params[:filter].present? && params[:filter] != 'all'
+          @addresses.send(params[:filter])
+      else
+        @addresses
+      end
+
+    @addresses =
+      case params[:order]
+      when 'name'
+        @addresses.order("NULLIF(name, '') ASC")
+      when 'coins'
+        @addresses.order("balance DESC")
+      when 'balance'
+        @addresses.order("balance_btc DESC")
+      when 'currency'
+        @addresses.order("currency ASC, NULLIF(name, '') ASC")
+      else
+        @addresses.order("NULLIF(name, '') ASC")
+      end
 
     respond_to do |format|
       format.html
       format.json {
-        @addresses = sorted_addresses
         respond_with @addresses
       }
     end

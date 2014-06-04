@@ -73,15 +73,14 @@
         fiat_currency: App.fiatCurrency
         balance: @model.get('totals')[App.fiatCurrency.short_name]
         balance_fiat_currency: "balance_#{App.fiatCurrency.short_name}"
-        has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
-        has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
-        has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
+
+    onShow: ->
+      @$("a[data-filter=#{@collection.currencyFilter}]").parent().addClass 'current'
 
     _clickFilter: (event) ->
       event.preventDefault()
       $target = $(event.currentTarget)
-
-      @collection.trigger 'filter:currency', $target.data('filter')
+      @collection.setCurrencyFilter $target.data('filter')
       @$('.current').removeClass 'current'
       $target.parent().addClass 'current'
 
