@@ -59,6 +59,12 @@
     tagName: 'ul'
     id: 'currency-filters'
 
+    ui:
+      'filter': 'a'
+
+    events:
+      'click @ui.filter': '_clickFilter'
+
     initialize: ->
       @listenTo App.vent, 'updated:fiat:currency', @reRender
 
@@ -70,6 +76,14 @@
         has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
         has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
         has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
+
+    _clickFilter: (event) ->
+      event.preventDefault()
+      $target = $(event.currentTarget)
+
+      @collection.trigger 'filter:currency', $target.data('filter')
+      @$('.current').removeClass 'current'
+      $target.parent().addClass 'current'
 
 
   ##############################################################################
