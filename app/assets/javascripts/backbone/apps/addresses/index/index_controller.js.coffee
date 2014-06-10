@@ -13,7 +13,7 @@
             order: @addresses.sortOrder
             filter: @addresses.currencyFilter
 
-      # Filtering address is done server side.
+      # Filtering addresses is done server side.
       @listenTo @addresses, 'change:currency:filter', ->
         @addresses.fetch
           reset: true
