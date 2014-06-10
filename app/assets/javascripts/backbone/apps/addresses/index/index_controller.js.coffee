@@ -5,12 +5,23 @@
       @addresses = App.currentUser.addresses
       @layout = new Index.Layout
 
+      # Sorting addresses is done server side.
       @listenTo @addresses, 'change:sort:order', ->
         @addresses.fetch
           reset: true
           data:
             order: @addresses.sortOrder
+            filter: @addresses.currencyFilter
 
+      # Filtering addresses is done server side.
+      @listenTo @addresses, 'change:currency:filter', ->
+        @addresses.fetch
+          reset: true
+          data:
+            order: @addresses.sortOrder
+            filter: @addresses.currencyFilter
+
+      # Show regions
       @listenTo @layout, 'show', ->
         @showHeader()
         @showSidebar()
