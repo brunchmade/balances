@@ -98,15 +98,26 @@
     tagName: 'tr'
 
     ui:
+      'addressWrapper': '.address-wrapper'
+      'editWrapper': '.edit-wrapper'
       'displayName': '.display-name'
       'publicAdress': '.public-address'
+      'inputName': '.edit-wrapper input'
       'btnShowAddress': '.btn-show-address'
       'btnEdit': '.btn-edit'
+      'btnSave': '.btn-save'
+      'btnCancel': '.btn-cancel'
       'btnDelete': '.btn-delete'
 
+    modelEvents:
+      'change:name': 'reRender'
+
     events:
+      'keydown @ui.inputName': '_keydownInput'
       'click @ui.btnShowAddress': '_clickShowAddress'
       'click @ui.btnEdit': '_clickEdit'
+      'click @ui.btnSave': '_clickSave'
+      'click @ui.btnCancel': '_clickCancel'
       'click @ui.btnDelete': '_clickDelete'
 
     serializeData: ->
@@ -136,6 +147,15 @@
 
       conversion
 
+    _keydownInput:
+      _.debounce (event) ->
+        if isEnterKey(event)
+          @_save()
+        else if isEscapeKey(event)
+          @_toggleEditForm()
+          @_reset()
+      , 50
+
     _clickShowAddress: (event) ->
       event.preventDefault()
       @ui.displayName.toggle()
@@ -151,6 +171,16 @@
 
     _clickEdit: (event) ->
       event.preventDefault()
+      @_toggleEditForm()
+
+    _clickSave: (event) ->
+      event.preventDefault()
+      @_save()
+
+    _clickCancel: (event) ->
+      event.preventDefault()
+      @_toggleEditForm()
+      @_reset()
 
     _clickDelete: (event) ->
       event.preventDefault()
@@ -158,8 +188,31 @@
         @model.destroy
           wait: true
           error: (model, response, options) ->
-            alert "Sorry, something went wrong. Please try again."
+            alert 'Sorry, something went wrong. Please try again.'
 
+    _save: ->
+      name = _.str.trim @ui.inputName.val()
+
+      if name isnt @model.get('name')
+        @model.save name: name,
+          wait: true
+          error: (model, response, options) ->
+            alert 'Sorry, something went wrong. Please try again.'
+      else
+        @_toggleEditForm()
+
+    _toggleEditForm: ->
+      @ui.addressWrapper.toggle()
+
+      if @ui.addressWrapper.is(':visible')
+        @ui.inputName.blur()
+        @ui.editWrapper.toggle()
+      else
+        @ui.editWrapper.toggle()
+        @ui.inputName.focus()
+
+    _reset: ->
+      @ui.inputName.val @model.get('name')
 
   class Index.List extends App.Views.CompositeView
     template: 'addresses/index/list'

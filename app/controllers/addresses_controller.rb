@@ -18,15 +18,15 @@ class AddressesController < ApplicationController
     @addresses =
       case params[:order]
       when 'name'
-        @addresses.order("NULLIF(name, '') ASC")
+        @addresses.order("NULLIF(LOWER(name), '') ASC")
       when 'coins'
         @addresses.order("balance DESC")
       when 'balance'
         @addresses.order("balance_btc DESC")
       when 'currency'
-        @addresses.order("currency ASC, NULLIF(name, '') ASC")
+        @addresses.order("currency ASC, NULLIF(LOWER(name), '') ASC")
       else
-        @addresses.order("NULLIF(name, '') ASC")
+        @addresses.order("NULLIF(LOWER(name), '') ASC")
       end
 
     respond_to do |format|
@@ -43,6 +43,14 @@ class AddressesController < ApplicationController
 
   def create
     @address = AddressService.create(address_params)
+    respond_with @address
+  end
+
+  def update
+    if @address = current_user.addresses.where(id: params[:id]).first
+      @address.update_attributes params.require(:address).permit(:name)
+    end
+
     respond_with @address
   end
 

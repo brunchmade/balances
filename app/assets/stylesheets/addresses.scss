@@ -415,9 +415,11 @@
         font-size: .6em;
       }
 
-      .public-address {
+      .public-address,
+      .edit-wrapper {
         display: none;
       }
+
     }
 
     &.value {
