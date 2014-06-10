@@ -46,6 +46,14 @@ class AddressesController < ApplicationController
     respond_with @address
   end
 
+  def destroy
+    if @address = current_user.addresses.where(id: params[:id]).first
+      @address.destroy
+    end
+
+    respond_with @address
+  end
+
   def detect_currency
     respond_to do |format|
       format.html { redirect_to addresses_path }

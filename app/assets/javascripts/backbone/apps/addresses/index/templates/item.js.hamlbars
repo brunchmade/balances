@@ -1,6 +1,17 @@
 %td.currency-type
   %img{src: '{{ currency_image_path }}', width: 40, alt: '{{ currency }}'}
-%td.name {{ display_name }}
+%td.name
+  %span.display-name {{ display_name }}
+  %span.public-address {{ public_address }}
+  %ul
+    {{#if has_name}}
+    %li
+      %a.btn-show-address{href: '#'} Show address
+    {{/if}}
+    %li
+      %a.btn-edit{href: '#'} {{#if has_name}}Edit{{else}}Add{{/if}} name
+    %li
+      %a.btn-delete{href: '#'} Delete
 %td.value
   %span.balance {{ conversion.balance }}
   %span.shortname {{ conversion.short_name }}

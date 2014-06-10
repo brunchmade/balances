@@ -24,10 +24,10 @@
     id: 'address-header'
 
     ui:
-      newAddressBtn: '.add-new a'
+      'btnNewAddress': '.add-new a'
 
     events:
-      'click @ui.newAddressBtn': '_clickNewAddress'
+      'click @ui.btnNewAddress': '_clickNewAddress'
 
     initialize: ->
       @listenTo App.vent, 'updated:fiat:currency', @reRender
@@ -97,8 +97,21 @@
     template: 'addresses/index/item'
     tagName: 'tr'
 
+    ui:
+      'displayName': '.display-name'
+      'publicAdress': '.public-address'
+      'btnShowAddress': '.btn-show-address'
+      'btnEdit': '.btn-edit'
+      'btnDelete': '.btn-delete'
+
+    events:
+      'click @ui.btnShowAddress': '_clickShowAddress'
+      'click @ui.btnEdit': '_clickEdit'
+      'click @ui.btnDelete': '_clickDelete'
+
     serializeData: ->
       _.extend super,
+        has_name: @model.get('name').length
         conversion: @_getConversion()
 
     _getConversion: ->
@@ -122,6 +135,31 @@
           @model.get('short_name')
 
       conversion
+
+    _clickShowAddress: (event) ->
+      event.preventDefault()
+      @ui.displayName.toggle()
+      @ui.publicAdress.toggle()
+
+      btnText =
+        if @ui.publicAdress.is(':visible')
+          'Hide address'
+        else
+          'Show address'
+
+      @ui.btnShowAddress.text btnText
+
+    _clickEdit: (event) ->
+      event.preventDefault()
+
+    _clickDelete: (event) ->
+      event.preventDefault()
+      if confirm 'Are you sure you want to remove this address?'
+        @model.destroy
+          wait: true
+          error: (model, response, options) ->
+            alert "Sorry, something went wrong. Please try again."
+
 
   class Index.List extends App.Views.CompositeView
     template: 'addresses/index/list'
@@ -227,16 +265,16 @@
     tagName: 'article'
 
     ui:
-      balance: '.address-balance'
-      currencyType: '.currency-type'
-      inputAddress: '.address-public-address'
-      inputName: '.address-name'
-      hiddenAddress: '.hidden-public-address'
-      hiddenAddressFirstbits: '.hidden-public-firstbits'
-      btnQrScan: '.scan-qr'
-      btnImportCSV: '.import-csv'
-      btnSave: '.btn-save'
-      btnCancel: '.btn-cancel'
+      'balance': '.address-balance'
+      'currencyType': '.currency-type'
+      'inputAddress': '.address-public-address'
+      'inputName': '.address-name'
+      'hiddenAddress': '.hidden-public-address'
+      'hiddenAddressFirstbits': '.hidden-public-firstbits'
+      'btnQrScan': '.scan-qr'
+      'btnImportCSV': '.import-csv'
+      'btnSave': '.btn-save'
+      'btnCancel': '.btn-cancel'
 
     modelEvents:
       'change:currency_image_path': '_changeCurrencyImage'
