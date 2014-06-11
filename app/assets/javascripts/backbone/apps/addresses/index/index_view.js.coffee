@@ -122,7 +122,8 @@
 
     serializeData: ->
       _.extend super,
-        has_name: @model.get('name').length
+        # If has a name and isn't an integration
+        show_toggle: @model.get('name').length && not @model.get('integration')?.length
         conversion: @_getConversion()
 
     _getConversion: ->
@@ -193,13 +194,17 @@
     _save: ->
       name = _.str.trim @ui.inputName.val()
 
-      if name isnt @model.get('name')
+      if @model.get('integration')?.length && not name.length
+        alert 'Integrations must have a name.'
+        return
+      else if name is @model.get('name')
+        @_toggleEditForm()
+        return
+      else
         @model.save name: name,
           wait: true
           error: (model, response, options) ->
             alert 'Sorry, something went wrong. Please try again.'
-      else
-        @_toggleEditForm()
 
     _toggleEditForm: ->
       @ui.addressWrapper.toggle()

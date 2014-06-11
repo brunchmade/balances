@@ -5,12 +5,12 @@
     %span.display-name {{ display_name }}
     %span.public-address {{ public_address }}
     %ul
-      {{#if has_name}}
+      {{#if show_toggle}}
       %li
         %a.btn-show-address{href: '#', title: 'Toggle showing name and public address'} Show address
       {{/if}}
       %li
-        %a.btn-edit{href: '#', title: 'Edit address name'} {{#if has_name}}Edit{{else}}Add{{/if}} name
+        %a.btn-edit{href: '#', title: 'Edit address name'} {{#if name}}Edit{{else}}Add{{/if}} name
       %li
         %a.btn-delete{href: '#', title: 'Remove address'} Delete
   .edit-wrapper

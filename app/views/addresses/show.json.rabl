@@ -4,6 +4,7 @@ attributes :id,
            :user_id,
            :currency,
            :display_name,
+           :integration,
            :name,
            :public_address
 
