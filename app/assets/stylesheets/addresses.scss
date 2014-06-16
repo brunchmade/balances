@@ -425,6 +425,17 @@
     &.value {
       text-align: right;
     }
+
+    &.empty-state {
+      text-align: center;
+      padding: 100px 0;
+
+      img.partytime {
+        font-size: 80px;
+        text-align: center;
+      }
+    }
+
   }
 }
 

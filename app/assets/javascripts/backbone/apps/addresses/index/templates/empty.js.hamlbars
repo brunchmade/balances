@@ -1,1 +1,13 @@
-%td You have not added any addresses yet.
+%td.empty-state
+  = image_tag 'partytime.png', width: 80, alt: '🎉'
+  %h2 Welcome to Balances!
+  %p
+    Let's get started by adding an address. We currently support
+    %br
+    %b Bitcoin, Litecoin,
+    and
+    %b Dogecoin
+    &mdash; with more on the way.
+
+  .add-new
+    %a.small.clear.button.icon.add{href: '#', title: 'Add a new Bitcoin, Litecoin, or Dogecoin address'} New Address

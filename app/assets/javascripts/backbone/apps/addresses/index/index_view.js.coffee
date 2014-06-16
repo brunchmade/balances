@@ -108,6 +108,7 @@
       'btnSave': '.btn-save'
       'btnCancel': '.btn-cancel'
       'btnDelete': '.btn-delete'
+      'btnNewAddress': '.add-new a'
 
     modelEvents:
       'change:name': 'reRender'
@@ -119,6 +120,7 @@
       'click @ui.btnSave': '_clickSave'
       'click @ui.btnCancel': '_clickCancel'
       'click @ui.btnDelete': '_clickDelete'
+      'click @ui.btnNewAddress': '_clickNewAddress'
 
     serializeData: ->
       _.extend super,
@@ -251,6 +253,7 @@
         has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
         has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
         has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
+        user_is_activated: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies
 
     onShow: ->
       @_updateSort()
@@ -311,6 +314,10 @@
       $target.addClass 'current'
       @ui.conversionPrelabel.toggle @collection.conversion isnt 'all'
       @ui.conversionLabel.text $target.text()
+
+    _clickNewAddress: (event) ->
+      event.preventDefault()
+      App.vent.trigger 'toggle:addresses:form'
 
 
   ##############################################################################
