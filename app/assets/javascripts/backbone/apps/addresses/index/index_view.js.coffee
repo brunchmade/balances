@@ -14,6 +14,16 @@
       formRegion: '#address-form-region'
       listRegion: '#address-list-region'
 
+    ui:
+      'btnNewAddress': '.add-new a'
+
+    events:
+      'click @ui.btnNewAddress': '_clickNewAddress'
+
+    _clickNewAddress: (event) ->
+      event.preventDefault()
+      App.vent.trigger 'toggle:addresses:form'
+
 
   ##############################################################################
   # Header
@@ -23,12 +33,6 @@
     template: 'addresses/index/header'
     id: 'address-header'
 
-    ui:
-      'btnNewAddress': '.add-new a'
-
-    events:
-      'click @ui.btnNewAddress': '_clickNewAddress'
-
     initialize: ->
       @listenTo App.vent, 'updated:fiat:currency', @reRender
 
@@ -36,10 +40,6 @@
       _.extend super,
         fiat_currency: App.fiatCurrency
         to_fiat_currency: "to_#{App.fiatCurrency.short_name}"
-
-    _clickNewAddress: (event) ->
-      event.preventDefault()
-      App.vent.trigger 'toggle:addresses:form'
 
 
   ##############################################################################
@@ -248,10 +248,10 @@
         selected_currency: @collection.conversion
         fiat_currency: App.fiatCurrency
         conversion: @_getConversion()
+        has_addresses: @collection.length
         has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
         has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
         has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
-        user_is_activated: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies
 
     onShow: ->
       @_updateSort()

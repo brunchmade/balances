@@ -47,7 +47,7 @@
     %td Total {{ gon.cryptocurrencies.doge.short_name_upper }}:
     %td.value {{ balances.doge.balance }}
   {{/if}}
-  {{#if user_is_activated}}
+  {{#if has_addresses}}
   %tr.total-value
     %td Total value in {{ conversion.short_name }}:
     %td.value {{ conversion.balance }}
