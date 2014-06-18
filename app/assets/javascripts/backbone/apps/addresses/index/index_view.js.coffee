@@ -104,6 +104,7 @@
     ui:
       'displayName': '.display-name'
       'inputName': 'input'
+      'inputNotes': 'textarea'
       'btnSave': '.btn-save'
       'btnCancel': '.btn-cancel'
       'btnDelete': '.btn-delete'
@@ -113,6 +114,7 @@
 
     events:
       'keydown @ui.inputName': '_keydownInput'
+      'keydown @ui.inputNotes': '_keydownInput'
       'click @ui.displayName': '_clickDisplayName'
       'click @ui.btnSave': '_clickSave'
       'click @ui.btnCancel': '_clickCancel'
@@ -179,15 +181,19 @@
 
     _save: ->
       name = _.str.trim @ui.inputName.val()
+      notes = _.str.trim @ui.inputNotes.val()
 
       if @model.get('integration')?.length && not name.length
         alert 'Integrations must have a name.'
         return
-      else if name is @model.get('name')
+      else if name is @model.get('name') and notes is @model.get('notes')
         @_reset()
         return
       else
-        @model.save name: name,
+        @model.save
+          name: name
+          notes: notes
+        ,
           wait: true
           success: (model, response, options) =>
             @_reset()

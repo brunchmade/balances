@@ -16,7 +16,7 @@
   .public-address-added
     %span Added
     %span {{ formatted_created_at }}
-  %textarea{name: 'notes', placeholder: 'Notes'}
+  %textarea{name: 'notes', placeholder: 'Notes'} {{ notes }}
   .actions-wrapper
     %a.btn-delete{href: '#', title: 'Remove address'} Delete
     %a.btn-cancel.button.clear.small{href: '#', title: 'Cancel'} Cancel

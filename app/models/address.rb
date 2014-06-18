@@ -68,6 +68,7 @@ class Address < ActiveRecord::Base
   def clean_attributes
     self.public_address.strip! if self.public_address.present?
     self.name.strip! if self.name.present?
+    self.notes.strip! if self.notes.present?
   end
 
 end

@@ -7,6 +7,7 @@ attributes :id,
            :display_name,
            :integration,
            :name,
+           :notes,
            :public_address
 
 node(:short_name) { |address| address.get_currency.short_name }

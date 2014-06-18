@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526224739) do
+ActiveRecord::Schema.define(version: 20140618213807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140526224739) do
     t.decimal  "balance_btc",     precision: 18, scale: 8, default: 0.0
     t.text     "integration"
     t.text     "integration_uid"
+    t.text     "notes"
   end
 
   add_index "addresses", ["integration_uid", "integration"], name: "index_addresses_on_integration_uid_and_integration", using: :btree
