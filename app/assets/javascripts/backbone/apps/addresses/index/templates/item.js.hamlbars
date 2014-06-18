@@ -1,22 +1,7 @@
 %td.currency-type
   %img{src: '{{ currency_image_path }}', width: 40, alt: '{{ currency }}'}
 %td.name
-  .address-wrapper
-    %span.display-name {{ display_name }}
-    %span.public-address {{ public_address }}
-    %ul
-      {{#if show_toggle}}
-      %li
-        %a.btn-show-address{href: '#', title: 'Toggle showing name and public address'} Show address
-      {{/if}}
-      %li
-        %a.btn-edit{href: '#', title: 'Edit address name'} {{#if name}}Edit{{else}}Add{{/if}} name
-      %li
-        %a.btn-delete{href: '#', title: 'Remove address'} Delete
-  .edit-wrapper
-    %input{name: 'name', type: 'text', placeholder: 'Give it a nickname...', value: '{{ name }}'}
-    %a.btn-save.button.brand.clear.small{href: '#', title: 'Save Address'} Save
-    %a.btn-cancel{href: '#', title: 'Cancel'} &times;
+  %a.display-name{href: '#', title: 'Edit address'} {{ display_name }}
 %td.value
   %span.balance {{ conversion.balance }}
   %span.shortname {{ conversion.short_name }}

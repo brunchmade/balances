@@ -1,6 +1,7 @@
 object @address
 
 attributes :id,
+           :created_at,
            :user_id,
            :currency,
            :display_name,

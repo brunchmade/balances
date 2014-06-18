@@ -94,37 +94,38 @@
     tagName: 'tr'
 
   class Index.Item extends App.Views.ItemView
-    template: 'addresses/index/item'
+    getTemplate: ->
+      if @model.get('edit_mode')
+        'addresses/index/item_edit'
+      else
+        'addresses/index/item'
     tagName: 'tr'
 
     ui:
-      'addressWrapper': '.address-wrapper'
-      'editWrapper': '.edit-wrapper'
       'displayName': '.display-name'
-      'publicAdress': '.public-address'
-      'inputName': '.edit-wrapper input'
-      'btnShowAddress': '.btn-show-address'
-      'btnEdit': '.btn-edit'
+      'inputName': 'input'
       'btnSave': '.btn-save'
       'btnCancel': '.btn-cancel'
       'btnDelete': '.btn-delete'
 
     modelEvents:
-      'change:name': 'reRender'
+      'change:edit_mode': 'reRender'
 
     events:
       'keydown @ui.inputName': '_keydownInput'
-      'click @ui.btnShowAddress': '_clickShowAddress'
-      'click @ui.btnEdit': '_clickEdit'
+      'click @ui.displayName': '_clickDisplayName'
       'click @ui.btnSave': '_clickSave'
       'click @ui.btnCancel': '_clickCancel'
       'click @ui.btnDelete': '_clickDelete'
 
     serializeData: ->
       _.extend super,
-        # If has a name and isn't an integration
-        show_toggle: @model.get('name').length && not @model.get('integration')?.length
         conversion: @_getConversion()
+        formatted_created_at: moment(@model.get('created_at')).format('MMMM Do, YYYY')
+
+    onShow: ->
+      @$el.toggleClass 'is-editing', @model.get('edit_mode')
+      @ui.inputName.focus() if @model.get('edit_mode')
 
     _getConversion: ->
       conversion = {}
@@ -153,26 +154,12 @@
         if isEnterKey(event)
           @_save()
         else if isEscapeKey(event)
-          @_toggleEditForm()
           @_reset()
       , 50
 
-    _clickShowAddress: (event) ->
+    _clickDisplayName: (event) ->
       event.preventDefault()
-      @ui.displayName.toggle()
-      @ui.publicAdress.toggle()
-
-      btnText =
-        if @ui.publicAdress.is(':visible')
-          'Hide address'
-        else
-          'Show address'
-
-      @ui.btnShowAddress.text btnText
-
-    _clickEdit: (event) ->
-      event.preventDefault()
-      @_toggleEditForm()
+      @model.set edit_mode: true
 
     _clickSave: (event) ->
       event.preventDefault()
@@ -180,7 +167,6 @@
 
     _clickCancel: (event) ->
       event.preventDefault()
-      @_toggleEditForm()
       @_reset()
 
     _clickDelete: (event) ->
@@ -198,26 +184,18 @@
         alert 'Integrations must have a name.'
         return
       else if name is @model.get('name')
-        @_toggleEditForm()
+        @_reset()
         return
       else
         @model.save name: name,
           wait: true
+          success: (model, response, options) =>
+            @_reset()
           error: (model, response, options) ->
             alert 'Sorry, something went wrong. Please try again.'
 
-    _toggleEditForm: ->
-      @ui.addressWrapper.toggle()
-
-      if @ui.addressWrapper.is(':visible')
-        @ui.inputName.blur()
-        @ui.editWrapper.toggle()
-      else
-        @ui.editWrapper.toggle()
-        @ui.inputName.focus()
-
     _reset: ->
-      @ui.inputName.val @model.get('name')
+      @model.set edit_mode: false
 
   class Index.List extends App.Views.CompositeView
     template: 'addresses/index/list'

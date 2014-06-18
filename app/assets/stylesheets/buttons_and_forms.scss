@@ -126,7 +126,8 @@ i.labels {
 input[type=text],
 input[type=password],
 input[type=email],
-input[type=tel] {
+input[type=tel],
+textarea {
   @include border-radius(4px);
   @include box-shadow(none);
   padding: 6px 8px 4px;

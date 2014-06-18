@@ -5,6 +5,9 @@
   ##############################################################################
 
   class Entities.Address extends Entities.Model
+    initialize: (attributes, options = {}) ->
+      @set edit_mode: false
+
     displayName: ->
       @get('name') or @get('public_address')
 

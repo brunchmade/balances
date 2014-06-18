@@ -384,6 +384,10 @@
 
   tr {
     background: none;
+
+    &.is-editing td {
+      vertical-align: top;
+    }
   }
 
   td {
@@ -414,15 +418,10 @@
         display: inline;
         font-size: .6em;
       }
-
-      .public-address,
-      .edit-wrapper {
-        display: none;
-      }
-
     }
 
     &.value {
+      width: 1px;
       text-align: right;
     }
 
@@ -436,6 +435,15 @@
       }
     }
 
+    .display-name {
+      color: $dark-gray;
+      text-decoration: none;
+    }
+
+    input,
+    textarea {
+      font-size: 1em;
+    }
   }
 }
 
