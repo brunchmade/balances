@@ -398,9 +398,11 @@
     _clickSave: (event) ->
       event.preventDefault()
       balance = @ui.balance.text()
+      name = _.str.trim @ui.inputName.val()
       @model.set
         balance: balance.slice(0, _.indexOf(balance, ' ')).replace(/,/g, '')
-        name: _.str.trim(@ui.inputName.val())
+        name: name
+        display_name: name or @model.get('public_address')
 
       @collection.create @model.attributes,
         success: (model, response, options) =>
