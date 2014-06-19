@@ -405,6 +405,7 @@
         display_name: name or @model.get('public_address')
 
       @collection.create @model.attributes,
+        wait: true
         success: (model, response, options) =>
           @_reset()
         error: (model, response, options) ->
