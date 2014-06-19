@@ -5,8 +5,9 @@ class Address < ActiveRecord::Base
   validates_presence_of :currency,
                         :user_id
   with_options unless: Proc.new { |a| a.integration.present? } do |address|
-    address.validates :public_address, presence: true, uniqueness: { scope: :currency }
+    address.validates :public_address, presence: true
     address.validate :valid_address
+    address.validate :unique_address
   end
 
   belongs_to :user
@@ -62,6 +63,12 @@ class Address < ActiveRecord::Base
   def valid_address
     unless get_currency.valid?(public_address)
       errors.add(:public_address, 'is invalid')
+    end
+  end
+
+  def unique_address
+    if user.addresses.exists?(public_address: self.public_address)
+      errors.add(:public_address, 'already added')
     end
   end
 
