@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
             :username_requirements
 
   has_many :addresses, dependent: :destroy
+  has_many :user_read_announcements, dependent: :destroy
   has_many :tokens, dependent: :destroy
 
   # Used for allowing username or email address for registration with Devise

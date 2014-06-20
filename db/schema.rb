@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618213807) do
+ActiveRecord::Schema.define(version: 20140620234325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,12 @@ ActiveRecord::Schema.define(version: 20140618213807) do
   add_index "addresses", ["integration_uid", "integration"], name: "index_addresses_on_integration_uid_and_integration", using: :btree
   add_index "addresses", ["public_address", "currency"], name: "index_addresses_on_public_address_and_currency", using: :btree
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
+
+  create_table "announcements", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "currency_conversions", force: true do |t|
     t.text     "name"
@@ -62,6 +68,16 @@ ActiveRecord::Schema.define(version: 20140618213807) do
   add_index "tokens", ["provider_uid", "provider"], name: "index_tokens_on_provider_uid_and_provider", unique: true, using: :btree
   add_index "tokens", ["token", "provider"], name: "index_tokens_on_token_and_provider", unique: true, using: :btree
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id", using: :btree
+
+  create_table "user_read_announcements", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "announcement_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_read_announcements", ["announcement_id"], name: "index_user_read_announcements_on_announcement_id", using: :btree
+  add_index "user_read_announcements", ["user_id"], name: "index_user_read_announcements_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
