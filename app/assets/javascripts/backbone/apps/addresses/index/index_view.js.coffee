@@ -318,6 +318,7 @@
       'btnImportCSV': '.import-csv'
       'btnSave': '.btn-save'
       'btnCancel': '.btn-cancel'
+      'errors': '#address-errors'
 
     modelEvents:
       'change:currency_image_path': '_changeCurrencyImage'
@@ -439,8 +440,11 @@
         @_addError()
 
     _save: ->
+      @ui.errors.hide().empty()
+
       balance = @ui.balance.text()
       name = _.str.trim @ui.inputName.val()
+
       @model.set
         balance: balance.slice(0, _.indexOf(balance, ' ')).replace(/,/g, '')
         name: name
@@ -450,9 +454,11 @@
         wait: true
         success: (model, response, options) =>
           @_reset()
-        error: (model, response, options) ->
+        error: (model, response, options) =>
+          @ui.errors.show()
           _.each JSON.parse(response.responseText).errors, (msg, key) =>
-            mark "#{_.str.titleize(_.str.humanize(key))} #{msg}"
+            $error = $('<li/>').text "#{_.str.titleize(_.str.humanize(key))} #{msg}"
+            @ui.errors.append $error
 
     _addError: ->
       @ui.inputAddress.addClass 'is-invalid'
@@ -463,6 +469,7 @@
     _reset: (clearAddress = true) ->
       @model.clear()
       @_clearErrors()
+      @ui.errors.hide().empty()
       @ui.btnQrScan.show()
       @ui.btnImportCSV.show()
       @ui.btnSave.hide()
