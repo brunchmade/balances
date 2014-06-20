@@ -324,9 +324,10 @@
       'change:is_valid': '_changeIsValid'
 
     events:
-      'keydown @ui.inputAddress': '_keydownInput'
-      'paste @ui.inputAddress': '_pasteInput'
-      'cut @ui.inputAddress': '_cutInput'
+      'keydown @ui.inputAddress': '_keydownInputAddress'
+      'keydown @ui.inputName': '_keydownInputName'
+      'paste @ui.inputAddress': '_pasteInputAddress'
+      'cut @ui.inputAddress': '_cutInputAddress'
       'click @ui.btnSave': '_clickSave'
       'click @ui.btnCancel': '_clickCancel'
 
@@ -334,7 +335,7 @@
       @listenTo App.vent, 'toggle:addresses:form', @_toggle
       @listenTo App.vent, 'scan:qr', @_scanQr
 
-    _keydownInput:
+    _keydownInputAddress:
       _.debounce (event) ->
         return if isPasteKey(event) or
                   isSelectAllKey(event) or
@@ -355,7 +356,15 @@
               @_addError()
       , 800
 
-    _pasteInput: (event) ->
+    _keydownInputName:
+      _.debounce (event) ->
+        if isEnterKey(event)
+          @_save()
+        else if isEscapeKey(event)
+          @_reset(false)
+      , 50
+
+    _pasteInputAddress: (event) ->
       # Timeout so that the paste event completes and the input has data.
       $.doTimeout 50, =>
         public_address = @ui.inputAddress.val()
@@ -371,7 +380,7 @@
           error: =>
             @_addError()
 
-    _cutInput: (event) ->
+    _cutInputAddress: (event) ->
       # Timeout so that the cut event completes and the input has data.
       $.doTimeout 50, =>
         if @ui.inputAddress.val().length is 0
@@ -397,20 +406,7 @@
 
     _clickSave: (event) ->
       event.preventDefault()
-      balance = @ui.balance.text()
-      name = _.str.trim @ui.inputName.val()
-      @model.set
-        balance: balance.slice(0, _.indexOf(balance, ' ')).replace(/,/g, '')
-        name: name
-        display_name: name or @model.get('public_address')
-
-      @collection.create @model.attributes,
-        wait: true
-        success: (model, response, options) =>
-          @_reset()
-        error: (model, response, options) ->
-          _.each JSON.parse(response.responseText).errors, (msg, key) =>
-            mark "#{_.str.titleize(_.str.humanize(key))} #{msg}"
+      @_save()
 
     _clickCancel: (event) ->
       event.preventDefault()
@@ -441,6 +437,22 @@
       else
         @model.clear()
         @_addError()
+
+    _save: ->
+      balance = @ui.balance.text()
+      name = _.str.trim @ui.inputName.val()
+      @model.set
+        balance: balance.slice(0, _.indexOf(balance, ' ')).replace(/,/g, '')
+        name: name
+        display_name: name or @model.get('public_address')
+
+      @collection.create @model.attributes,
+        wait: true
+        success: (model, response, options) =>
+          @_reset()
+        error: (model, response, options) ->
+          _.each JSON.parse(response.responseText).errors, (msg, key) =>
+            mark "#{_.str.titleize(_.str.humanize(key))} #{msg}"
 
     _addError: ->
       @ui.inputAddress.addClass 'is-invalid'
