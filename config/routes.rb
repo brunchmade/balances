@@ -24,6 +24,11 @@ Balances::Application.routes.draw do
     get :settings, to: 'devise/registrations#edit'
   end
 
+  get :admin, to: 'admin#index'
+  namespace :admin do
+    resources :announcements
+  end
+
   namespace :api do
     namespace :rest do
       namespace :v1 do

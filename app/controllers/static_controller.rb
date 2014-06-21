@@ -17,7 +17,4 @@ class StaticController < ApplicationController
     render :teaser, layout: false
   end
 
-  def terms_privacy
-  end
-
 end
