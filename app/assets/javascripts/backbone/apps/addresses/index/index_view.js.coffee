@@ -114,7 +114,6 @@
 
     events:
       'keydown @ui.inputName': '_keydownInput'
-      'keydown @ui.inputNotes': '_keydownInput'
       'click @ui.displayName': '_clickDisplayName'
       'click @ui.btnSave': '_clickSave'
       'click @ui.btnCancel': '_clickCancel'
