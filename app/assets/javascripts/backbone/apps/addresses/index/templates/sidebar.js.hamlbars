@@ -2,10 +2,7 @@
 
 #announcement
   %a.close-announcement &#215;
-  %a{href: 'http://apple.com', title: 'Download Balances from the App Store', data: {show: 'dogecoin'}}
-    = image_tag 'ios.svg', width: 74
-    %h4 Take your balances with you
-    %p Balances is now available for iOS with unlimited address sync, push notifications, QR scanning, PIN security, and more.
+  %p TODO: Make this read from the announcements table
 
 %ul#secondary-nav
   %li

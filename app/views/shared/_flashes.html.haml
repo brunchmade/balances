@@ -1,0 +1,7 @@
+#flashes
+  - flash.each do |key, value|
+    - if value.is_a?(Hash)
+      - value.each do |k, v|
+        %div{id: "flash_#{k}"} #{k} #{v[0]}
+    - else
+      %div{id: "flash_#{key}"} #{value}
