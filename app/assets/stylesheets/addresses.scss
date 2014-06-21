@@ -326,9 +326,9 @@
 
   .btn-save {
     margin-bottom: 0;
-    font-size: 13px;
-    border: 0;
-    padding: 0 25px;
+    font-size: 1.2em;
+    border: none;
+    padding: 4px 25px;
     background: rgba($brand-teal,.85);
     font-weight: 300;
 
@@ -421,6 +421,78 @@
       li {
         display: inline;
         font-size: .6em;
+      }
+
+      .address-meta {
+        font-size: .75em;
+        span {
+          font-weight: 400;
+        }
+
+        .label {
+          background: transparent;
+          color: #C1C1C1;
+          padding: 0;
+          margin: 0 10px 0 0;
+          font-weight: 300;
+          font-size: 1em;
+          min-width: 55px;
+          text-align: left;
+        }
+
+        .timestamps {
+          margin: 10px 0 20px;
+
+          .public-address-created, .public-address-added {
+            display: inline-block;
+            margin-right: 30px;
+          }
+        }
+
+        textarea {
+          height: 70px;
+          margin-bottom: 30px;
+        }
+
+        .btn-delete {
+          line-height: 35px;
+          color: rgba(#D0021B,.5);
+          font-size: 1em;
+          text-decoration: none;
+
+          &:hover, &:active {
+            color: #D0021B;
+            text-decoration: underline;
+          }
+        }
+
+        .btn-cancel {
+          margin-bottom: 0;
+          font-size: 1.1em;
+          padding: 1px 25px;
+          float: right;
+          margin-right: 14px;
+        }
+
+        .btn-save {
+          margin-bottom: 0;
+          font-size: 1.1em;
+          border: none;
+          padding: 2px 25px;
+          background: rgba($brand-teal,.85);
+          font-weight: 300;
+          float: right;
+
+          &:hover, &:active {
+            background: rgba($brand-teal,1);
+            color: $white;
+          }
+        }
+
+        .actions-wrapper {
+          margin-bottom: 10px;
+        }
+
       }
     }
 
