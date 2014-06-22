@@ -1,6 +1,7 @@
 object @address
 
-attributes :currency,
+attributes :first_tx_at,
+           :currency,
            :is_valid
 
 node(:short_name) do |address|

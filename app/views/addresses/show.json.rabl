@@ -1,8 +1,9 @@
 object @address
 
 attributes :id,
-           :created_at,
            :user_id,
+           :created_at,
+           :first_tx_at,
            :currency,
            :display_name,
            :integration,

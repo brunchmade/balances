@@ -123,6 +123,7 @@
       _.extend super,
         conversion: @_getConversion()
         formatted_created_at: moment(@model.get('created_at')).format('MMMM Do, YYYY')
+        formatted_first_tx_at: if @model.get('first_tx_at') then moment(@model.get('first_tx_at')).format('MMMM Do, YYYY') else 'N/A'
 
     onShow: ->
       @$el.toggleClass 'is-editing', @model.get('edit_mode')

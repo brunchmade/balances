@@ -55,6 +55,7 @@ class Address < ActiveRecord::Base
     info = get_currency.info(public_address)
     self.balance = info[:balance]
     self.is_valid = info[:is_valid]
+    self.first_tx_at = info[:first_tx_at]
     info
   end
 

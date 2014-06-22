@@ -14,7 +14,7 @@
     .timestamps
       .public-address-created
         %span.label Created
-        %span Some time ago
+        %span {{ formatted_first_tx_at }}
       .public-address-added
         %span.label Added
         %span {{ formatted_created_at }}

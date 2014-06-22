@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140618213807) do
+ActiveRecord::Schema.define(version: 20140621202024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140618213807) do
     t.text     "integration"
     t.text     "integration_uid"
     t.text     "notes"
+    t.datetime "first_tx_at"
   end
 
   add_index "addresses", ["integration_uid", "integration"], name: "index_addresses_on_integration_uid_and_integration", using: :btree

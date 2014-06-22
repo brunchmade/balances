@@ -98,6 +98,7 @@ class AddressesController < ApplicationController
     params.require(:address).permit(
       :balance,
       :currency,
+      :first_tx_at,
       :name,
       :public_address,
     ).merge(user_id: current_user.id)
