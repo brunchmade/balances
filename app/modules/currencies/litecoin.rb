@@ -9,7 +9,7 @@ module Currencies
     def self.info(address)
       response = self.get_response("#{API}/address/info/#{address}")
       info = response[:data]
-      info[:first_tx_at] = info[:first_tx][:time_utc]
+      info[:first_tx_at] = info[:first_tx] ? info[:first_tx][:time_utc] : nil
       info
     end
 
