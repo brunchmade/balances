@@ -13,8 +13,10 @@ class CoinbaseController < ApplicationController
         })
         refreshed_access_token = access_token.refresh!
         expires_at = get_expires_at(refreshed_access_token)
+        coinbase_accounts = JSON.parse(refreshed_access_token.get('/api/v1/accounts').body)
         coinbase_user = JSON.parse(refreshed_access_token.get('/api/v1/users').body)
         coinbase_user = coinbase_user['users'][0]['user']
+        coinbase_user['first_account_created_at'] = coinbase_accounts['accounts'][0]['created_at']
 
         update_or_create_coinbase_address coinbase_user
 
@@ -40,8 +42,10 @@ class CoinbaseController < ApplicationController
     if params[:code].present?
       access_token = @client.auth_code.get_token(params[:code], redirect_uri: ENV['COINBASE_CALLBACK_URL'])
       expires_at = get_expires_at(access_token)
+      coinbase_accounts = JSON.parse(access_token.get('/api/v1/accounts').body)
       coinbase_user = JSON.parse(access_token.get('/api/v1/users').body)
       coinbase_user = coinbase_user['users'][0]['user']
+      coinbase_user['first_account_created_at'] = coinbase_accounts['accounts'][0]['created_at']
 
       update_or_create_coinbase_address coinbase_user
 
@@ -96,6 +100,7 @@ class CoinbaseController < ApplicationController
       AddressService.create(
         balance: coinbase_user['balance']['amount'],
         currency: Currencies::Bitcoin.currency_name,
+        first_tx_at: coinbase_user['first_account_created_at'],
         integration: Integrations::Coinbase.integration_name,
         integration_uid: coinbase_user['id'],
         name: Integrations::Coinbase.integration_name,
