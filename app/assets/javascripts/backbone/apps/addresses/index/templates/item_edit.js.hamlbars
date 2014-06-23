@@ -5,12 +5,12 @@
   .address-meta
     .public-address
       %span.label Address
-      %span
-        {{#if integration}}
-        {{ integration }}
-        {{else}}
-        {{ public_address }}
-        {{/if}}
+      {{#if integration}}
+      %span{class: 'integration small {{ integration_class }}'}
+      %span {{ integration }}
+      {{else}}
+      %span {{ public_address }}
+      {{/if}}
     .timestamps
       .public-address-created
         %span.label Created

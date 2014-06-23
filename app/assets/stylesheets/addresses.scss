@@ -423,6 +423,40 @@
         font-size: .6em;
       }
 
+      .integration {
+        @include border-radius(26px);
+        width: 26px;
+        height: 26px;
+        display: inline-block;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 26px 26px;
+        border: 1px solid $light-gray-2;
+        vertical-align: middle;
+
+        &.coinbase {
+          background-image: image-url('currencies/coinbase.png');
+
+          @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            background-image: image-url('currencies/coinbase@2x.png');
+          }
+        }
+
+        &.small {
+          width: 16px;
+          height: 16px;
+          background-size: 16px 16px;
+
+          &.coinbase {
+            background-image: image-url('currencies/coinbase-small.png');
+
+            @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+              background-image: image-url('currencies/coinbase-small@2x.png');
+            }
+          }
+        }
+      }
+
       .address-meta {
         font-size: .75em;
         span {
@@ -440,10 +474,17 @@
           text-align: left;
         }
 
+        .public-address {
+          span {
+            vertical-align: middle;
+          }
+        }
+
         .timestamps {
           margin: 10px 0 20px;
 
-          .public-address-created, .public-address-added {
+          .public-address-created,
+          .public-address-added {
             display: inline-block;
             margin-right: 30px;
           }
@@ -514,6 +555,7 @@
     .display-name {
       color: $dark-gray;
       text-decoration: none;
+      vertical-align: middle;
     }
 
     input,
