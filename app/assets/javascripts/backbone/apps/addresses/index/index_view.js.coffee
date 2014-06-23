@@ -128,7 +128,7 @@
 
     onShow: ->
       @$el.toggleClass 'is-editing', @model.get('edit_mode')
-      @ui.inputName.focus() if @model.get('edit_mode')
+      # TODO @ui.inputName.focus() if @model.get('edit_mode')
 
     _getConversion: ->
       conversion = {}
