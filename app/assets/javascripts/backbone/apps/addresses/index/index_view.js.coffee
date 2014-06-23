@@ -14,6 +14,16 @@
       formRegion: '#address-form-region'
       listRegion: '#address-list-region'
 
+    ui:
+      'btnNewAddress': '.add-new a'
+
+    events:
+      'click @ui.btnNewAddress': '_clickNewAddress'
+
+    _clickNewAddress: (event) ->
+      event.preventDefault()
+      App.vent.trigger 'toggle:addresses:form'
+
 
   ##############################################################################
   # Header
@@ -23,12 +33,6 @@
     template: 'addresses/index/header'
     id: 'address-header'
 
-    ui:
-      newAddressBtn: '.add-new a'
-
-    events:
-      'click @ui.newAddressBtn': '_clickNewAddress'
-
     initialize: ->
       @listenTo App.vent, 'updated:fiat:currency', @reRender
 
@@ -36,10 +40,6 @@
       _.extend super,
         fiat_currency: App.fiatCurrency
         to_fiat_currency: "to_#{App.fiatCurrency.short_name}"
-
-    _clickNewAddress: (event) ->
-      event.preventDefault()
-      App.vent.trigger 'toggle:addresses:form'
 
 
   ##############################################################################
@@ -94,12 +94,41 @@
     tagName: 'tr'
 
   class Index.Item extends App.Views.ItemView
-    template: 'addresses/index/item'
+    getTemplate: ->
+      if @model.get('edit_mode')
+        'addresses/index/item_edit'
+      else
+        'addresses/index/item'
     tagName: 'tr'
+
+    ui:
+      'displayName': '.display-name'
+      'inputName': 'input'
+      'inputNotes': 'textarea'
+      'btnSave': '.btn-save'
+      'btnCancel': '.btn-cancel'
+      'btnDelete': '.btn-delete'
+
+    modelEvents:
+      'change:edit_mode': 'reRender'
+
+    events:
+      'keydown @ui.inputName': '_keydownInput'
+      'click @ui.displayName': '_clickDisplayName'
+      'click @ui.btnSave': '_clickSave'
+      'click @ui.btnCancel': '_clickCancel'
+      'click @ui.btnDelete': '_clickDelete'
 
     serializeData: ->
       _.extend super,
         conversion: @_getConversion()
+        integration_class: @model.get('integration')?.toLowerCase()
+        formatted_created_at: moment(@model.get('created_at')).format('MMMM Do, YYYY')
+        formatted_first_tx_at: if @model.get('first_tx_at') then moment(@model.get('first_tx_at')).format('MMMM Do, YYYY') else 'N/A'
+
+    onShow: ->
+      @$el.toggleClass 'is-editing', @model.get('edit_mode')
+      @ui.inputName.focus() if @model.get('edit_mode')
 
     _getConversion: ->
       conversion = {}
@@ -122,6 +151,58 @@
           @model.get('short_name')
 
       conversion
+
+    _keydownInput:
+      _.debounce (event) ->
+        if isEnterKey(event)
+          @_save()
+        else if isEscapeKey(event)
+          @_reset()
+      , 50
+
+    _clickDisplayName: (event) ->
+      event.preventDefault()
+      @model.set edit_mode: true
+
+    _clickSave: (event) ->
+      event.preventDefault()
+      @_save()
+
+    _clickCancel: (event) ->
+      event.preventDefault()
+      @_reset()
+
+    _clickDelete: (event) ->
+      event.preventDefault()
+      if confirm 'Are you sure you want to remove this address?'
+        @model.destroy
+          wait: true
+          error: (model, response, options) ->
+            alert 'Sorry, something went wrong. Please try again.'
+
+    _save: ->
+      name = _.str.trim @ui.inputName.val()
+      notes = _.str.trim @ui.inputNotes.val()
+
+      if @model.get('integration')?.length && not name.length
+        alert 'Integrations must have a name.'
+        return
+      else if name is @model.get('name') and notes is @model.get('notes')
+        @_reset()
+        return
+      else
+        @model.save
+          name: name
+          notes: notes
+        ,
+          wait: true
+          success: (model, response, options) =>
+            @_reset()
+          error: (model, response, options) ->
+            alert 'Sorry, something went wrong. Please try again.'
+
+    _reset: ->
+      @model.set edit_mode: false
 
   class Index.List extends App.Views.CompositeView
     template: 'addresses/index/list'
@@ -152,6 +233,7 @@
         selected_currency: @collection.conversion
         fiat_currency: App.fiatCurrency
         conversion: @_getConversion()
+        has_addresses: @collection.length
         has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
         has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
         has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
@@ -227,25 +309,27 @@
     tagName: 'article'
 
     ui:
-      balance: '.address-balance'
-      currencyType: '.currency-type'
-      inputAddress: '.address-public-address'
-      inputName: '.address-name'
-      hiddenAddress: '.hidden-public-address'
-      hiddenAddressFirstbits: '.hidden-public-firstbits'
-      btnQrScan: '.scan-qr'
-      btnImportCSV: '.import-csv'
-      btnSave: '.btn-save'
-      btnCancel: '.btn-cancel'
+      'balance': '.address-balance'
+      'currencyType': '.currency-type'
+      'inputAddress': '.address-public-address'
+      'inputName': '.address-name'
+      'hiddenAddress': '.hidden-public-address'
+      'hiddenAddressFirstbits': '.hidden-public-firstbits'
+      'btnQrScan': '.scan-qr'
+      'btnImportCSV': '.import-csv'
+      'btnSave': '.btn-save'
+      'btnCancel': '.btn-cancel'
+      'errors': '#address-errors'
 
     modelEvents:
       'change:currency_image_path': '_changeCurrencyImage'
       'change:is_valid': '_changeIsValid'
 
     events:
-      'keydown @ui.inputAddress': '_keydownInput'
-      'paste @ui.inputAddress': '_pasteInput'
-      'cut @ui.inputAddress': '_cutInput'
+      'keydown @ui.inputAddress': '_keydownInputAddress'
+      'keydown @ui.inputName': '_keydownInputName'
+      'paste @ui.inputAddress': '_pasteInputAddress'
+      'cut @ui.inputAddress': '_cutInputAddress'
       'click @ui.btnSave': '_clickSave'
       'click @ui.btnCancel': '_clickCancel'
 
@@ -253,7 +337,7 @@
       @listenTo App.vent, 'toggle:addresses:form', @_toggle
       @listenTo App.vent, 'scan:qr', @_scanQr
 
-    _keydownInput:
+    _keydownInputAddress:
       _.debounce (event) ->
         return if isPasteKey(event) or
                   isSelectAllKey(event) or
@@ -274,7 +358,15 @@
               @_addError()
       , 800
 
-    _pasteInput: (event) ->
+    _keydownInputName:
+      _.debounce (event) ->
+        if isEnterKey(event)
+          @_save()
+        else if isEscapeKey(event)
+          @_reset(false)
+      , 50
+
+    _pasteInputAddress: (event) ->
       # Timeout so that the paste event completes and the input has data.
       $.doTimeout 50, =>
         public_address = @ui.inputAddress.val()
@@ -290,7 +382,7 @@
           error: =>
             @_addError()
 
-    _cutInput: (event) ->
+    _cutInputAddress: (event) ->
       # Timeout so that the cut event completes and the input has data.
       $.doTimeout 50, =>
         if @ui.inputAddress.val().length is 0
@@ -316,17 +408,7 @@
 
     _clickSave: (event) ->
       event.preventDefault()
-      balance = @ui.balance.text()
-      @model.set
-        balance: balance.slice(0, _.indexOf(balance, ' ')).replace(/,/g, '')
-        name: _.str.trim(@ui.inputName.val())
-
-      @collection.create @model.attributes,
-        success: (model, response, options) =>
-          @_reset()
-        error: (model, response, options) ->
-          _.each JSON.parse(response.responseText).errors, (msg, key) =>
-            mark "#{_.str.titleize(_.str.humanize(key))} #{msg}"
+      @_save()
 
     _clickCancel: (event) ->
       event.preventDefault()
@@ -358,6 +440,27 @@
         @model.clear()
         @_addError()
 
+    _save: ->
+      @ui.errors.hide().empty()
+
+      balance = @ui.balance.text()
+      name = _.str.trim @ui.inputName.val()
+
+      @model.set
+        balance: balance.slice(0, _.indexOf(balance, ' ')).replace(/,/g, '')
+        name: name
+        display_name: name or @model.get('public_address')
+
+      @collection.create @model.attributes,
+        wait: true
+        success: (model, response, options) =>
+          @_reset()
+        error: (model, response, options) =>
+          @ui.errors.show()
+          _.each JSON.parse(response.responseText).errors, (msg, key) =>
+            $error = $('<li/>').text "#{_.str.titleize(_.str.humanize(key))} #{msg}"
+            @ui.errors.append $error
+
     _addError: ->
       @ui.inputAddress.addClass 'is-invalid'
 
@@ -367,6 +470,7 @@
     _reset: (clearAddress = true) ->
       @model.clear()
       @_clearErrors()
+      @ui.errors.hide().empty()
       @ui.btnQrScan.show()
       @ui.btnImportCSV.show()
       @ui.btnSave.hide()

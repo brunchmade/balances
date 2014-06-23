@@ -1,0 +1,28 @@
+%td.currency-type
+  %img{src: '{{ currency_image_path }}', width: 40, alt: '{{ currency }}'}
+%td.name
+  %input{name: 'name', type: 'text', placeholder: 'Give it a nickname...', value: '{{ name }}'}
+  .address-meta
+    .public-address
+      %span.label Address
+      {{#if integration}}
+      %span{class: 'integration small {{ integration_class }}'}
+      %span {{ integration }}
+      {{else}}
+      %span {{ public_address }}
+      {{/if}}
+    .timestamps
+      .public-address-created
+        %span.label Created
+        %span {{ formatted_first_tx_at }}
+      .public-address-added
+        %span.label Added
+        %span {{ formatted_created_at }}
+    %textarea{name: 'notes', placeholder: 'Notes'} {{ notes }}
+    .actions-wrapper
+      %a.btn-delete{href: '#', title: 'Remove address'} Delete Address
+      %a.btn-save.button.brand.clear.small{href: '#', title: 'Save Address'} Save
+      %a.btn-cancel.button.clear.small{href: '#', title: 'Cancel'} Cancel
+%td.value
+  %span.balance {{ conversion.balance }}
+  %span.shortname {{ conversion.short_name }}

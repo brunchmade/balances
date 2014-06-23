@@ -1,5 +1,5 @@
 #address-filters
-  %a.sort-by{href: '#', title: 'Chance your addresses sort order', data: {dropdown: 'd-filters'}}
+  %a.sort-by{href: '#', title: 'Change your addresses sort order', data: {dropdown: 'd-filters'}}
     Sort by
     %span.dn-arr Name
 
@@ -47,6 +47,8 @@
     %td Total {{ gon.cryptocurrencies.doge.short_name_upper }}:
     %td.value {{ balances.doge.balance }}
   {{/if}}
+  {{#if has_addresses}}
   %tr.total-value
     %td Total value in {{ conversion.short_name }}:
     %td.value {{ conversion.balance }}
+  {{/if}}

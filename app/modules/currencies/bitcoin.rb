@@ -8,7 +8,9 @@ module Currencies
 
     def self.info(address)
       response = self.get_response("#{API}/address/info/#{address}")
-      response[:data]
+      info = response[:data]
+      info[:first_tx_at] = info[:first_tx][:time_utc]
+      info
     end
 
     def self.balance(address)

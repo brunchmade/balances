@@ -4,9 +4,10 @@ class Address < ActiveRecord::Base
 
   validates_presence_of :currency,
                         :user_id
-  with_options unless: Proc.new { |a| a.integration.present? } do |address|
-    address.validates :public_address, presence: true, uniqueness: { scope: :currency }
+  with_options if: Proc.new { |a| a.integration.blank? && a.new_record? } do |address|
+    address.validates :public_address, presence: true
     address.validate :valid_address
+    address.validate :unique_address
   end
 
   belongs_to :user
@@ -54,6 +55,7 @@ class Address < ActiveRecord::Base
     info = get_currency.info(public_address)
     self.balance = info[:balance]
     self.is_valid = info[:is_valid]
+    self.first_tx_at = info[:first_tx_at]
     info
   end
 
@@ -65,9 +67,16 @@ class Address < ActiveRecord::Base
     end
   end
 
+  def unique_address
+    if user.addresses.exists?(public_address: self.public_address)
+      errors.add(:public_address, 'already added')
+    end
+  end
+
   def clean_attributes
     self.public_address.strip! if self.public_address.present?
     self.name.strip! if self.name.present?
+    self.notes.strip! if self.notes.present?
   end
 
 end

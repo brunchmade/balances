@@ -1,6 +1,10 @@
 %td.currency-type
   %img{src: '{{ currency_image_path }}', width: 40, alt: '{{ currency }}'}
-%td.name {{ display_name }}
+%td.name
+  {{#if integration}}
+  %span{class: 'integration {{ integration_class }}'}
+  {{/if}}
+  %a.display-name{href: '#', title: 'Edit address'} {{ display_name }}
 %td.value
   %span.balance {{ conversion.balance }}
   %span.shortname {{ conversion.short_name }}

@@ -2,9 +2,13 @@ object @address
 
 attributes :id,
            :user_id,
+           :created_at,
+           :first_tx_at,
            :currency,
            :display_name,
+           :integration,
            :name,
+           :notes,
            :public_address
 
 node(:short_name) { |address| address.get_currency.short_name }

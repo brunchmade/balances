@@ -326,9 +326,9 @@
 
   .btn-save {
     margin-bottom: 0;
-    font-size: 13px;
-    border: 0;
-    padding: 0 25px;
+    font-size: 1.2em;
+    border: none;
+    padding: 4px 25px;
     background: rgba($brand-teal,.85);
     font-weight: 300;
 
@@ -364,6 +364,14 @@
   }
 }
 
+#address-errors {
+  display: none;
+  list-style-type: none;
+  li {
+    color: rgba(red, .8);
+  }
+}
+
 
 /* -------------------
 /* list
@@ -384,6 +392,10 @@
 
   tr {
     background: none;
+
+    &.is-editing td {
+      vertical-align: top;
+    }
   }
 
   td {
@@ -404,10 +416,155 @@
     }
 
     &.name {
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      li {
+        display: inline;
+        font-size: .6em;
+      }
+
+      .integration {
+        @include border-radius(26px);
+        width: 26px;
+        height: 26px;
+        display: inline-block;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 26px 26px;
+        border: 1px solid $light-gray-2;
+        vertical-align: middle;
+
+        &.coinbase {
+          background-image: image-url('currencies/coinbase.png');
+
+          @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            background-image: image-url('currencies/coinbase@2x.png');
+          }
+        }
+
+        &.small {
+          width: 16px;
+          height: 16px;
+          background-size: 16px 16px;
+
+          &.coinbase {
+            background-image: image-url('currencies/coinbase-small.png');
+
+            @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+              background-image: image-url('currencies/coinbase-small@2x.png');
+            }
+          }
+        }
+      }
+
+      .address-meta {
+        font-size: .75em;
+        span {
+          font-weight: 400;
+        }
+
+        .label {
+          background: transparent;
+          color: #C1C1C1;
+          padding: 0;
+          margin: 0 10px 0 0;
+          font-weight: 300;
+          font-size: 1em;
+          min-width: 55px;
+          text-align: left;
+        }
+
+        .public-address {
+          span {
+            vertical-align: middle;
+          }
+        }
+
+        .timestamps {
+          margin: 10px 0 20px;
+
+          .public-address-created,
+          .public-address-added {
+            display: inline-block;
+            margin-right: 30px;
+          }
+        }
+
+        textarea {
+          height: 70px;
+          margin-bottom: 30px;
+        }
+
+        .btn-delete {
+          line-height: 35px;
+          color: rgba(#D0021B,.5);
+          font-size: 1em;
+          text-decoration: none;
+
+          &:hover, &:active {
+            color: #D0021B;
+            text-decoration: underline;
+          }
+        }
+
+        .btn-cancel {
+          margin-bottom: 0;
+          font-size: 1.1em;
+          padding: 1px 25px;
+          float: right;
+          margin-right: 14px;
+        }
+
+        .btn-save {
+          margin-bottom: 0;
+          font-size: 1.1em;
+          border: none;
+          padding: 2px 25px;
+          background: rgba($brand-teal,.85);
+          font-weight: 300;
+          float: right;
+
+          &:hover, &:active {
+            background: rgba($brand-teal,1);
+            color: $white;
+          }
+        }
+
+        .actions-wrapper {
+          margin-bottom: 10px;
+        }
+
+      }
     }
 
     &.value {
+      width: 1px;
       text-align: right;
+    }
+
+    &.empty-state {
+      text-align: center;
+      padding: 100px 0;
+
+      img.partytime {
+        font-size: 80px;
+        text-align: center;
+      }
+    }
+
+    .display-name {
+      color: $dark-gray;
+      text-decoration: none;
+      vertical-align: middle;
+    }
+
+    input,
+    textarea {
+      font-size: 1em;
     }
   }
 }
