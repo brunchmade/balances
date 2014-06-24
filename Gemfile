@@ -32,6 +32,7 @@ group :production do
   gem 'rails_12factor'
   gem 'memcachier'
   gem 'dalli'
+  gem 'rack-cache'
 end
 
 group :staging, :development do
