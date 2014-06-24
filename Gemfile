@@ -30,6 +30,8 @@ gem 'newrelic_rpm'
 
 group :production do
   gem 'rails_12factor'
+  gem 'memcachier'
+  gem 'dalli'
 end
 
 group :staging, :development do
