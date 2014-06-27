@@ -1,4 +1,5 @@
 object @address
+cache @address
 
 attributes :id,
            :user_id,
