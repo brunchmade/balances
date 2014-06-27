@@ -10,6 +10,7 @@ var gUM=false;
 var webkit=false;
 var moz=false;
 var v=null;
+var isCameraOn = false
 
 var camhtml='<object id="iembedflash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="640" height="480"> '+
 '<param name="movie" value="assets/camcanvas.swf" />'+
@@ -154,16 +155,11 @@ function read(a)
   sound.play();
 
   $(".overlay").css("border-color","#7ED321");
+
   var address= htmlEntities(a);
   document.getElementById("address-field").value=address;
-  document.getElementById("v").pause();
-  window.currentStream.stop();
-  window.currentStream = null;
-  qrcode.callback = null;
+
   $('#m-scan-qr').foundation('reveal', 'close');
-  document.getElementById("outdiv").innerHTML = window.camEnabler;
-  $("#result").css( "display", "none");
-  $(".helptext").css( "display", "none");
 
   $("#address-field").addClass('highlight');
   setTimeout(function(){
@@ -209,17 +205,20 @@ function success(stream) {
 
 function setwebcam()
 {
+  isCameraOn = true
   load();
   window.camEnabler = document.getElementById("outdiv").innerHTML;
   stype = 0;
 
   $("#result").css( "display", "inline-block");
   $(".helptext").css( "display", "block");
+
   if(stype==1)
   {
     setTimeout(captureToCanvas, 2500);
     return;
   }
+
   var n=navigator;
   if(n.getUserMedia)
   {
@@ -227,26 +226,37 @@ function setwebcam()
     v=document.getElementById("v");
     n.getUserMedia({video: true, audio: false}, success, error);
   }
+  else if(n.webkitGetUserMedia)
+  {
+    document.getElementById("outdiv").innerHTML = vidhtml;
+    v=document.getElementById("v");
+    webkit=true;
+    n.webkitGetUserMedia({video: true, audio: false}, success, error);
+  }
+  else if(n.mozGetUserMedia)
+  {
+    document.getElementById("outdiv").innerHTML = vidhtml;
+    v=document.getElementById("v");
+    moz=true;
+    n.mozGetUserMedia({video: true, audio: false}, success, error);
+  }
   else
-    if(n.webkitGetUserMedia)
-    {
-      document.getElementById("outdiv").innerHTML = vidhtml;
-      v=document.getElementById("v");
-      webkit=true;
-      n.webkitGetUserMedia({video: true, audio: false}, success, error);
-    }
-    else
-      if(n.mozGetUserMedia)
-      {
-        document.getElementById("outdiv").innerHTML = vidhtml;
-        v=document.getElementById("v");
-        moz=true;
-        n.mozGetUserMedia({video: true, audio: false}, success, error);
+    document.getElementById("outdiv").innerHTML = camhtml;
 
-      }
-      else
-        document.getElementById("outdiv").innerHTML = camhtml;
+  stype=1;
+  setTimeout(captureToCanvas, 500);
+}
 
-      stype=1;
-      setTimeout(captureToCanvas, 500);
-    }
+function resetWebcam() {
+  if (isCameraOn) {
+    document.getElementById("v").pause();
+    window.currentStream.stop();
+    window.currentStream = null;
+    qrcode.callback = null;
+    isCameraOn = false
+
+    document.getElementById("outdiv").innerHTML = window.camEnabler;
+    $("#result").css( "display", "none");
+    $(".helptext").css( "display", "none");
+  }
+}

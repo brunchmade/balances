@@ -336,6 +336,9 @@
       @listenTo App.vent, 'toggle:addresses:form', @_toggle
       @listenTo App.vent, 'scan:qr', @_scanQr
 
+    onShow: ->
+      @$('#m-scan-qr').on 'close', -> resetWebcam()
+
     _keydownInputAddress:
       _.debounce (event) ->
         return if isPasteKey(event) or
