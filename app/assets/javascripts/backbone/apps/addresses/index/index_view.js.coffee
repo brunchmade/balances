@@ -109,9 +109,6 @@
       'btnCancel': '.btn-cancel'
       'btnDelete': '.btn-delete'
 
-    modelEvents:
-      'change:edit_mode': 'reRender'
-
     events:
       'keydown @ui.inputName': '_keydownInput'
       'keydown @ui.inputNotes': '_keydownInput'
@@ -119,6 +116,9 @@
       'click @ui.btnSave': '_clickSave'
       'click @ui.btnCancel': '_clickCancel'
       'click @ui.btnDelete': '_clickDelete'
+
+    modelEvents:
+      'change:edit_mode': 'reRender'
 
     serializeData: ->
       _.extend super,
@@ -217,12 +217,12 @@
       'conversionPrelabel': '.currency-type .conversion-prelabel'
       'conversionLabel': '.currency-type .conversion-label'
 
-    collectionEvents:
-      'change:conversion': 'reRender'
-
     events:
       'click #d-filters a': '_clickSort'
       'click #d-balances a': '_clickConversion'
+
+    collectionEvents:
+      'change:conversion': 'reRender'
 
     initialize: ->
       @listenTo App.vent, 'updated:fiat:currency', @_updateFiatCurrency
@@ -320,10 +320,6 @@
       'btnCancel': '.btn-cancel'
       'errors': '#address-errors'
 
-    modelEvents:
-      'change:currency_image_path': '_changeCurrencyImage'
-      'change:is_valid': '_changeIsValid'
-
     events:
       'keydown @ui.inputAddress': '_keydownInputAddress'
       'keydown @ui.inputName': '_keydownInputName'
@@ -331,6 +327,10 @@
       'cut @ui.inputAddress': '_cutInputAddress'
       'click @ui.btnSave': '_clickSave'
       'click @ui.btnCancel': '_clickCancel'
+
+    modelEvents:
+      'change:currency_image_path': '_changeCurrencyImage'
+      'change:is_valid': '_changeIsValid'
 
     initialize: ->
       @listenTo App.vent, 'toggle:addresses:form', @_toggle
