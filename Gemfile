@@ -21,7 +21,6 @@ gem 'oauth2'
 gem 'pg'
 gem 'rabl'
 gem 'simple_form'
-# gem 'sitemap_generator'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 gem 'sass-rails', '~> 4.0.0'
@@ -29,6 +28,9 @@ gem 'zurb-foundation'
 gem 'newrelic_rpm'
 
 group :production do
+  gem 'dalli'
+  gem 'memcachier'
+  gem 'rack-cache'
   gem 'rails_12factor'
 end
 

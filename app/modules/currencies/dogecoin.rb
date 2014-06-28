@@ -10,6 +10,7 @@ module Currencies
       info = {}.with_indifferent_access
       info[:balance] = balance(address)
       info[:is_valid] = valid?(address)
+      info[:first_tx_at] = nil
       info
     end
 

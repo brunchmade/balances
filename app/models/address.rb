@@ -4,7 +4,7 @@ class Address < ActiveRecord::Base
 
   validates_presence_of :currency,
                         :user_id
-  with_options unless: Proc.new { |a| a.integration.present? } do |address|
+  with_options if: Proc.new { |a| a.integration.blank? && a.new_record? } do |address|
     address.validates :public_address, presence: true
     # TODO: Make these checks only happen if the record is new
     address.validate :valid_address
@@ -56,6 +56,7 @@ class Address < ActiveRecord::Base
     info = get_currency.info(public_address)
     self.balance = info[:balance]
     self.is_valid = info[:is_valid]
+    self.first_tx_at = info[:first_tx_at]
     info
   end
 

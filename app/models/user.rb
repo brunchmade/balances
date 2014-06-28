@@ -63,10 +63,6 @@ class User < ActiveRecord::Base
 
   def username_requirements
     if self.username.present? && self.username.length > 0
-      if self.username.length < 3
-        errors.add(:username, 'is too short (minimum is 3 characters)')
-      end
-
       if (new_record? && User.where("lower(username) = ?", self.username.downcase).any?) ||
          (!new_record? && User.where("lower(username) = ? AND id != ?", self.username.downcase, self.id).any?)
 
