@@ -1,0 +1,34 @@
+- content_for :title do
+  Announcements - Admin Portal
+
+%section
+  %article
+    %h1 Announcements - Admin Portal
+
+    = render 'shared/flashes'
+
+    %a.button.small.brand{href: new_admin_announcement_path} Create
+    %br
+    %br
+
+    %table
+      %thead
+        %tr
+          %th Created At
+          %th Content
+          %th Actions
+      %tbody
+        - if Announcement.any?
+          - Announcement.order('created_at DESC').each do |announcement|
+            %tr
+              %td= announcement.created_at
+              %td= announcement.content
+              %td
+                %a{href: edit_admin_announcement_path(announcement)} Edit
+                |
+                = link_to 'Delete',
+                  admin_announcement_path(announcement), method: :delete,
+                  confirm: 'Are you sure you want to delete this announcement?'
+        - else
+          %tr
+            %td{colspan: 3} No announcements have been made yet.

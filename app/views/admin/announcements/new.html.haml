@@ -1,0 +1,7 @@
+- content_for :title do
+  New Announcement - Admin Portal
+
+%section
+  %article
+    %h1 New Announcement - Admin Portal
+    = render 'form', announcement: @announcement, url: admin_announcements_path

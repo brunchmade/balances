@@ -95,7 +95,8 @@
 
   &.icon {
     &.add {
-      background: image-url('button-add.svg') no-repeat;
+      background-image: image-url('button-add.svg');
+      background-repeat: no-repeat;
       background-position: 10px center;
       background-size: 12px;
       text-indent: 8px;

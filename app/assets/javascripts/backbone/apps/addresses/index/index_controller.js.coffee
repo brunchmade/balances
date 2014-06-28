@@ -3,6 +3,7 @@
   class Index.Controller extends App.Controllers.Base
     initialize: ->
       @addresses = App.currentUser.addresses
+      @announcements = new App.Entities.Announcements
       @layout = new Index.Layout
 
       # Sorting addresses is done server side.
@@ -34,6 +35,8 @@
       @layout.headerRegion.show new Index.Header
 
     showSidebar: ->
+      @announcements.fetch(reset: true)
+
       @sidebarLayout = new Index.Sidebar
         model: App.currentUser
         collection: @addresses
@@ -41,12 +44,20 @@
       @listenTo @sidebarLayout, 'show', ->
         @showSidebarBalances()
 
+      @listenTo @announcements, 'reset', ->
+        @showSidebarAnnouncement() if @announcements.length > 0
+
       @layout.sidebarRegion.show @sidebarLayout
 
     showSidebarBalances: ->
       @sidebarLayout.balances.show new Index.SidebarBalances
         model: App.currentUser
         collection: @addresses
+
+    showSidebarAnnouncement: ->
+      @sidebarLayout.announcement.show new Index.SidebarAnnouncement
+        model: @announcements.first()
+        collection: @announcements
 
     showForm: ->
       @layout.formRegion.show new Index.Form

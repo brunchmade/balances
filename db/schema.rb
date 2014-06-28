@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20140621202024) do
   add_index "addresses", ["public_address", "currency"], name: "index_addresses_on_public_address_and_currency", using: :btree
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
+  create_table "announcements", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "currency_conversions", force: true do |t|
     t.text     "name"
     t.integer  "crypsty_id"
@@ -64,13 +70,23 @@ ActiveRecord::Schema.define(version: 20140621202024) do
   add_index "tokens", ["token", "provider"], name: "index_tokens_on_token_and_provider", unique: true, using: :btree
   add_index "tokens", ["user_id"], name: "index_tokens_on_user_id", using: :btree
 
+  create_table "user_read_announcements", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "announcement_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_read_announcements", ["announcement_id"], name: "index_user_read_announcements_on_announcement_id", using: :btree
+  add_index "user_read_announcements", ["user_id"], name: "index_user_read_announcements_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -78,9 +94,11 @@ ActiveRecord::Schema.define(version: 20140621202024) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "username"
+    t.boolean  "is_admin",               default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["is_admin"], name: "index_users_on_is_admin", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 

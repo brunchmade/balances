@@ -53,3 +53,7 @@ node(:totals) do |user|
 
   totals
 end
+
+node(:is_admin, if: lambda { |user| user.is_admin }) do |user|
+  user.is_admin
+end

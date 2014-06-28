@@ -52,7 +52,8 @@
     id: 'address-sidebar'
 
     regions:
-      balances: '#addresses-sidebar-balances'
+      balances: '#addresses-sidebar-balances-region'
+      announcement: '#addresses-sidebar-announcement-region'
 
   class Index.SidebarBalances extends App.Views.Layout
     template: 'addresses/index/sidebar_balances'
@@ -83,6 +84,24 @@
       @collection.setCurrencyFilter $target.data('filter')
       @$('.current').removeClass 'current'
       $target.parent().addClass 'current'
+
+    class Index.SidebarAnnouncement extends App.Views.Layout
+      template: 'addresses/index/sidebar_announcement'
+      id: 'announcement'
+
+      ui:
+        'btnClose': '.close-announcement'
+
+      events:
+        'click @ui.btnClose': '_close'
+
+      _close: (event) ->
+        event.preventDefault()
+        @model.markAsRead
+          success: (model, response, options) =>
+            @$el.fadeOut 300, => @close()
+          error: (model, response, options) ->
+            alert 'There was an error :(. Please try again!'
 
 
   ##############################################################################

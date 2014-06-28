@@ -15,6 +15,10 @@ Balances::Application.routes.draw do
     get :info, on: :collection
   end
 
+  resources :announcements, only: [:index] do
+    put :mark_as_read
+  end
+
   namespace :coinbase do
     get :auth
     get :callback
@@ -22,6 +26,11 @@ Balances::Application.routes.draw do
 
   devise_scope :user do |variable|
     get :settings, to: 'devise/registrations#edit'
+  end
+
+  get :admin, to: 'admin#index'
+  namespace :admin do
+    resources :announcements
   end
 
   namespace :api do
