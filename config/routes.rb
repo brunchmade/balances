@@ -15,6 +15,10 @@ Balances::Application.routes.draw do
     get :info, on: :collection
   end
 
+  resources :announcements, only: [:index] do
+    put :mark_as_read
+  end
+
   namespace :coinbase do
     get :auth
     get :callback

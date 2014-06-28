@@ -1,8 +1,5 @@
-#addresses-sidebar-balances
-
-#announcement
-  %a.close-announcement &#215;
-  %p TODO: Make this read from the announcements table
+#addresses-sidebar-balances-region
+#addresses-sidebar-announcement-region
 
 %ul#secondary-nav
   %li
