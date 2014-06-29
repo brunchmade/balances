@@ -1,4 +1,4 @@
-class AnnouncementsController < AdminController
+class AnnouncementsController < ApplicationController
 
   respond_to :json
 
