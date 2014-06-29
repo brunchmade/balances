@@ -26,6 +26,9 @@ Balances::Application.routes.draw do
 
   devise_scope :user do |variable|
     get :settings, to: 'devise/registrations#edit'
+    get :sign_in, to: 'devise/sessions#new'
+    get :sign_up, to: 'devise/registrations#new'
+    delete :sign_out, to: 'devise/sessions#destroy'
   end
 
   get :admin, to: 'admin#index'

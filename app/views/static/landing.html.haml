@@ -9,9 +9,9 @@
           %h1
             %span.top
             Balances
-        %li= link_to 'Log in', new_user_session_path, class: 'small transparent button'
+        %li= link_to 'Log in', sign_in_path, class: 'small transparent button'
         %li.ios= link_to 'Download for iOS', '#', class: 'small clear white button'
-        %li.signup= link_to 'Sign up free', new_user_registration_path, class: 'small blue button'
+        %li.signup= link_to 'Sign up free', sign_up_path, class: 'small blue button'
 
     .animated.fadeIn
       %h2 View all your digital currency balances in one place.
@@ -24,7 +24,7 @@
       =image_tag('landing/hero.gif')
 
     .buttons.animated.fadeInUp
-      = link_to 'Sign up free', new_user_registration_path, class: 'blue button'
+      = link_to 'Sign up free', sign_up_path, class: 'blue button'
       = link_to 'Try a demo', '#', class: 'clear white button'
 
     .mobile-button.animated.fadeInUp
@@ -88,4 +88,4 @@
 %section
   %article
     %h3 Stop manually checking up on your cryptocurrency portfolio.
-    = link_to 'Start managing your portfolio', new_user_registration_path, class: 'large blue button'
+    = link_to 'Start managing your portfolio', sign_up_path, class: 'large blue button'
