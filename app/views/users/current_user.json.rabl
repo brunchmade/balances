@@ -54,6 +54,10 @@ node(:totals) do |user|
   totals
 end
 
+node(:needs_two_factor_auth, if: lambda { |user| needs_two_factor_auth? }) do |user|
+  needs_two_factor_auth?
+end
+
 node(:is_admin, if: lambda { |user| user.is_admin }) do |user|
   user.is_admin
 end

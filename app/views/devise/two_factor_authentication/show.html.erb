@@ -1,0 +1,12 @@
+<section>
+  <article class="small">
+    <h2>Enter your personal code</h2>
+
+    <%= form_tag([resource_name, :two_factor_authentication], :method => :put) do %>
+      <%= text_field_tag :code, '', placeholder: 'Authentication Code' %>
+      <%= submit_tag "Submit" %>
+    <% end %>
+
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  </article>
+</section>

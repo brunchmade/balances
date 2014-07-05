@@ -16,7 +16,7 @@
 
     serializeData: ->
       _.extend super,
-        is_signed_in: App.currentUser.isSignedIn()
+        is_signed_in: App.currentUser.isSignedIn() and not App.currentUser.needsTwoFactorAuth()
 
     _updateNav: ->
       switch App.getCurrentRoute()
