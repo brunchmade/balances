@@ -10,7 +10,7 @@
 
       <div><%= f.label :email %><br />
       <%= f.email_field :email, :autofocus => true %></div>
-      <p class="form-helptext">You don't need to provide an email address, but you'll be unable to reset your password or enable two-factor authentication without one.</p>
+      <p class="form-helptext">You don't need to provide an email address, but you'll be unable to reset your password or enable two-factor without one.</p>
 
       <p>
         <% if current_user.has_two_factor_enabled %>

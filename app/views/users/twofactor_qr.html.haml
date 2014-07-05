@@ -1,5 +1,26 @@
-%section
-  %article
-    %p= @provisioning_uri
-    #twofactor-qr!= @qrCode
-    %a{href: user_two_factor_authentication_path} Verify Two-Factor Authentication Setup
+%section#twofactor-setup
+  %article.header
+    %h2 Two-factor Authentication Setup
+
+    .row.collapse
+      %article.instructions
+        %p
+          You’ll need to install an authenticator application on your smartphone to use Balances Two-factor authentication. We recommend
+          =link_to "Authy", "https://www.authy.com/"
+          or
+          #{link_to "Google Authenticator", "https://support.google.com/accounts/answer/1066447?hl=en"}.
+
+        %h5 Configure the app
+
+        %p Open your two-factor authentication app and add your Balances account by scanning the QR code to the right.
+
+        %a.brand.button{href: user_two_factor_authentication_path} Verify Setup
+
+
+      %article.qr
+        #twofactor-qr!= @qrCode
+
+        %p.lighter
+          Or use this text code:
+          %br
+          = @provisioning_uri

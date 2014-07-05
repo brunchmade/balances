@@ -1,12 +1,12 @@
 <section>
-  <article class="small">
-    <h2>Enter your personal code</h2>
+  <article class="large-6 medium-8 small-12 columns small-centered">
+    <h2>Two-factor authentication</h2>
 
     <%= form_tag([resource_name, :two_factor_authentication], :method => :put) do %>
       <%= text_field_tag :code, '', placeholder: 'Authentication Code' %>
-      <%= submit_tag "Submit" %>
+      <%= submit_tag "Verify" %>
     <% end %>
 
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <div class="devise-shared-links"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></div>
   </article>
 </section>
