@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  devise :database_authenticatable, :registerable,
+  devise :two_factor_authenticatable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # :login is a virtual attribute for authenticating by either username or email
@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :addresses, dependent: :destroy
   has_many :user_read_announcements, dependent: :destroy
   has_many :tokens, dependent: :destroy
+
+  has_one_time_password
 
   # Used for allowing username or email address for registration with Devise
   def self.find_first_by_auth_conditions(warden_conditions)
@@ -45,6 +47,14 @@ class User < ActiveRecord::Base
       provider_uid: self.id
     )
     self.auth_token = token.token
+  end
+
+  def need_two_factor_authentication?(request)
+    self.has_two_factor_enabled && self.email.present?
+  end
+
+  def send_two_factor_authentication_code
+    # NOTE: If we want to implement sending a text message code, we can do that here.
   end
 
   private

@@ -40,4 +40,4 @@
       %a{href: "{{ routes 'admin_path' }}"} Admin Portal
     {{/if}}
     %li
-      %a{href: "{{ routes 'destroy_user_session_path' }}", data: {method: 'delete'}} Log out
+      %a{href: "{{ routes 'sign_out_path' }}", data: {method: 'delete'}} Log out

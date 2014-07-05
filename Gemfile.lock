@@ -176,6 +176,11 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.12.0)
     rake (10.1.1)
+    randexp (0.1.7)
+    rotp (1.6.1)
+    rqrcode (0.4.2)
+    rqrcode-rails3 (0.1.7)
+      rqrcode (>= 0.4.2)
     rspec-core (2.14.7)
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -212,6 +217,11 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    two_factor_authentication (1.1.1)
+      devise
+      rails (>= 3.1.1)
+      randexp
+      rotp
     tzinfo (0.3.38)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
@@ -256,9 +266,11 @@ DEPENDENCIES
   rack-cache
   rails (= 4.0.2)
   rails_12factor
+  rqrcode-rails3
   rspec-rails
   sass-rails (~> 4.0.0)
   simple_form
+  two_factor_authentication
   uglifier (>= 1.3.0)
   unicorn
   zurb-foundation

@@ -1,0 +1,5 @@
+%section
+  %article
+    %p= @provisioning_uri
+    #twofactor-qr!= @qrCode
+    %a{href: user_two_factor_authentication_path} Verify Two-Factor Authentication Setup

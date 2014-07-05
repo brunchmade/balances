@@ -1,5 +1,14 @@
 module DeviseHelper
 
+  # Check if user needs to do 2FA
+  def needs_two_factor_auth?
+    if defined?(resource_name)
+      warden.session(resource_name)['need_two_factor_authentication']
+    else
+      false
+    end
+  end
+
   # A simple way to show error messages for the current devise resource. If you need
   # to customize this method, you can either overwrite it in your application helpers or
   # copy the views to your application.

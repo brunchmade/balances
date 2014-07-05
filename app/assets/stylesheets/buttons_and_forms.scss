@@ -276,3 +276,13 @@ input[type=submit].delete-button {
     background-size: 20px;
   }
 }
+
+#flashes {
+  div {
+    color: rgba(red, .8);
+
+    &.flash_notice {
+      color: rgba(green, .8);
+    }
+  }
+}

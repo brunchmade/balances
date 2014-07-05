@@ -6,7 +6,7 @@
         model: App.currentUser
 
       @listenTo @layout, 'show', ->
-        @showBalance()
+        @showBalance() if App.currentUser.isSignedIn()
 
       App.mainHeaderRegion.show @layout
 
