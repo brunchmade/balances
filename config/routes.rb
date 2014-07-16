@@ -28,6 +28,7 @@ Balances::Application.routes.draw do
     post :disable_twofactor
     post :enable_twofactor
     get :twofactor_qr
+    get :twofactor_verify
   end
 
   devise_scope :user do |variable|
