@@ -95,10 +95,6 @@ ActiveRecord::Schema.define(version: 20140630000909) do
     t.datetime "updated_at"
     t.text     "username"
     t.boolean  "is_admin",                     default: false
-    t.string   "encrypted_otp_secret"
-    t.string   "encrypted_otp_secret_iv"
-    t.string   "encrypted_otp_secret_salt"
-    t.boolean  "otp_required_for_login"
     t.string   "otp_secret_key"
     t.integer  "second_factor_attempts_count", default: 0
     t.boolean  "has_two_factor_enabled",       default: false
