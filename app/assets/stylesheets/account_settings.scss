@@ -3,3 +3,25 @@
     @extend .large-6, .medium-8, .small-12, .columns, .small-centered;
   }
 }
+
+#twofactor-setup {
+  article.header {
+    @extend .medium-10, .small-centered, .columns;
+  }
+  article.instructions {
+    @extend .medium-7, .small-12, .columns;
+  }
+  article.qr {
+    @extend .medium-3, .medium-push-2, .small-12, .columns;
+  }
+
+  .lighter {
+    color: #bbb;
+    font-size: .8em;
+    margin-top: 20px;
+  }
+
+  .button {
+    margin-top: 50px;
+  }
+}

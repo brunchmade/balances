@@ -1,0 +1,16 @@
+<section>
+  <article class="large-6 medium-8 small-12 columns small-centered">
+    <h2>Two-factor authentication</h2>
+
+    <%= form_tag([resource_name, :two_factor_authentication], :method => :put) do %>
+      <%= text_field_tag :code, '', placeholder: 'Authentication Code' %>
+      <%= submit_tag "Verify" %>
+    <% end %>
+
+    <% if params[:verifying].present? %>
+    <div class="devise-shared-links"><%= link_to raw("&larr; Rescan code"), users_twofactor_qr_path %></div>
+    <% else %>
+    <div class="devise-shared-links"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></div>
+    <% end %>
+  </article>
+</section>

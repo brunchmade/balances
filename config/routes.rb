@@ -24,6 +24,13 @@ Balances::Application.routes.draw do
     get :callback
   end
 
+  namespace :users do
+    post :disable_twofactor
+    post :enable_twofactor
+    get :twofactor_qr
+    get :twofactor_verify
+  end
+
   devise_scope :user do |variable|
     get :settings, to: 'devise/registrations#edit'
     get :sign_in, to: 'devise/sessions#new'

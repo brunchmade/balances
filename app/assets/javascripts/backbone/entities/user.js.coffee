@@ -19,5 +19,8 @@
     isSignedIn: ->
       !!@id
 
+    needsTwoFactorAuth: ->
+      !!@get('needs_two_factor_auth')
+
     _onInitialize: (attributes, options) ->
       @addresses = new App.Entities.Addresses(options.addresses or {})

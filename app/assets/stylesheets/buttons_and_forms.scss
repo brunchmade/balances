@@ -276,3 +276,19 @@ input[type=submit].delete-button {
     background-size: 20px;
   }
 }
+
+#flashes {
+  margin-bottom: 20px;
+
+  div {
+    color: rgba(red, .8);
+
+    &.flash_notice {
+      color: rgba(green, .8);
+    }
+  }
+}
+
+.devise-shared-links {
+  margin-top: 50px;
+}

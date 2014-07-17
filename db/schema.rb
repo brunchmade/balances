@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621202024) do
+ActiveRecord::Schema.define(version: 20140630000909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,11 +82,11 @@ ActiveRecord::Schema.define(version: 20140621202024) do
 
   create_table "users", force: true do |t|
     t.string   "email"
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "encrypted_password",           default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",                default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -94,11 +94,15 @@ ActiveRecord::Schema.define(version: 20140621202024) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "username"
-    t.boolean  "is_admin",               default: false
+    t.boolean  "is_admin",                     default: false
+    t.string   "otp_secret_key"
+    t.integer  "second_factor_attempts_count", default: 0
+    t.boolean  "has_two_factor_enabled",       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["is_admin"], name: "index_users_on_is_admin", using: :btree
+  add_index "users", ["otp_secret_key"], name: "index_users_on_otp_secret_key", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
