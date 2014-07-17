@@ -4,8 +4,7 @@ class StaticController < ApplicationController
     if user_signed_in?
       redirect_to addresses_path
     else
-      #render :landing, layout: 'landing'
-      render :teaser, layout: false
+      render :landing, layout: 'landing'
     end
   end
 
