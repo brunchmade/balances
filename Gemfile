@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.8'
 
 gem 'awesome_print'
 gem 'backbone-on-rails'
@@ -26,6 +26,7 @@ gem 'two_factor_authentication'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 gem 'sass-rails', '~> 4.0.0'
+gem 'sprockets', '2.11.0' # 2.12.0 is broken
 gem 'zurb-foundation'
 gem 'newrelic_rpm'
 
