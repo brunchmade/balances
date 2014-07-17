@@ -96,9 +96,6 @@ header {
     animation-delay:1s;
     -webkit-animation-delay:1s;
 
-    @media only screen and (max-width: $small-screen) {
-      margin-bottom: 55px;
-    }
     ul {
       list-style: none;
       overflow: hidden;
@@ -174,7 +171,7 @@ header {
     max-width: 1050px;
     @media only screen and (max-width: $small-screen) {
       font-size: 1.8em;
-      margin-bottom: .5em;
+      margin: 20px auto .5em;
     }
   }
 
@@ -199,6 +196,20 @@ header {
     }
   }
 
+  .beta {
+    animation-delay:1s;
+    -webkit-animation-delay:1s;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    margin-left: -120px;
+    @media only screen and (max-width: $small-screen) {
+      position: relative;
+      margin: 60px auto 0;
+      left: 0;
+    }
+  }
+
   .buttons {
     animation-delay:1s;
     -webkit-animation-delay:1s;
@@ -214,7 +225,7 @@ header {
   .mobile-button {
     display: none;
     @media only screen and (max-width: $small-screen) {
-      display: block;
+      //display: block; // disabled until iOS app launches
     }
   }
 
@@ -231,7 +242,12 @@ header {
     }
 
     @media only screen and (max-width: $small-screen) {
-      display: none;
+      //display: none;
+      img {
+        width: 100%;
+        min-height: 0;
+      }
+
     }
   }
 
@@ -316,6 +332,11 @@ section {
 
       &:hover, &:active {
         opacity: 1;
+      }
+
+      &.soon {
+        opacity: .1;
+        margin-bottom: 10px;
       }
     }
   }

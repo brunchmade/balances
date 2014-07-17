@@ -11,7 +11,8 @@
             Balances
         %li= link_to 'Log in', sign_in_path, class: 'small transparent button'
         %li.ios= link_to 'Download for iOS', '#', class: 'small clear white button'
-        %li.signup= link_to 'Sign up free', sign_up_path, class: 'small blue button'
+        %li.signup= link_to 'Get early access', sign_up_path, class: 'small blue button'
+        //%li.signup= link_to 'Sign up free', sign_up_path, class: 'small blue button'
 
     .animated.fadeIn
       %h2 View all your digital currency balances in one place.
@@ -23,9 +24,11 @@
     .screen.animated.fadeIn
       =image_tag('landing/screencap.gif')
 
-    .buttons.animated.fadeInUp
-      = link_to 'Sign up free', sign_up_path, class: 'blue button'
-      = link_to 'Try a demo', '#', class: 'clear white button'
+    .beta.animated.fadeInUp
+      = link_to 'Get early access', sign_up_path, class: 'blue button'
+    //.buttons.animated.fadeInUp
+    //  = link_to 'Sign up free', sign_up_path, class: 'blue button'
+    //  = link_to 'Try a demo', '#', class: 'clear white button'
 
     .mobile-button.animated.fadeInUp
       = link_to 'View on the App Store', '#', class: 'blue button'
@@ -46,13 +49,9 @@
         =link_to 'Download Balances for iOS', '#'
         and we'll send you push notifications any time you receive money.
 
-      =link_to image_tag('landing/app-store.svg'), '#', class: 'app-store'
+      =link_to image_tag('landing/app-store.svg'), '#', class: 'app-store soon'
+      =link_to "Get notified when Balances for iOS is available", "http://eepurl.com/Zddab"
 
-/ .everywhere-bg
-/   %section.everywhere
-/     %article
-/       =image_tag('landing/devices.svg')
-/
 #security-bg
   %section.security
     %h3 We're serious about security
@@ -75,7 +74,7 @@
       %h5 We'll never sell your data
       %p
         We love our customers. We only make money from iOS app sales, non-tracking website ads, and
-        =link_to 'donations.', 'bitcoin:12Rzu1UsUFnBFcdCicDp6VKc9JhRLum3TD'
+        =link_to 'donations.', 'bitcoin:16cdkF6w96zYAyxnQENi6UVwgSJ34JkEWZ'
         We don't sell
         %u any
         user data to anyone, and we never will.
@@ -88,4 +87,4 @@
 %section
   %article
     %h3 Stop manually checking up on your cryptocurrency portfolio.
-    = link_to 'Start managing your portfolio', sign_up_path, class: 'large blue button'
+    = link_to 'Get early access', sign_up_path, class: 'large blue button'

@@ -4,11 +4,18 @@ $(function() {
   var $screenImg = $('.screen img')
 
   $window.resize(function() {
-    $headerBg.height($window.height() - $headerBg.offset().top);
+    if($window.width() > 600) {
+      $headerBg.height($window.height() - $headerBg.offset().top);
+    } else {
+      $headerBg.height('auto')
+    }
 
     if($window.width() >= 830) {
       $screenImg.height($window.height() / 1.9);
-    } else {
+    } else if($window.width() < 600) {
+      $screenImg.height('');
+    }
+    else {
       $screenImg.height($window.height() / 2.4);
     }
   });

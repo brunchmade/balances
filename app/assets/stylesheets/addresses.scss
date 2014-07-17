@@ -141,10 +141,10 @@
       font-weight: 400;
       text-align: right;
       line-height: auto;
-      color: rgba($dark-gray, .5);
+      color: rgba($dark-gray, .8);
 
       .fiat {
-        color: rgba($dark-gray, .25);
+        color: rgba($dark-gray, .5);
       }
     }
 
@@ -224,7 +224,7 @@
     margin: 8px 0;
   }
   a {
-    color: rgba($medium-gray-2,.8);
+    color: $medium-gray-2;
     font-size: .9em;
     text-decoration: none;
 
