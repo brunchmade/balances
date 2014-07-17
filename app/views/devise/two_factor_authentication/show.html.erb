@@ -7,6 +7,10 @@
       <%= submit_tag "Verify" %>
     <% end %>
 
+    <% if params[:verifying].present? %>
+    <div class="devise-shared-links"><%= link_to raw("&larr; Rescan code"), users_twofactor_qr_path %></div>
+    <% else %>
     <div class="devise-shared-links"><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></div>
+    <% end %>
   </article>
 </section>

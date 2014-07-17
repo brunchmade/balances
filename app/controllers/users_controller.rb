@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       # Store settings page as the return location after successful
       # verification of 2FA.
       store_location_for :user, settings_path
-      redirect_to user_two_factor_authentication_path
+      redirect_to user_two_factor_authentication_path(verifying: 1)
     else
       redirect_to settings_path, flash: {email: 'Email address required to enable two-factor authentication.'}
     end
