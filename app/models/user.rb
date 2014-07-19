@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   has_one_time_password
 
+  after_create :send_welcome_email
+
   # Used for allowing username or email address for registration with Devise
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -55,6 +57,10 @@ class User < ActiveRecord::Base
 
   def send_two_factor_authentication_code
     # NOTE: If we want to implement sending a text message code, we can do that here.
+  end
+
+  def send_welcome_email
+    UserMailer.welcome(self.id).deliver if self.email.present?
   end
 
   private

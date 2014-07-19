@@ -1,0 +1,49 @@
+!!!
+%html{xmlns: 'http://www.w3.org/1999/xhtml'}
+  %head
+    %meta{'http-equiv' => 'Content-Type', content: 'text/html; charset=utf-8'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+    %title= @subject
+    = stylesheet_link_tag 'mailer/mailer_main'
+    :css
+      @media only screen and (max-width: 600px) {
+        a[class="btn"] { display:block!important; margin-bottom:10px!important; background-image:none!important; margin-right:0!important;}
+
+        div[class="column"] { width: auto!important; float:none!important;}
+
+        table.social div[class="column"] {
+          width:auto!important;
+        }
+      }
+
+  %body{bgcolor: '#fff', topmargin: '0', leftmargin: '0', marginheight: '0', marginwidth: '0'}
+    %span.preheader{style: 'display: none !important;'} Welcome to Balances &ndash; the simple and secure way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value.
+
+    %table.head-wrap{bgcolor: '#1ca9c9'}
+      %tr
+        %td.header.container
+          .content
+            %table{bgcolor: '#1ca9c9'}
+              %tr
+                %td.logo
+                  %a{href: root_url}
+                    = image_tag 'mailer/logo.png', height: '30px', alt: 'Balances'
+
+    %table.body-wrap
+      %tr
+        %td.container{bgcolor: '#fff'}= yield
+
+    %table.footer-wrap
+      %tr
+        %td.container
+          .content
+            %table
+              %tr
+                %td{align: 'center'}
+                  %p
+                    &copy; #{Time.now.year} Brunch Made LLC. |
+                    %a{href: terms_privacy_url} Terms &amp; Privacy
+                    |
+                    %a{href: 'mailto:help@balances.io'} Help
+                    |
+                    %a{href: 'new_user_unsubscribe_url(@user)'} Unsubscribe

@@ -61,7 +61,11 @@ Balances::Application.configure do
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-  config.assets.precompile += %w( landing.css landing/landing.js )
+  config.assets.precompile += %w(
+    landing/landing_app.css
+    landing/landing.js
+    mailer/mailer_main.css
+  )
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

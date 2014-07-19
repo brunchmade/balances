@@ -1,5 +1,5 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * This is a manifest file that'll be compiled into landing.css, which will include all the files
  * listed below.
  *
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
@@ -23,12 +23,9 @@
 // Vendor & Extensions
 @import 'extensions/foundation_and_overrides';
 @import 'extensions/foundation_medium_grid';
-@import 'extensions/reveal_overrides';
+@import 'extensions/animate_custom';
 
 // App
-@import 'main';
+@import 'landing_main';
 @import 'buttons_and_forms';
-@import 'header';
 @import 'footer';
-@import 'addresses';
-@import 'account_settings';
