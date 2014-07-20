@@ -1,5 +1,4 @@
 Balances::Application.routes.draw do
-  devise_for :users
 
   root to: 'static#root'
   get :home, controller: 'static'
@@ -24,6 +23,14 @@ Balances::Application.routes.draw do
     get :callback
   end
 
+  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_scope :user do |variable|
+    get :settings, to: 'registrations#edit' # We are using a custom controller
+    get :sign_in, to: 'devise/sessions#new'
+    get :sign_up, to: 'registrations#new' # We are using a custom controller
+    delete :sign_out, to: 'devise/sessions#destroy'
+  end
+
   namespace :users do
     post :disable_twofactor
     post :enable_twofactor
@@ -31,13 +38,6 @@ Balances::Application.routes.draw do
     get :twofactor_verify
     get 'unsubscribe/:email_hash', action: :unsubscribe, as: :unsubscribe
     get 'unsubscribe/:email_hash/confirm', action: :unsubscribe_confirm, as: :unsubscribe_confirm
-  end
-
-  devise_scope :user do |variable|
-    get :settings, to: 'devise/registrations#edit'
-    get :sign_in, to: 'devise/sessions#new'
-    get :sign_up, to: 'devise/registrations#new'
-    delete :sign_out, to: 'devise/sessions#destroy'
   end
 
   get :admin, to: 'admin#index'

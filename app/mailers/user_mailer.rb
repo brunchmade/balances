@@ -15,4 +15,22 @@ class UserMailer < ActionMailer::Base
     )
   end
 
+  def twofactor_enabled(user_id)
+    @user = User.find(user_id)
+
+    mail(
+      to: @user.email,
+      subject: 'Two-Factor Authentication Enabled'
+    )
+  end
+
+  def twofactor_disabled(user_id)
+    @user = User.find(user_id)
+
+    mail(
+      to: @user.email,
+      subject: 'Two-Factor Authentication Disabled'
+    )
+  end
+
 end
