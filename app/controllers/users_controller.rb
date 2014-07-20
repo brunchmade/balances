@@ -46,4 +46,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def unsubscribe
+    @user = User.find_by_email_hash(params[:email_hash])
+    redirect_to root_path unless @user
+  end
+
+  def unsubscribe_confirm
+    @user = User.find_by_email_hash(params[:email_hash])
+
+    if @user
+      @user.update_attributes(is_subscribed: false)
+    else
+      redirect_to root_path
+    end
+  end
+
 end

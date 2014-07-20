@@ -29,6 +29,8 @@ Balances::Application.routes.draw do
     post :enable_twofactor
     get :twofactor_qr
     get :twofactor_verify
+    get 'unsubscribe/:email_hash', action: :unsubscribe, as: :unsubscribe
+    get 'unsubscribe/:email_hash/confirm', action: :unsubscribe_confirm, as: :unsubscribe_confirm
   end
 
   devise_scope :user do |variable|
