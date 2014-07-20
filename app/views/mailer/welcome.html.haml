@@ -1,0 +1,31 @@
+.content
+  %table
+    %tr
+      %td
+        %h1 Welcome to Balances, #{@name}!
+
+        %p Balances is the simple and secure way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value. We hope you find it useful!
+
+        %br
+
+        .next-steps
+          %h3 Excited to get started?
+          .green &check;&nbsp;&nbsp;Sign up
+          %ul
+            %li
+              %a{href: addresses_url} Add your first address
+            %li
+              %a{href: addresses_url} Scan a paper wallet
+              %span.secondary (awesome, right?)
+            %li
+              %a{href: addresses_url} Connect your Coinbase account
+            %li
+              %a{href: settings_url} Enable two-factor authentication
+
+        %br
+        %br
+
+        %center
+          = image_tag 'mailer/excited.gif', width: '100%', alt: 'omg yay'
+
+        %br

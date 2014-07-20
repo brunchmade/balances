@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
 
   has_one_time_password
 
+  after_create :send_welcome_email
+  before_save :update_email_hash
+
   # Used for allowing username or email address for registration with Devise
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -49,12 +52,22 @@ class User < ActiveRecord::Base
     self.auth_token = token.token
   end
 
+  def generate_email_hash
+    if self.email.present?
+      Digest::MD5.hexdigest(self.email + ENV['EMAIL_HASH_SALT'])
+    end
+  end
+
   def need_two_factor_authentication?(request)
     self.has_two_factor_enabled && self.email.present?
   end
 
   def send_two_factor_authentication_code
     # NOTE: If we want to implement sending a text message code, we can do that here.
+  end
+
+  def send_welcome_email
+    UserMailer.welcome(self.id).deliver if self.email.present?
   end
 
   private
@@ -78,6 +91,12 @@ class User < ActiveRecord::Base
 
         errors.add(:username, 'is already taken')
       end
+    end
+  end
+
+  def update_email_hash
+    if self.email.present? && self.email_hash != (new_email_hash = generate_email_hash)
+      self.email_hash = new_email_hash
     end
   end
 

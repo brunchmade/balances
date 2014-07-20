@@ -7,6 +7,7 @@ class UsersController < ApplicationController
       otp_secret_key: nil,
       has_two_factor_enabled: false
     )
+    UserMailer.twofactor_disabled(current_user.id).deliver
     redirect_to settings_path, flash: {email: 'Two-factor authentication disabled.'}
   end
 
@@ -22,6 +23,10 @@ class UsersController < ApplicationController
   end
 
   def twofactor_qr
+    if params[:rescan].present?
+      current_user.update_attributes(has_two_factor_enabled: false)
+    end
+
     @provisioning_uri = current_user.provisioning_uri(current_user.email, issuer: 'Balances.io')
     @qrCode = RQRCode::render_qrcode(
       @provisioning_uri,
@@ -34,15 +39,30 @@ class UsersController < ApplicationController
 
   def twofactor_verify
     if current_user.email.present?
-      current_user.update_attributes(
-        has_two_factor_enabled: true
-      )
+      current_user.update_attributes(has_two_factor_enabled: true)
+
       # Store settings page as the return location after successful
       # verification of 2FA.
-      store_location_for :user, settings_path
+      store_location_for :user, settings_path(tfa_success: 1)
+
       redirect_to user_two_factor_authentication_path(verifying: 1)
     else
       redirect_to settings_path, flash: {email: 'Email address required to enable two-factor authentication.'}
+    end
+  end
+
+  def unsubscribe
+    @user = User.find_by_email_hash(params[:email_hash])
+    redirect_to root_path unless @user
+  end
+
+  def unsubscribe_confirm
+    @user = User.find_by_email_hash(params[:email_hash])
+
+    if @user
+      @user.update_attributes(is_subscribed: false)
+    else
+      redirect_to root_path
     end
   end
 

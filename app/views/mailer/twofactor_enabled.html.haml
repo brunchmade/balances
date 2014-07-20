@@ -1,0 +1,30 @@
+.content
+  %table
+    %tr
+      %td
+        %h4 Hey #{@user.display_name},
+
+        %p
+          You've just enabled two-factor authentication on your
+          %a{href: root_url} Balances
+          account.
+
+        %p
+          To disable two-factor authentication, visit
+          = succeed '.' do
+            %a{href: settings_url} https://balances.io/settings
+
+        %p
+          Please email
+          %a{href: 'mailto:help@balances.io'} help@balances.io
+          with any questions.
+
+        %br
+        %br
+        %br
+        %br
+
+        %center
+          = image_tag 'mailer/good-job.gif', width: '100%', alt: 'we got ya'
+
+        %br

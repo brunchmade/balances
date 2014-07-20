@@ -1,0 +1,30 @@
+.content
+  %table
+    %tr
+      %td
+        %h4 Hey #{@user.display_name},
+
+        %p
+          We noticed that you just disabled two-factor authentication on your
+          %a{href: root_url} Balances
+          account.
+
+        %p
+          To re-enable two-factor authentication, visit
+          = succeed '.' do
+            %a{href: settings_url} https://balances.io/settings
+
+        %p
+          If you didn't disable two-factor, or need any help, please email
+          = succeed '.' do
+            %a{href: 'mailto:help@balances.io'} help@balances.io
+
+        %br
+        %br
+        %br
+        %br
+
+        %center
+          = image_tag 'mailer/sad-beep.gif', width: '100%', alt: ':('
+
+        %br

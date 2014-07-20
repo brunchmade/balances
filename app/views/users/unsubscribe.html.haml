@@ -1,0 +1,10 @@
+%section
+  %article
+    %h2 Unsubscribe #{@user.email}
+
+    %p
+      Are you sure you want to unsubscribe
+      %strong #{@user.email}
+      form receiving any further emails from us?
+
+    %a.brand.button{href: users_unsubscribe_confirm_path(@user.email_hash)} Yes, unsubscribe me!
