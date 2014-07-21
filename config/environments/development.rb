@@ -17,6 +17,20 @@ Balances::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => 'localhost:5000' }
   config.action_mailer.delivery_method = :letter_opener_web
+  ##### UNCOMMENT HERE TO TEST PRODUCTION EMAILS (and comment out the 3 lines above)
+  ##### NOTE: Images won't work because they will still point to localhost.
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.default_url_options = { host: 'balances.io' }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   port: '587',
+  #   address: 'smtp.mandrillapp.com',
+  #   user_name: ENV['MANDRILL_USERNAME'],
+  #   password: ENV['MANDRILL_APIKEY'],
+  #   domain: 'heroku.com',
+  #   authentication: :plain
+  # }
+  #####
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
