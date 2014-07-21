@@ -4,8 +4,160 @@
     %meta{'http-equiv' => 'Content-Type', content: 'text/html; charset=utf-8'}
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
     %title= @subject
-    = stylesheet_link_tag 'mailer/mailer_main'
     :css
+      /* -------------------------------------
+        GLOBAL
+      ------------------------------------- */
+      * {
+        margin:0;
+        padding:0;
+        font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+      }
+      img {
+        max-width: 100%;
+      }
+      .collapse {
+        margin:0;
+        padding:0;
+      }
+      body {
+        -webkit-font-smoothing:antialiased;
+        -webkit-text-size-adjust:none;
+        width: 100%!important;
+        height: 100%;
+      }
+      /* -------------------------------------
+          ELEMENTS
+      ------------------------------------- */
+      a { color: #2BA6CB; }
+      .btn {
+        margin: 20px auto;
+        -webkit-border-radius: 40px;
+        border-radius: 40px;
+        text-decoration:none;
+        color: #FFF;
+        background-color: #4BCFCD;
+        padding:10px 40px;
+        text-align:center;
+        cursor:pointer;
+        display: inline-block;
+      }
+      .btn.opt-in {
+        margin: 0 auto 30px;
+        max-width: 300px;
+        background-color: #de3f1c;
+      }
+      p.callout {
+        padding:15px;
+        background-color:#ECF8FF;
+        margin-bottom: 15px;
+      }
+      .callout a {
+        font-weight:bold;
+        color: #2BA6CB;
+      }
+      .green {
+        color: green;
+      }
+      .secondary {
+        color: #ccc;
+        font-style: italic;
+      }
+      .next-steps h3 {
+        font-weight: bold;
+        font-size: 18px;
+      }
+      .next-steps .green {
+        padding-bottom: 4px;
+      }
+      /* -------------------------------------
+          HEADER
+      ------------------------------------- */
+      table.head-wrap { width: 100%;}
+      .head-wrap .content { padding: 10px; }
+      .header.container table td.logo { padding: 5px; text-align: center; }
+      .header.container table td.logo img { height: 30px; }
+      /* -------------------------------------
+          BODY
+      ------------------------------------- */
+      table.body-wrap { width: 100%;}
+      .container .content h1 {
+        text-align: center;
+        margin: .8em 0 .6em;
+      }
+      .container .content h1 a {
+        color: #333;
+        text-decoration: none;
+      }
+      /* -------------------------------------
+          FOOTER
+      ------------------------------------- */
+      table.footer-wrap { width: 100%;  clear:both!important; border-top: 1px solid #EBEBEB; }
+      table.footer-wrap a { color: #898989; text-decoration: underline; }
+      .footer-wrap .container .content  p { color: #898989;}
+      /* -------------------------------------
+          TYPOGRAPHY
+      ------------------------------------- */
+      h1,h2,h3,h4,h5,h6 {
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; line-height: 1.1; margin-bottom:15px; color:#000;
+      }
+      h1 small, h2 small, h3 small, h4 small, h5 small, h6 small { font-size: 60%; color: #6f6f6f; text-transform: none; }
+      h1 { font-weight:200; font-size: 38px;}
+      h2 { font-weight:200; font-size: 37px;}
+      h3 { font-weight:500; font-size: 23px; margin: 20px 0 8px;}
+      h4 { font-weight:500; font-size: 23px; margin: 20px 0;}
+      h5 { font-weight:900; font-size: 17px;}
+      h6 { font-weight:900; font-size: 14px; text-transform: uppercase; color:#444;}
+      .collapse { margin:0!important;}
+      p, ul {
+        margin-bottom: 1em;
+        font-weight: normal;
+        font-size:16px;
+        line-height:1.6;
+      }
+      ul li {
+        margin-left:5px;
+        list-style-position: inside;
+      }
+      /* ---------------------------------------------------
+          RESPONSIVENESS
+          Nuke it from orbit. It's the only way to be sure.
+      ------------------------------------------------------ */
+      /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+      .container {
+        display:block!important;
+        max-width:600px!important;
+        margin:0 auto!important; /* makes it centered */
+        clear:both!important;
+      }
+      /* This should also be a block element, so that it will fill 100% of the .container */
+      .content {
+        padding:15px;
+        max-width:600px;
+        margin:0 auto;
+        display:block;
+      }
+      /* Let's make sure tables in the content area are 100% wide */
+      .content table { width: 100%; }
+      /* Odds and ends */
+      .column {
+        width: 300px;
+        float:left;
+      }
+      .column tr td { padding: 15px; }
+      .column-wrap {
+        padding:0!important;
+        margin:0 auto;
+        max-width:600px!important;
+      }
+      .column table { width:100%;}
+      .social .column {
+        width: 280px;
+        min-width: 279px;
+        float:left;
+      }
+      /* Be sure to place a .clear element after each set of columns, just to be safe */
+      .clear { display: block; clear: both; }
       @media only screen and (max-width: 600px) {
         a[class="btn"] { display:block!important; margin-bottom:10px!important; background-image:none!important; margin-right:0!important;}
 

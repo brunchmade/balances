@@ -64,7 +64,6 @@ Balances::Application.configure do
   config.assets.precompile += %w(
     landing/landing_app.css
     landing/landing.js
-    mailer/mailer_main.css
   )
 
   # Ignore bad email addresses and do not raise email delivery errors.
