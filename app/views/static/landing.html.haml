@@ -10,7 +10,7 @@
             %span.top
             Balances
         %li= link_to 'Log in', sign_in_path, class: 'small transparent button'
-        %li.ios= link_to 'Download for iOS', '#', class: 'small clear white button'
+        %li.ios= link_to 'iOS App Coming Soon', '#iphones', class: 'small clear white button scroll-to', data: {'scroll-to' => '#iphones'}
         %li.signup= link_to 'Get early access', sign_up_path, class: 'small blue button'
         //%li.signup= link_to 'Sign up free', sign_up_path, class: 'small blue button'
 
@@ -42,7 +42,8 @@
     %article
       %h3 Read-only wallet monitoring
       %p Enter your bitcoin, litecoin, and dogecoin addresses and view your balances on a single screen. See the combined value of all your wallets without risking the security of your coins.
-    =image_tag('landing/screens@2x.png', :class => 'preview')
+    #iphones
+      =image_tag('landing/screens@2x.png', :class => 'preview')
     %article
       %p
         Miner? Investor? Merchant?
