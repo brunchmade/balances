@@ -170,7 +170,8 @@
       }
 
   %body{bgcolor: '#fff', topmargin: '0', leftmargin: '0', marginheight: '0', marginwidth: '0'}
-    %span.preheader{style: 'display: none !important;'} Welcome to Balances &ndash; the simple and secure way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value.
+    %span.preheader{style: 'display: none !important;'}
+      = content_for?(:preheader) ? yield(:preheader)
 
     %table.head-wrap{bgcolor: '#1ca9c9'}
       %tr
