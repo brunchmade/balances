@@ -13,6 +13,10 @@
         %li.ios= link_to 'iOS App Coming Soon', '#iphones', class: 'small clear white button scroll-to', data: {'scroll-to' => '#iphones'}
         %li.signup= link_to 'Get early access', sign_up_path, class: 'small blue button'
         //%li.signup= link_to 'Sign up free', sign_up_path, class: 'small blue button'
+        %li.tweet
+          =link_to 'Tweet', 'https://twitter.com/share', class: 'twitter-share-button', :data => {related: 'balancesapp', dnt: 'true', text: 'Balances - A simple and secure way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value'}
+          %script
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 
     .animated.fadeIn
       %h2 View all your digital currency balances in one place.
