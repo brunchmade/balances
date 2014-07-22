@@ -26,7 +26,9 @@
       %br Click here to scan your QR code.
     %p Privacy note: images from your webcam don't get uploaded to our server. The whole scanning process is done entirely in your browser.
   %p.helptext Hold your public address up to your computer's camera
-  %h5#result Scanning for QR codes...
+  %h5#result
+    = image_tag 'spinner-purple.gif', width:24
+    &nbsp;&nbsp;Scanning for QR codes...
 
 <canvas id="qr-canvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
 = audio_tag 'qr-success.mp3', preload: 'auto', id: 'qr-success'
