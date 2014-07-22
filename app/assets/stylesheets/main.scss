@@ -130,3 +130,10 @@ section {
   border-top: 4px solid $medium-gray-2;
 }
 
+.right {
+  text-align: right;
+
+  @media only screen and (max-width: $small-screen) {
+   text-align: center;
+  }
+}
