@@ -337,7 +337,6 @@
       'hiddenAddress': '.hidden-public-address'
       'hiddenAddressFirstbits': '.hidden-public-firstbits'
       'btnQrScan': '.scan-qr'
-      'btnImportCSV': '.import-csv'
       'btnSave': '.btn-save'
       'btnCancel': '.btn-cancel'
       'notices': '#address-notices'
@@ -360,6 +359,19 @@
 
     onShow: ->
       @$('#m-scan-qr').on 'close', -> resetWebcam()
+
+      # NOTE: Because the import screen is a reveal we need to manually bind
+      #  to its events instead of relying on marionette.
+      @$('#m-import-csv').on 'open', =>
+        $('.btn-import').on 'click', (event) ->
+          event.preventDefault()
+          $input = $('#addresses-import')
+          $input.click()
+          $input.one 'change', ->
+            $input.parent().submit()
+
+      @$('#m-import-csv').on 'close', =>
+        $('.btn-import').off 'click'
 
     _keydownInputAddress:
       _.debounce (event) ->
