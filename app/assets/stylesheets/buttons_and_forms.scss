@@ -164,15 +164,15 @@ hr {
 }
 
 input[type=submit].delete-button {
-  color: lighten(red, 20%);
-  border: 1px solid lighten(red, 45%);
+  color: lighten($red, 20%);
+  border: 1px solid lighten($red, 45%);
   background: transparent;
   padding: 6px 20px;
   font-size: 1em;
   font-weight: 100;
   &:hover {
-    color: red;
-    border-color: red;
+    color: $red;
+    border-color: $red;
   }
 }
 
@@ -184,15 +184,15 @@ input[type=submit].delete-button {
   ul {
     list-style-type: none;
     li {
-      color: rgba(red, .8);
+      color: rgba($red, .8);
     }
   }
 }
 
 .field_with_errors {
   input {
-    border:1px solid rgba(red, .5);
-    box-shadow: 0 0 3px rgba(red, .5);
+    border:1px solid rgba($red, .5);
+    box-shadow: 0 0 3px rgba($red, .5);
   }
 }
 
@@ -281,10 +281,10 @@ input[type=submit].delete-button {
   margin-bottom: 20px;
 
   div {
-    color: rgba(red, .8);
+    color: rgba($red, .8);
 
     &.flash_notice {
-      color: rgba(green, .8);
+      color: rgba($green, .8);
     }
   }
 }

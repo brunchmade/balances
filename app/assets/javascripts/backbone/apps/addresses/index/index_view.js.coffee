@@ -217,6 +217,8 @@
           wait: true
           success: (model, response, options) =>
             @_reset()
+            @$el.addClass('success-highlight')
+            $.doTimeout 500, => @$el.removeClass('success-highlight')
           error: (model, response, options) ->
             alert 'Sorry, something went wrong. Please try again.'
 
@@ -338,7 +340,7 @@
       'btnImportCSV': '.import-csv'
       'btnSave': '.btn-save'
       'btnCancel': '.btn-cancel'
-      'errors': '#address-errors'
+      'notices': '#address-notices'
 
     events:
       'keydown @ui.inputAddress': '_keydownInputAddress'
@@ -463,7 +465,7 @@
         @_addError()
 
     _save: ->
-      @ui.errors.hide().empty()
+      @ui.notices.hide().empty()
 
       balance = @ui.balance.text()
       name = _.str.trim @ui.inputName.val()
@@ -477,11 +479,18 @@
         wait: true
         success: (model, response, options) =>
           @_reset()
+          @ui.notices.show()
+          $notice = $('<li/>', class: 'success').text 'Address successfully added'
+          @ui.notices.append $notice
+          $.doTimeout 5000, =>
+            @ui.notices.fadeOut 300, =>
+              $.doTimeout 50, => @ui.notices.empty()
+
         error: (model, response, options) =>
-          @ui.errors.show()
+          @ui.notices.show()
           _.each JSON.parse(response.responseText).errors, (msg, key) =>
-            $error = $('<li/>').text "#{_.str.titleize(_.str.humanize(key))} #{msg}"
-            @ui.errors.append $error
+            $notice = $('<li/>', class: 'error').text "#{_.str.titleize(_.str.humanize(key))} #{msg}"
+            @ui.notices.append $notice
 
     _addError: ->
       @ui.inputAddress.addClass 'is-invalid'
@@ -492,7 +501,7 @@
     _reset: (clearAddress = true) ->
       @model.clear()
       @_clearErrors()
-      @ui.errors.hide().empty()
+      @ui.notices.hide().empty()
       @ui.btnQrScan.show()
       @ui.btnImportCSV.show()
       @ui.btnSave.hide()

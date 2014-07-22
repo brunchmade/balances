@@ -83,7 +83,7 @@
         margin-left: 0;
         border-left: 4px solid transparent;
         border-right: 4px solid transparent;
-        border-top: 4px solid red;
+        border-top: 4px solid $red;
       }
       .uptrend:after {
         content: '';
@@ -94,7 +94,7 @@
         margin-left: 0;
         border-left: 4px solid transparent;
         border-right: 4px solid transparent;
-        border-bottom: 4px solid green;
+        border-bottom: 4px solid $green;
       }
     }
   }
@@ -364,12 +364,18 @@
   }
 }
 
-#address-errors {
+#address-notices {
   display: none;
   list-style-type: none;
 
   li {
-    color: rgba(red, .8);
+    &.error {
+      color: rgba($red, .8);
+    }
+
+    &.success {
+      color: rgba($green, .8);
+    }
   }
 }
 
@@ -392,10 +398,15 @@
   border: none;
 
   tr {
+    @include transition(background-color .5s ease-out);
     background: none;
 
     &.is-editing td {
       vertical-align: top;
+    }
+
+    &.success-highlight {
+      background-color: rgba($green, .5);
     }
   }
 

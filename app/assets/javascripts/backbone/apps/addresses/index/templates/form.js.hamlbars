@@ -15,7 +15,7 @@
       %a.btn-save.button.brand.clear.small{href: '#', title: 'Save Address'} Save
       %a.btn-cancel{href: '#', title: 'Cancel'} &times;
 
-%ul#address-errors
+%ul#address-notices
 
 #m-scan-qr.reveal-modal.medium{data: {reveal: ''}}
   %a.close-reveal-modal &#215;
