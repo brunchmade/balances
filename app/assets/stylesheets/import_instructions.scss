@@ -1,0 +1,64 @@
+/* -------------------
+/* import-instructions
+/* -------------------*/
+.import-instructions {
+
+  article {
+    margin-bottom: 80px;
+
+    @media only screen and (max-width: $small-screen) {
+      margin-bottom: 40px;
+    }
+  }
+
+  .version {
+    color: $medium-gray-2;
+    font-weight: 300;
+    font-size: .6em;
+    margin-left: .5em;
+  }
+
+  h3 {
+    background: $light-gray;
+    @include border-radius(6px);
+    padding: 8px 12px 5px;
+
+    img {
+      display: inline;
+      width: 32px;
+      height: 32px;
+      margin: 0 2px 0 0;
+      vertical-align: text-top;
+    }
+  }
+
+  .legend {
+    list-style-type: none;
+    font-size: 1.2em;
+    margin-bottom: 0;
+    li {
+      margin-bottom: 5px;
+    }
+
+    img {
+      display: inline;
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      vertical-align: text-top;
+    }
+  }
+
+  ol {
+    margin-left: 1.4em;
+
+    li {
+      margin-top: 40px;
+    }
+  }
+
+  img {
+    margin: 0 auto 40px;
+    display: block;
+  }
+}

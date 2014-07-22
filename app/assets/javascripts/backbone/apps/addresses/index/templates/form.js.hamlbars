@@ -38,10 +38,12 @@
   %h6
     = image_tag 'import-csv.svg', width: 100
     %br
-    %br Bulk Address Uploader
+    %br Automatic Address Importer
   %p Import a CSV of addresses from your desktop client or web wallet. Must be in the format "Label","Address" to work properly.
 
   %form.hide{action: "{{ routes 'import_addresses_path' }}", method: 'post', enctype: 'multipart/form-data'}
     %input#addresses-import{name: 'import_file', type: 'file'}
 
   %a.btn-import.button.brand{href: '#', title: 'Choose file...'} Choose file...
+  &nbsp;&nbsp;
+  %a.button.clear{href: 'import-instructions', title: 'Instructions', target: '_blank'} Instructions

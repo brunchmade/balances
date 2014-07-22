@@ -1,0 +1,193 @@
+- content_for :title do
+  Import Instructions
+
+%section.import-instructions
+  %article.small-centered
+    %h2 Import Instructions
+    %p
+      We've compiled some handy instructions for importing a list of addresses from a variety of wallet clients. If we're missing an app you use (either desktop or web) please
+      = link_to 'shoot us an email', 'mailto:team@balances.io'
+      and we'll add it to the list!
+    .row
+      %ul.legend.small-6.columns
+        %h6 Supported:
+        %li
+          = image_tag 'import-instructions/bitcoin-qt-icon.png'
+          = link_to 'Bitcoin Qt', '#bitcoin-qt'
+        %li
+          = image_tag 'import-instructions/coinbase-icon.png'
+          = link_to 'Coinbase', '#coinbase'
+        %li
+          = image_tag 'import-instructions/litecoin-qt-icon.png'
+          = link_to 'Litecoin Qt', '#litecoin-qt'
+        %li
+          = image_tag 'import-instructions/dogecoin-qt-icon.png'
+          = link_to 'Dogecoin Qt', '#dogecoin-qt'
+      %ul.legend.small-6.columns
+        %h6 Unsupported:
+        %li
+          = image_tag 'import-instructions/multibit-icon.png'
+          = link_to 'MultiBit', '#multibit'
+        %li
+          = image_tag 'import-instructions/multidoge-icon.png'
+          = link_to 'MultiDoge', '#multidoge'
+        %li
+          = image_tag 'import-instructions/blockchaininfo-icon.png'
+          = link_to 'Blockchain.info', '#blockchaininfo'
+
+  %article#bitcoin-qt.small-centered
+    %h3
+      = image_tag 'import-instructions/bitcoin-qt-icon.png'
+      Bitcoin Qt
+      %span.version (v. 0.9.2.1-g354c0f3-beta 64-bit) Guide updated on July 22, 2014
+    %ol
+      %li
+        Launch
+        %strong Bitcoin Qt.
+
+      = image_tag 'import-instructions/bitcoin-qt-1.png'
+
+      %li
+        Go to
+        %strong File > Receiving Addresses
+        (File menu is within the main window on Windows and Linux).
+        %br
+        %br
+
+      = image_tag 'import-instructions/bitcoin-qt-2.png'
+
+      %li
+        Make sure each address in the list is labeled with the name you'd like to use in Balances. (Optional)
+
+      %li
+        Click the
+        %strong Export
+        button in the bottom right of the window.
+
+      = image_tag 'import-instructions/bitcoin-qt-3.png'
+
+      %li
+        Save the file with the
+        %strong .csv
+        extension to your desktop.
+
+      = image_tag 'import-instructions/bitcoin-qt-4.png'
+
+      %li
+        Upload the file to Balances and check to make sure each of your addresses have been uploaded.
+
+  %article#coinbase.small-centered
+    %h3
+      = image_tag 'import-instructions/coinbase-icon.png'
+      Coinbase
+      %span.version Guide updated on July 22, 2014
+    %p
+      We recommend using our
+      = link_to 'Coinbase integration', coinbase_auth_path
+      instead of manually importing addresses from Coinbase. It's much more secure and easier to keep up-to-date.
+
+  %article#multibit.small-centered
+    %h3
+      = image_tag 'import-instructions/multibit-icon.png'
+      MultiBit
+      %span.version (v. 0.5.18) Guide updated on July 22, 2014
+    %p
+      We are currently working on a way to automatically import MultiBit addresses because MultiBit does not have an explicit "export" feature. If you'd like to see this feature added to MultiBit, please
+      = link_to 'comment on this GitHub issue', 'https://github.com/jim618/multibit/issues/591', target: '_blank'
+      \. We will have an interim solution available soon.
+
+  %article#litecoin-qt.small-centered
+    %h3
+      = image_tag 'import-instructions/litecoin-qt-icon.png'
+      Litecoin Qt
+      %span.version (v. 0.8.7.2-beta) Guide updated on July 22, 2014
+    %ol
+      %li
+        Launch
+        %strong Litecoin Qt.
+
+      = image_tag 'import-instructions/litecoin-qt-1.png'
+
+      %li
+        Click
+        %strong Receive
+        in the top bar.
+
+      %li
+        Make sure each address in the list is labeled with the name you'd like to use in Balances. (Optional)
+
+      = image_tag 'import-instructions/litecoin-qt-2.png'
+
+      %li
+        Click the
+        %strong Export
+        button in the bottom right of the window.
+
+      %li
+        Save the file with the
+        %strong .csv
+        extension to your desktop.
+
+        = image_tag 'import-instructions/litecoin-qt-3.png'
+
+      %li
+        Upload the file to Balances and check to make sure each of your addresses have been uploaded.
+
+  %article#dogecoin-qt.small-centered
+    %h3
+      = image_tag 'import-instructions/dogecoin-qt-icon.png'
+      Dogecoin Qt
+      %span.version (v. 1.7) Guide updated on July 22, 2014
+    %ol
+      %li
+        Launch
+        %strong Dogecoin Qt.
+
+      = image_tag 'import-instructions/dogecoin-qt-1.png'
+
+      %li
+        Go to
+        %strong File > Receiving Addresses
+        (File menu is within the main window on Windows and Linux).
+        %br
+        %br
+
+      = image_tag 'import-instructions/dogecoin-qt-2.png'
+
+      %li
+        Make sure each address in the list is labeled with the name you'd like to use in Balances. (Optional)
+
+      %li
+        Click the
+        %strong Export
+        button in the bottom right of the window.
+
+      = image_tag 'import-instructions/dogecoin-qt-3.png'
+
+      %li
+        Save the file with the
+        %strong .csv
+        extension to your desktop.
+
+      = image_tag 'import-instructions/dogecoin-qt-4.png'
+
+      %li
+        Upload the file to Balances and check to make sure each of your addresses have been uploaded.
+
+  %article#multidoge.small-centered
+    %h3
+      = image_tag 'import-instructions/multidoge-icon.png'
+      MultiDoge
+      %span.version (v. 0.1.2) Guide updated on July 22, 2014
+    %p
+      We are currently working on a way to automatically import MultiDoge addresses because MultiDoge does not have an explicit "export" feature. We will have workaround solution available soon.
+
+  %article#blockchaininfo.small-centered
+    %h3
+      = image_tag 'import-instructions/blockchaininfo-icon.png'
+      Blockchain.info Wallet
+      %span.version Guide updated on July 22, 2014
+    %p
+      We do not currently support importing addresses from Blockchain.info because their data export includes unencrypted private keys that you
+      %strong definitely do not
+      want to upload to our server. We'll let you know if we find a secure workaround to this limitation.

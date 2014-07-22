@@ -26,6 +26,8 @@ Balances::Application.routes.draw do
 
   get :transactions, controller: :transactions, action: :index
 
+  get :'import-instructions', controller: :importinstructions, action: :index
+
   devise_for :users, controllers: { registrations: 'registrations' }
   devise_scope :user do |variable|
     get :settings, to: 'registrations#edit' # We are using a custom controller
