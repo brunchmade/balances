@@ -7,7 +7,7 @@
       %li
         %a{href: "{{ routes 'addresses_path' }}"} All Balances
       %li
-        %a{href: '#'} Recent Transactions
+        %a{href: "{{ routes 'transactions_path' }}"} Recent Transactions
       %li.user
         %a.dn-arr{href: '#', data: {dropdown: 'd-user'}} {{ display_name }}
       %li.current-balance
@@ -24,7 +24,7 @@
       %li
         %a{href: "{{ routes 'addresses_path' }}"} All Balances
       %li
-        %a{href: '#'} Recent Transactions
+        %a{href: "{{ routes 'transactions_path' }}"} Recent Transactions
     %a.user.dn-arr{href: '#', data: {dropdown: 'd-user'}} {{ display_name }}
     {{else}}
     %a{href: "{{ routes 'new_user_session_path' }}"} Sign In
