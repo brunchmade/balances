@@ -204,6 +204,7 @@ header {
       max-height: 100%;
       max-width: 950px;
       @include box-shadow(0 10px 30px rgba(0,0,0,.5));
+      @include border-radius(6px);
 
       @media only screen and (max-width: $medium-screen) {
         min-height: 0;
