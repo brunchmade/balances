@@ -1,9 +1,11 @@
 class AddressesController < ApplicationController
+  require 'csv'
 
   before_filter :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: [:import]
 
   respond_to :json
-  respond_to :html, only: [:index, :show]
+  respond_to :html, only: [:index, :show, :import]
 
   def index
     @addresses = current_user.addresses
@@ -89,6 +91,24 @@ class AddressesController < ApplicationController
           render nothing: true, status: :bad_request
         end
       }
+    end
+  end
+
+  def import
+    if params[:import_file].present? && params[:import_file].original_filename.match(/\.csv$/i)
+      CSV.foreach(params[:import_file].path, headers: true) do |row|
+        data = row.to_hash
+        address = Address.new(
+          public_address: data['Address'],
+          name: data['Label'],
+          user_id: current_user.id
+        )
+        address.info
+        AddressService.create address.attributes if address.is_valid
+      end
+      redirect_to addresses_path
+    else
+      redirect_to root_path
     end
   end
 

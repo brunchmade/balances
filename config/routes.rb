@@ -12,6 +12,7 @@ Balances::Application.routes.draw do
   resources :addresses, only: [:index, :show, :create, :update, :destroy] do
     get :detect_currency, on: :collection
     get :info, on: :collection
+    post :import, on: :collection
   end
 
   resources :announcements, only: [:index] do

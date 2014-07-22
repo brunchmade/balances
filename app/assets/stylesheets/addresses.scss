@@ -357,7 +357,8 @@
     display: none;
   }
 
-  .scan-qr, .import-csv {
+  .scan-qr,
+  .import-csv {
     @include mobile-hidden;
     text-decoration: none;
     margin-left: 8px;
