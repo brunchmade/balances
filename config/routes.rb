@@ -4,6 +4,7 @@ Balances::Application.routes.draw do
   get :home, controller: 'static'
   get :teaser, controller: 'static'
   get :terms_privacy, controller: 'static'
+  get :import_instructions, controller: 'static'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: 'admin/letter_opener'
@@ -25,8 +26,6 @@ Balances::Application.routes.draw do
   end
 
   get :transactions, controller: :transactions, action: :index
-
-  get :'import-instructions', controller: :importinstructions, action: :index
 
   devise_for :users, controllers: { registrations: 'registrations' }
   devise_scope :user do |variable|

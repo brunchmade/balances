@@ -46,4 +46,4 @@
 
   %a.btn-import.button.brand{href: '#', title: 'Choose file...'} Choose file...
   &nbsp;&nbsp;
-  %a.button.clear{href: 'import-instructions', title: 'Instructions', target: '_blank'} Instructions
+  %a.button.clear{href: "{{ routes 'import_instructions_path' }}", title: 'Instructions', target: '_blank'} Instructions
