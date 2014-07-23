@@ -35,14 +35,13 @@ Balances::Application.routes.draw do
     delete :sign_out, to: 'devise/sessions#destroy'
   end
 
-  resources :users, only: [:index, :show]
-  namespace :users do
-    post :disable_twofactor
-    post :enable_twofactor
-    get :twofactor_qr
-    get :twofactor_verify
-    get 'unsubscribe/:email_hash', action: :unsubscribe, as: :unsubscribe
-    get 'unsubscribe/:email_hash/confirm', action: :unsubscribe_confirm, as: :unsubscribe_confirm
+  resources :users, only: [:index, :show] do
+    post :disable_twofactor, on: :collection
+    post :enable_twofactor, on: :collection
+    get :twofactor_qr, on: :collection
+    get :twofactor_verify, on: :collection
+    get 'unsubscribe/:email_hash', on: :collection, action: :unsubscribe, as: :unsubscribe
+    get 'unsubscribe/:email_hash/confirm', on: :collection, action: :unsubscribe_confirm, as: :unsubscribe_confirm
   end
 
   get :admin, to: 'admin#index'

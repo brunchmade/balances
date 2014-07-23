@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       current_user.update_attributes(
         otp_secret_key: ROTP::Base32.random_base32
       )
-      redirect_to users_twofactor_qr_path
+      redirect_to twofactor_qr_users_path
     else
       redirect_to settings_path, flash: {email: 'Email address required to enable two-factor authentication.'}
     end

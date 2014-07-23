@@ -14,9 +14,9 @@
 
       <p>
         <% if current_user.has_two_factor_enabled %>
-        <a href="<%= users_disable_twofactor_path %>" data-method="post">Disable Two-Factor Authentication</a>
+        <a href="<%= disable_twofactor_users_path %>" data-method="post">Disable Two-Factor Authentication</a>
         <% else %>
-        <a href="<%= users_enable_twofactor_path %>" data-method="post">Enable Two-Factor Authentication</a>
+        <a href="<%= enable_twofactor_users_path %>" data-method="post">Enable Two-Factor Authentication</a>
         <% end %>
       </p>
 
