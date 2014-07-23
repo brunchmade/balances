@@ -11,10 +11,9 @@
             Balances
         %li= link_to 'Log in', sign_in_path, class: 'small transparent button'
         %li.ios= link_to 'iOS App Coming Soon', '#iphones', class: 'small clear white button scroll-to', data: {'scroll-to' => '#iphones'}
-        %li.signup= link_to 'Get early access', sign_up_path, class: 'small blue button'
-        //%li.signup= link_to 'Sign up free', sign_up_path, class: 'small blue button'
+        %li.signup= link_to 'Get Started', sign_up_path, class: 'small blue button'
         %li.tweet
-          =link_to 'Tweet', 'https://twitter.com/share', class: 'twitter-share-button', :data => {related: 'balancesapp', dnt: 'true', text: 'Balances - A simple and secure way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value'}
+          =link_to 'Tweet', 'https://twitter.com/share', class: 'twitter-share-button', :data => {related: 'balancesapp', dnt: 'true', url: 'https://balances.io', text: 'Balances - A simple and secure way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value'}
           %script
             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 
@@ -29,7 +28,7 @@
       =image_tag('landing/screencap.gif')
 
     .beta.animated.fadeInUp
-      = link_to 'Get early access', sign_up_path, class: 'blue button'
+      = link_to 'Get Started – it\'s free!', sign_up_path, class: 'blue button'
     //.buttons.animated.fadeInUp
     //  = link_to 'Sign up free', sign_up_path, class: 'blue button'
     //  = link_to 'Try a demo', '#', class: 'clear white button'
