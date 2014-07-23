@@ -34,8 +34,9 @@
   <body>
     <%= yield %>
     <%= render "shared/footer" %>
-    <%= javascript_include_tag "landing/landing" %>
+    <% flash.clear %>
 
+    <%= javascript_include_tag "landing/landing" %>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -44,7 +45,6 @@
 
       ga('create', 'UA-4881230-23', 'balances.io');
       ga('send', 'pageview');
-
     </script>
   </body>
 </html>

@@ -36,6 +36,7 @@
     <div id="main-header-region"></div>
     <div id="main-content-region"><%= yield %></div>
     <%= render "shared/footer" %>
+    <% flash.clear %>
 
     <%= include_gon %>
     <%= javascript_include_tag "application" %>
