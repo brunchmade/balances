@@ -15,6 +15,16 @@
       listRegion: '#address-list-region'
       listTotalRegion: '#address-list-total-region'
 
+    ui:
+      'btnNewAddress': '.add-new a'
+
+    events:
+      'click @ui.btnNewAddress': '_clickNewAddress'
+
+    _clickNewAddress: (event) ->
+      event.preventDefault()
+      App.vent.trigger 'toggle:addresses:form'
+
 
   #############################################################################
   # Header
@@ -25,11 +35,9 @@
     id: 'address-header'
 
     ui:
-      'btnNewAddress': '.add-new a'
       'btnRefresh': '.refresh-data'
 
     events:
-      'click @ui.btnNewAddress': '_clickNewAddress'
       'click @ui.btnRefresh': '_clickRefresh'
 
     initialize: ->
@@ -39,10 +47,6 @@
       _.extend super,
         fiat_currency: App.fiatCurrency
         to_fiat_currency: "to_#{App.fiatCurrency.short_name}"
-
-    _clickNewAddress: (event) ->
-      event.preventDefault()
-      App.vent.trigger 'toggle:addresses:form'
 
     _clickRefresh: (event) ->
       event.preventDefault()
