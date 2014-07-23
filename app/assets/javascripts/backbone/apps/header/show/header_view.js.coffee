@@ -1,8 +1,8 @@
 @Balances.module 'HeaderApp.Show', (Show, App, Backbone, Marionette, $, _) ->
 
-  ##############################################################################
+  #############################################################################
   # Layout
-  ##############################################################################
+  #############################################################################
 
   class Show.Layout extends App.Views.Layout
     template: 'header/show/layout'
@@ -24,9 +24,9 @@
           @$('.menu a:eq(0)').addClass 'current'
 
 
-    ##############################################################################
+    ###########################################################################
     # Balance
-    ##############################################################################
+    ###########################################################################
 
     class Show.Balance extends App.Views.ItemView
       template: 'header/show/balance'
@@ -34,6 +34,9 @@
 
       events:
         'click #d-fiat a': '_clickConversion'
+
+      modelEvents:
+        'change': 'reRender'
 
       initialize: ->
         @listenTo App.vent, 'updated:fiat:currency', @reRender

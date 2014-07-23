@@ -1,4 +1,6 @@
 #address-header-region
 #address-sidebar-region
 #address-form-region
-#address-list-region
+#address-list-wrapper
+  #address-list-region
+  #address-list-total-region

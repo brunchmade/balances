@@ -28,6 +28,7 @@
         @showSidebar()
         @showForm()
         @showList()
+        @showListTotal()
 
       App.mainContentRegion.show @layout
 
@@ -66,5 +67,10 @@
 
     showList: ->
       @layout.listRegion.show new Index.List
+        model: App.currentUser
+        collection: @addresses
+
+    showListTotal: ->
+      @layout.listTotalRegion.show new Index.ListTotal
         model: App.currentUser
         collection: @addresses

@@ -1,8 +1,8 @@
 @Balances.module 'Entities', (Entities, App, Backbone, Marionette, $, _) ->
 
-  ##############################################################################
+  #############################################################################
   # Models
-  ##############################################################################
+  #############################################################################
 
   class Entities.UserBase extends Entities.Model
     initialize: (attributes, options = {}) ->
@@ -16,6 +16,9 @@
       @set display_name: @displayName()
 
   class Entities.CurrentUser extends Entities.UserBase
+    urlRoot: ->
+      Routes.users_path()
+
     isSignedIn: ->
       !!@id
 

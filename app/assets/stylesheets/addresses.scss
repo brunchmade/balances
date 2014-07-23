@@ -384,14 +384,17 @@
 /* -------------------
 /* list
 /* -------------------*/
-#address-list-region {
+#address-list-wrapper {
   @extend .large-9, .medium-8, .small-12, .columns;
-  border-top: 1px solid $light-gray;
   padding-right: 0;
 
   @media only screen and (max-width: $small-screen) {
     padding: 0;
   }
+}
+
+#address-list-region {
+  border-top: 1px solid $light-gray;
 }
 
 #address-list {

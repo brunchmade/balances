@@ -2,6 +2,20 @@ class UsersController < ApplicationController
 
   before_filter :authenticate_user!
 
+  respond_to :json, only: [:show]
+
+  def index
+    redirect_to root_url
+  end
+
+  def show
+    if params[:id].present? && params[:id].to_i == current_user.id
+      @user = current_user
+    end
+
+    respond_with @user
+  end
+
   def disable_twofactor
     current_user.update_attributes(
       otp_secret_key: nil,

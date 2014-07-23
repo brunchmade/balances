@@ -1,8 +1,8 @@
 @Balances.module 'AddressesApp.Index', (Index, App, Backbone, Marionette, $, _) ->
 
-  ##############################################################################
+  #############################################################################
   # Layout
-  ##############################################################################
+  #############################################################################
 
   class Index.Layout extends App.Views.Layout
     template: 'addresses/index/layout'
@@ -13,6 +13,7 @@
       sidebarRegion: '#address-sidebar-region'
       formRegion: '#address-form-region'
       listRegion: '#address-list-region'
+      listTotalRegion: '#address-list-total-region'
 
     ui:
       'btnNewAddress': '.add-new a'
@@ -25,9 +26,9 @@
       App.vent.trigger 'toggle:addresses:form'
 
 
-  ##############################################################################
+  #############################################################################
   # Header
-  ##############################################################################
+  #############################################################################
 
   class Index.Header extends App.Views.ItemView
     template: 'addresses/index/header'
@@ -42,9 +43,9 @@
         to_fiat_currency: "to_#{App.fiatCurrency.short_name}"
 
 
-  ##############################################################################
+  #############################################################################
   # Sidebar
-  ##############################################################################
+  #############################################################################
 
   class Index.Sidebar extends App.Views.Layout
     template: 'addresses/index/sidebar'
@@ -65,6 +66,9 @@
 
     events:
       'click @ui.filter': '_clickFilter'
+
+    modelEvents:
+      'change': 'reRender'
 
     initialize: ->
       @listenTo App.vent, 'updated:fiat:currency', @reRender
@@ -104,9 +108,9 @@
             alert 'There was an error :(. Please try again!'
 
 
-  ##############################################################################
+  #############################################################################
   # List
-  ##############################################################################
+  #############################################################################
 
   class Index.Empty extends App.Views.ItemView
     template: 'addresses/index/empty'
@@ -196,6 +200,8 @@
       if confirm 'Are you sure you want to remove this address?'
         @model.destroy
           wait: true
+          success: (model, response, options) ->
+            App.currentUser.fetch()
           error: (model, response, options) ->
             alert 'Sorry, something went wrong. Please try again.'
 
@@ -253,11 +259,6 @@
       _.extend super,
         selected_currency: @collection.conversion
         fiat_currency: App.fiatCurrency
-        conversion: @_getConversion()
-        has_addresses: @collection.length
-        has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
-        has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
-        has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
 
     onShow: ->
       @_updateSort()
@@ -319,10 +320,51 @@
       @ui.conversionPrelabel.toggle @collection.conversion isnt 'all'
       @ui.conversionLabel.text $target.text()
 
+  class Index.ListTotal extends App.Views.ItemView
+    template: 'addresses/index/list_total'
+    id: 'address-list-total'
+    tagName: 'table'
 
-  ##############################################################################
+    collectionEvents:
+      'change:conversion': 'reRender'
+
+    modelEvents:
+      'change': 'reRender'
+
+    serializeData: ->
+      _.extend super,
+        conversion: @_getConversion()
+        has_addresses: @collection.length
+        has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
+        has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
+        has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
+
+    # TODO: Do not duplicate this from Index>list
+    _getConversion: ->
+      conversion = {}
+
+      conversion.balance =
+        if _.contains _.keys(gon.cryptocurrencies), @collection.conversion
+          @model.get('totals')[gon.cryptocurrencies[@collection.conversion].short_name]
+        else if _.contains _.keys(gon.fiat_currencies), @collection.conversion
+          fiatCurrency = gon.fiat_currencies[@collection.conversion]
+          fiatCurrency.symbol + @model.get('totals')[fiatCurrency.short_name]
+        else
+          @model.get('totals').btc
+
+      conversion.short_name =
+        if _.contains _.keys(gon.cryptocurrencies), @collection.conversion
+          gon.cryptocurrencies[@collection.conversion].short_name_upper
+        else if _.contains _.keys(gon.fiat_currencies), @collection.conversion
+          gon.fiat_currencies[@collection.conversion].short_name_upper
+        else
+          gon.cryptocurrencies['btc'].short_name_upper
+
+      conversion
+
+  #############################################################################
   # Form
-  ##############################################################################
+  #############################################################################
 
   class Index.Form extends App.Views.ItemView
     template: 'addresses/index/form'
@@ -337,6 +379,7 @@
       'hiddenAddress': '.hidden-public-address'
       'hiddenAddressFirstbits': '.hidden-public-firstbits'
       'btnQrScan': '.scan-qr'
+      'btnImportCSV': '.import-csv'
       'btnSave': '.btn-save'
       'btnCancel': '.btn-cancel'
       'notices': '#address-notices'
@@ -491,6 +534,11 @@
         wait: true
         success: (model, response, options) =>
           @_reset()
+
+          # Refresh the user
+          App.currentUser.fetch()
+
+          # Show success message
           @ui.notices.show()
           $notice = $('<li/>', class: 'success').text 'Address successfully added'
           @ui.notices.append $notice
