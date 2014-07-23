@@ -95,17 +95,38 @@ class AddressesController < ApplicationController
   end
 
   def import
-    if params[:import_file].present? && params[:import_file].original_filename.match(/\.csv$/i)
-      CSV.foreach(params[:import_file].path, headers: true) do |row|
-        data = row.to_hash
-        address = Address.new(
-          public_address: data['Address'],
-          name: data['Label'],
-          user_id: current_user.id
-        )
-        address.info
-        AddressService.create address.attributes if address.is_valid
+    if params[:import_file].present? && (ext = params[:import_file].original_filename.match(/\.(csv|info)$/i))
+      case ext[1].downcase
+      # Assumed format is w/ headers:
+      # Label, Address
+      when 'csv'
+        CSV.foreach(params[:import_file].path, headers: true) do |row|
+          data = row.to_hash
+          address = Address.new(
+            public_address: data['Address'],
+            name: data['Label'],
+            user_id: current_user.id
+          )
+          address.info
+          AddressService.create address.attributes if address.is_valid
+        end
+
+      # Assumed format is:
+      # receive, 1234567890, foobar
+      when 'info'
+        CSV.foreach(params[:import_file].path) do |row|
+          if row[0] == 'receive'
+            address = Address.new(
+              public_address: row[1],
+              name: row[2],
+              user_id: current_user.id
+            )
+            address.info
+            AddressService.create address.attributes if address.is_valid
+          end
+        end
       end
+
       redirect_to addresses_path
     else
       redirect_to root_path
