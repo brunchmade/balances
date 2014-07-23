@@ -55,7 +55,7 @@ p {
 
 
 .header-bg {
-  @include background-gradient(#1D232B,#49586A);
+  @include background-image(linear-gradient(left top, #1D232B 0%, #49586A 100%));
   position: relative;
   min-height: 700px;
 
@@ -244,7 +244,7 @@ header {
 }
 
 #unified-bg, #currencies-bg {
-  @include background-gradient(#fcfcfc,#ffffff);
+  @include background-image(linear-gradient(left top, #fcfcfc 0%, #ffffff 100%));
   border-top: 1px solid #eee;
   padding: 80px 0;
   @media only screen and (max-width: $small-screen) {
@@ -262,7 +262,7 @@ header {
   }
 }
 #security-bg {
-  @include background-gradient(#fcfcfc,#ffffff);
+  @include background-image(linear-gradient(left top, #fcfcfc 0%, #ffffff 100%));
   border-top: 1px solid #eee;
   padding: 80px 0;
   @media only screen and (max-width: $small-screen) {
