@@ -17,6 +17,10 @@ $medium-gray-2: #9b9b9b;
 $medium-gray-3: #7a7a7a;
 $dark-gray: #4a4a4a;
 
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
 @mixin mobile-hidden {
   @media only screen and (max-width: $small-screen) {
     display: none;
@@ -39,6 +43,12 @@ $dark-gray: #4a4a4a;
   &.eur { background-image: image-url('currencies/euro-small.svg'); }
   &.gbp { background-image: image-url('currencies/gbp-small.svg'); }
   &.jpy { background-image: image-url('currencies/yen-small.svg'); }
+}
+
+@mixin animation($animation) {
+  -webkit-animation: $animation;
+  -moz-animation: $animation;
+  animation: $animation;
 }
 
 // Placeholder @mixin for Sass

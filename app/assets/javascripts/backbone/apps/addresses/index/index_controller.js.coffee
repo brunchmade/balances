@@ -34,6 +34,8 @@
 
     showHeader: ->
       @layout.headerRegion.show new Index.Header
+        model: App.currentUser
+        collection: @addresses
 
     showSidebar: ->
       @announcements.fetch(reset: true)

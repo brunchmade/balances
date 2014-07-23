@@ -25,8 +25,14 @@
       background: image-url('refresh.svg') no-repeat left center;
       @include opacity(.5);
 
-      &:hover {
+      &:hover,
+      &:focus {
         @include transform(rotate(45deg));
+        @include opacity(1);
+      }
+
+      &.is-loading {
+        @include animation(spin 2s linear infinite);
         @include opacity(1);
       }
     }
