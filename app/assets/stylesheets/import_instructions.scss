@@ -11,6 +11,15 @@
     }
   }
 
+  img.inline {
+    display: inline;
+    vertical-align: text-top;
+  }
+
+  code {
+    margin-left: 10px;
+  }
+
   .version {
     color: $medium-gray-2;
     font-weight: 300;

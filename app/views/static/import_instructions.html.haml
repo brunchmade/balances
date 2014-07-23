@@ -18,19 +18,20 @@
           = image_tag 'import-instructions/coinbase-icon.png'
           = link_to 'Coinbase', '#coinbase'
         %li
+          = image_tag 'import-instructions/multibit-icon.png'
+          = link_to 'MultiBit', '#multibit'
+        %li
           = image_tag 'import-instructions/litecoin-qt-icon.png'
           = link_to 'Litecoin Qt', '#litecoin-qt'
         %li
           = image_tag 'import-instructions/dogecoin-qt-icon.png'
           = link_to 'Dogecoin Qt', '#dogecoin-qt'
-      %ul.legend.small-6.columns
-        %h6 Unsupported:
-        %li
-          = image_tag 'import-instructions/multibit-icon.png'
-          = link_to 'MultiBit', '#multibit'
         %li
           = image_tag 'import-instructions/multidoge-icon.png'
           = link_to 'MultiDoge', '#multidoge'
+
+      %ul.legend.small-6.columns
+        %h6 Unsupported:
         %li
           = image_tag 'import-instructions/blockchaininfo-icon.png'
           = link_to 'Blockchain.info', '#blockchaininfo'
@@ -74,7 +75,7 @@
       = image_tag 'import-instructions/bitcoin-qt-4.png'
 
       %li
-        Upload the file to Balances and check to make sure each of your addresses have been uploaded.
+        Upload the file to Balances. Check to make sure each of your addresses have been uploaded.
 
   %article#coinbase.small-centered
     %h3
@@ -92,9 +93,47 @@
       MultiBit
       %span.version (v. 0.5.18) Guide updated on July 22, 2014
     %p
-      We are currently working on a way to automatically import MultiBit addresses because MultiBit does not have an explicit "export" feature. If you'd like to see this feature added to MultiBit, please
+      These instructions are a bit technical because MultiBit does not have an explicit "export" feature. If you'd like to see this feature added to MultiBit, please
       = link_to 'comment on this GitHub issue', 'https://github.com/jim618/multibit/issues/591', target: '_blank'
-      \. We will have an interim solution available soon.
+      \. In the meantime, here's a workaround that we support.
+
+    %ol
+      %li
+        Launch
+        %strong MultiBit.
+
+      %li
+        Go to the
+        %strong Request
+        tab and make sure each address in the list is labeled with the name you'd like to use in Balances. (Optional)
+
+      = image_tag 'import-instructions/multibit-1.png'
+
+      %li
+        Log into Balances and Click the
+        %strong New Address
+        button, then press
+        = image_tag 'import-csv.svg', class: 'inline'
+        %strong Import SVG
+        then
+        %strong Choose file.
+
+      %li
+        On a Mac, press
+        %strong Shift + Cmd + G
+        to open the 'Go to folder' dialog and type
+        %code ~/Library/Application Support/MultiBit/
+        %br
+        %br
+
+      = image_tag 'import-instructions/multibit-2.png'
+
+      %li
+        Choose the file called
+        %code multibit.info
+
+      %li
+        Upload the file to Balances. Check to make sure each of your addresses have been uploaded.
 
   %article#litecoin-qt.small-centered
     %h3
@@ -131,7 +170,7 @@
         = image_tag 'import-instructions/litecoin-qt-3.png'
 
       %li
-        Upload the file to Balances and check to make sure each of your addresses have been uploaded.
+        Upload the file to Balances. Check to make sure each of your addresses have been uploaded.
 
   %article#dogecoin-qt.small-centered
     %h3
@@ -172,7 +211,7 @@
       = image_tag 'import-instructions/dogecoin-qt-4.png'
 
       %li
-        Upload the file to Balances and check to make sure each of your addresses have been uploaded.
+        Upload the file to Balances. Check to make sure each of your addresses have been uploaded.
 
   %article#multidoge.small-centered
     %h3
@@ -180,7 +219,45 @@
       MultiDoge
       %span.version (v. 0.1.2) Guide updated on July 22, 2014
     %p
-      We are currently working on a way to automatically import MultiDoge addresses because MultiDoge does not have an explicit "export" feature. We will have workaround solution available soon.
+      These instructions are a bit technical because MultiDoge does not have an explicit "export" feature. Until they add it (if ever), here's a workaround that we support.
+
+    %ol
+      %li
+        Launch
+        %strong MultiDoge.
+
+      %li
+        Go to the
+        %strong Request
+        tab and make sure each address in the list is labeled with the name you'd like to use in Balances. (Optional)
+
+      = image_tag 'import-instructions/multidoge-1.png'
+
+      %li
+        Log into Balances and Click the
+        %strong New Address
+        button, then press
+        = image_tag 'import-csv.svg', class: 'inline'
+        %strong Import SVG
+        then
+        %strong Choose file.
+
+      %li
+        On a Mac, press
+        %strong Shift + Cmd + G
+        to open the 'Go to folder' dialog and type
+        %code ~/Library/Application Support/MultiDoge/
+        %br
+        %br
+
+      = image_tag 'import-instructions/multidoge-2.png'
+
+      %li
+        Choose the file called
+        %code multidoge.info
+
+      %li
+        Upload the file to Balances. Check to make sure each of your addresses have been uploaded.
 
   %article#blockchaininfo.small-centered
     %h3
