@@ -62,4 +62,6 @@ Balances::Application.routes.draw do
       end
     end
   end
+
+  get "/buy-bitcoins" => redirect("https://coinbase.com/?r=51d71adc37bf09905100005d&utm_campaign=user-referral&src=referral-link")
 end
