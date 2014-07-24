@@ -8,6 +8,8 @@
         %a{href: "{{ routes 'addresses_path' }}"} All Balances
       %li
         %a{href: "{{ routes 'transactions_path' }}"} Recent Transactions
+      %li
+        %a{href: 'https://coinbase.com/?r=51d71adc37bf09905100005d&utm_campaign=user-referral&src=referral-link', target: '_blank'} Buy Bitcoins
       %li.user
         %a.dn-arr{href: '#', data: {dropdown: 'd-user'}} {{ display_name }}
       %li.current-balance
@@ -25,6 +27,8 @@
         %a{href: "{{ routes 'addresses_path' }}"} All Balances
       %li
         %a{href: "{{ routes 'transactions_path' }}"} Recent Transactions
+      %li
+        %a{href: 'https://coinbase.com/?r=51d71adc37bf09905100005d&utm_campaign=user-referral&src=referral-link', target: '_blank'} Buy Bitcoins
     %a.user.dn-arr{href: '#', data: {dropdown: 'd-user'}} {{ display_name }}
     {{else}}
     %a{href: "{{ routes 'new_user_session_path' }}"} Sign In
