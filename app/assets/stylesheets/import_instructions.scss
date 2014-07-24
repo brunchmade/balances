@@ -20,6 +20,31 @@
     margin-left: 10px;
   }
 
+  .alert {
+    padding: 8px 10px;
+    @include border-radius(5px);
+    background: rgba(orange,.25);
+    border: 1px solid rgba(orange,.5);
+    @extend .row;
+
+    .icon {
+      @extend .small-2, .columns;
+
+      img {
+        max-height: 40px;
+        position: relative;
+        top: 50%;
+        @include translateY(20px);
+      }
+    }
+
+    p, a {
+      color: darken(orange, 20%);
+      margin: 0;
+      font-size: .9em;
+    }
+  }
+
   .version {
     color: $medium-gray-2;
     font-weight: 300;

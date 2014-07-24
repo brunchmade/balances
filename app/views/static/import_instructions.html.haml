@@ -35,12 +35,25 @@
         %li
           = image_tag 'import-instructions/blockchaininfo-icon.png'
           = link_to 'Blockchain.info', '#blockchaininfo'
+        %li
+          = image_tag 'import-instructions/hivewallet-icon.png'
+          = link_to 'Hive (OS X, Android, Web)', '#hivewallet'
 
   %article#bitcoin-qt.small-centered
     %h3
       = image_tag 'import-instructions/bitcoin-qt-icon.png'
       Bitcoin Qt
       %span.version (v. 0.9.2.1-g354c0f3-beta 64-bit) Guide updated on July 22, 2014
+
+    .alert
+      .icon
+        = image_tag 'import-instructions/alert.svg'
+      .small-10.columns
+        %p
+          When you send bitcoins using Bitcoin Qt, the client uses
+          = link_to 'change addresses', 'https://en.bitcoin.it/wiki/Change', target: '_blank'
+          to anonymize your transactions. If you send money and then see a 0 balance in Balances, it's because your money has been moved to a different address inside your wallet. We are currently working on a way around these issues.
+
     %ol
       %li
         Launch
@@ -140,6 +153,16 @@
       = image_tag 'import-instructions/litecoin-qt-icon.png'
       Litecoin Qt
       %span.version (v. 0.8.7.2-beta) Guide updated on July 22, 2014
+
+    .alert
+      .icon
+        = image_tag 'import-instructions/alert.svg'
+      .small-10.columns
+        %p
+          When you send bitcoins using Bitcoin Qt, the client uses
+          = link_to 'change addresses', 'https://en.bitcoin.it/wiki/Change', target: '_blank'
+          to anonymize your transactions. If you send money and then see a 0 balance in Balances, it's because your money has been moved to a different address inside your wallet. We are currently working on a way around these issues.
+
     %ol
       %li
         Launch
@@ -177,6 +200,16 @@
       = image_tag 'import-instructions/dogecoin-qt-icon.png'
       Dogecoin Qt
       %span.version (v. 1.7) Guide updated on July 22, 2014
+
+    .alert
+      .icon
+        = image_tag 'import-instructions/alert.svg'
+      .small-10.columns
+        %p
+          When you send bitcoins using Bitcoin Qt, the client uses
+          = link_to 'change addresses', 'https://en.bitcoin.it/wiki/Change', target: '_blank'
+          to anonymize your transactions. If you send money and then see a 0 balance in Balances, it's because your money has been moved to a different address inside your wallet. We are currently working on a way around these issues.
+
     %ol
       %li
         Launch
@@ -268,3 +301,11 @@
       We do not currently support importing addresses from Blockchain.info because their data export includes unencrypted private keys that you
       %strong definitely do not
       want to upload to our server. We'll let you know if we find a secure workaround to this limitation.
+
+  %article#hivewallet.small-centered
+    %h3
+      = image_tag 'import-instructions/hivewallet-icon.png'
+      Hive (OS X, Android, Web)
+      %span.version Guide updated on July 23, 2014
+    %p
+      We do not currently support importing addresses from Hive. We'll update this guide if they open a public API that we can use.
