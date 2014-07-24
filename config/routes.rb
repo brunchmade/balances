@@ -1,19 +1,19 @@
 Balances::Application.routes.draw do
 
   root to: 'static#root'
-  get :home, controller: 'static'
-  get :teaser, controller: 'static'
-  get :terms_privacy, controller: 'static'
-  get :import_instructions, controller: 'static'
+  get :home, controller: :static
+  get :teaser, controller: :static
+  get :terms_privacy, controller: :static
+  get :import_instructions, controller: :static
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: 'admin/letter_opener'
   end
 
   resources :addresses, only: [:index, :show, :create, :update, :destroy] do
+    post :import, on: :collection
     get :detect_currency, on: :collection
     get :info, on: :collection
-    post :import, on: :collection
   end
 
   resources :announcements, only: [:index] do
@@ -25,7 +25,7 @@ Balances::Application.routes.draw do
     get :callback
   end
 
-  get :transactions, controller: :transactions, action: :index
+  get :transactions, to: 'transactions#index'
 
   devise_for :users, controllers: { registrations: 'registrations' }
   devise_scope :user do |variable|
@@ -46,6 +46,7 @@ Balances::Application.routes.draw do
 
   get :admin, to: 'admin#index'
   namespace :admin do
+    get :stats
     resources :announcements
   end
 

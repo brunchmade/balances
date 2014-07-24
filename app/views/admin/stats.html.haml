@@ -1,0 +1,107 @@
+- content_for :title do
+  Stats - Admin Portal
+
+%section
+  %article
+    %h1 Stats - Admin Portal
+
+    %h4 Admins
+    %p Stats will exclude data from admins
+    %ul
+      - @admins.each do |user|
+        %li= user.display_name
+
+    %h4 User Stats
+    %table
+      %thead
+        %tr
+          %th Stat
+          %th Total
+          %th % Total
+          %th % Relative
+      %tbody
+        %tr
+          %td Users
+          %td= @users.count
+          %td &nbsp;
+          %td &nbsp;
+        %tr
+          %td Users w/ addresses
+          %td= (users_w_addresses = Address.group(:user_id).count.count)
+          %td= number_to_percentage(users_w_addresses.to_f / @users.count.to_f * 100, precision: 2)
+          %td &nbsp;
+        %tr
+          %td Users w/ > 1 address
+          %td= (users_w_gt1_address = Address.group(:user_id).having('COUNT(*) > 1').count.count)
+          %td= number_to_percentage(users_w_gt1_address.to_f / @users.count.to_f * 100, precision: 2)
+          %td= number_to_percentage(users_w_gt1_address.to_f / users_w_addresses.to_f * 100, precision: 2)
+        %tr
+          %td Users w/ Coinbase
+          %td= (users_w_coinbase = Address.integrations.group(:user_id).count.count)
+          %td= number_to_percentage(users_w_coinbase.to_f / @users.count.to_f * 100, precision: 2)
+          %td= number_to_percentage(users_w_coinbase.to_f / users_w_addresses.to_f * 100, precision: 2)
+        - Address::CURRENCIES.each do |currency|
+          %tr
+            %td Users w/ #{currency.currency_name}
+            %td= (users_w_currency = Address.send(currency.currency_name.downcase).group(:user_id).count.count)
+            %td= number_to_percentage(users_w_currency.to_f / @users.count.to_f * 100, precision: 2)
+            %td= number_to_percentage(users_w_currency.to_f / users_w_addresses.to_f * 100, precision: 2)
+
+    %h4 Address Stats
+    %table
+      %thead
+        %tr
+          %th Stat
+          %th Total
+          %th % Total
+      %tbody
+        %tr
+          %td Addresses
+          %td= @addresses.count
+          %td &nbsp;
+        - Address::CURRENCIES.each do |currency|
+          %tr
+            %td #{currency.currency_name} Addresses
+            %td= (currency_addresses = @addresses.send(currency.currency_name.downcase).count)
+            %td= number_to_percentage(currency_addresses.to_f / @addresses.count.to_f * 100, precision: 2)
+
+
+    %h4 Address Value Stats
+    %table
+      %thead
+        %tr
+          %th Stat
+          %th BTC
+          %th $
+      %tbody
+        %tr
+          %td Addresses Avg. Value
+          - total = @addresses.inject(0) { |memo, address| memo + address.get_currency.send('to_btc', address.balance) }
+          - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+          %td #{ActiveSupport::NumberHelper.number_to_delimited(rounded)} BTC
+          - total = @addresses.inject(0) { |memo, address| memo + address.get_currency.send('to_usd', address.balance) }
+          - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
+          %td $#{ActiveSupport::NumberHelper.number_to_delimited(rounded)}
+        - Address::CURRENCIES.each do |currency|
+          %tr
+            %td #{currency.currency_name} Avg. Value
+            - total = @addresses.send(currency.currency_name.downcase).inject(0) { |memo, address| memo + address.get_currency.send('to_btc', address.balance) }
+            - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+            %td #{ActiveSupport::NumberHelper.number_to_delimited(rounded)} BTC
+            - total = @addresses.send(currency.currency_name.downcase).inject(0) { |memo, address| memo + address.get_currency.send('to_usd', address.balance) }
+            - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
+            %td $#{ActiveSupport::NumberHelper.number_to_delimited(rounded)}
+        - Address::CURRENCIES.each do |currency|
+          %tr
+            %td #{currency.currency_name} Top Value
+            - address = @addresses.send(currency.currency_name.downcase).order('balance_btc DESC').first
+            - if address
+              - max = address.get_currency.send('to_btc', address.balance)
+              - rounded = ActiveSupport::NumberHelper.number_to_rounded(max, precision: 8, strip_insignificant_zeros: true)
+              %td #{ActiveSupport::NumberHelper.number_to_delimited(rounded)} BTC
+              - max = address.get_currency.send('to_usd', address.balance)
+              - rounded = ActiveSupport::NumberHelper.number_to_rounded(max, precision: 2)
+              %td $#{ActiveSupport::NumberHelper.number_to_delimited(rounded)}
+            - else
+              %td n/a
+              %td n/a
