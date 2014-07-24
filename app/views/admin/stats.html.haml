@@ -75,23 +75,52 @@
           %th $
       %tbody
         %tr
-          %td Addresses Avg. Value
+          %td Addresses Total Value
           - total = @addresses.inject(0) { |memo, address| memo + address.get_currency.send('to_btc', address.balance) }
           - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
           %td #{ActiveSupport::NumberHelper.number_to_delimited(rounded)} BTC
           - total = @addresses.inject(0) { |memo, address| memo + address.get_currency.send('to_usd', address.balance) }
           - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
           %td $#{ActiveSupport::NumberHelper.number_to_delimited(rounded)}
-        - Address::CURRENCIES.each do |currency|
-          %tr
-            %td #{currency.currency_name} Avg. Value
-            - total = @addresses.send(currency.currency_name.downcase).inject(0) { |memo, address| memo + address.get_currency.send('to_btc', address.balance) }
+        %tr
+          %td Addresses Avg. Value
+          - if @addresses.count > 0
+            - total = @addresses.inject(0) { |memo, address| memo + address.get_currency.send('to_btc', address.balance) } / @addresses.count
             - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
             %td #{ActiveSupport::NumberHelper.number_to_delimited(rounded)} BTC
-            - total = @addresses.send(currency.currency_name.downcase).inject(0) { |memo, address| memo + address.get_currency.send('to_usd', address.balance) }
+            - total = @addresses.inject(0) { |memo, address| memo + address.get_currency.send('to_usd', address.balance) } / @addresses.count
             - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
             %td $#{ActiveSupport::NumberHelper.number_to_delimited(rounded)}
+          - else
+            %td n/a
+            %td n/a
         - Address::CURRENCIES.each do |currency|
+          %tr
+            %td #{currency.currency_name} Total Value
+            - addresses = @addresses.send(currency.currency_name.downcase)
+            - if addresses.count > 0
+              - total = addresses.inject(0) { |memo, address| memo + address.get_currency.send('to_btc', address.balance) }
+              - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+              %td #{ActiveSupport::NumberHelper.number_to_delimited(rounded)} BTC
+              - total = addresses.inject(0) { |memo, address| memo + address.get_currency.send('to_usd', address.balance) }
+              - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
+              %td $#{ActiveSupport::NumberHelper.number_to_delimited(rounded)}
+            - else
+              %td n/a
+              %td n/a
+          %tr
+            %td #{currency.currency_name} Avg. Value
+            - addresses = @addresses.send(currency.currency_name.downcase)
+            - if addresses.count > 0
+              - total = addresses.inject(0) { |memo, address| memo + address.get_currency.send('to_btc', address.balance) } / addresses.count
+              - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 8, strip_insignificant_zeros: true)
+              %td #{ActiveSupport::NumberHelper.number_to_delimited(rounded)} BTC
+              - total = addresses.inject(0) { |memo, address| memo + address.get_currency.send('to_usd', address.balance) } / addresses.count
+              - rounded = ActiveSupport::NumberHelper.number_to_rounded(total, precision: 2)
+              %td $#{ActiveSupport::NumberHelper.number_to_delimited(rounded)}
+            - else
+              %td n/a
+              %td n/a
           %tr
             %td #{currency.currency_name} Top Value
             - address = @addresses.send(currency.currency_name.downcase).order('balance_btc DESC').first
