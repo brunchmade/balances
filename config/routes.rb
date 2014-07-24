@@ -5,6 +5,8 @@ Balances::Application.routes.draw do
   get :teaser, controller: :static
   get :terms_privacy, controller: :static
   get :import_instructions, controller: :static
+  get '/buy_bitcoins' => redirect('https://coinbase.com/?r=51d71adc37bf09905100005d&utm_campaign=user-referral&src=referral-link')
+
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: 'admin/letter_opener'
@@ -63,5 +65,4 @@ Balances::Application.routes.draw do
     end
   end
 
-  get "/buy-bitcoins" => redirect("https://coinbase.com/?r=51d71adc37bf09905100005d&utm_campaign=user-referral&src=referral-link")
 end
