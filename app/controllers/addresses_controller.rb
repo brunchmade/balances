@@ -85,8 +85,12 @@ class AddressesController < ApplicationController
       format.json {
         if params[:public_address].present?
           @address = Address.new(public_address: params[:public_address])
-          @address.info
-          respond_with @address
+          info = @address.info
+          if info[:is_valid]
+            respond_with @address
+          else
+            render json: {is_valid: false}, status: :ok
+          end
         else
           render nothing: true, status: :bad_request
         end
