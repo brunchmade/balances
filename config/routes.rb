@@ -37,7 +37,7 @@ Balances::Application.routes.draw do
     delete :sign_out, to: 'devise/sessions#destroy'
   end
 
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:index, :show, :update] do
     post :disable_twofactor, on: :collection
     post :enable_twofactor, on: :collection
     get :twofactor_qr, on: :collection
