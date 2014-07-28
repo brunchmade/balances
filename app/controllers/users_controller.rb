@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :authenticate_user!
 
-  respond_to :json, only: [:show]
+  respond_to :json, only: [:show, :update]
 
   def index
     redirect_to root_url
@@ -11,6 +11,15 @@ class UsersController < ApplicationController
   def show
     if params[:id].present? && params[:id].to_i == current_user.id
       @user = current_user
+    end
+
+    respond_with @user
+  end
+
+  def update
+    if params[:id].present? && params[:id].to_i == current_user.id
+      @user = current_user
+      @user.update_attributes user_params
     end
 
     respond_with @user
@@ -78,6 +87,15 @@ class UsersController < ApplicationController
     else
       redirect_to root_path
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(
+      :last_selected_fiat,
+      :last_selected_conversion,
+    )
   end
 
 end

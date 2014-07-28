@@ -319,8 +319,9 @@
 
     _clickConversion: (event) ->
       event.preventDefault()
-      $target = $(event.currentTarget)
-      @collection.setConversion $target.data('conversion')
+      conversion = $(event.currentTarget).data('conversion')
+      App.currentUser.save last_selected_conversion: conversion
+      @collection.setConversion conversion
 
     _updateFiatCurrency: ->
       if _.contains _.pluck(gon.fiat_currencies, 'short_name'), @collection.conversion

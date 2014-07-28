@@ -26,4 +26,8 @@
       !!@get('needs_two_factor_auth')
 
     _onInitialize: (attributes, options) ->
-      @addresses = new App.Entities.Addresses(options.addresses or {})
+      addresses = options.addresses or {}
+      addressesOptions = {}
+      if @get('last_selected_conversion')
+        addressesOptions.conversion = @get('last_selected_conversion')
+      @addresses = new App.Entities.Addresses addresses, addressesOptions

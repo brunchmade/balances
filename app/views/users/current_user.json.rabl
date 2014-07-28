@@ -3,6 +3,8 @@ object @user
 attributes :id,
            :display_name,
            :email,
+           :last_selected_conversion,
+           :last_selected_fiat,
            :username
 
 node(:has_currency) do |user|
