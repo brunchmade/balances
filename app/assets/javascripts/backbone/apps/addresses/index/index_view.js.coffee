@@ -320,7 +320,11 @@
     _clickConversion: (event) ->
       event.preventDefault()
       conversion = $(event.currentTarget).data('conversion')
-      App.currentUser.save last_selected_conversion: conversion
+      last_selected = if _.contains _.keys(gon.fiat_currencies), conversion
+        'fiat'
+      else
+        conversion
+      App.currentUser.save last_selected_conversion: last_selected
       @collection.setConversion conversion
 
     _updateFiatCurrency: ->

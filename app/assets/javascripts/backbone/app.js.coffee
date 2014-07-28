@@ -7,8 +7,7 @@
   App.on 'initialize:before', (options) ->
     @currentUser = new App.Entities.CurrentUser options.currentUser,
       addresses: options.addresses
-    startingFiatCurrency = @currentUser.get('last_selected_fiat') or gon.default_fiat_currency
-    @fiatCurrency = gon.fiat_currencies[startingFiatCurrency]
+    @fiatCurrency = gon.fiat_currencies[@currentUser.selectedFiat()]
 
   App.addRegions
     mainHeaderRegion: '#main-header-region'
