@@ -38,6 +38,11 @@ node(:balance_ltc) do |address|
   ActiveSupport::NumberHelper.number_to_delimited(rounded)
 end
 
+node(:balance_vtc) do |address|
+  rounded = ActiveSupport::NumberHelper.number_to_rounded(address.get_currency.to_vtc(address.balance), precision: 8, strip_insignificant_zeros: true)
+  ActiveSupport::NumberHelper.number_to_delimited(rounded)
+end
+
 node(:balance_usd) do |address|
   rounded = ActiveSupport::NumberHelper.number_to_rounded(address.get_currency.to_usd(address.balance), precision: 2)
   ActiveSupport::NumberHelper.number_to_delimited(rounded)

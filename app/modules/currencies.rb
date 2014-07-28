@@ -70,6 +70,10 @@ module Currencies
       value.to_f
     end
 
+    def self.to_vtc(value)
+      value.to_f
+    end
+
     def self.to_usd(value)
       cc = CurrencyConversion.find_by_name(self.currency_name)
       value.to_f * cc.to_usd.to_f

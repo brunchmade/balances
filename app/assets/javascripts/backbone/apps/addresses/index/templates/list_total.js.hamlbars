@@ -3,15 +3,20 @@
   %td Total {{ gon.cryptocurrencies.btc.short_name_upper }}:
   %td.value {{ balances.btc.balance }}
 {{/if}}
+{{#if has_doge}}
+%tr
+  %td Total {{ gon.cryptocurrencies.doge.short_name_upper }}:
+  %td.value {{ balances.doge.balance }}
+{{/if}}
 {{#if has_ltc}}
 %tr
   %td Total {{ gon.cryptocurrencies.ltc.short_name_upper }}:
   %td.value {{ balances.ltc.balance }}
 {{/if}}
-{{#if has_doge}}
+{{#if has_vtc}}
 %tr
-  %td Total {{ gon.cryptocurrencies.doge.short_name_upper }}:
-  %td.value {{ balances.doge.balance }}
+  %td Total {{ gon.cryptocurrencies.vtc.short_name_upper }}:
+  %td.value {{ balances.vtc.balance }}
 {{/if}}
 {{#if has_addresses}}
 %tr.total-value

@@ -29,5 +29,10 @@ module Currencies
       Currencies::Bitcoin.to_doge value_btc
     end
 
+    def self.to_vtc(value)
+      value_btc = self.to_btc(value)
+      Currencies::Bitcoin.to_vtc value_btc
+    end
+
   end
 end

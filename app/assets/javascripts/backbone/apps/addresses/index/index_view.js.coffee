@@ -368,6 +368,7 @@
         has_btc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['btc'].name
         has_doge: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['doge'].name
         has_ltc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['ltc'].name
+        has_vtc: @collection.some (model) -> model.get('currency') is gon.cryptocurrencies['vtc'].name
 
     # TODO: Do not duplicate this from Index>list
     _getConversion: ->

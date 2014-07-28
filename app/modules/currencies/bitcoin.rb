@@ -38,5 +38,10 @@ module Currencies
       value.to_f / cc.to_btc.to_f
     end
 
+    def self.to_vtc(value)
+      cc = CurrencyConversion.find_by_name(Currencies::Vertcoin.currency_name)
+      value.to_f / cc.to_btc.to_f
+    end
+
   end
 end

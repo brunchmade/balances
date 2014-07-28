@@ -8,6 +8,7 @@ namespace :currency_conversions do
     CurrencyConversion.create!(name: 'Bitcoin') unless CurrencyConversion.find_by_name('Bitcoin')
     CurrencyConversion.create!(name: 'Dogecoin', crypsty_id: 132) unless CurrencyConversion.find_by_name('Dogecoin')
     CurrencyConversion.create!(name: 'Litecoin', crypsty_id: 3) unless CurrencyConversion.find_by_name('Litecoin')
+    CurrencyConversion.create!(name: 'Vertcoin', crypsty_id: 151) unless CurrencyConversion.find_by_name('Vertcoin')
 
     CurrencyConversion.find_each do |cc|
       RakeLogger.log "Caching data for: #{cc.name}"
