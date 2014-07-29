@@ -18,7 +18,8 @@
 1. Run `rake currency_conversions:populate` and `rake currency_conversions:update`
 1. Update `app/views/addresses/show.json.rabl` to have corresponding `balance_{{CURRENCY_SHORT_NAME}}` node.
 1. Update `gon` in `app/controllers/application_controller.rb#setup_gon`.
-1. Update address templates for the sidebar balances, list, list totals, header and the JS view for list totals
+1. Update address templates for the sidebar balances, list, list totals, header and the JS view for list totals.
+1. Update `@mixin currency-symbols` in `app/assets/stylesheets/mixins_and_variables.scss`.
 
 ###### Currency file example:
 ```ruby
