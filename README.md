@@ -31,26 +31,29 @@ module Currencies
     SHORT_NAME = 'BTC'
     SYMBOLS = ['1']
 
-    def self.info(address)
-      response = self.get_response("#{API}/address/info/#{address}")
-      response[:data]
-    end
+    class << self
 
-    def self.balance(address)
-      response = self.get_response("#{API}/address/info/#{address}")
-      response[:data][:balance]
-    end
+      def self.info(address)
+        response = self.get_response("#{API}/address/info/#{address}")
+        response[:data]
+      end
 
-    def self.valid?(address)
-      response = self.get_response("#{API}/address/info/#{address}")
-      response[:data][:is_valid]
-    end
+      def self.balance(address)
+        response = self.get_response("#{API}/address/info/#{address}")
+        response[:data][:balance]
+      end
 
-    # Conversions
-    def self.to_btc(value)
-      value.to_f
-    end
+      def self.valid?(address)
+        response = self.get_response("#{API}/address/info/#{address}")
+        response[:data][:is_valid]
+      end
 
+      # Conversions
+      def self.to_btc(value)
+        value.to_f
+      end
+
+    end
   end
 end
 ```
