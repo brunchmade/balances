@@ -55,11 +55,10 @@ module Currencies
     end
 
     # Conversions
-    # Currencies other than BTC only need to implement conversion methods
-    # for currencies that are not BTC, themselves or fiat.
+    # Currencies need to implement conversion methods for currencies that are
+    # not themselves.
     def self.to_btc(value)
-      cc = CurrencyConversion.find_by_name(self.currency_name)
-      value.to_f * cc.to_btc.to_f
+      value.to_f
     end
 
     def self.to_doge(value)

@@ -31,6 +31,11 @@ module Currencies
     end
 
     # Conversions
+    def self.to_btc(value)
+      cc = CurrencyConversion.find_by_name(self.currency_name)
+      value.to_f * cc.to_btc.to_f
+    end
+
     def self.to_ltc(value)
       value_btc = self.to_btc(value)
       Currencies::Bitcoin.to_ltc value_btc

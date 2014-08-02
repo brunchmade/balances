@@ -24,10 +24,6 @@ module Currencies
     end
 
     # Conversions
-    def self.to_btc(value)
-      value.to_f
-    end
-
     def self.to_doge(value)
       cc = CurrencyConversion.find_by_name(Currencies::Dogecoin.currency_name)
       value.to_f / cc.to_btc.to_f
