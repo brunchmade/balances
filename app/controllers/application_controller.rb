@@ -123,7 +123,7 @@ class ApplicationController < ActionController::Base
       gon.currency_conversion[:ltc][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
 
       value = CurrencyConversion.find_by_name('Stellar').send(key)
-      rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 2)
+      rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 4)
       gon.currency_conversion[:str][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
 
       value = CurrencyConversion.find_by_name('Vertcoin').send(key)
