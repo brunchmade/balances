@@ -29,6 +29,12 @@
         %li
           = image_tag 'import-instructions/multidoge-icon.png'
           = link_to 'MultiDoge', '#multidoge'
+        %li
+          = image_tag 'import-instructions/vertcoin-qt-icon.png'
+          = link_to 'Vertcoin Qt', '#vertcoin-qt'
+        %li
+          = image_tag 'import-instructions/stellar-icon.png'
+          = link_to 'Stellar', '#stellar'
 
       %ul.legend.small-6.columns
         %h6 Unsupported:
@@ -159,7 +165,7 @@
         = image_tag 'import-instructions/alert.svg'
       .small-10.columns
         %p
-          When you send bitcoins using Bitcoin Qt, the client uses
+          When you send dogecoins using Dogecoin Qt, the client uses
           = link_to 'change addresses', 'https://en.bitcoin.it/wiki/Change', target: '_blank'
           to anonymize your transactions. If you send money and then see a 0 balance in Balances, it's because your money has been moved to a different address inside your wallet. We are currently working on a way around these issues.
 
@@ -245,6 +251,92 @@
 
       %li
         Upload the file to Balances. Check to make sure each of your addresses have been uploaded.
+
+  %article#vertcoin-qt.small-centered
+    %h3
+      = image_tag 'import-instructions/vertcoin-qt-icon.png'
+      Vertcoin Qt
+      %span.version (v. 0.8.7.3-unk-beta) Guide updated on August 3, 2014
+
+    .alert
+      .icon
+        = image_tag 'import-instructions/alert.svg'
+      .small-10.columns
+        %p
+          When you send vertcoins using Vertcoin Qt, the client uses
+          = link_to 'change addresses', 'https://en.bitcoin.it/wiki/Change', target: '_blank'
+          to anonymize your transactions. If you send money and then see a 0 balance in Balances, it's because your money has been moved to a different address inside your wallet. We are currently working on a way around these issues.
+
+    %ol
+      %li
+        Launch
+        %strong Vertcoin Qt.
+
+      = image_tag 'import-instructions/vertcoin-qt-1.png'
+
+      %li
+        Click
+        %strong Receive
+        in the top bar.
+
+      %li
+        Make sure each address in the list is labeled with the name you'd like to use in Balances. (Optional)
+
+      = image_tag 'import-instructions/vertcoin-qt-2.png'
+
+      %li
+        Click the
+        %strong Export
+        button in the bottom right of the window.
+
+      %li
+        Save the file with the
+        %strong .csv
+        extension to your desktop.
+
+        = image_tag 'import-instructions/vertcoin-qt-3.png'
+
+      %li
+        Upload the file to Balances. Check to make sure each of your addresses have been uploaded.
+
+  %article#stellar.small-centered
+    %h3
+      = image_tag 'import-instructions/stellar-icon.png'
+      Stellar
+      %span.version
+        (v.
+        = link_to "6501c91", "https://github.com/stellar/stellar-client/commit/6501c912d4c0ac8a5f51c45a3626c0e0f26dfec5", target: "_blank"
+        ) Guide updated on August 3, 2014
+
+    %ol
+      %li
+        Log into
+        %strong
+          = link_to "Stellar Web Client", "https://launch.stellar.org/#/login"
+
+      = image_tag 'import-instructions/stellar-1.png'
+
+      %li
+        Click the
+        %strong Receive
+        button in the top left, next to your Stellar balance.
+
+      = image_tag 'import-instructions/stellar-2.png'
+
+      %li
+        Click the
+        %strong Show your Stellar Address
+        button underneath your username.
+
+      %li
+        Copy the 36-character code to the right of the globe
+        %br
+        %br
+
+      = image_tag 'import-instructions/stellar-3.png'
+
+      %li
+        Paste the code into the "Add New Address" field on Balances. Check to make sure the correct balance appears.
 
   %article#multidoge.small-centered
     %h3

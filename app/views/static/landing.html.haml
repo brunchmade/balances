@@ -22,7 +22,7 @@
       %h4
         Finally, a simple and
         =link_to 'secure', '#security-bg', class: 'huh scroll-to', data: {'scroll-to' => '#security-bg'}
-        way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value.
+        way to view your Bitcoin, Litecoin, Dogecoin, Vertcoin, and Stellar balances and their combined value.
 
     .screen.animated.fadeIn
       =image_tag('landing/screencap.gif')
@@ -39,12 +39,15 @@
     .wow.fadeIn{data: {'wow-delay' => '2s' }}
       = link_to '', '#unified-bg', class: 'read-more scroll-to', data: {'scroll-to' => '#unified-bg'}
 
+%section.currencies
+  %article
+    =image_tag('landing/available-coins.svg')
 
 #unified-bg
   %section.unified
     %article
       %h3 Read-only wallet monitoring
-      %p Enter your bitcoin, litecoin, and dogecoin addresses and view your balances on a single screen. See the combined value of all your wallets without risking the security of your coins.
+      %p Enter your Bitcoin, Litecoin, Dogecoin, Vertcoin, and Stellar addresses and view your balances on a single screen. See the combined value of all your wallets without risking the security of your coins.
     #iphones
       =image_tag('landing/screens@2x.png', :class => 'preview')
     %article
@@ -91,4 +94,4 @@
 %section
   %article
     %h3 Stop manually checking up on your cryptocurrency portfolio.
-    = link_to 'Get early access', sign_up_path, class: 'large blue button'
+    = link_to 'Get Started', sign_up_path, class: 'large blue button'
