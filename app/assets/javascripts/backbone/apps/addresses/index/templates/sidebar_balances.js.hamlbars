@@ -1,6 +1,7 @@
 %li
   %a{href: '#', title: 'Show all currencies', data: {filter: 'all'}} All Currencies
   .grand-total {{ fiat_currency.symbol }}{{ balance }}
+
 {{#if has_currency.bitcoin}}
 %li
   %a{href: '#', title: "Show only {{ gon.cryptocurrencies.btc.name }}", data: {filter: 'bitcoin'}} {{ gon.cryptocurrencies.btc.name }}
@@ -8,6 +9,15 @@
     {{ balances.btc.balance }} {{ gon.cryptocurrencies.btc.short_name_upper }}
     .fiat {{ fiat_currency.symbol}}{{ obj balances.btc balance_fiat_currency }}
 {{/if}}
+
+{{#if has_currency.dogecoin}}
+%li
+  %a{href: '#', title: "Show only {{ gon.cryptocurrencies.doge.name }}", data: {filter: 'dogecoin'}} {{ gon.cryptocurrencies.doge.name }}
+  .total
+    {{ balances.doge.balance }} {{ gon.cryptocurrencies.doge.short_name_upper }}
+    .fiat {{ fiat_currency.symbol}}{{ obj balances.doge balance_fiat_currency }}
+{{/if}}
+
 {{#if has_currency.litecoin}}
 %li
   %a{href: '#', title: "Show only {{ gon.cryptocurrencies.ltc.name }}", data: {filter: 'litecoin'}} {{ gon.cryptocurrencies.ltc.name }}
@@ -15,10 +25,19 @@
     {{ balances.ltc.balance }} {{ gon.cryptocurrencies.ltc.short_name_upper }}
     .fiat {{ fiat_currency.symbol}}{{ obj balances.ltc balance_fiat_currency }}
 {{/if}}
-{{#if has_currency.dogecoin}}
+
+{{#if has_currency.stellar}}
 %li
-  %a{href: '#', title: "Show only {{ gon.cryptocurrencies.doge.name }}", data: {filter: 'dogecoin'}} {{ gon.cryptocurrencies.doge.name }}
+  %a{href: '#', title: "Show only {{ gon.cryptocurrencies.str.name }}", data: {filter: 'stellar'}} {{ gon.cryptocurrencies.str.name }}
   .total
-    {{ balances.doge.balance }} {{ gon.cryptocurrencies.doge.short_name_upper }}
-    .fiat {{ fiat_currency.symbol}}{{ obj balances.doge balance_fiat_currency }}
+    {{ balances.str.balance }} {{ gon.cryptocurrencies.str.short_name_upper }}
+    .fiat {{ fiat_currency.symbol}}{{ obj balances.str balance_fiat_currency }}
+{{/if}}
+
+{{#if has_currency.vertcoin}}
+%li
+  %a{href: '#', title: "Show only {{ gon.cryptocurrencies.vtc.name }}", data: {filter: 'vertcoin'}} {{ gon.cryptocurrencies.vtc.name }}
+  .total
+    {{ balances.vtc.balance }} {{ gon.cryptocurrencies.vtc.short_name_upper }}
+    .fiat {{ fiat_currency.symbol}}{{ obj balances.vtc balance_fiat_currency }}
 {{/if}}

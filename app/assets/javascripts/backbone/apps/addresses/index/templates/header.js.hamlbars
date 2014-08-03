@@ -3,12 +3,18 @@
 .add-new
   %a.small.clear.button.icon.add{href: '#', title: 'Add a new Bitcoin, Litecoin, or Dogecoin address'} New Address
 %ul
-  %li.icon.doge
-    {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.doge to_fiat_currency }}
-    / %span.uptrend
+  %li.icon.vtc
+    {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.vtc to_fiat_currency }}
+    / %span.downtrend
+  %li.icon.str
+    {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.str to_fiat_currency }}
+    / %span.downtrend
   %li.icon.ltc
     {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.ltc to_fiat_currency }}
     / %span.downtrend
+  %li.icon.doge
+    {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.doge to_fiat_currency }}
+    / %span.uptrend
   %li.icon.btc
     {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.btc to_fiat_currency }}
     / %span.uptrend

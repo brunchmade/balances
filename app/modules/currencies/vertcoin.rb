@@ -1,10 +1,10 @@
 module Currencies
-  class Dogecoin < Base
+  class Vertcoin < Base
 
-    API = 'https://dogechain.info/chain/Dogecoin/q'
-    CURRENCY_NAME = 'Dogecoin'
-    SHORT_NAME = 'DOGE'
-    SYMBOLS = ['D']
+    API = 'https://explorer.vertcoin.org/chain/vertcoin/q'
+    CURRENCY_NAME = 'Vertcoin'
+    SHORT_NAME = 'VTC'
+    SYMBOLS = ['V']
 
     class << self
 
@@ -42,9 +42,9 @@ module Currencies
         value.to_f * cc.to_btc.to_f
       end
 
-      def to_ltc(value)
+      def to_doge(value)
         value_btc = to_btc(value)
-        Currencies::Bitcoin.to_ltc value_btc
+        Currencies::Bitcoin.to_doge value_btc
       end
 
       def to_str(value)
@@ -52,9 +52,9 @@ module Currencies
         Currencies::Bitcoin.to_str value_btc
       end
 
-      def to_vtc(value)
+      def to_ltc(value)
         value_btc = to_btc(value)
-        Currencies::Bitcoin.to_vtc value_btc
+        Currencies::Bitcoin.to_ltc value_btc
       end
 
     end

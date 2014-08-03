@@ -35,8 +35,10 @@ $dark-gray: #4a4a4a;
   // Digital
   &.all { background-image: image-url('currencies/all-currencies.svg'); }
   &.btc { background-image: image-url('currencies/bitcoin-small.svg'); }
-  &.ltc { background-image: image-url('currencies/litecoin-small.svg'); }
   &.doge { background-image: image-url('currencies/dogecoin-small.svg'); }
+  &.ltc { background-image: image-url('currencies/litecoin-small.svg'); }
+  &.str { background-image: image-url('currencies/stellar-small.svg'); }
+  &.vtc { background-image: image-url('currencies/vertcoin-small.svg'); }
 
   // Fiat
   &.usd { background-image: image-url('currencies/usd-small.svg'); }

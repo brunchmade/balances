@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :currency_conversion do
     name "MyText"
-    crypsty_id 1
+    cryptsy_id 1
     to_btc "9.99"
     to_usd "9.99"
   end

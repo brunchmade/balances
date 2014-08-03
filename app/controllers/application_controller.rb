@@ -50,15 +50,25 @@ class ApplicationController < ActionController::Base
         short_name: Currencies::Bitcoin.short_name.downcase,
         short_name_upper: Currencies::Bitcoin.short_name,
       },
+      doge: {
+        name: Currencies::Dogecoin.currency_name,
+        short_name: Currencies::Dogecoin.short_name.downcase,
+        short_name_upper: Currencies::Dogecoin.short_name,
+      },
       ltc: {
         name: Currencies::Litecoin.currency_name,
         short_name: Currencies::Litecoin.short_name.downcase,
         short_name_upper: Currencies::Litecoin.short_name,
       },
-      doge: {
-        name: Currencies::Dogecoin.currency_name,
-        short_name: Currencies::Dogecoin.short_name.downcase,
-        short_name_upper: Currencies::Dogecoin.short_name,
+      str: {
+        name: Currencies::Stellar.currency_name,
+        short_name: Currencies::Stellar.short_name.downcase,
+        short_name_upper: Currencies::Stellar.short_name,
+      },
+      vtc: {
+        name: Currencies::Vertcoin.currency_name,
+        short_name: Currencies::Vertcoin.short_name.downcase,
+        short_name_upper: Currencies::Vertcoin.short_name,
       },
     }
 
@@ -92,8 +102,10 @@ class ApplicationController < ActionController::Base
 
     gon.currency_conversion = {
       btc: {},
-      ltc: {},
       doge: {},
+      ltc: {},
+      str: {},
+      vtc: {},
     }
     ['usd', 'eur', 'gbp', 'jpy'].each do |fiat_currency|
       key = "to_#{fiat_currency}"
@@ -102,13 +114,21 @@ class ApplicationController < ActionController::Base
       rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 2)
       gon.currency_conversion[:btc][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
 
+      value = CurrencyConversion.find_by_name('Dogecoin').send(key)
+      rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 4)
+      gon.currency_conversion[:doge][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
+
       value = CurrencyConversion.find_by_name('Litecoin').send(key)
       rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 2)
       gon.currency_conversion[:ltc][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
 
-      value = CurrencyConversion.find_by_name('Dogecoin').send(key)
-      rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 4)
-      gon.currency_conversion[:doge][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
+      value = CurrencyConversion.find_by_name('Stellar').send(key)
+      rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 2)
+      gon.currency_conversion[:str][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
+
+      value = CurrencyConversion.find_by_name('Vertcoin').send(key)
+      rounded = ActiveSupport::NumberHelper.number_to_rounded(value, precision: 2)
+      gon.currency_conversion[:vtc][key] = ActiveSupport::NumberHelper.number_to_delimited(rounded)
     end
   end
 
