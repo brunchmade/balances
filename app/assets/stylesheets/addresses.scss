@@ -39,7 +39,7 @@
   } // .refresh
 
   .add-new {
-    @extend .large-4, .medium-5, .small-10, .columns;
+    @extend .large-3, .medium-3, .small-10, .columns;
 
     @media only screen and (max-width: $small-screen) {
       text-align: right;
@@ -47,7 +47,7 @@
   }
 
   ul {
-    @extend .large-5, .medium-6, .columns;
+    @extend .large-6, .medium-8, .columns;
     margin-bottom: 0;
     list-style-type: none;
 
