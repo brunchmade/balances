@@ -16,13 +16,18 @@ module Currencies
       end
 
       def balance(address)
-        response = get_response("#{API}/address/info/#{address}")
-        response[:data][:balance]
+        data = info(address)
+        data[:balance]
+      end
+
+      def first_tx_at(address)
+        data = info(address)
+        data[:first_tx_at]
       end
 
       def valid?(address)
-        response = get_response("#{API}/address/info/#{address}")
-        response[:data][:is_valid]
+        data = info(address)
+        data[:is_valid]
       end
 
       # Conversions
@@ -33,6 +38,11 @@ module Currencies
 
       def to_ltc(value)
         cc = CurrencyConversion.find_by_name(Currencies::Litecoin.currency_name)
+        value.to_f / cc.to_btc.to_f
+      end
+
+      def to_str(value)
+        cc = CurrencyConversion.find_by_name(Currencies::Stellar.currency_name)
         value.to_f / cc.to_btc.to_f
       end
 

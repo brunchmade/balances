@@ -16,13 +16,18 @@ module Currencies
       end
 
       def balance(address)
-        response = get_response("#{API}/address/info/#{address}")
-        response[:data][:balance]
+        data = info(address)
+        data[:balance]
+      end
+
+      def first_tx_at(address)
+        data = info(address)
+        data[:first_tx_at]
       end
 
       def valid?(address)
-        response = get_response("#{API}/address/info/#{address}")
-        response[:data][:is_valid]
+        data = info(address)
+        data[:is_valid]
       end
 
       # Conversions
@@ -34,6 +39,11 @@ module Currencies
       def to_doge(value)
         value_btc = to_btc(value)
         Currencies::Bitcoin.to_doge value_btc
+      end
+
+      def to_str(value)
+        value_btc = to_btc(value)
+        Currencies::Bitcoin.to_str value_btc
       end
 
       def to_vtc(value)

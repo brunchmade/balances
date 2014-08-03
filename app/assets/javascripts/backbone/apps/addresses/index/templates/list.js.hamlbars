@@ -27,6 +27,8 @@
     %li
       %a.icon.ltc{href: '#', title: 'Show values in Litecoin', data: {conversion: 'ltc'}} Litecoin
     %li
+      %a.icon.ltc{href: '#', title: 'Show values in Stellar', data: {conversion: 'str'}} Stellar
+    %li
       %a.icon.ltc{href: '#', title: 'Show values in Vertcoin', data: {conversion: 'vtc'}} Vertcoin
     %li
       %a{class: 'icon {{ fiat_currency.short_name }}', href: '#', title: 'Show values in {{ fiat_currency.name }}', data: {conversion: '{{ fiat_currency.short_name }}'}} Fiat ({{ fiat_currency.short_name_upper }})

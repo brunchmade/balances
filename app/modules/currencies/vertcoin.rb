@@ -24,6 +24,10 @@ module Currencies
         response.to_f
       end
 
+      def first_tx_at(address)
+        nil
+      end
+
       def valid?(address)
         response = get_response("#{API}/checkaddress/#{address}", {
           force_sslv3: true,
@@ -41,6 +45,11 @@ module Currencies
       def to_doge(value)
         value_btc = to_btc(value)
         Currencies::Bitcoin.to_doge value_btc
+      end
+
+      def to_str(value)
+        value_btc = to_btc(value)
+        Currencies::Bitcoin.to_str value_btc
       end
 
       def to_ltc(value)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728042149) do
+ActiveRecord::Schema.define(version: 20140803071426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,14 +43,15 @@ ActiveRecord::Schema.define(version: 20140728042149) do
 
   create_table "currency_conversions", force: true do |t|
     t.text     "name"
-    t.integer  "crypsty_id"
-    t.decimal  "to_btc",     precision: 18, scale: 8
-    t.decimal  "to_usd",     precision: 18, scale: 8
+    t.integer  "cryptsy_id"
+    t.decimal  "to_btc",      precision: 18, scale: 8
+    t.decimal  "to_usd",      precision: 18, scale: 8
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "to_eur",     precision: 18, scale: 8
-    t.decimal  "to_jpy",     precision: 18, scale: 8
-    t.decimal  "to_gbp",     precision: 18, scale: 8
+    t.decimal  "to_eur",      precision: 18, scale: 8
+    t.decimal  "to_jpy",      precision: 18, scale: 8
+    t.decimal  "to_gbp",      precision: 18, scale: 8
+    t.text     "justcoin_id"
   end
 
   add_index "currency_conversions", ["name"], name: "index_currency_conversions_on_name", unique: true, using: :btree

@@ -6,6 +6,9 @@
   %li.icon.vtc
     {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.vtc to_fiat_currency }}
     / %span.downtrend
+  %li.icon.str
+    {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.str to_fiat_currency }}
+    / %span.downtrend
   %li.icon.ltc
     {{ fiat_currency.symbol }}{{ obj gon.currency_conversion.ltc to_fiat_currency }}
     / %span.downtrend

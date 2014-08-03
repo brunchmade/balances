@@ -33,23 +33,28 @@ module Currencies
 
     class << self
 
-      def self.info(address)
-        response = self.get_response("#{API}/address/info/#{address}")
+      def info(address)
+        response = get_response("#{API}/address/info/#{address}")
         response[:data]
       end
 
-      def self.balance(address)
-        response = self.get_response("#{API}/address/info/#{address}")
+      def balance(address)
+        response = get_response("#{API}/address/info/#{address}")
         response[:data][:balance]
       end
 
-      def self.valid?(address)
-        response = self.get_response("#{API}/address/info/#{address}")
+      def first_tx_at(address)
+        response = get_response("#{API}/address/info/#{address}")
+        response[:data][:first_tx] ? response[:data][:first_tx][:time_utc] : nil
+      end
+
+      def valid?(address)
+        response = get_response("#{API}/address/info/#{address}")
         response[:data][:is_valid]
       end
 
       # Conversions
-      def self.to_btc(value)
+      def to_btc(value)
         value.to_f
       end
 
@@ -59,7 +64,7 @@ end
 ```
 
 ## Adding a Fiat Currency
-1. Update `app/modules/currencies.rb` with corresponding `self.to_{{CURRENCY_SHORT_NAME}}` method.
+1. Update `app/modules/currencies.rb` with corresponding `to_{{CURRENCY_SHORT_NAME}}` method.
 1. Update `app/models/currency_conversion.rb` with a `cache_to_{{CURRENCY_NAME}}` method.
 1. Update `lib/tasks/currency_conversation.rake#update` and then run it.
 1. Update `app/views/addresses/show.json.rabl` with corresponding `balance_{{CURRENCY_SHORT_NAME}}` node.
