@@ -10,3 +10,5 @@
   -#  %a{href: 'http://apple.com', title: 'Download Balances from the App Store'} Get Balances for iOS
   %li
     %a{href: '#', title: 'Import a list of addresses from a web or desktop wallet', data: {reveal_id: 'm-import-csv'}} Import addresses (CSV)
+  %li
+    %a{href: "import_instructions", title: 'Learn how to use Balances', target: '_blank'} Instructions
