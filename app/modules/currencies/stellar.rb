@@ -18,10 +18,12 @@ module Currencies
           }
         })
         info = {}.with_indifferent_access
-        # Diving by 1000000 because an account with 60000 returns as 60000999975
-        info[:balance] = response[:result][:account_data][:Balance].to_f / 1000000
-        info[:is_valid] = response[:result][:status] == 'success'
-        info[:first_tx_at] = first_tx_at(address)
+        if response[:result][:status] == 'success'
+          # Diving by 1000000 because an account with 60000 returns as 60000999975
+          info[:balance] = response[:result][:account_data][:Balance].to_f / 1000000
+          info[:is_valid] = response[:result][:status] == 'success'
+          info[:first_tx_at] = first_tx_at(address)
+        end
         info
       end
 
@@ -34,8 +36,10 @@ module Currencies
             }]
           }
         })
-        # Diving by 1000000 because an account with 60000 returns as 60000999975
-        response[:result][:account_data][:balance] / 1000000
+        if response[:result][:status] == 'success'
+          # Diving by 1000000 because an account with 60000 returns as 60000999975
+          response[:result][:account_data][:balance] / 1000000
+        end
       end
 
       # TODO: This API is still in its infancy. Check back to see if the 'forward'
@@ -52,8 +56,10 @@ module Currencies
             }]
           }
         })
-        tx = response[:result][:transactions].last
-        Time.at(tx[:tx][:date] + 20.years.to_i).utc.to_datetime
+        if response[:result][:status] == 'success'
+          tx = response[:result][:transactions].last
+          Time.at(tx[:tx][:date] + 20.years.to_i).utc.to_datetime
+        end
       end
 
       def valid?(address)

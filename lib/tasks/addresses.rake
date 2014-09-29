@@ -9,10 +9,13 @@ namespace :addresses do
     Address.nonintegrations.find_each do |address|
       RakeLogger.log "Updating address: #{address.id}"
       currency = address.get_currency
-      address.update_attributes(
-        balance: currency.balance(address.public_address),
-        balance_btc: currency.to_btc(address.balance)
-      )
+      balance = currency.balance(address.public_address)
+      if balance
+        address.update_attributes(
+          balance: balance,
+          balance_btc: currency.to_btc(address.balance)
+        )
+      end
     end
 
     RakeLogger.log "--- Integrations ---"
