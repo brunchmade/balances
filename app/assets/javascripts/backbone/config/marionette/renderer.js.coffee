@@ -8,7 +8,7 @@ do (Marionette) ->
       template = HandlebarsTemplates["backbone/apps/#{path}"]
       unless template
         throw "Template #{templatePath} not found!"
-       template(data)
+      template(data)
 
     getTemplate: (template) ->
       array = template.split('/')
