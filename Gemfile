@@ -28,7 +28,6 @@ gem 'unicorn'
 gem 'sass-rails', '~> 4.0.0'
 gem 'sprockets', '2.11.0' # 2.12.0 is broken
 gem 'zurb-foundation'
-gem 'newrelic_rpm'
 
 group :production do
   gem 'dalli'
