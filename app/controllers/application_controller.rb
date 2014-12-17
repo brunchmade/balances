@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   end
 
   def setup_gon
-    gon.user_voice_url = 'http://balances.uservoice.com/forums/244164-suggestions'
+    gon.user_voice_url = ENV['USERVOICE_SUGGESTIONS_URL']
 
     gon.cryptocurrencies = {
       btc: {
