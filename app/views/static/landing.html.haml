@@ -81,7 +81,7 @@
       %h5 We'll never sell your data
       %p
         We love our customers. We only make money from iOS app sales, non-tracking website ads, and
-        =link_to 'donations.', 'bitcoin:16cdkF6w96zYAyxnQENi6UVwgSJ34JkEWZ'
+        =link_to 'donations.', "bitcoin:#{ENV['DONATION_BITCOIN']}"
         We don't sell
         %u any
         user data to anyone, and we never will.
