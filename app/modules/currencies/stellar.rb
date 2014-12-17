@@ -43,7 +43,7 @@ module Currencies
       end
 
       # TODO: This API is still in its infancy. Check back to see if the 'forward'
-      #   flag works so you only need to grab one record. Also there datetime
+      #   flag works so you only need to grab one record. Also their datetime
       #   stamps are 20 years off.
       def first_tx_at(address)
         response = post_response(API, {
