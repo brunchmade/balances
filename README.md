@@ -4,13 +4,12 @@
 We are excited to open source Balances and get the community involved! Check out [CONTRIBUTING.md](https://github.com/brunchmade/balances/blob/master/CONTRIBUTING.md) for quick guide.
 
 ## Setting up Environment
-1. Run `git clone git@github.com:brunchmade/balances.git`
-2. Run `bundle install`
-2. Copy `.sample.env` to `.env` and update with all the necessary credentials. The required ones are `SECRET_TOKEN` and `EMAIL_HASH_SALT`.
-3. Copy `sample.database.yml` to `database.yml`
-4. Run `rake db:create db:migrate`
-5. Run `rake currency_conversions:populate`
-6. Run `foreman start` or `rails s -p 5000`
+1. Run `bundle install`
+1. Copy `.sample.env` to `.env` and update with all the necessary credentials. The required ones are `SECRET_TOKEN` and `EMAIL_HASH_SALT`.
+1. Copy `sample.database.yml` to `database.yml`
+1. Run `rake db:create db:migrate`
+1. Run `rake currency_conversions:populate`
+1. Run `foreman start` or `rails s -p 5000`
 
 ## Adding a Currency
 1. Add to `app/modules/currencies/` a file named after the currency. e.g. `app/modules/currencies/bitcoin.rb`
