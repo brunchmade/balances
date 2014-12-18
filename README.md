@@ -1,5 +1,8 @@
 # Balances
 
+## Contributing
+We are excited to open source Balances and get the community involved! Check out [CONTRIBUTING.md](https://github.com/brunchmade/balances/blob/master/CONTRIBUTING.md) for quick guide.
+
 ## Setting up Environment
 1. Run `git clone git@github.com:brunchmade/balances.git`
 2. Run `bundle install`
