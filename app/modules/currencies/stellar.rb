@@ -38,7 +38,7 @@ module Currencies
         })
         if response[:result][:status] == 'success'
           # Diving by 1000000 because an account with 60000 returns as 60000999975
-          response[:result][:account_data][:balance] / 1000000
+          response[:result][:account_data][:Balance].to_f / 1000000
         end
       end
 
@@ -57,8 +57,9 @@ module Currencies
           }
         })
         if response[:result][:status] == 'success'
-          tx = response[:result][:transactions].last
-          Time.at(tx[:tx][:date] + 20.years.to_i).utc.to_datetime
+          if tx = response[:result][:transactions].last
+            Time.at(tx[:tx][:date] + 20.years.to_i).utc.to_datetime
+          end
         end
       end
 

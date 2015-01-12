@@ -18,7 +18,6 @@ module Currencies
 
       def balance(address)
         response = get_response("#{API}/addressbalance/#{address}", {
-          force_sslv3: true,
           parse_json: false
         })
         response.to_f
@@ -30,7 +29,6 @@ module Currencies
 
       def valid?(address)
         response = get_response("#{API}/checkaddress/#{address}", {
-          force_sslv3: true,
           parse_json: false
         })
         !['X5', 'SZ', 'CK'].include?(response)
