@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
 
-  default from: 'Balances Team <team@balances.io>'
+  default from: 'Balances Team <balancesapp@gmail.com>'
   default template_path: 'mailer'
   layout 'mailer'
 
