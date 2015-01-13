@@ -10,7 +10,7 @@
             %span.top
             Balances
         %li= link_to 'Log in', sign_in_path, class: 'small transparent button'
-        %li.ios= link_to 'iOS App Coming Soon', '#iphones', class: 'small clear white button scroll-to', data: {'scroll-to' => '#iphones'}
+        -# %li.ios= link_to 'iOS App Coming Soon', '#iphones', class: 'small clear white button scroll-to', data: {'scroll-to' => '#iphones'}
         %li.signup= link_to 'Get Started', sign_up_path, class: 'small blue button'
         %li.tweet
           =link_to 'Tweet', 'https://twitter.com/share', class: 'twitter-share-button', :data => {related: 'balancesapp', dnt: 'true', url: 'https://balances.io', text: 'Balances - A simple and secure way to view your Bitcoin, Litecoin, and Dogecoin balances and their combined value'}
@@ -48,16 +48,16 @@
     %article
       %h3 Read-only wallet monitoring
       %p Enter your Bitcoin, Litecoin, Dogecoin, Vertcoin, and Stellar addresses and view your balances on a single screen. See the combined value of all your wallets without risking the security of your coins.
-    #iphones
-      =image_tag('landing/screens@2x.png', :class => 'preview')
-    %article
-      %p
-        Miner? Investor? Merchant?
-        =link_to 'Download Balances for iOS (coming soon)', 'http://eepurl.com/Zddab'
-        and we'll send you push notifications any time you receive money.
+    -# #iphones
+    -#   =image_tag('landing/screens@2x.png', :class => 'preview')
+    -# %article
+    -#   %p
+    -#     Miner? Investor? Merchant?
+    -#     =link_to 'Download Balances for iOS (coming soon)', 'http://eepurl.com/Zddab'
+    -#     and we'll send you push notifications any time you receive money.
 
-      =link_to image_tag('landing/app-store.svg'), '#', class: 'app-store soon'
-      =link_to "Get notified when Balances for iOS is available", "http://eepurl.com/Zddab"
+    -#   =link_to image_tag('landing/app-store.svg'), '#', class: 'app-store soon'
+    -#   =link_to "Get notified when Balances for iOS is available", "http://eepurl.com/Zddab"
 
 #security-bg
   %section.security
@@ -66,7 +66,7 @@
       =image_tag('landing/shield.svg')
       %h5 Best-in-class encryption
       %p
-        We use AES 256-bit SSL to encrypt your traffic and sync your balances between your iOS devices and the secure server. We also have two-factor authentication available.
+        We use AES 256-bit SSL to encrypt your traffic to our secure server. We also have two-factor authentication available.
 
     .large-4.columns
       =image_tag('landing/oink.svg')
@@ -80,9 +80,7 @@
       =image_tag('landing/love.svg')
       %h5 We'll never sell your data
       %p
-        We love our customers. We only make money from iOS app sales, non-tracking website ads, and
-        =link_to 'donations.', "bitcoin:#{ENV['DONATION_BITCOIN']}"
-        We don't sell
+        We love our customers. This site costs us nothing to run, and we don't advertise or upsell. We don't sell
         %u any
         user data to anyone, and we never will.
 

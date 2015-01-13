@@ -4,10 +4,10 @@
   %p
     Let's get started by adding an address. We currently support
     %br
-    %b Bitcoin, Litecoin,
+    %b Bitcoin, Litecoin, Dogecoin, Vertcoin
     and
-    %b Dogecoin
+    %b Stellar
     &mdash; with more on the way.
 
   .add-new
-    %a.small.clear.button.icon.add{href: '#', title: 'Add a new Bitcoin, Litecoin, or Dogecoin address'} New Address
+    %a.small.clear.button.icon.add{href: '#', title: 'Add a new address'} New Address

@@ -1,20 +1,9 @@
 .footer-bg
   %footer
     %p.credits
-      &copy;2015 Brunch Made LLC.
-      %br
-      %br
-      %b Donations:
-      %br
-      Bitcoin:
-      %a.coinbase-button{data: {code: ENV['DONATION_COINBASE_BITCOIN'], button: {style: 'custom_small'}}, href: "https://www.coinbase.com/checkouts/#{ENV['DONATION_COINBASE_BITCOIN']}"} Donate Bitcoins
-      <script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
-      %br
-      Dogecoin:
-      =link_to ENV['DONATION_DOGECOIN'], "dogecoin:#{ENV['DONATION_DOGECOIN']}", target: '_blank'
-      %br
-      Stellar:
-      =link_to ENV['DONATION_STELLAR'], 'https://launch.stellar.org/#/dashboard', target: '_blank'
+      2015. Balances is
+      =link_to 'open source', 'https://github.com/brunchmade/balances'
+      and provided without warranty.
     %nav
       %ul
         %li= link_to 'Terms & Privacy', terms_privacy_path
