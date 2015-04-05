@@ -18,11 +18,15 @@ module Currencies
       # General methods
       def get_response(url, opts = {})
         options = {
-          parse_json: true
+          parse_json: true,
+          force_sslv23: false
         }.merge(opts)
 
         uri = URI.parse(url)
         http = HTTPClient.new
+
+        http.ssl_config.ssl_version = :SSLv23 if options[:force_sslv23]
+
         response = http.get(uri)
 
         if options[:parse_json]
