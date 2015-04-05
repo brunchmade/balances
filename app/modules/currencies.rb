@@ -18,26 +18,12 @@ module Currencies
       # General methods
       def get_response(url, opts = {})
         options = {
-          force_sslv3: false,
-          force_tlsv1_2: false,
           parse_json: true
         }.merge(opts)
 
         uri = URI.parse(url)
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
-
-        if false #options[:force_sslv3]
-          http.ssl_version = :SSLv3
-        elsif false #options[:force_tlsv1_2]
-          http.ssl_version = :TLSv1_2
-        else
-          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-          http.ssl_options = penSSL::SSL::OP_NO_SSLv2 + OpenSSL::SSL::OP_NO_SSLv3 + OpenSSL::SSL::OP_NO_COMPRESSION
-        end
-
-        request = Net::HTTP::Get.new(uri.request_uri)
-        response = http.request(request)
+        http = HTTPClient.new
+        response = http.get(uri)
 
         if options[:parse_json]
           JSON(response.body).with_indifferent_access
@@ -49,27 +35,15 @@ module Currencies
       # NOTE: This is very much tailored to handling Stellar requests.
       def post_response(url, opts = {})
         options = {
-          force_sslv3: false,
           parse_json: true,
           data: {}
         }.merge(opts)
 
         uri = URI.parse(url)
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
-
-        if options[:force_sslv3]
-          http.ssl_version = :SSLv3
-        else
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        end
-
-        request = Net::HTTP::Post.new(uri.request_uri)
-        request.content_type = 'application/x-www-form-urlencoded'
-        request.body = options[:data].to_json
+        http = HTTPClient.new
 
         begin
-          response = http.request(request)
+          response = http.post(uri, options[:data].to_json)
         rescue EOFError => e
         end
 

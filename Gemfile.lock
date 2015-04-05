@@ -103,6 +103,7 @@ GEM
       sprockets (>= 2.0.3)
       tilt
     hike (1.2.3)
+    httpclient (2.6.0.1)
     i18n (0.6.11)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
@@ -247,6 +248,7 @@ DEPENDENCIES
   gon
   haml
   handlebars_assets
+  httpclient
   jquery-rails
   js-routes
   letter_opener_web

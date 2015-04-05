@@ -106,9 +106,8 @@ class CoinbaseController < ApplicationController
     # redirection to the callback url.
     if Rails.env.development?
       uri = URI.parse(auth_url)
-      http = Net::HTTP.new(uri.host, uri.port)
-      request = Net::HTTP::Get.new(uri.request_uri)
-      response = http.request(request)
+      http = HTTPClient.new
+      response = http.get(uri)
       `open "#{auth_url}"`
       print "Enter the code returned in the URL: "
       code = STDIN.readline.chomp

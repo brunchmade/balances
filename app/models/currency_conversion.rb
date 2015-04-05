@@ -15,12 +15,8 @@ class CurrencyConversion < ActiveRecord::Base
       url = 'https://justcoin.com/api/v1/markets/'
       uri = URI.parse(url)
 
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-      request = Net::HTTP::Get.new(uri.request_uri)
-      response = http.request(request)
+      http = HTTPClient.new
+      response = http.get(uri)
 
       data = JSON(response.body)
       data_row = data.find { |i| i['id'] == self.justcoin_id }.with_indifferent_access
