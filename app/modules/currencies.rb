@@ -27,12 +27,13 @@ module Currencies
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
 
-        if options[:force_sslv3]
+        if false #options[:force_sslv3]
           http.ssl_version = :SSLv3
-        elsif options[:force_tlsv1_2]
+        elsif false #options[:force_tlsv1_2]
           http.ssl_version = :TLSv1_2
         else
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          # http.ssl_options = penSSL::SSL::OP_NO_SSLv2 + OpenSSL::SSL::OP_NO_SSLv3 + OpenSSL::SSL::OP_NO_COMPRESSION
         end
 
         request = Net::HTTP::Get.new(uri.request_uri)
