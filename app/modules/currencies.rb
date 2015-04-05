@@ -25,7 +25,7 @@ module Currencies
         uri = URI.parse(url)
         http = HTTPClient.new
 
-        http.ssl_config.ssl_version = :SSLv23 if options[:force_sslv23]
+        http.ssl_config.ciphers = 'ALL' if options[:force_sslv23]
 
         response = http.get(uri)
 
