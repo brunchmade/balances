@@ -33,7 +33,7 @@ module Currencies
           http.ssl_version = :TLSv1_2
         else
           http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-          # http.ssl_options = penSSL::SSL::OP_NO_SSLv2 + OpenSSL::SSL::OP_NO_SSLv3 + OpenSSL::SSL::OP_NO_COMPRESSION
+          http.ssl_options = penSSL::SSL::OP_NO_SSLv2 + OpenSSL::SSL::OP_NO_SSLv3 + OpenSSL::SSL::OP_NO_COMPRESSION
         end
 
         request = Net::HTTP::Get.new(uri.request_uri)
