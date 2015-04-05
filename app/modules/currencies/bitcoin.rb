@@ -9,7 +9,9 @@ module Currencies
     class << self
 
       def info(address)
-        response = get_response("#{API}/address/info/#{address}")
+        response = get_response("#{API}/address/info/#{address}", {
+          force_tlsv1_2: true
+        })
         info = response[:data]
         info[:first_tx_at] = info[:first_tx] ? info[:first_tx][:time_utc] : nil
         info

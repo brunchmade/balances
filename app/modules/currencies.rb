@@ -19,6 +19,7 @@ module Currencies
       def get_response(url, opts = {})
         options = {
           force_sslv3: false,
+          force_tlsv1_2: false,
           parse_json: true
         }.merge(opts)
 
@@ -28,6 +29,8 @@ module Currencies
 
         if options[:force_sslv3]
           http.ssl_version = :SSLv3
+        elsif options[:force_tlsv1_2]
+          http.ssl_version = :TLSv1_2
         else
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         end
